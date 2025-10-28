@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import YandexMap from '@/components/YandexMap'
 
 export default function LocationPage() {
   return (
@@ -19,32 +20,17 @@ export default function LocationPage() {
           {/* Карта */}
           <div className="animate-slide-in-left">
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift glow-effect">
-              <div className="aspect-video bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center relative">
-                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                <div className="text-center text-white relative z-10">
-                  <div className="w-20 h-20 bg-white bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
-                    <span className="text-3xl">🗺️</span>
-                  </div>
-                  <p className="text-2xl font-bold mb-2">Интерактивная карта</p>
-                  <p className="text-lg opacity-90">Московская 12, 3 этаж</p>
-                </div>
-                {/* Интерактивная карта будет здесь */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 opacity-30"></div>
-              </div>
+              <YandexMap />
               <div className="p-6">
                 <h3 className="text-xl font-black text-gray-900 mb-4">Наш адрес</h3>
                 <div className="space-y-3 text-gray-700">
                   <div className="flex items-center space-x-3">
                     <span className="text-yellow-500 text-xl">📍</span>
-                    <span className="font-semibold">Московская улица, 12, 3 этаж</span>
+                    <span className="font-semibold">г. Пенза, ул. Московская, 12, 3 этаж</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-yellow-500 text-xl">🏢</span>
-                    <span>Офис 301, 302, 303</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-yellow-500 text-xl">🚇</span>
-                    <span>5 минут пешком от метро «Красные ворота»</span>
+                    <span className="text-yellow-500 text-xl">🚶</span>
+                    <span>В центре города</span>
                   </div>
                 </div>
               </div>
@@ -56,37 +42,78 @@ export default function LocationPage() {
             {/* Транспорт */}
             <div className="bg-white rounded-3xl shadow-2xl p-8 hover-lift glow-effect">
               <h2 className="text-2xl font-black text-gray-900 mb-6">Как добраться</h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center text-2xl">
-                    🚇
+              
+              <div className="mb-6">
+                <h3 className="font-black text-gray-900 mb-4">Ближайшие остановки общественного транспорта:</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                      🚌
+                    </div>
+                    <div>
+                      <p className="text-gray-900 font-bold">«Детская библиотека»</p>
+                      <p className="text-sm text-gray-600">примерно 320 м от центра</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-black text-gray-900 mb-2">На метро</h3>
-                    <p className="text-gray-700 mb-2">Станция «Красные ворота» (Сокольническая линия)</p>
-                    <p className="text-sm text-gray-600">Выход №3, 5 минут пешком по Московской улице</p>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                      🚌
+                    </div>
+                    <div>
+                      <p className="text-gray-900 font-bold">«Библиотека имени Лермонтова»</p>
+                      <p className="text-sm text-gray-600">примерно 580 м от центра</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-yellow-700 rounded-lg flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                      🚌
+                    </div>
+                    <div>
+                      <p className="text-gray-900 font-bold">«Кинотеатр Октябрь»</p>
+                      <p className="text-sm text-gray-600">примерно 660 м от центра</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-700 to-yellow-800 rounded-lg flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                      🚌
+                    </div>
+                    <div>
+                      <p className="text-gray-900 font-bold">«Улица Куйбышева»</p>
+                      <p className="text-sm text-gray-600">примерно 760 м от центра</p>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center text-2xl">
-                    🚌
+              </div>
+
+              <div className="border-t border-gray-200 pt-6">
+                <h3 className="font-black text-gray-900 mb-4">Как узнать конкретные маршруты:</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-500 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
+                      🗺️
+                    </div>
+                    <div>
+                      <h4 className="font-black text-gray-900 mb-2">Онлайн-карты и сервисы</h4>
+                      <p className="text-sm text-gray-600 mb-2">
+                        Воспользуйтесь <strong>Яндекс.Картами</strong>, <strong>2ГИС</strong> или другими картографическими сервисами — они показывают актуальные маршруты, расписание и время прибытия транспорта
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        В сервисах можно построить маршрут от вашего текущего местоположения до центра «Эталон» и увидеть все подходящие рейсы
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-black text-gray-900 mb-2">На автобусе</h3>
-                    <p className="text-gray-700 mb-2">Автобусы: 25, 40, 156</p>
-                    <p className="text-sm text-gray-600">Остановка «Московская улица» - прямо у входа</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-600 to-yellow-700 rounded-xl flex items-center justify-center text-2xl">
-                    🚗
-                  </div>
-                  <div>
-                    <h3 className="font-black text-gray-900 mb-2">На автомобиле</h3>
-                    <p className="text-gray-700 mb-2">Парковка во дворе здания</p>
-                    <p className="text-sm text-gray-600">Бесплатная парковка для клиентов центра</p>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-700 to-yellow-800 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
+                      🚗
+                    </div>
+                    <div>
+                      <h4 className="font-black text-gray-900 mb-2">На автомобиле</h4>
+                      <p className="text-sm text-gray-600">Во дворе здания есть места, где можно оставить машину. Также доступна платная парковка в центре города</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -94,19 +121,15 @@ export default function LocationPage() {
 
             {/* Время работы */}
             <div className="bg-white rounded-3xl shadow-2xl p-8 hover-lift glow-effect">
-              <h2 className="text-2xl font-black text-gray-900 mb-6">Время работы</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                  <span className="text-gray-700 font-semibold">Понедельник - Пятница</span>
-                  <span className="text-gray-900 font-bold">9:00 - 21:00</span>
+              <h2 className="text-2xl font-black text-gray-900 mb-6">График работы</h2>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700 font-semibold">Понедельник - Суббота</span>
+                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
                 </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                  <span className="text-gray-700 font-semibold">Суббота</span>
-                  <span className="text-gray-900 font-bold">10:00 - 18:00</span>
-                </div>
-                <div className="flex justify-between items-center py-3">
+                <div className="flex justify-between items-center py-2">
                   <span className="text-gray-700 font-semibold">Воскресенье</span>
-                  <span className="text-gray-900 font-bold">10:00 - 16:00</span>
+                  <span className="text-gray-900 font-bold">10:00 - 21:00</span>
                 </div>
               </div>
             </div>
@@ -216,26 +239,6 @@ export default function LocationPage() {
                 </span>
               </a>
             </div>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link
-                  href="/contacts"
-                  className="btn-primary btn-magic text-lg px-12 py-4 group inline-flex items-center justify-center"
-                >
-                  <span className="flex items-center space-x-3">
-                    <span>Перейти в Контакты</span>
-                    <span className="group-hover:animate-wiggle">📊</span>
-                  </span>
-                </Link>
-                <Link
-                  href="/contacts"
-                  className="btn-secondary hover-glow text-lg px-12 py-4 group inline-flex items-center justify-center"
-                >
-                  <span className="flex items-center space-x-3">
-                    <span>Перейти в Контакты</span>
-                    <span className="group-hover:animate-wiggle">💬</span>
-                  </span>
-                </Link>
-              </div>
           </div>
         </div>
       </div>

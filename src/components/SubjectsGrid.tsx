@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 export default function SubjectsGrid() {
   const subjects = [
     {
@@ -127,25 +125,25 @@ export default function SubjectsGrid() {
           {subjects.map((subject, index) => (
             <div
               key={index}
-              className={`bg-white rounded-3xl group animate-zoom-in border-2 ${subject.borderColor} shadow-lg relative overflow-hidden min-h-96`}
+              className={`bg-white rounded-[2rem] group animate-zoom-in border-2 ${subject.borderColor} shadow-lg relative overflow-hidden min-h-96 hover-lift glow-effect`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Фоновое изображение */}
+              {/* Фоновое изображение - затухает при hover */}
               <div 
-                className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+                className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-500 group-hover:opacity-0"
                 style={{
                   backgroundImage: `url(${subject.backgroundImage})`,
                   zIndex: 1
                 }}
               />
               
-              {/* Градиентный оверлей для лучшей читаемости */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-white/10 to-white/5 group-hover:from-white/80 group-hover:via-white/90 group-hover:to-white/80 transition-all duration-700"></div>
+              {/* Белый фон - появляется при hover */}
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-5"></div>
               
-              {/* Контент */}
-              <div className="relative z-10 h-full flex flex-col justify-center p-8">
+              {/* Контент - появляется при hover */}
+              <div className="relative z-10 h-full flex flex-col justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                 <div className="text-center">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${subject.color} rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl`}>
+                  <div className={`w-16 h-16 bg-gradient-to-r ${subject.color} rounded-3xl flex items-center justify-center mx-auto mb-3 text-3xl group-hover:animate-wiggle shadow-lg`}>
                     {subject.icon}
                   </div>
                   <h3 className="text-xl font-black text-gray-900 mb-2">
@@ -156,7 +154,7 @@ export default function SubjectsGrid() {
                   </p>
                 </div>
               
-                <div className={`${subject.bgColor} rounded-2xl p-3 mb-3`}>
+                <div className={`${subject.bgColor} rounded-3xl p-3 mb-3 shadow-md`}>
                   <div className="text-center">
                     <div className="text-lg font-black text-yellow-800 mb-1">
                       {subject.stats}

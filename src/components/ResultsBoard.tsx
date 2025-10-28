@@ -44,20 +44,18 @@ export default function ResultsBoard() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 justify-items-center items-start">
           {results.map((item, index) => (
-                    <div
-                      key={index}
-                      className="card-lying rounded-3xl p-1 group animate-zoom-in overflow-hidden"
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-              <div className="relative w-full h-[500px] flex items-center justify-center">
-                <Image
-                  src={item.image}
-                  alt={`Достижение ${index + 1}`}
-                  width={500}
-                  height={500}
-                  className="w-full h-full object-contain"
-                />
-              </div>
+            <div
+              key={index}
+              className="relative w-full h-[500px] flex items-center justify-center animate-zoom-in transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <Image
+                src={item.image}
+                alt={`Достижение ${index + 1}`}
+                width={500}
+                height={500}
+                className="w-full h-full object-contain rounded-3xl"
+              />
             </div>
           ))}
         </div>

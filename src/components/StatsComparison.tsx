@@ -58,7 +58,7 @@ export default function StatsComparison() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20 justify-items-center">
           {/* Левая колонка - График */}
           <div className="animate-slide-in-left w-full">
-            <div className="card-lying rounded-3xl p-8 relative overflow-hidden">
+            <div className="card-lying rounded-[2rem] p-8 relative overflow-hidden hover-lift">
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-black text-gray-900 mb-2">
                   Сравнение результатов
@@ -68,7 +68,7 @@ export default function StatsComparison() {
               
               <div className="space-y-8">
                 {stats.map((stat, index) => (
-                  <div key={index} className="bg-gradient-to-r from-yellow-50 to-white rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
+                  <div key={index} className="bg-gradient-to-r from-yellow-50 to-white rounded-3xl p-6 hover:shadow-lg transition-all duration-300 hover-lift">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="text-2xl">{stat.icon}</div>
@@ -145,7 +145,7 @@ export default function StatsComparison() {
 
           {/* Правая колонка - Ключевые факты */}
           <div className="space-y-8 animate-slide-in-right w-full">
-            <div className="card-lying rounded-3xl p-8 text-center">
+            <div className="card-lying rounded-[2rem] p-8 text-center hover-lift">
               <h3 className="text-3xl font-black text-gray-900 mb-6">
                 Почему мы эффективнее?
               </h3>
@@ -154,11 +154,11 @@ export default function StatsComparison() {
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-4 text-white">
+                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-3xl p-4 text-white shadow-lg hover:scale-105 transition-all duration-300">
                   <div className="text-3xl font-black">23+</div>
                   <div className="text-sm">баллов выше</div>
                 </div>
-                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl p-4 text-white">
+                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-3xl p-4 text-white shadow-lg hover:scale-105 transition-all duration-300">
                   <div className="text-3xl font-black">95%</div>
                   <div className="text-sm">поступают</div>
                 </div>
@@ -174,11 +174,11 @@ export default function StatsComparison() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="card-lying rounded-2xl p-6 group animate-zoom-in"
+                  className="card-lying rounded-3xl p-6 group animate-zoom-in hover-lift"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-xl flex items-center justify-center text-2xl group-hover:animate-wiggle`}>
+                    <div className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center text-2xl group-hover:animate-wiggle shadow-lg`}>
                       {item.icon}
                     </div>
                     <div className="flex-1">
@@ -193,7 +193,7 @@ export default function StatsComparison() {
         </div>
 
         {/* Дополнительная статистика */}
-        <div className="card-lying rounded-3xl p-12">
+        <div className="card-lying rounded-[2rem] p-12 hover-lift">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-black text-gray-900 mb-4">
               Наше преимущество в цифрах
@@ -229,10 +229,10 @@ export default function StatsComparison() {
             ].map((stat, index) => (
                       <div
                         key={index}
-                        className="card-lying rounded-2xl p-8 animate-zoom-in text-center"
+                        className="card-lying rounded-3xl p-8 animate-zoom-in text-center hover-lift"
                         style={{ animationDelay: `${index * 0.2}s` }}
                       >
-                <div className={`w-20 h-20 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-6 text-4xl group-hover:animate-wiggle`}>
+                <div className={`w-20 h-20 bg-gradient-to-r ${stat.color} rounded-3xl flex items-center justify-center mx-auto mb-6 text-4xl group-hover:animate-wiggle shadow-lg`}>
                   {stat.icon}
                 </div>
                 <div className="text-5xl font-black text-yellow-600 mb-3 animate-pulse-glow">

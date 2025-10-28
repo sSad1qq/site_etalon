@@ -79,15 +79,15 @@ export default function StudentJourney() {
             {steps.map((step, index) => (
               <li key={step.number} className="relative w-full flex" role="listitem">
                 <article
-                  className="card-lying rounded-2xl p-6 w-full flex flex-col"
+                  className="card-lying rounded-3xl p-6 w-full flex flex-col hover-lift glow-effect"
                   style={{ animationDelay: `${index * 0.12}s` }}
                   aria-labelledby={`step-title-${step.number}`}
                 >
                   <div className="flex flex-col items-center text-center mb-4">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-lg flex items-center justify-center mb-3 text-2xl`} aria-hidden>
+                    <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-3xl flex items-center justify-center mb-3 text-2xl shadow-lg group-hover:animate-wiggle transition-all duration-300`} aria-hidden>
                       <span aria-hidden>{step.icon}</span>
                     </div>
-                    <div className="w-10 h-10 bg-yellow-500 text-white rounded-full flex items-center justify-center text-sm font-extrabold">
+                    <div className="w-10 h-10 bg-yellow-500 text-white rounded-full flex items-center justify-center text-sm font-extrabold shadow-md">
                       <span className="sr-only">Шаг</span>
                       {step.number}
                     </div>
@@ -101,7 +101,7 @@ export default function StudentJourney() {
                     {step.description}
                   </p>
 
-                  <div className="bg-yellow-50 rounded-lg px-3 py-2 mt-auto">
+                  <div className="bg-yellow-50 rounded-2xl px-3 py-2 mt-auto shadow-sm">
                     <p className="text-xs text-yellow-800 font-semibold text-center">
                       {step.details}
                     </p>
@@ -114,7 +114,7 @@ export default function StudentJourney() {
 
         {/* CTA с анимацией */}
         <div className="text-center mt-16">
-          <div className="card-lying rounded-3xl p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
+          <div className="card-lying rounded-[2rem] p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               Готовы начать свой путь к успеху?
             </h3>

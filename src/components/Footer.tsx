@@ -162,7 +162,7 @@ export default function Footer() {
                   <a
                     key={social.name}
                     href={social.href}
-                    className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center text-2xl hover:from-yellow-300 hover:to-yellow-400 transition-all duration-300 transform hover:scale-110 hover:animate-wiggle"
+                    className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl flex items-center justify-center text-2xl hover:from-yellow-300 hover:to-yellow-400 transition-all duration-300 transform hover:scale-110 hover:shadow-xl hover:animate-wiggle"
                     title={social.name}
                   >
                     {social.icon}
@@ -188,7 +188,7 @@ export default function Footer() {
               </Link>
               <a
                 href="/api/leads/export"
-                className="ml-3 inline-block text-sm px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100"
+                className="ml-3 inline-block text-sm px-4 py-2 bg-gray-50 border border-gray-200 rounded-2xl hover:bg-gray-100 hover:scale-105 hover:shadow-md transition-all duration-300"
                 title="Скачать лиды в CSV"
               >
                 Скачать лиды
@@ -201,17 +201,17 @@ export default function Footer() {
         <div className="mt-10">
           <h4 className="text-lg font-black text-gray-900 mb-4">Полезные ссылки</h4>
           <div className="flex flex-wrap gap-3">
-            <Link href="/contacts" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg font-medium hover:bg-yellow-200">Контакты</Link>
-            <Link href="/location" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg font-medium hover:bg-yellow-200">Расположение</Link>
-            <Link href="/faq" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg font-medium hover:bg-yellow-200">FAQ</Link>
-            <Link href="/contacts#legal" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg font-medium hover:bg-yellow-200">Юридическая информация</Link>
-            <Link href="/subjects" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg font-medium hover:bg-yellow-200">Предметы</Link>
-            <Link href="/about" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg font-medium hover:bg-yellow-200">О центре</Link>
+            <Link href="/contacts" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Контакты</Link>
+            <Link href="/location" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Расположение</Link>
+            <Link href="/faq" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">FAQ</Link>
+            <Link href="/contacts#legal" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Юридическая информация</Link>
+            <Link href="/subjects" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Предметы</Link>
+            <Link href="/about" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">О центре</Link>
           </div>
         </div>
 
         {/* Юридическая информация (явно) */}
-        <div className="mt-8 bg-yellow-50 p-6 rounded-2xl border border-yellow-100">
+        <div className="mt-8 bg-yellow-50 p-6 rounded-3xl border border-yellow-100 hover:shadow-lg transition-all duration-300">
           <h4 className="text-sm font-bold text-gray-900 mb-2">Юридическая информация</h4>
           <div className="text-sm text-gray-700 space-y-1">
             <div>Полное наименование: ИП Мышенков Н.А.</div>

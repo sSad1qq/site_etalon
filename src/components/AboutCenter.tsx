@@ -20,7 +20,7 @@ export default function AboutCenter() {
             { icon: '👨‍🏫', title: 'Опытные репетиторы', desc: 'Педагоги с реальными результатами и практическими методиками.' },
             { icon: '⏳', title: '7 лет специализации', desc: 'Мы знаем, как готовить к ЕГЭ/ОГЭ именно результат.' }
           ].map((it, i) => (
-            <div key={i} className="card-lying rounded-2xl p-6 group">
+            <div key={i} className="card-lying rounded-3xl p-6 group hover-lift glow-effect">
               <div className="feature-icon text-3xl mb-3">{it.icon}</div>
               <div className="feature-title text-lg">{it.title}</div>
               <div className="feature-description mt-2">{it.desc}</div>
@@ -40,7 +40,7 @@ export default function AboutCenter() {
               { title: 'Интервью с Анной', url: 'https://rutube.ru/video/example2' },
               { title: 'Отзыв Дмитрия', url: 'https://rutube.ru/video/example3' }
             ].map((t, i) => (
-              <a key={i} href={t.url} target="_blank" rel="noreferrer" className="card-lying rounded-2xl p-4 text-left">
+              <a key={i} href={t.url} target="_blank" rel="noreferrer" className="card-lying rounded-3xl p-4 text-left hover-lift glow-effect">
                 <div className="font-semibold mb-1">{t.title}</div>
                 <div className="text-sm text-gray-500">Открыть видео (Rutube)</div>
               </a>
@@ -58,7 +58,7 @@ export default function AboutCenter() {
               { step: '3', title: 'Подбор мини‑группы или индивидуально' },
               { step: '4', title: 'Начало обучения и обратная связь после каждого занятия' }
             ].map((s) => (
-              <div key={s.step} className="card-lying rounded-2xl p-6 text-center">
+              <div key={s.step} className="card-lying rounded-3xl p-6 text-center hover-lift glow-effect">
                 <div className="text-2xl font-extrabold text-primary mb-2">{s.step}</div>
                 <div className="font-semibold">{s.title}</div>
               </div>
@@ -76,7 +76,7 @@ export default function AboutCenter() {
               'Математика', 'Русский язык', 'Информатика', 'Обществознание', 'Физика',
               'Химия', 'Английский язык', 'История', 'Биология'
             ].map((subj, i) => (
-              <div key={i} className={`card-lying rounded-xl p-3 text-center ${i < 5 ? 'border-2 border-primary' : ''}`}>
+              <div key={i} className={`card-lying rounded-3xl p-3 text-center hover-lift glow-effect ${i < 5 ? 'border-2 border-primary' : ''}`}>
                 <div className="font-semibold">{subj}</div>
               </div>
             ))}

@@ -63,8 +63,8 @@ export default function TestSignupCTA() {
         <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
 
-          <div ref={modalRef} className="relative max-w-2xl w-full bg-white rounded-2xl shadow-xl p-6 z-10">
-            <button className="absolute top-3 right-3 text-gray-600" onClick={() => setOpen(false)} aria-label="Закрыть">✕</button>
+          <div ref={modalRef} className="relative max-w-2xl w-full bg-white rounded-[2rem] shadow-xl p-6 z-10 hover:shadow-2xl transition-all duration-300">
+            <button className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 hover:scale-110 transition-all duration-200" onClick={() => setOpen(false)} aria-label="Закрыть">✕</button>
 
             <h3 className="text-xl font-bold mb-3">Бесплатная консультация и тестирование</h3>
             <p className="text-sm text-gray-600 mb-4">Заполните форму — мы свяжемся и назначим удобное время.</p>

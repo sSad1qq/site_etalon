@@ -51,14 +51,14 @@ export default function Header() {
             ))}
 
             <div className="flex items-center space-x-3 ml-4">
-              <Link href="/contacts" className="px-3 py-2 bg-white border border-gray-200 rounded-md text-sm font-medium hover:shadow-sm hover:scale-105 transition-all duration-200">Контакты</Link>
-              <Link href="/location" className="px-3 py-2 bg-white border border-gray-200 rounded-md text-sm font-medium hover:shadow-sm hover:scale-105 transition-all duration-200">Расположение</Link>
-              <Link href="/faq" className="px-3 py-2 bg-white border border-gray-200 rounded-md text-sm font-medium hover:shadow-sm hover:scale-105 transition-all duration-200">FAQ</Link>
-              <Link href="/contacts#legal" className="px-3 py-2 bg-white border border-gray-200 rounded-md text-sm font-medium hover:shadow-sm hover:scale-105 transition-all duration-200">Юр. инфа</Link>
+              <Link href="/contacts" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Контакты</Link>
+              <Link href="/location" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Расположение</Link>
+              <Link href="/faq" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">FAQ</Link>
+              <Link href="/contacts#legal" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Юр. инфа</Link>
             </div>
 
             <div className="ml-4">
-              <Link href="/contacts" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-5 py-2 rounded-lg hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 inline-block text-center font-semibold shadow-md">Записаться</Link>
+              <Link href="/contacts" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-5 py-2 rounded-2xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-110 hover:shadow-xl transition-all duration-300 inline-block text-center font-semibold shadow-md">Записаться</Link>
             </div>
           </nav>
 
@@ -98,7 +98,7 @@ export default function Header() {
             <Link href="/contacts#legal" className="text-text hover:text-primary transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
               Юр. информация
             </Link>
-            <Link href="/contacts" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-6 py-2 rounded-lg hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 transition-all duration-200 inline-block text-center font-semibold shadow-md">
+            <Link href="/contacts" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-6 py-2 rounded-2xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-110 hover:shadow-xl transition-all duration-300 inline-block text-center font-semibold shadow-md">
               Записаться
             </Link>
           </nav>

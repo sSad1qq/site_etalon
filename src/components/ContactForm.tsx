@@ -17,6 +17,7 @@ type ContactFormProps = {
   onSuccess?: () => void
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLInputElement>) => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>()
   const [isSuccess, setIsSuccess] = useState(false)
@@ -114,7 +115,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
   const times = ['Утро', 'День', 'Вечер', 'Не важно']
 
   return (
-    <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+    <div className="max-w-2xl mx-auto bg-white rounded-[2rem] shadow-lg p-8 hover:shadow-2xl transition-all duration-500">
       <h2 className="text-2xl font-bold mb-6 text-center">Запишись на бесплатную консультацию</h2>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -133,9 +134,9 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
                 message: 'Имя может содержать только буквы, пробелы и дефисы'
               }
             })}
-            className={`w-full px-4 py-3 rounded-lg border ${
+            className={`w-full px-4 py-3 rounded-2xl border ${
               errors.name ? 'border-red-500' : 'border-gray-300'
-            } focus:outline-none focus:border-yellow-500 transition-colors`}
+            } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
             placeholder="Ваше имя"
             aria-label="Имя"
           />
@@ -171,9 +172,9 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
               })}
               value={phoneValue}
               onChange={handlePhoneChange}
-              className={`w-full pl-8 pr-4 py-3 rounded-lg border ${
+              className={`w-full pl-8 pr-4 py-3 rounded-2xl border ${
                 errors.phone ? 'border-red-500' : 'border-gray-300'
-              } focus:outline-none focus:border-yellow-500 transition-colors`}
+              } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
               placeholder="9XX XXX XX XX"
               maxLength={15}
             />
@@ -197,9 +198,9 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
                 message: 'Пожалуйста, введите корректный email'
               }
             })}
-            className={`w-full px-4 py-3 rounded-lg border ${
+            className={`w-full px-4 py-3 rounded-2xl border ${
               errors.email ? 'border-red-500' : 'border-gray-300'
-            } focus:outline-none focus:border-yellow-500 transition-colors`}
+            } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
             placeholder="example@email.com"
           />
           {errors.email && (
@@ -212,9 +213,9 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
           <label className="block text-sm font-medium mb-2">Предмет</label>
           <select
             {...register('subject', { required: 'Пожалуйста, выберите предмет' })}
-            className={`w-full px-4 py-3 rounded-lg border ${
+            className={`w-full px-4 py-3 rounded-2xl border ${
               errors.subject ? 'border-red-500' : 'border-gray-300'
-            } focus:outline-none focus:border-yellow-500 transition-colors`}
+            } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
           >
             <option value="">Выберите предмет</option>
             {subjects.map(subject => (
@@ -231,9 +232,9 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
           <label className="block text-sm font-medium mb-2">Класс</label>
           <select
             {...register('grade', { required: 'Пожалуйста, выберите класс' })}
-            className={`w-full px-4 py-3 rounded-lg border ${
+            className={`w-full px-4 py-3 rounded-2xl border ${
               errors.grade ? 'border-red-500' : 'border-gray-300'
-            } focus:outline-none focus:border-yellow-500 transition-colors`}
+            } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
           >
             <option value="">Выберите класс</option>
             {grades.map(grade => (
@@ -250,7 +251,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
           <label className="block text-sm font-medium mb-2">Удобное время для занятий</label>
           <select
             {...register('preferredTime')}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-yellow-500 transition-colors"
+            className="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300"
           >
             <option value="">Выберите удобное время</option>
             {times.map(time => (
@@ -264,7 +265,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
           <label className="block text-sm font-medium mb-2">Сообщение (необязательно)</label>
           <textarea
             {...register('message')}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-yellow-500 transition-colors"
+            className="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300"
             rows={4}
             placeholder="Ваше сообщение..."
           />
@@ -273,8 +274,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full bg-yellow-500 text-white py-4 rounded-lg font-medium relative overflow-hidden transition-all duration-300 ${
-            isSubmitting ? 'opacity-70' : 'hover:bg-yellow-600'
+          className={`w-full bg-yellow-500 text-white py-4 rounded-2xl font-medium relative overflow-hidden transition-all duration-300 ${
+            isSubmitting ? 'opacity-70' : 'hover:bg-yellow-600 hover:scale-105 hover:shadow-xl'
           }`}
         >
           {isSubmitting ? (
@@ -293,7 +294,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
 
       {/* Уведомление об успешной отправке */}
       {isSuccess && (
-        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-slide-up">
+        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-2xl shadow-lg animate-slide-up">
           Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.
         </div>
       )}
@@ -306,4 +307,6 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
 }
 
 const ContactForm = forwardRef(ContactFormInner)
+ContactForm.displayName = 'ContactForm'
+
 export default ContactForm

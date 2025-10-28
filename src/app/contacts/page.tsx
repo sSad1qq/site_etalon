@@ -65,31 +65,42 @@ export default function ContactsPage() {
                   📍
                 </div>
                 <div>
-                  <div className="text-lg font-black text-gray-900 mb-2">Московская 12, 3 этаж</div>
-                  <div className="text-gray-600 mb-4">г. Пенза</div>
-                  <div className="text-sm text-gray-500">
-                    <div>🚇 Транспортная доступность и парковка в шаговой доступности</div>
-                    <div>🚌 Автобусы останавливаются рядом с входом</div>
-                  </div>
+                  <div className="text-lg font-black text-gray-900">г. Пенза, ул. Московская, 12, 3 этаж</div>
                 </div>
               </div>
             </div>
 
             {/* Время работы */}
             <div className="bg-white rounded-3xl shadow-2xl p-8 hover-lift glow-effect">
-              <h2 className="text-2xl font-black text-gray-900 mb-6">Время работы</h2>
+              <h2 className="text-2xl font-black text-gray-900 mb-6">График работы</h2>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700 font-semibold">Понедельник - Пятница</span>
-                  <span className="text-gray-900 font-bold">9:00 - 21:00</span>
+                  <span className="text-gray-700 font-semibold">Понедельник</span>
+                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700 font-semibold">Вторник</span>
+                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700 font-semibold">Среда</span>
+                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700 font-semibold">Четверг</span>
+                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700 font-semibold">Пятница</span>
+                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700 font-semibold">Суббота</span>
-                  <span className="text-gray-900 font-bold">10:00 - 18:00</span>
+                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700 font-semibold">Воскресенье</span>
-                  <span className="text-gray-900 font-bold">10:00 - 16:00</span>
+                  <span className="text-gray-900 font-bold">10:00 - 21:00</span>
                 </div>
               </div>
             </div>

@@ -53,15 +53,15 @@ export default function Hero() {
             
             {/* Статистика */}
             <div className="grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0">
-              <div className="text-center">
+              <div className="text-center card-lying rounded-3xl p-4 hover-lift">
                 <div className="text-2xl font-black text-yellow-600">1000+</div>
                 <div className="text-sm text-gray-600">Выпускников</div>
               </div>
-              <div className="text-center">
+              <div className="text-center card-lying rounded-3xl p-4 hover-lift">
                 <div className="text-2xl font-black text-yellow-600">7</div>
                 <div className="text-sm text-gray-600">Лет опыта</div>
               </div>
-              <div className="text-center">
+              <div className="text-center card-lying rounded-3xl p-4 hover-lift">
                 <div className="text-2xl font-black text-yellow-600">+10</div>
                 <div className="text-sm text-gray-600">Средний балл</div>
               </div>
@@ -72,7 +72,7 @@ export default function Hero() {
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-              <div className="relative bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
+              <div className="relative bg-white rounded-[3rem] p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover-lift">
                 <Image
                   src="/sova.png"
                   alt="Сова - символ мудрости и знаний"
@@ -81,10 +81,10 @@ export default function Hero() {
                   className="w-full h-auto max-w-sm mx-auto"
                   priority
                 />
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold animate-bounce">
+                <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold animate-bounce shadow-lg">
                   ✨
                 </div>
-                <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold animate-bounce" style={{animationDelay: '0.5s'}}>
+                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold animate-bounce shadow-lg" style={{animationDelay: '0.5s'}}>
                   🎯
                 </div>
               </div>

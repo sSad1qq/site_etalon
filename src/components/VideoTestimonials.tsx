@@ -1,42 +1,35 @@
 "use client"
 
-import { useState } from 'react'
 import Link from 'next/link'
 
 export default function VideoTestimonials() {
-  const [activeUrl, setActiveUrl] = useState<string | null>(null)
-  const openVideo = (url: string) => setActiveUrl(url)
-  const closeVideo = () => setActiveUrl(null)
   const testimonials = [
     {
       id: 1,
-      name: "Анна Смирнова",
-      subject: "Математика",
-      score: 98,
-      university: "МГУ",
-      videoId: "dQw4w9WgXcQ",
-  quote: '«Благодаря центру „Эталон“ я поступила в МГУ! Преподаватели объясняют очень понятно.»',
-      avatar: "AS"
+      name: "Юлия Дятлова",
+      role: "Мама выпускника",
+      subject: "Информатика, Математика, Русский язык",
+      scores: "Информатика: 93 • Математика: 76 • Русский язык: 78",
+      quote: 'Здравствуйте! Хочу выразить благодарность центру подготовки к ЕГЭ и ОГЭ "Эталон". Наш результат ЕГЭ по информатике 93 балла. Огромное спасибо нашему репетитору Мышенкову Никите за его вклад в подготовку моего сына, за его знания, которые он ему передал, за его умение, ко всем найти свой подход, объединить всех в команду. Нам с вами было легко, интересно и результативно сотрудничать!!! Также огромное спасибо всему преподовательскому составу центра "Эталон", а именно Вере Валерьевне (математика профильная 76 баллов), Вере Николаевне (русский язык 78 баллов), это настоящие профессионалы своего дела!!! Всегда вас рекомендую знакомым!!! Вы лучшие👍👍👍',
+      avatar: "ЮД"
     },
     {
       id: 2,
-      name: "Дмитрий Козлов",
-      subject: "Физика",
-      score: 96,
-      university: "МФТИ",
-      videoId: "dQw4w9WgXcQ",
-  quote: '«Отличная подготовка! Мини-группы позволяют получить максимум внимания.»',
-      avatar: "ДК"
+      name: "Никита Назаров",
+      role: "Выпускник",
+      subject: "Подготовка к ЕГЭ",
+      scores: "",
+      quote: 'Центр Эталон оставил только положительные эмоции, индивидуальный подход к каждому ученику дает понимание, что цель преподавателя в первую очередь научить, а не заработать. Учителя общаются с учениками на равных, что создает комфортную атмосферу для обучения, выше сказанные факторы нацелены на максимально возможное облегчение процесса обучения без потери эффективности, но это не значит, что в обучении будет легко и просто, ведь изначальная цель это сдать на МАКСИМАЛЬНО ВОЗМОЖНЫЕ БАЛЛЫ, а выше сказанные факторы лишь минимизируют эти усилия. Учителя умеют грамотно и структурировано преподносить материал, домашнее задание дается исходя из успеваемости группы или конкретного ученика(подбирается тема или конкретные задачи, которые вызывают трудности). Отличная обратная связь я как ученик не раз просил помощи у преподавателей с какой либо задачей, даже если она не касается темы урока или домашнего задания, и каждый раз получал развернутый ответ на поставленный вопрос. В общем Центр Эталон это отличное место для подготовки к экзаменам и не только, которое оставит положительные эмоции не только от самого обучения, но и от результатов.',
+      avatar: "НН"
     },
     {
       id: 3,
-      name: "Елена Петрова",
-      subject: "Русский язык",
-      score: 100,
-      university: "ВШЭ",
-      videoId: "dQw4w9WgXcQ",
-  quote: '«100 баллов по русскому языку! Спасибо за качественную подготовку.»',
-      avatar: "ЕП"
+      name: "Кирилл Венедиктов",
+      role: "Выпускник",
+      subject: "Математика, Информатика, Физика",
+      scores: "Результаты: 80-90 баллов",
+      quote: 'Огромное спасибо центру подготовки к экзаменам «Эталон», а именно гениальному преподавателю по математике и информатике Никите Мышенкову и мудрому преподавателю по физике Михаилу Нагаеву. Они вложили в меня все свои усилия и знания, с которыми невозможно было набрать меньше 80 баллов, а то и 90. Советую всем присоединяться к данному коллективу, готовиться с ними к ЕГЭ и ОГЭ и успешно сдать все свои экзамены!',
+      avatar: "КВ"
     }
   ]
 
@@ -55,57 +48,47 @@ export default function VideoTestimonials() {
             </span>
           </h2>
           <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
-            Послушайте истории успеха наших учеников и их родителей
+            Читайте реальные отзывы наших учеников и их родителей
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center items-stretch">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
-              role="button"
-              onClick={() => openVideo(`https://rutube.ru/video/${testimonial.videoId}`)}
-              className="bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift glow-effect group animate-zoom-in card-container cursor-pointer"
+              className="bg-white rounded-[2rem] shadow-2xl overflow-hidden hover-lift glow-effect group animate-zoom-in card-container flex flex-col"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {/* Видео секция */}
-              <div className="relative aspect-video bg-gradient-to-br from-yellow-400 to-yellow-600 group-hover:scale-105 transition-all duration-500">
-                <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="w-20 h-20 bg-white bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:animate-pulse-glow">
-                      <span className="text-3xl group-hover:animate-wiggle">▶️</span>
-                    </div>
-                    <p className="text-lg font-bold mb-2">Видео-отзыв</p>
-                    <p className="text-sm opacity-90">Нажмите для просмотра</p>
-                  </div>
-                </div>
-                <div className="absolute top-4 right-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold">
-                  {testimonial.score} баллов
-                </div>
-              </div>
-
               {/* Контент секция */}
-              <div className="p-8">
+              <div className="p-8 flex flex-col h-full">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-black text-xl group-hover:animate-wiggle">
+                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-black text-xl group-hover:animate-wiggle flex-shrink-0">
                     {testimonial.avatar}
                   </div>
                   <div>
                     <h3 className="text-xl font-black text-gray-900">{testimonial.name}</h3>
-                    <p className="text-yellow-600 font-bold">{testimonial.subject}</p>
-                    <p className="text-sm text-gray-600 font-semibold">{testimonial.university}</p>
+                    <p className="text-yellow-600 font-bold text-sm">{testimonial.role}</p>
                   </div>
                 </div>
 
-                <blockquote className="text-gray-700 italic mb-6 leading-relaxed">
+                {testimonial.scores && (
+                  <div className="bg-yellow-50 rounded-xl p-3 mb-4">
+                    <p className="text-sm font-bold text-gray-900">{testimonial.scores}</p>
+                  </div>
+                )}
+
+                <div className="text-sm text-gray-600 font-semibold mb-4">
+                  {testimonial.subject}
+                </div>
+
+                <blockquote className="text-gray-700 leading-relaxed mb-6 flex-grow">
                   {testimonial.quote}
                 </blockquote>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                   <div className="flex text-yellow-500 text-lg">{'★'.repeat(5)}</div>
                   <div className="text-sm text-gray-500 font-semibold">
-                    Выпускник {new Date().getFullYear()}
+                    {new Date().getFullYear()}
                   </div>
                 </div>
               </div>
@@ -113,24 +96,36 @@ export default function VideoTestimonials() {
           ))}
         </div>
 
-        {/* Modal для видео */}
-        {activeUrl && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60" onClick={closeVideo}>
-            <div className="w-full max-w-4xl mx-auto p-4" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-white rounded-xl overflow-hidden">
-                <div className="aspect-video">
-                  <iframe src={activeUrl} title="Видео отзыв" className="w-full h-full" allowFullScreen />
-                </div>
-                <div className="p-4 text-right">
-                  <button onClick={closeVideo} className="btn-secondary px-4 py-2">Закрыть</button>
-                </div>
+        {/* Блок ВКонтакте */}
+        <div className="mt-16 text-center">
+          <div className="bg-gradient-to-r from-blue-50 to-white rounded-[2rem] shadow-xl p-8 max-w-3xl mx-auto hover-lift">
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-3xl">
+                📱
               </div>
             </div>
+            <h3 className="text-2xl lg:text-3xl font-black text-gray-900 mb-4">
+              Больше отзывов в нашей группе ВКонтакте
+            </h3>
+            <p className="text-lg text-gray-700 mb-6">
+              Присоединяйтесь к нашему сообществу, читайте отзывы учеников и родителей, следите за новостями и акциями центра
+            </p>
+            <a
+              href="https://vk.com/repetitor_penza_etalon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.45 14.63c-.21.45-.81.85-1.74.85-.88 0-1.75-.25-2.5-.88-.88-.74-1.66-1.81-2.42-2.81-.26-.35-.51-.68-.77-.95-.6.9-1.26 1.74-1.95 2.42-.88.86-1.81 1.29-2.65 1.22-.63-.05-1.12-.42-1.37-1.05-.42-1.05.07-2.46 1.39-3.98.42-.49.88-.95 1.35-1.35-.77-.39-1.46-.95-1.95-1.63-.42-.58-.63-1.22-.56-1.81.07-.53.35-.95.81-1.22.95-.56 2.39-.18 3.91 1.08.53.44 1.05.95 1.53 1.53.49-.58 1.01-1.08 1.53-1.53 1.53-1.26 2.96-1.64 3.91-1.08.46.28.74.7.81 1.22.07.6-.14 1.23-.56 1.81-.49.68-1.19 1.23-1.95 1.63.46.39.93.86 1.35 1.35 1.32 1.53 1.81 2.93 1.39 3.98z"/>
+              </svg>
+              <span>Перейти в группу ВКонтакте</span>
+            </a>
           </div>
-        )}
+        </div>
 
         {/* Дополнительная статистика */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 text-center justify-items-center">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8 text-center justify-items-center">
           {[
             { number: "4.9", label: "средний рейтинг", icon: "⭐", color: "text-yellow-600" },
             { number: "98%", label: "рекомендуют нас", icon: "👍", color: "text-yellow-600" },
@@ -139,7 +134,7 @@ export default function VideoTestimonials() {
           ].map((stat, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-xl hover-lift animate-zoom-in card-container"
+              className="bg-white rounded-3xl p-8 shadow-xl hover-lift animate-zoom-in card-container glow-effect"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="text-5xl mb-4 animate-bounce-in">{stat.icon}</div>
@@ -153,7 +148,7 @@ export default function VideoTestimonials() {
 
         {/* CTA с анимацией */}
         <div className="text-center mt-20">
-          <div className="bg-gradient-to-r from-yellow-50 to-white rounded-3xl shadow-2xl p-12 max-w-5xl mx-auto relative overflow-hidden animate-zoom-in">
+          <div className="bg-gradient-to-r from-yellow-50 to-white rounded-[2rem] shadow-2xl p-12 max-w-5xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
             <h3 className="text-3xl lg:text-4xl font-black text-gray-900 mb-6">
               Станьте следующим успешным выпускником!
             </h3>
@@ -169,12 +164,15 @@ export default function VideoTestimonials() {
                 <span className="group-hover:animate-wiggle">🎯</span>
               </Link>
 
-              <button className="btn-secondary hover-glow text-lg px-12 py-4 group">
+              <Link
+                href="/contacts"
+                className="btn-secondary hover-glow text-lg px-12 py-4 group"
+              >
                 <span className="flex items-center space-x-3">
-                  <span>Посмотреть все отзывы</span>
-                  <span className="group-hover:animate-wiggle">📺</span>
+                  <span>Связаться с нами</span>
+                  <span className="group-hover:animate-wiggle">💬</span>
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

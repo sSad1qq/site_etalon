@@ -35,37 +35,6 @@ export default function AboutPage() {
     }
   ]
 
-  const team = [
-    {
-      name: "Анна Петровна Смирнова",
-      position: "Директор центра",
-      experience: "15 лет",
-      subjects: "Математика, Физика",
-      description: "Кандидат физико-математических наук, автор методических пособий"
-    },
-    {
-      name: "Михаил Александрович Козлов",
-      position: "Заместитель директора",
-      experience: "12 лет",
-      subjects: "Русский язык, Литература",
-      description: "Эксперт ЕГЭ, член комиссии по проверке работ"
-    },
-    {
-      name: "Елена Владимировна Морозова",
-      position: "Ведущий преподаватель",
-      experience: "10 лет",
-      subjects: "Химия, Биология",
-      description: "Кандидат химических наук, разработчик авторских программ"
-    },
-    {
-      name: "Дмитрий Сергеевич Волков",
-      position: "Преподаватель",
-      experience: "8 лет",
-      subjects: "Информатика, Математика",
-      description: "IT-специалист с опытом работы в ведущих технологических компаниях"
-    }
-  ]
-
   const values = [
     {
       icon: "🎯",
@@ -152,48 +121,6 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Команда */}
-        <div className="mb-20">
-          <h2 className="text-4xl font-black text-gray-900 mb-12 text-center">Наша команда</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="card-lying rounded-3xl p-8 animate-zoom-in card-container"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-center mb-6">
-                  <div className="w-24 h-24 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-white font-black">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <h3 className="text-xl font-black text-gray-900 mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="text-yellow-600 font-bold mb-1">
-                    {member.position}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Опыт: {member.experience}
-                  </p>
-                </div>
-                
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-sm font-semibold text-gray-600">Предметы:</span>
-                    <p className="text-gray-800 font-medium">{member.subjects}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm font-semibold text-gray-600">О преподавателе:</span>
-                    <p className="text-gray-700 text-sm leading-relaxed">
-                      {member.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
