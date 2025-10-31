@@ -1,8 +1,14 @@
 "use client"
 
+import { useState } from 'react'
 import Link from 'next/link'
+import VKVideoPlayer from './VKVideoPlayer'
 
 export default function VideoTestimonials() {
+  const [activeVideo, setActiveVideo] = useState<{ oid: string; id: string } | null>(null)
+  const openVideo = (oid: string, id: string) => setActiveVideo({ oid, id })
+  const closeVideo = () => setActiveVideo(null)
+
   const testimonials = [
     {
       id: 1,
@@ -11,7 +17,8 @@ export default function VideoTestimonials() {
       subject: "Информатика, Математика, Русский язык",
       scores: "Информатика: 93 • Математика: 76 • Русский язык: 78",
       quote: 'Здравствуйте! Хочу выразить благодарность центру подготовки к ЕГЭ и ОГЭ "Эталон". Наш результат ЕГЭ по информатике 93 балла. Огромное спасибо нашему репетитору Мышенкову Никите за его вклад в подготовку моего сына, за его знания, которые он ему передал, за его умение, ко всем найти свой подход, объединить всех в команду. Нам с вами было легко, интересно и результативно сотрудничать!!! Также огромное спасибо всему преподовательскому составу центра "Эталон", а именно Вере Валерьевне (математика профильная 76 баллов), Вере Николаевне (русский язык 78 баллов), это настоящие профессионалы своего дела!!! Всегда вас рекомендую знакомым!!! Вы лучшие👍👍👍',
-      avatar: "ЮД"
+      avatar: "ЮД",
+      vkVideo: null
     },
     {
       id: 2,
@@ -19,8 +26,9 @@ export default function VideoTestimonials() {
       role: "Выпускник",
       subject: "Подготовка к ЕГЭ",
       scores: "",
-      quote: 'Центр Эталон оставил только положительные эмоции, индивидуальный подход к каждому ученику дает понимание, что цель преподавателя в первую очередь научить, а не заработать. Учителя общаются с учениками на равных, что создает комфортную атмосферу для обучения, выше сказанные факторы нацелены на максимально возможное облегчение процесса обучения без потери эффективности, но это не значит, что в обучении будет легко и просто, ведь изначальная цель это сдать на МАКСИМАЛЬНО ВОЗМОЖНЫЕ БАЛЛЫ, а выше сказанные факторы лишь минимизируют эти усилия. Учителя умеют грамотно и структурировано преподносить материал, домашнее задание дается исходя из успеваемости группы или конкретного ученика(подбирается тема или конкретные задачи, которые вызывают трудности). Отличная обратная связь я как ученик не раз просил помощи у преподавателей с какой либо задачей, даже если она не касается темы урока или домашнего задания, и каждый раз получал развернутый ответ на поставленный вопрос. В общем Центр Эталон это отличное место для подготовки к экзаменам и не только, которое оставит положительные эмоции не только от самого обучения, но и от результатов.',
-      avatar: "НН"
+      quote: 'Центр Эталон оставил только положительные эмоции, индивидуальный подход к каждому ученику дает понимание, что цель преподавателя в первую очередь научить, а не заработать. Учителя общаются с учениками на равных, что создает комфортную атмосферу для обучения...',
+      avatar: "НН",
+      vkVideo: null
     },
     {
       id: 3,
@@ -29,7 +37,8 @@ export default function VideoTestimonials() {
       subject: "Математика, Информатика, Физика",
       scores: "Результаты: 80-90 баллов",
       quote: 'Огромное спасибо центру подготовки к экзаменам «Эталон», а именно гениальному преподавателю по математике и информатике Никите Мышенкову и мудрому преподавателю по физике Михаилу Нагаеву. Они вложили в меня все свои усилия и знания, с которыми невозможно было набрать меньше 80 баллов, а то и 90. Советую всем присоединяться к данному коллективу, готовиться с ними к ЕГЭ и ОГЭ и успешно сдать все свои экзамены!',
-      avatar: "КВ"
+      avatar: "КВ",
+      vkVideo: null
     }
   ]
 
@@ -56,9 +65,32 @@ export default function VideoTestimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
-              className="bg-white rounded-[2rem] shadow-2xl overflow-hidden hover-lift glow-effect group animate-zoom-in card-container flex flex-col"
+              className={`bg-white rounded-[2rem] shadow-2xl overflow-hidden hover-lift glow-effect group animate-zoom-in card-container flex flex-col ${testimonial.vkVideo ? 'cursor-pointer' : ''}`}
               style={{ animationDelay: `${index * 0.2}s` }}
+              onClick={() => testimonial.vkVideo && openVideo(testimonial.vkVideo.oid, testimonial.vkVideo.id)}
+              role={testimonial.vkVideo ? "button" : undefined}
             >
+              {/* Видео-превью секция */}
+              {testimonial.vkVideo && (
+                <div className="relative aspect-video bg-gradient-to-br from-yellow-400 to-yellow-600 group-hover:scale-105 transition-all duration-500 rounded-t-[2rem]">
+                  <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300 rounded-t-[2rem]"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <div className="w-20 h-20 bg-white bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:animate-pulse-glow shadow-lg">
+                        <span className="text-3xl group-hover:animate-wiggle">▶️</span>
+                      </div>
+                      <p className="text-lg font-bold mb-2">Видео-отзыв</p>
+                      <p className="text-sm opacity-90">Нажмите для просмотра</p>
+                    </div>
+                  </div>
+                  {testimonial.scores && (
+                    <div className="absolute top-4 right-4 bg-yellow-500 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                      {testimonial.scores.split('•')[0].trim()}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Контент секция */}
               <div className="p-8 flex flex-col h-full">
                 <div className="flex items-center space-x-4 mb-6">
@@ -71,7 +103,7 @@ export default function VideoTestimonials() {
                   </div>
                 </div>
 
-                {testimonial.scores && (
+                {testimonial.scores && !testimonial.vkVideo && (
                   <div className="bg-yellow-50 rounded-xl p-3 mb-4">
                     <p className="text-sm font-bold text-gray-900">{testimonial.scores}</p>
                   </div>
@@ -81,7 +113,7 @@ export default function VideoTestimonials() {
                   {testimonial.subject}
                 </div>
 
-                <blockquote className="text-gray-700 leading-relaxed mb-6 flex-grow">
+                <blockquote className="text-gray-700 leading-relaxed mb-6 flex-grow line-clamp-6">
                   {testimonial.quote}
                 </blockquote>
 
@@ -95,6 +127,26 @@ export default function VideoTestimonials() {
             </div>
           ))}
         </div>
+
+        {/* Modal для видео */}
+        {activeVideo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-4" onClick={closeVideo}>
+            <div className="w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+              <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
+                <VKVideoPlayer oid={activeVideo.oid} id={activeVideo.id} autoplay={true} />
+                <div className="p-6 flex justify-between items-center">
+                  <p className="text-gray-700 font-semibold">Видео-отзыв</p>
+                  <button 
+                    onClick={closeVideo} 
+                    className="btn-secondary px-6 py-2 text-sm hover-glow"
+                  >
+                    Закрыть
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Блок ВКонтакте */}
         <div className="mt-16 text-center">

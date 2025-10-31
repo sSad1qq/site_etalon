@@ -183,33 +183,6 @@ export default function LocationPage() {
           </div>
         </div>
 
-  {/* Видео «Как добраться» */}
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-black text-gray-900 mb-6">
-              Видео «Как добраться»
-            </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-              Посмотрите подробную инструкцию, как найти наш образовательный центр
-            </p>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift glow-effect">
-              <div className="aspect-video bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center relative group cursor-pointer">
-                <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                <div className="text-center text-white relative z-10">
-                  <div className="w-24 h-24 bg-white bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse-glow">
-                    <span className="text-4xl group-hover:animate-wiggle">▶️</span>
-                  </div>
-                  <p className="text-2xl font-bold mb-2">Как добраться до центра</p>
-                  <p className="text-lg opacity-90">Нажмите для просмотра</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* CTA */}
         <div className="mt-20 text-center">
           <div className="bg-white rounded-3xl shadow-2xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">

@@ -3,6 +3,7 @@ import AboutCenter from '@/components/AboutCenter'
 import ResultsBoard from '@/components/ResultsBoard'
 import StudentJourney from '@/components/StudentJourney'
 import SubjectsGrid from '@/components/SubjectsGrid'
+import VideoTestimonials from '@/components/VideoTestimonials'
 import StatsComparison from '@/components/StatsComparison'
 import AdvantagesGrid from '@/components/AdvantagesGrid'
 import FormatsGrid from '@/components/FormatsGrid'
@@ -20,6 +21,7 @@ export default function Home() {
       <StatsComparison />
       <SubjectsGrid />
       <FormatsGrid />
+      <VideoTestimonials />
     </div>
   )
 }

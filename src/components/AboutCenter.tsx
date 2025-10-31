@@ -1,3 +1,5 @@
+'use client'
+
 export default function AboutCenter() {
   return (
     <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
@@ -32,19 +34,33 @@ export default function AboutCenter() {
 
         {/* Отзывы — видео ссылки */}
         <div className="mb-12">
-          <h3 className="text-2xl font-bold mb-4">Отзывы выпускников (видео)</h3>
-          <p className="text-sm text-gray-600 mb-4">Видео могут размещаться на Rutube/YouTube — на сайте мы встраиваем ссылки/плеер.</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              { title: 'История Ивана', url: 'https://rutube.ru/video/example1' },
-              { title: 'Интервью с Анной', url: 'https://rutube.ru/video/example2' },
-              { title: 'Отзыв Дмитрия', url: 'https://rutube.ru/video/example3' }
-            ].map((t, i) => (
-              <a key={i} href={t.url} target="_blank" rel="noreferrer" className="card-lying rounded-3xl p-4 text-left hover-lift glow-effect">
-                <div className="font-semibold mb-1">{t.title}</div>
-                <div className="text-sm text-gray-500">Открыть видео (Rutube)</div>
+          <h3 className="text-2xl font-bold mb-4">Видео-отзывы выпускников</h3>
+          <p className="text-sm text-gray-600 mb-4">Смотрите реальные видео-отзывы наших учеников и их родителей</p>
+          
+          <div className="max-w-2xl mx-auto">
+            {/* Блок с кнопкой VK */}
+            <div className="bg-gradient-to-br from-blue-50 to-white rounded-3xl shadow-lg p-8 flex flex-col items-center justify-center text-center hover-lift glow-effect">
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-4xl mb-6">
+                🎥
+              </div>
+              <h4 className="text-2xl font-bold text-gray-900 mb-4">
+                Видео-отзывы наших выпускников
+              </h4>
+              <p className="text-gray-700 mb-6">
+                Смотрите реальные видео-отзывы наших учеников и их родителей в нашей группе ВКонтакте
+              </p>
+              <a 
+                href="https://vk.com/video/@repetitor_penza_etalon" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.45 14.63c-.21.45-.81.85-1.74.85-.88 0-1.75-.25-2.5-.88-.88-.74-1.66-1.81-2.42-2.81-.26-.35-.51-.68-.77-.95-.6.9-1.26 1.74-1.95 2.42-.88.86-1.81 1.29-2.65 1.22-.63-.05-1.12-.42-1.37-1.05-.42-1.05.07-2.46 1.39-3.98.42-.49.88-.95 1.35-1.35-.77-.39-1.46-.95-1.95-1.63-.42-.58-.63-1.22-.56-1.81.07-.53.35-.95.81-1.22.95-.56 2.39-.18 3.91 1.08.53.44 1.05.95 1.53 1.53.49-.58 1.01-1.08 1.53-1.53 1.53-1.26 2.96-1.64 3.91-1.08.46.28.74.7.81 1.22.07.6-.14 1.23-.56 1.81-.49.68-1.19 1.23-1.95 1.63.46.39.93.86 1.35 1.35 1.32 1.53 1.81 2.93 1.39 3.98z"/>
+                </svg>
+                <span>Смотреть видео-отзывы</span>
               </a>
-            ))}
+            </div>
           </div>
         </div>
 
