@@ -1,67 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Сайт образовательного центра "Эталон"
 
-## Getting Started
+Современный, быстрый и SEO-оптимизированный сайт для образовательного центра подготовки к ЕГЭ и ОГЭ.
 
-First, run the development server:
+## 🚀 Технологии
+
+- **Next.js 15** - React фреймворк для production
+- **TypeScript** - типизация и безопасность кода
+- **Tailwind CSS** - современные стили и адаптивный дизайн
+- **React Hook Form** - управление формами
+- **Telegram Bot API** - автоматическая отправка заявок
+- **Яндекс.Карты** - интерактивная карта расположения
+
+## 📋 Возможности
+
+- ✅ Адаптивный дизайн (mobile-first)
+- ✅ SEO-оптимизация (meta-теги, Open Graph, sitemap, robots.txt)
+- ✅ Форма обратной связи с валидацией
+- ✅ Интеграция с Telegram для получения заявок
+- ✅ Сохранение заявок в JSON и возможность экспорта в CSV
+- ✅ Интерактивная карта Яндекс с меткой офиса
+- ✅ Кастомные анимации и эффекты
+- ✅ Страницы: Главная, О центре, Предметы, FAQ, Контакты, Расположение
+
+## 📦 Установка
+
+### 1. Установите зависимости
+
+```bash
+npm install
+```
+
+### 2. Настройте переменные окружения
+
+Создайте файл `.env.local` в корне проекта:
+
+```env
+# Telegram Bot Configuration (обязательно для работы формы)
+NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=your_bot_token_here
+NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
+
+# Optional: External webhook для лидов
+LEADS_WEBHOOK_URL=https://your-webhook-url.com
+LEADS_WEBHOOK_TOKEN=your_optional_secret_token
+```
+
+**Важно:** Инструкция по созданию Telegram бота находится в файле `TELEGRAM_SETUP.md`
+
+### 3. Обновите контактные данные
+
+Найдите и замените placeholder'ы на реальные данные:
+
+- **Телефоны**: `src/app/location/page.tsx` и `src/components/YandexMap.tsx`
+- **Email**: `src/app/location/page.tsx`
+- Ищите комментарий `TODO: Заменить на реальный номер телефона`
+
+### 4. Запустите dev-сервер
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏗️ Сборка для production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Приём лидов / Contact form
-
-В проекте есть форма записи на бесплатную консультацию. По умолчанию она отправляет данные на локальный endpoint `/api/lead` и сохраняет заявки в `data/leads.json`.
-
-Если вы хотите отправлять лиды на внешний сервис (например, Formspree), создайте файл `.env.local` в корне проекта и добавьте строку:
-
-```
-NEXT_PUBLIC_FORM_ENDPOINT=https://formspree.io/f/your_form_id
+```bash
+npm run build
+npm run start
 ```
 
-Если вы хотите, чтобы лиды сразу отправлялись в внешнюю систему (Google Sheets, CRM), можно указать переменную окружения в `.env.local`:
+## 📁 Структура проекта
 
 ```
-LEADS_WEBHOOK_URL=https://script.google.com/macros/s/XXXXXXXX/exec
-LEADS_WEBHOOK_TOKEN=your-secret-token-optional
+site_etalon/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── page.tsx            # Главная страница
+│   │   ├── about/              # Страница "О центре"
+│   │   ├── contacts/           # Контакты
+│   │   ├── faq/                # FAQ
+│   │   ├── location/           # Расположение с картой
+│   │   ├── subjects/           # Предметы
+│   │   └── api/                # API routes
+│   │       ├── lead/           # Сохранение заявок
+│   │       ├── leads/export/   # Экспорт заявок в CSV
+│   │       └── telegram/       # Отправка в Telegram
+│   ├── components/             # React компоненты
+│   └── styles/                 # Стили и темы
+├── public/                     # Статические файлы
+├── data/                       # База данных заявок (JSON)
+└── TELEGRAM_SETUP.md           # Инструкция по настройке Telegram
+
 ```
 
-Пример простого Google Apps Script (в качестве webhook):
+## 📧 Работа с заявками
 
-```javascript
-function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
-  // добавьте логику записи в таблицу или дальнейшей обработки
-  return ContentService.createTextOutput(JSON.stringify({ ok: true }));
-}
+### Локальное хранение
+
+Все заявки сохраняются в `data/leads.json`. Этот файл НЕ коммитится в git (см. `.gitignore`).
+
+### Экспорт заявок
+
+Скачать все заявки в CSV: `http://your-domain.com/api/leads/export`
+
+### Telegram уведомления
+
+При правильной настройке бота (см. `TELEGRAM_SETUP.md`), каждая заявка автоматически отправляется в Telegram.
+
+### Webhook интеграция
+
+Опционально можно настроить webhook для отправки заявок в CRM или Google Sheets:
+
+```env
+LEADS_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
+LEADS_WEBHOOK_TOKEN=your_secret_token
 ```
 
-Наш сервер при наличии `LEADS_WEBHOOK_URL` форвардит каждый пришедший лид как POST JSON. Если `LEADS_WEBHOOK_TOKEN` задан — он будет передан в заголовке Authorization: Bearer <token>.
+## 🌐 Деплой
 
-Пример файла `.env.example` добавлен в корень репозитория.
+### Vercel (рекомендуется)
+
+1. Создайте аккаунт на [Vercel](https://vercel.com)
+2. Подключите GitHub репозиторий
+3. Добавьте переменные окружения в настройках проекта
+4. Деплой произойдет автоматически
+
+### Другие хостинги
+
+Проект совместим с любым хостингом, поддерживающим Next.js:
+
+- Netlify
+- AWS Amplify
+- Google Cloud Run
+- Docker
+
+## ✅ Чек-лист перед запуском
+
+- [ ] Настроен Telegram бот
+- [ ] Заменены тестовые телефоны на реальные
+- [ ] Проверена форма обратной связи
+- [ ] Добавлены переменные окружения на хостинге
+- [ ] Проверена карта Яндекс
+- [ ] Production build успешно собирается
+- [ ] Проверены все ссылки на сайте
+
+## 📞 Поддержка
+
+При возникновении вопросов или проблем:
+
+1. Проверьте `TELEGRAM_SETUP.md` для настройки бота
+2. Проверьте консоль браузера на ошибки
+3. Убедитесь, что все переменные окружения настроены
+
+## 📄 Лицензия
+
+Проект разработан для образовательного центра "Эталон".

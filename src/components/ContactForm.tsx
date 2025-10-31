@@ -66,8 +66,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       })
 
       if (!telegramRes.ok) {
-        const telegramError = await telegramRes.json()
-        console.error('Telegram error:', telegramError)
+        // Telegram error - логирование отключено для production
         throw new Error('Ошибка отправки в Telegram')
       }
 
@@ -82,8 +81,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
             phone: cleanPhone // Отправляем очищенный номер и в БД
           })
         })
-      } catch (dbError) {
-        console.warn('Ошибка сохранения в БД:', dbError)
+      } catch {
+        // Ошибка сохранения в БД (логирование отключено для production)
         // Не блокируем успешную отправку в Telegram
       }
 
@@ -94,8 +93,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       setTimeout(() => setIsSuccess(false), 3000)
       // уведомляем внешний компонент (например, модал) через callback
       if (onSuccess) setTimeout(() => onSuccess(), 800)
-    } catch (error) {
-      console.error('Ошибка при отправке формы:', error)
+    } catch {
+      // Ошибка при отправке формы (логирование отключено для production)
       alert('Ошибка отправки. Попробуйте позже.')
     }
   }

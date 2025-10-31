@@ -7,11 +7,10 @@ export default function YandexMap() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    let map: any = null
-    let scriptAdded = false
+    let map: YMapsMap | null = null
 
     function initMap() {
-      if (!mapRef.current) return
+      if (!mapRef.current || !window.ymaps) return
 
       try {
         // Точные координаты здания по адресу Пенза, ул. Московская, 12
@@ -29,7 +28,8 @@ export default function YandexMap() {
           buildingCoords,
             {
               balloonContentHeader: '<strong>Образовательный центр "Эталон"</strong>',
-              balloonContentBody: 'г. Пенза, ул. Московская, 12, 3 этаж<br><a href="tel:+79991234567">+7 (999) 123-45-67</a>',
+              // TODO: Заменить на реальный номер телефона
+              balloonContentBody: 'г. Пенза, ул. Московская, 12, 3 этаж<br><a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a>',
               balloonContentFooter: 'Пн-Сб: 15:00-21:00, Вс: 10:00-21:00',
               hintContent: 'Образовательный центр "Эталон"'
             },
@@ -41,8 +41,8 @@ export default function YandexMap() {
 
         map.geoObjects.add(placemark)
         setIsLoading(false)
-      } catch (error) {
-        console.error('Ошибка инициализации карты:', error)
+      } catch {
+        // Ошибка инициализации карты (логирование отключено для production)
         setIsLoading(false)
       }
     }
@@ -57,10 +57,11 @@ export default function YandexMap() {
         script.src = 'https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU'
         script.async = true
         script.onload = () => {
-          window.ymaps.ready(initMap)
+          if (window.ymaps) {
+            window.ymaps.ready(initMap)
+          }
         }
         document.head.appendChild(script)
-        scriptAdded = true
       } else if (window.ymaps) {
         window.ymaps.ready(initMap)
       }
@@ -94,10 +95,45 @@ export default function YandexMap() {
   )
 }
 
-// Типы для TypeScript
+// Типы для TypeScript и Яндекс.Карт
+interface YMapsPlacemarkProperties {
+  balloonContentHeader?: string
+  balloonContentBody?: string
+  balloonContentFooter?: string
+  hintContent?: string
+}
+
+interface YMapsPlacemarkOptions {
+  preset?: string
+  iconColor?: string
+}
+
+interface YMapsPlacemark {
+  options: YMapsPlacemarkOptions
+}
+
+interface YMapsMapOptions {
+  center: [number, number]
+  zoom: number
+  controls: string[]
+}
+
+interface YMapsMap {
+  geoObjects: {
+    add: (object: YMapsPlacemark) => void
+  }
+  destroy: () => void
+}
+
+interface YMapsAPI {
+  ready: (callback: () => void) => void
+  Map: new (element: HTMLElement, options: YMapsMapOptions) => YMapsMap
+  Placemark: new (coords: [number, number], properties: YMapsPlacemarkProperties, options: YMapsPlacemarkOptions) => YMapsPlacemark
+}
+
 declare global {
   interface Window {
-    ymaps?: any
+    ymaps?: YMapsAPI
   }
 }
 

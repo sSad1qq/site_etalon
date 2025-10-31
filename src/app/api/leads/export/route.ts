@@ -38,7 +38,7 @@ export async function GET() {
 
     return new NextResponse(csv, { status: 200, headers })
   } catch (err) {
-    console.error('Export leads error:', err)
+    // Export leads error (логирование отключено для production)
     return NextResponse.json({ ok: false, error: String(err) }, { status: 500 })
   }
 }

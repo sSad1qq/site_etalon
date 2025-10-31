@@ -60,7 +60,7 @@ ${message ? `💬 *Сообщение:* ${message}` : ''}
     const telegramData = await telegramResponse.json()
 
     if (!telegramResponse.ok) {
-      console.error('Telegram API Error:', telegramData)
+      // Telegram API Error (логирование отключено для production)
       
       // Обработка специфических ошибок
       if (telegramData.error_code === 403) {
@@ -91,8 +91,8 @@ ${message ? `💬 *Сообщение:* ${message}` : ''}
       message: 'Заявка успешно отправлена',
       telegramMessageId: telegramData.result?.message_id,
     })
-  } catch (error) {
-    console.error('Error sending to Telegram:', error)
+  } catch {
+    // Error sending to Telegram (логирование отключено для production)
     return NextResponse.json(
       { error: 'Внутренняя ошибка сервера' },
       { status: 500 }

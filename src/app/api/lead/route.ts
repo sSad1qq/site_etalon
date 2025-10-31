@@ -31,19 +31,18 @@ export async function POST(req: Request) {
         // fire-and-forget but await to catch errors in server logs
         const resp = await fetch(webhook, { method: 'POST', headers, body: JSON.stringify(entry) })
         if (!resp.ok) {
-          const t = await resp.text().catch(() => '')
-          console.error('Forwarding lead failed:', resp.status, t)
+          // Forwarding lead failed (логирование отключено для production)
         }
       }
-    } catch (ferr) {
-      console.error('Forwarding lead error:', ferr)
+    } catch {
+      // Forwarding lead error (логирование отключено для production)
     }
 
     return NextResponse.json({ ok: true })
   } catch (err: unknown) {
     // форматируем сообщение об ошибке без использования `any`
     const message = err instanceof Error ? err.message : String(err)
-    console.error('API /api/lead error:', message)
+    // API /api/lead error (логирование отключено для production)
     return NextResponse.json({ ok: false, error: message }, { status: 500 })
   }
 }

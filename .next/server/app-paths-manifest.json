@@ -1,7 +1,15 @@
 {
+  "/api/leads/export/route": "app/api/leads/export/route.js",
+  "/api/lead/route": "app/api/lead/route.js",
+  "/api/telegram/route": "app/api/telegram/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/faq/page": "app/faq/page.js",
+  "/contacts/page": "app/contacts/page.js",
+  "/about/page": "app/about/page.js",
   "/location/page": "app/location/page.js",
   "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
-  "/subjects/page": "app/subjects/page.js",
-  "/contacts/page": "app/contacts/page.js"
+  "/subjects/page": "app/subjects/page.js"
 }

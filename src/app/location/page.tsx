@@ -143,7 +143,8 @@ export default function LocationPage() {
                     📞
                   </div>
                   <div>
-                    <div className="text-lg font-black text-gray-900">+7 (999) 123-45-67</div>
+                    {/* TODO: Заменить на реальный номер телефона */}
+                    <div className="text-lg font-black text-gray-900">+7 (XXX) XXX-XX-XX</div>
                     <div className="text-sm text-gray-600">Основной номер</div>
                   </div>
                 </div>
@@ -152,7 +153,8 @@ export default function LocationPage() {
                     📱
                   </div>
                   <div>
-                    <div className="text-lg font-black text-gray-900">+7 (999) 765-43-21</div>
+                    {/* TODO: Заменить на реальный номер телефона */}
+                    <div className="text-lg font-black text-gray-900">+7 (XXX) XXX-XX-XX</div>
                     <div className="text-sm text-gray-600">WhatsApp/Telegram</div>
                   </div>
                 </div>

@@ -31,7 +31,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     "name": "Образовательный центр Эталон",
-    "url": "https://example.com",
+    "url": "https://etalon-penza.ru",
     "logo": "https://etalon-penza.ru/logo.png",
     "image": "https://etalon-penza.ru/logo.png",
     "sameAs": [

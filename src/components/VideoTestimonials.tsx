@@ -4,12 +4,28 @@ import { useState } from 'react'
 import Link from 'next/link'
 import VKVideoPlayer from './VKVideoPlayer'
 
+interface VKVideo {
+  oid: string
+  id: string
+}
+
+interface Testimonial {
+  id: number
+  name: string
+  role: string
+  subject: string
+  scores: string
+  quote: string
+  avatar: string
+  vkVideo: VKVideo | null
+}
+
 export default function VideoTestimonials() {
   const [activeVideo, setActiveVideo] = useState<{ oid: string; id: string } | null>(null)
   const openVideo = (oid: string, id: string) => setActiveVideo({ oid, id })
   const closeVideo = () => setActiveVideo(null)
 
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       id: 1,
       name: "Юлия Дятлова",
