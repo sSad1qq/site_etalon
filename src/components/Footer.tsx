@@ -150,9 +150,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mt-4">
-              <Link href="/contacts#legal" className="text-sm text-gray-600 hover:text-yellow-600">Юридическая информация</Link>
-            </div>
+            <div className="mt-4"></div>
 
             {/* Социальные сети */}
             <div>
@@ -204,7 +202,6 @@ export default function Footer() {
             <Link href="/contacts" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Контакты</Link>
             <Link href="/location" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Расположение</Link>
             <Link href="/faq" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">FAQ</Link>
-            <Link href="/contacts#legal" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Юридическая информация</Link>
             <Link href="/subjects" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">Предметы</Link>
             <Link href="/about" className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-2xl font-medium hover:bg-yellow-200 hover:scale-105 hover:shadow-md transition-all duration-300">О центре</Link>
           </div>

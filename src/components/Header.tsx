@@ -22,8 +22,7 @@ export default function Header() {
     { name: 'Предметы', href: '/subjects' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Расположение', href: '/location' },
-    { name: 'Контакты', href: '/contacts' },
-    { name: 'Юридическая информация', href: '/contacts#legal' }
+    { name: 'Контакты', href: '/contacts' }
   ]
 
   return (
@@ -54,7 +53,6 @@ export default function Header() {
               <Link href="/contacts" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Контакты</Link>
               <Link href="/location" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Расположение</Link>
               <Link href="/faq" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">FAQ</Link>
-              <Link href="/contacts#legal" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Юр. инфа</Link>
             </div>
 
             <div className="ml-4">
@@ -95,9 +93,6 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <Link href="/contacts#legal" className="text-text hover:text-primary transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
-              Юр. информация
-            </Link>
             <Link href="/contacts" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-6 py-2 rounded-2xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-110 hover:shadow-xl transition-all duration-300 inline-block text-center font-semibold shadow-md">
               Записаться
             </Link>

@@ -36,10 +36,6 @@ export default function StatsComparison() {
 
   return (
     <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
-      {/* Декоративные элементы */}
-      <div className="absolute top-20 left-20 text-7xl opacity-10 animate-float">📊</div>
-      <div className="absolute bottom-20 right-20 text-6xl opacity-10 animate-float-slow">🎯</div>
-      <div className="absolute top-1/2 right-10 text-5xl opacity-10 animate-float">⭐</div>
       <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-yellow-200 rounded-full opacity-10 animate-float"></div>
       <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-yellow-300 rounded-full opacity-10 animate-float-slow"></div>
       

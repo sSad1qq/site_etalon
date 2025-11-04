@@ -60,10 +60,6 @@ export default function VideoTestimonials() {
 
   return (
     <section className="section-padding bg-gradient-to-b from-yellow-50 to-white relative overflow-hidden">
-      {/* Декоративные элементы */}
-      <div className="absolute top-20 left-20 text-7xl opacity-10 animate-float">🎥</div>
-      <div className="absolute bottom-20 right-20 text-6xl opacity-10 animate-float-slow">⭐</div>
-      <div className="absolute top-1/2 right-10 text-5xl opacity-10 animate-float">🎓</div>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20 max-w-4xl mx-auto">
@@ -129,7 +125,7 @@ export default function VideoTestimonials() {
                   {testimonial.subject}
                 </div>
 
-                <blockquote className="text-gray-700 leading-relaxed mb-6 flex-grow line-clamp-6">
+                <blockquote className="text-gray-700 leading-relaxed mb-6 flex-grow">
                   {testimonial.quote}
                 </blockquote>
 

@@ -1,5 +1,16 @@
 import Link from 'next/link'
 import YandexMap from '@/components/YandexMap'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Расположение центра подготовки к ЕГЭ и ОГЭ в Пензе',
+  description: 'Адрес центра подготовки к ЕГЭ и ОГЭ Эталон в Пензе. Как добраться: ул. Московская, 12, 3 этаж. Карта, маршрут, ближайшие остановки. Репетиторы по математике и информатике в центре Пензы.',
+  keywords: ['адрес центра подготовки Пенза', 'как добраться центр Эталон Пенза', 'расположение репетитора Пенза', 'центр ЕГЭ адрес Пенза', 'ул Московская Пенза', 'центр подготовки карта Пенза'],
+  openGraph: {
+    title: 'Расположение центра подготовки к ЕГЭ и ОГЭ в Пензе | Центр Эталон',
+    description: 'Адрес центра подготовки к ЕГЭ и ОГЭ Эталон в Пензе: ул. Московская, 12, 3 этаж. Карта и маршрут.',
+  },
+}
 
 export default function LocationPage() {
   return (
@@ -143,8 +154,7 @@ export default function LocationPage() {
                     📞
                   </div>
                   <div>
-                    {/* TODO: Заменить на реальный номер телефона */}
-                    <div className="text-lg font-black text-gray-900">+7 (XXX) XXX-XX-XX</div>
+                    <div className="text-lg font-black text-gray-900">8 (8412) 28-31-31</div>
                     <div className="text-sm text-gray-600">Основной номер</div>
                   </div>
                 </div>
@@ -153,8 +163,7 @@ export default function LocationPage() {
                     📱
                   </div>
                   <div>
-                    {/* TODO: Заменить на реальный номер телефона */}
-                    <div className="text-lg font-black text-gray-900">+7 (XXX) XXX-XX-XX</div>
+                    <div className="text-lg font-black text-gray-900">8 (937) 915 14-11</div>
                     <div className="text-sm text-gray-600">WhatsApp/Telegram</div>
                   </div>
                 </div>
@@ -205,7 +214,7 @@ export default function LocationPage() {
                 </span>
               </Link>
               <a
-                href="tel:+79991234567"
+                href="tel:+78412283131"
                 className="btn-secondary hover-glow text-lg px-12 py-4 group"
               >
                 <span className="flex items-center space-x-3">

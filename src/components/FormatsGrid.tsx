@@ -45,10 +45,6 @@ export default function FormatsGrid() {
 
   return (
     <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
-      {/* Декоративные элементы */}
-      <div className="absolute top-20 left-20 text-7xl opacity-10 animate-float">📖</div>
-      <div className="absolute bottom-20 right-20 text-6xl opacity-10 animate-float-slow">✏️</div>
-      <div className="absolute top-1/2 right-10 text-5xl opacity-10 animate-float">📐</div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20 max-w-4xl mx-auto">

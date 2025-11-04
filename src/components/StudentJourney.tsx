@@ -54,10 +54,6 @@ export default function StudentJourney() {
 
   return (
     <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden mt-16" aria-labelledby="journey-heading">
-      {/* Декоративные элементы */}
-      <div className="absolute top-20 right-20 text-8xl opacity-10 animate-float">🎓</div>
-      <div className="absolute bottom-20 left-20 text-6xl opacity-10 animate-float-slow">📖</div>
-      <div className="absolute top-1/2 left-10 text-5xl opacity-10 animate-float">⭐</div>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12 max-w-4xl mx-auto">

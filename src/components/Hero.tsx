@@ -6,10 +6,6 @@ import Link from 'next/link'
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
-      {/* Декоративные элементы */}
-      <div className="absolute top-20 left-20 text-6xl opacity-10 animate-float">📚</div>
-      <div className="absolute bottom-20 right-20 text-5xl opacity-10 animate-float-slow">🎓</div>
-      <div className="absolute top-1/2 left-10 text-4xl opacity-10 animate-float">⭐</div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -81,12 +77,7 @@ export default function Hero() {
                   className="w-full h-auto max-w-sm mx-auto"
                   priority
                 />
-                <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold animate-bounce shadow-lg">
-                  ✨
-                </div>
-                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold animate-bounce shadow-lg" style={{animationDelay: '0.5s'}}>
-                  🎯
-                </div>
+                
               </div>
             </div>
           </div>
@@ -95,8 +86,8 @@ export default function Hero() {
       
       {/* Фоновые элементы */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-200 rounded-full opacity-10 animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-yellow-300 rounded-full opacity-10 animate-float-slow"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-200 rounded-full opacity-10"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-yellow-300 rounded-full opacity-10"></div>
       </div>
     </section>
   )

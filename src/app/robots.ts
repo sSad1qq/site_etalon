@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://etalon-education.ru/sitemap.xml',
+    sitemap: 'https://etalon-penza.ru/sitemap.xml',
   }
 }

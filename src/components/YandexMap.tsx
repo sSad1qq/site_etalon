@@ -58,7 +58,7 @@ export default function YandexMap() {
         script.async = true
         script.onload = () => {
           if (window.ymaps) {
-            window.ymaps.ready(initMap)
+          window.ymaps.ready(initMap)
           }
         }
         document.head.appendChild(script)
