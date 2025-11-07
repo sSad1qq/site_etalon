@@ -9,12 +9,13 @@ export default function StatsComparison() {
       description: "Наши выпускники показывают результаты на 23 балла выше среднего"
     },
     { 
-      label: "Средний балл ОГЭ", 
-      ourValue: 88, 
-      averageValue: 65, 
+      label: "Средний результат ОГЭ", 
+      ourValue: 4.6, 
+      averageValue: 3.5, 
       color: "from-yellow-500 to-yellow-600",
       icon: "📈",
-      description: "Превышаем общероссийские показатели на 23 балла"
+      description: "Превышаем общероссийские показатели на 1.1 балла",
+      isFivePointScale: true
     },
     { 
       label: "Поступление в вузы", 
@@ -71,12 +72,16 @@ export default function StatsComparison() {
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="text-center">
-                          <div className="text-2xl font-black text-yellow-600">{stat.ourValue}%</div>
+                          <div className="text-2xl font-black text-yellow-600">
+                            {stat.isFivePointScale ? stat.ourValue.toFixed(1) : `${stat.ourValue}%`}
+                          </div>
                           <div className="text-xs text-gray-500">Наши</div>
                         </div>
                         <div className="text-gray-300 text-2xl">|</div>
                         <div className="text-center">
-                          <div className="text-xl font-bold text-gray-600">{stat.averageValue}%</div>
+                          <div className="text-xl font-bold text-gray-600">
+                            {stat.isFivePointScale ? stat.averageValue.toFixed(1) : `${stat.averageValue}%`}
+                          </div>
                           <div className="text-xs text-gray-500">Среднее</div>
                         </div>
                       </div>
@@ -87,20 +92,26 @@ export default function StatsComparison() {
                       <div className="space-y-1">
                         <div className="flex justify-between text-sm text-gray-600">
                           <span>Наши результаты</span>
-                          <span className="font-bold text-yellow-600">+{stat.ourValue - stat.averageValue}%</span>
+                          <span className="font-bold text-yellow-600">
+                            {stat.isFivePointScale 
+                              ? `+${(stat.ourValue - stat.averageValue).toFixed(1)}` 
+                              : `+${stat.ourValue - stat.averageValue}%`}
+                          </span>
                         </div>
                         <div className="relative">
                           <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
                             <div
                               className="progress-our h-6 rounded-full transition-all duration-2000 ease-out animate-pulse-glow flex items-center justify-end pr-2"
                               style={{ 
-                                width: `${stat.ourValue}%`,
+                                width: `${stat.isFivePointScale ? (stat.ourValue / 5 * 100) : stat.ourValue}%`,
                                 background: 'linear-gradient(to right, #fbbf24, #f59e0b)',
                                 backgroundImage: 'linear-gradient(to right, #fbbf24, #f59e0b)',
                                 backgroundColor: '#fbbf24'
                               }}
                             >
-                              <span className="text-white text-xs font-bold">{stat.ourValue}%</span>
+                              <span className="text-white text-xs font-bold">
+                                {stat.isFivePointScale ? stat.ourValue.toFixed(1) : `${stat.ourValue}%`}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -116,13 +127,15 @@ export default function StatsComparison() {
                             <div
                               className="progress-average h-4 rounded-full transition-all duration-2000 ease-out flex items-center justify-end pr-2"
                               style={{ 
-                                width: `${stat.averageValue}%`,
+                                width: `${stat.isFivePointScale ? (stat.averageValue / 5 * 100) : stat.averageValue}%`,
                                 background: 'linear-gradient(to right, #9ca3af, #6b7280)',
                                 backgroundImage: 'linear-gradient(to right, #9ca3af, #6b7280)',
                                 backgroundColor: '#9ca3af'
                               }}
                             >
-                              <span className="text-white text-xs font-bold">{stat.averageValue}%</span>
+                              <span className="text-white text-xs font-bold">
+                                {stat.isFivePointScale ? stat.averageValue.toFixed(1) : `${stat.averageValue}%`}
+                              </span>
                             </div>
                           </div>
                         </div>

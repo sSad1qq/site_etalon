@@ -94,12 +94,6 @@ export default function StudentJourney() {
                   <p className="text-sm text-gray-700 mb-3 flex-grow text-center">
                     {step.description}
                   </p>
-
-                  <div className="bg-yellow-50 rounded-2xl px-3 py-2 mt-auto shadow-sm">
-                    <p className="text-xs text-yellow-800 font-semibold text-center">
-                      {step.details}
-                    </p>
-                  </div>
                 </article>
               </li>
             ))}

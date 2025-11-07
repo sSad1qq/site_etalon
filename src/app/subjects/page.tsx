@@ -228,18 +228,6 @@ export default function SubjectsPage() {
 
                 <div className="space-y-1 mb-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-600 font-semibold">Формат:</span>
-                    <span className="text-gray-800 font-bold">Мини-группы</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-600 font-semibold">Длительность:</span>
-                    <span className="text-gray-800 font-bold">{subject.duration}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-600 font-semibold">Частота:</span>
-                    <span className="text-gray-800 font-bold">{subject.frequency}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
                     <span className="text-gray-600 font-semibold">Стоимость:</span>
                     <span className="text-gray-800 font-bold">{subject.price}</span>
                   </div>

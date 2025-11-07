@@ -412,10 +412,10 @@ export default function VideoTestimonials() {
                 <span>ВКонтакте</span>
               </a>
               <a
-                href="https://yandex.ru/maps/org/etalon/1234567890/reviews"
+                href="https://yandex.ru/profile/154840463548"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-3 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className="inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 <img src="/yandex.png" alt="Яндекс" className="w-6 h-6 brightness-0 invert" />
                 <span>Яндекс</span>

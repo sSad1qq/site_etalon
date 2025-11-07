@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function ContactsPage() {
   return (
-  <div className="min-h-screen pt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16 max-w-4xl mx-auto">
+  <div className="min-h-screen pt-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="text-center mb-2 max-w-4xl mx-auto">
           <h1 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Контакты
@@ -148,20 +148,6 @@ export default function ContactsPage() {
                   </a>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Юридическая информация */}
-        <div className="mt-16">
-          <div id="legal" className="bg-yellow-50 p-6 rounded-3xl border border-yellow-100 hover:shadow-lg transition-all duration-300">
-            <h4 className="text-sm font-bold text-gray-900 mb-2">Юридическая информация</h4>
-            <div className="text-sm text-gray-700 space-y-1">
-              <div>Полное наименование: ИП Мышенков Н.А.</div>
-              <div>Юридический адрес: г. Пенза, Московская ул., д.12, 3 этаж</div>
-              <div>ИНН: 580203100855</div>
-              <div>ОГРНИП: 325580000044230</div>
-              <div>Банковские реквизиты и договор предоставляются по запросу.</div>
             </div>
           </div>
         </div>

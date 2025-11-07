@@ -171,7 +171,7 @@ export default function Footer() {
         {/* Разделитель */}
         <div className="border-t border-yellow-200 pt-8">
           {/* Юридическая информация */}
-          <div className="bg-yellow-50 p-6 rounded-3xl border border-yellow-100 hover:shadow-lg transition-all duration-300 mb-6">
+          <div className="mb-6">
             <h4 className="text-sm font-bold text-gray-900 mb-3">Юридическая информация</h4>
             <div className="text-sm text-gray-700 space-y-1.5">
               <div><span className="font-semibold">Полное наименование:</span> ИП Мышенков Н.А.</div>

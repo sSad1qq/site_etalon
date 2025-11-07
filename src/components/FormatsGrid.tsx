@@ -7,26 +7,13 @@ export default function FormatsGrid() {
       title: "Индивидуально",
       description: "Персональные занятия один на один с преподавателем",
       features: [
-        "100% внимание педагога",
         "Гибкий график",
-        "Индивидуальная программа",
-        "Максимальная эффективность"
+        "Свой темп и длительность",
+        "Разбор школьной программы",
+        "Можно совмещать с мини-группой"
       ],
       popular: false,
       color: "from-yellow-500 to-yellow-600"
-    },
-    {
-      icon: "👥",
-      title: "Мини-группы",
-      description: "Занятия в группах 2-3 человека по уровню знаний",
-      features: [
-        "Персональное внимание",
-        "Комфортная атмосфера",
-        "Мотивация от группы",
-        "Доступная цена"
-      ],
-      popular: true,
-      color: "from-yellow-400 to-yellow-500"
     },
     {
       icon: "💻",
@@ -40,6 +27,20 @@ export default function FormatsGrid() {
       ],
       popular: false,
       color: "from-yellow-600 to-yellow-700"
+    },
+    {
+      icon: "👥",
+      title: "Мини-группы",
+      description: "Занятия в группах 2-3 человека по уровню знаний",
+      features: [
+        "Программа адаптирована под ОГЭ/ЕГЭ",
+        "Атмосфера поддержки",
+        "Доказанная эффективность",
+        "Доступная цена",
+        "Двухчасовые занятия"
+      ],
+      popular: true,
+      color: "from-yellow-400 to-yellow-500"
     }
   ]
 
@@ -69,7 +70,7 @@ export default function FormatsGrid() {
             >
               {format.popular && (
                 <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-6 py-2 rounded-bl-3xl rounded-tr-3xl font-bold text-sm">
-                  🌟 Популярно
+                  🌟 Эффективно
                 </div>
               )}
               

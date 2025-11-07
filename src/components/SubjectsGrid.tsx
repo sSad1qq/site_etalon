@@ -413,21 +413,6 @@ export default function SubjectsGrid() {
                           </div>
                         </div>
                       </div>
-
-                      <div className="space-y-1">
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-gray-600 font-semibold">Формат:</span>
-                          <span className="text-gray-800 font-bold">Мини-группы</span>
-                        </div>
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-gray-600 font-semibold">Длительность:</span>
-                          <span className="text-gray-800 font-bold">2 часа</span>
-                        </div>
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-gray-600 font-semibold">Частота:</span>
-                          <span className="text-gray-800 font-bold">1 раз в неделю</span>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   
