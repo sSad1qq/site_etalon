@@ -51,8 +51,7 @@ export default function StatsComparison() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20 justify-items-center">
-          {/* Левая колонка - График */}
+        <div className="max-w-4xl mx-auto mb-20">
           <div className="animate-slide-in-left w-full">
             <div className="card-lying rounded-[2rem] p-8 relative overflow-hidden hover-lift">
               <div className="text-center mb-8">
@@ -138,108 +137,8 @@ export default function StatsComparison() {
               </div>
             </div>
           </div>
-
-          {/* Правая колонка - Ключевые факты */}
-          <div className="space-y-8 animate-slide-in-right w-full">
-            <div className="card-lying rounded-[2rem] p-8 text-center hover-lift">
-              <h3 className="text-3xl font-black text-gray-900 mb-6">
-                Почему мы эффективнее?
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                Наши методики и подходы дают результат в 1.5-2 раза выше среднего
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-3xl p-4 text-white shadow-lg hover:scale-105 transition-all duration-300">
-                  <div className="text-3xl font-black">23+</div>
-                  <div className="text-sm">баллов выше</div>
-                </div>
-                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-3xl p-4 text-white shadow-lg hover:scale-105 transition-all duration-300">
-                  <div className="text-3xl font-black">95%</div>
-                  <div className="text-sm">поступают</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              {[
-                { icon: "🎯", title: "Индивидуальный подход", desc: "Программа под каждого ученика", color: "from-yellow-400 to-yellow-500" },
-                { icon: "👥", title: "Мини-группы", desc: "Максимум внимания каждому", color: "from-yellow-500 to-yellow-600" },
-                { icon: "📚", title: "Проверенные методики", desc: "7 лет опыта и результатов", color: "from-yellow-600 to-yellow-700" },
-                { icon: "💡", title: "Современные технологии", desc: "Интерактивные материалы и тесты", color: "from-yellow-700 to-yellow-800" }
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="card-lying rounded-3xl p-6 group animate-zoom-in hover-lift"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center text-2xl group-hover:animate-wiggle shadow-lg`}>
-                      {item.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-black text-gray-900 mb-2 text-lg">{item.title}</h4>
-                      <p className="text-sm text-gray-600 font-medium">{item.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
-        {/* Дополнительная статистика */}
-        <div className="card-lying rounded-[2rem] p-12 hover-lift">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-black text-gray-900 mb-4">
-              Наше преимущество в цифрах
-            </h3>
-            <p className="text-lg text-gray-700">
-              Конкретные показатели, которые говорят сами за себя
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { 
-                number: "23+", 
-                label: "баллов выше среднего по ЕГЭ", 
-                description: "Наши выпускники показывают результаты значительно выше общероссийских",
-                color: "from-yellow-400 to-yellow-500", 
-                icon: "📈" 
-              },
-              { 
-                number: "17%", 
-                label: "больше поступающих в вузы", 
-                description: "Почти все наши выпускники успешно поступают в выбранные учебные заведения",
-                color: "from-yellow-500 to-yellow-600", 
-                icon: "🎓" 
-              },
-              { 
-                number: "26%", 
-                label: "выше удовлетворенность родителей", 
-                description: "Родители довольны результатами и рекомендуют нас друзьям",
-                color: "from-yellow-600 to-yellow-700", 
-                icon: "😊" 
-              }
-            ].map((stat, index) => (
-                      <div
-                        key={index}
-                        className="card-lying rounded-3xl p-8 animate-zoom-in text-center hover-lift"
-                        style={{ animationDelay: `${index * 0.2}s` }}
-                      >
-                <div className={`w-20 h-20 bg-gradient-to-r ${stat.color} rounded-3xl flex items-center justify-center mx-auto mb-6 text-4xl group-hover:animate-wiggle shadow-lg`}>
-                  {stat.icon}
-                </div>
-                <div className="text-5xl font-black text-yellow-600 mb-3 animate-pulse-glow">
-                  {stat.number}
-                </div>
-                <div className="text-gray-800 font-bold text-lg mb-3">{stat.label}</div>
-                <div className="text-gray-600 text-sm leading-relaxed">{stat.description}</div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )

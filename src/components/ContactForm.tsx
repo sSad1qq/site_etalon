@@ -6,11 +6,6 @@ import { useForm } from 'react-hook-form'
 type FormData = {
   name: string
   phone: string
-  email: string
-  subject: string
-  message: string
-  grade: string
-  preferredTime: string
 }
 
 type ContactFormProps = {
@@ -58,7 +53,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...data,
+          name: data.name,
           phone: cleanPhone, // Отправляем очищенный номер
           adminChatId: process.env.NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID,
           botToken: process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN,
@@ -77,7 +72,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            ...data,
+            name: data.name,
             phone: cleanPhone // Отправляем очищенный номер и в БД
           })
         })
@@ -98,20 +93,6 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       alert('Ошибка отправки. Попробуйте позже.')
     }
   }
-
-  const subjects = [
-    'Математика',
-    'Русский язык',
-    'Физика',
-    'Химия',
-    'Информатика',
-    'Английский язык',
-    'История',
-    'Обществознание',
-  ]
-
-  const grades = ['9 класс', '10 класс', '11 класс']
-  const times = ['Утро', 'День', 'Вечер', 'Не важно']
 
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-[2rem] shadow-lg p-8 hover:shadow-2xl transition-all duration-500">
@@ -186,89 +167,6 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
           )}
         </div>
 
-        {/* Email */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Email</label>
-          <input
-            {...register('email', {
-              required: 'Пожалуйста, введите ваш email',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Пожалуйста, введите корректный email'
-              }
-            })}
-            className={`w-full px-4 py-3 rounded-2xl border ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
-            } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
-            placeholder="example@email.com"
-          />
-          {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-          )}
-        </div>
-
-        {/* Предмет */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Предмет</label>
-          <select
-            {...register('subject', { required: 'Пожалуйста, выберите предмет' })}
-            className={`w-full px-4 py-3 rounded-2xl border ${
-              errors.subject ? 'border-red-500' : 'border-gray-300'
-            } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
-          >
-            <option value="">Выберите предмет</option>
-            {subjects.map(subject => (
-              <option key={subject} value={subject}>{subject}</option>
-            ))}
-          </select>
-          {errors.subject && (
-            <p className="mt-1 text-sm text-red-500">{errors.subject.message}</p>
-          )}
-        </div>
-
-        {/* Класс */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Класс</label>
-          <select
-            {...register('grade', { required: 'Пожалуйста, выберите класс' })}
-            className={`w-full px-4 py-3 rounded-2xl border ${
-              errors.grade ? 'border-red-500' : 'border-gray-300'
-            } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
-          >
-            <option value="">Выберите класс</option>
-            {grades.map(grade => (
-              <option key={grade} value={grade}>{grade}</option>
-            ))}
-          </select>
-          {errors.grade && (
-            <p className="mt-1 text-sm text-red-500">{errors.grade.message}</p>
-          )}
-        </div>
-
-        {/* Удобное время */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Удобное время для занятий</label>
-          <select
-            {...register('preferredTime')}
-            className="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300"
-          >
-            <option value="">Выберите удобное время</option>
-            {times.map(time => (
-              <option key={time} value={time}>{time}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Сообщение */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Сообщение (необязательно)</label>
-          <textarea
-            {...register('message')}
-            className="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300"
-            rows={4}
-            placeholder="Ваше сообщение..."
-          />
-        </div>
 
         <button
           type="submit"

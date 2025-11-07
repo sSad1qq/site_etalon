@@ -46,39 +46,6 @@ export default function AboutPage() {
     }
   ]
 
-  const values = [
-    {
-      icon: "🎯",
-      title: "Индивидуальный подход",
-      description: "Каждый ученик уникален, поэтому мы разрабатываем персональную программу обучения"
-    },
-    {
-      icon: "👥",
-      title: "Мини-группы",
-      description: "Занятия в группах до 6 человек обеспечивают максимальное внимание каждому"
-    },
-    {
-      icon: "📚",
-      title: "Современные методики",
-      description: "Используем актуальные образовательные технологии и материалы"
-    },
-    {
-      icon: "💡",
-      title: "Практический опыт",
-      description: "Наши преподаватели имеют многолетний опыт подготовки к экзаменам"
-    },
-    {
-      icon: "🤝",
-      title: "Поддержка",
-      description: "Мы поддерживаем учеников на всех этапах подготовки к экзаменам"
-    },
-    {
-      icon: "🏆",
-      title: "Результат",
-      description: "Наша главная цель - высокие баллы и поступление в желаемый вуз"
-    }
-  ]
-
   return (
   <div className="min-h-screen pt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -214,57 +181,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Ценности */}
-        <div className="mb-20">
-          <h2 className="text-4xl font-black text-gray-900 mb-12 text-center">Наши ценности</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="card-lying rounded-3xl p-8 group animate-zoom-in card-container"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl group-hover:animate-wiggle">
-                    {value.icon}
-                  </div>
-                  <h3 className="text-xl font-black text-gray-900 mb-4">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Статистика */}
-        <div className="mb-20">
-          <h2 className="text-4xl font-black text-gray-900 mb-12 text-center">Наши достижения</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center justify-items-center">
-            {[
-              { number: "10+", label: "лет опыта", icon: "📅" },
-              { number: "1000+", label: "выпускников", icon: "🎓" },
-              { number: "85+", label: "средний балл", icon: "⭐" },
-              { number: "95%", label: "поступают в вузы", icon: "🏆" }
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="card-lying rounded-2xl p-8 animate-zoom-in card-container"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-5xl mb-4 animate-bounce-in">{stat.icon}</div>
-                <div className="text-4xl font-black text-yellow-600 mb-3 animate-pulse-glow">
-                  {stat.number}
-                </div>
-                <div className="text-gray-700 font-bold text-lg">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* CTA */}
         <div className="text-center">
           <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
@@ -274,26 +190,15 @@ export default function AboutPage() {
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
               Станьте частью успешной истории и достигните своих целей вместе с нами
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/contacts"
-                className="btn-primary btn-magic text-lg px-12 py-4 group"
-              >
-                <span className="flex items-center space-x-3">
-                  <span>Перейти в Контакты</span>
-                  <span className="group-hover:animate-wiggle">📝</span>
-                </span>
-              </Link>
-              <Link
-                href="/subjects"
-                className="btn-secondary hover-glow text-lg px-12 py-4 group"
-              >
-                <span className="flex items-center space-x-3">
-                  <span>Посмотреть предметы</span>
-                  <span className="group-hover:animate-wiggle">📚</span>
-                </span>
-              </Link>
-            </div>
+            <Link
+              href="/contacts"
+              className="btn-primary btn-magic text-lg px-12 py-4 group inline-block"
+            >
+              <span className="flex items-center space-x-3">
+                <span>Записаться</span>
+                <span className="group-hover:animate-wiggle">📝</span>
+              </span>
+            </Link>
           </div>
         </div>
       </div>

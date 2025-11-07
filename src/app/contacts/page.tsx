@@ -1,4 +1,5 @@
 import ContactForm from '@/components/ContactForm'
+import YandexMap from '@/components/YandexMap'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -56,27 +57,17 @@ export default function ContactsPage() {
                     <div className="text-sm text-gray-600">WhatsApp/Telegram</div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-600 to-yellow-700 rounded-xl flex items-center justify-center text-2xl">
-                    📧
-                  </div>
-                  <div>
-                    <div className="text-lg font-black text-gray-900">info@etalon-education.ru</div>
-                    <div className="text-sm text-gray-600">Email</div>
-                  </div>
-                </div>
               </div>
             </div>
 
             {/* Адрес */}
-            <div className="bg-white rounded-3xl shadow-2xl p-8 hover-lift glow-effect">
-              <h2 className="text-2xl font-black text-gray-900 mb-6">Наш адрес</h2>
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center text-2xl">
-                  📍
-                </div>
-                <div>
-                  <div className="text-lg font-black text-gray-900">г. Пенза, ул. Московская, 12, 3 этаж</div>
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden hover-lift glow-effect">
+              <YandexMap />
+              <div className="p-6">
+                <h2 className="text-2xl font-black text-gray-900 mb-4">Наш адрес</h2>
+                <div className="flex items-start space-x-3">
+                  <span className="text-yellow-500 text-xl">📍</span>
+                  <span className="text-lg font-black text-gray-900">г. Пенза, ул. Московская, 12, 3 этаж</span>
                 </div>
               </div>
             </div>
@@ -85,46 +76,14 @@ export default function ContactsPage() {
             <div className="bg-white rounded-3xl shadow-2xl p-8 hover-lift glow-effect">
               <h2 className="text-2xl font-black text-gray-900 mb-6">График работы</h2>
               <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-700 font-semibold">Понедельник</span>
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700 font-semibold">Понедельник - Суббота</span>
                   <span className="text-gray-900 font-bold">15:00 - 21:00</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-700 font-semibold">Вторник</span>
-                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-700 font-semibold">Среда</span>
-                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-700 font-semibold">Четверг</span>
-                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-700 font-semibold">Пятница</span>
-                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-700 font-semibold">Суббота</span>
-                  <span className="text-gray-900 font-bold">15:00 - 21:00</span>
-                </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center py-2">
                   <span className="text-gray-700 font-semibold">Воскресенье</span>
                   <span className="text-gray-900 font-bold">10:00 - 21:00</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Юридические данные */}
-            <div id="legal" className="bg-white rounded-3xl shadow-2xl p-8 hover-lift glow-effect">
-              <h2 className="text-2xl font-black text-gray-900 mb-6">Юридическая информация</h2>
-              <div className="text-sm text-gray-700 space-y-2">
-                <div><strong>Полное наименование:</strong> ИП Мышенков Н.А.</div>
-                <div><strong>Юридический адрес:</strong> г. Пенза, Московская ул., д.12, 3 этаж</div>
-                <div><strong>ИНН:</strong> 580203100855</div>
-                <div><strong>ОГРНИП:</strong> 325580000044230</div>
-                <div>Документы (договор, счета) предоставляются по запросу по email или при личном визите.</div>
               </div>
             </div>
 
@@ -149,6 +108,20 @@ export default function ContactsPage() {
                   </a>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Юридическая информация */}
+        <div className="mt-16">
+          <div id="legal" className="bg-yellow-50 p-6 rounded-3xl border border-yellow-100 hover:shadow-lg transition-all duration-300">
+            <h4 className="text-sm font-bold text-gray-900 mb-2">Юридическая информация</h4>
+            <div className="text-sm text-gray-700 space-y-1">
+              <div>Полное наименование: ИП Мышенков Н.А.</div>
+              <div>Юридический адрес: г. Пенза, Московская ул., д.12, 3 этаж</div>
+              <div>ИНН: 580203100855</div>
+              <div>ОГРНИП: 325580000044230</div>
+              <div>Банковские реквизиты и договор предоставляются по запросу.</div>
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 
 export default function FAQPage() {
   const [openItems, setOpenItems] = useState<number[]>([])
@@ -114,38 +113,6 @@ export default function FAQPage() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* CTA секция */}
-        <div className="mt-20 text-center">
-          <div className="bg-white rounded-3xl shadow-2xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
-            <h2 className="text-3xl lg:text-4xl font-black text-gray-900 mb-6">
-              Не нашли ответ на свой вопрос?
-            </h2>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-              Свяжитесь с нами любым удобным способом, и мы с радостью ответим на все ваши вопросы
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/contacts"
-                className="btn-primary btn-magic text-lg px-12 py-4 group inline-block"
-              >
-                <span className="flex items-center space-x-3">
-                  <span>Связаться с нами</span>
-                  <span className="group-hover:animate-wiggle">📞</span>
-                </span>
-              </Link>
-              <a
-                href="tel:+79991234567"
-                className="btn-secondary hover-glow text-lg px-12 py-4 group inline-block"
-              >
-                <span className="flex items-center space-x-3">
-                  <span>Позвонить сейчас</span>
-                  <span className="group-hover:animate-wiggle">📱</span>
-                </span>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

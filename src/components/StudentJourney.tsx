@@ -1,5 +1,3 @@
-import TestSignupCTA from './TestSignupCTA'
-
 export default function StudentJourney() {
   const steps = [
     {
@@ -59,7 +57,7 @@ export default function StudentJourney() {
         <div className="text-center mb-12 max-w-4xl mx-auto">
           <h2 id="journey-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-3 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              Путь к успеху
+              Путь ученика
             </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up">
@@ -117,7 +115,17 @@ export default function StudentJourney() {
             <p className="text-base text-gray-700 mb-6">
               Первый шаг — бесплатное тестирование. Узнайте уровень и получите план подготовки.
             </p>
-            <TestSignupCTA />
+            <div className="flex justify-center">
+              <a
+                href="/contacts"
+                className="btn-primary btn-magic text-lg px-12 py-4 inline-flex items-center justify-center"
+              >
+                <span className="flex items-center space-x-3">
+                  <span>Записаться</span>
+                  <span>📝</span>
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

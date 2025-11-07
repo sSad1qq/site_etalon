@@ -112,28 +112,6 @@ export default function FormatsGrid() {
           ))}
         </div>
 
-        {/* CTA с анимацией */}
-        <div className="text-center mt-20">
-          <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
-            <h3 className="text-3xl lg:text-4xl font-black text-gray-900 mb-6">
-              Не можете определиться с форматом?
-            </h3>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-              Запишитесь на бесплатную консультацию, и мы поможем подобрать оптимальный вариант
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link 
-                href="/contacts" 
-                className="btn-primary btn-magic text-lg px-12 py-4 inline-flex items-center justify-center"
-              >
-                <span className="flex items-center space-x-3">
-                  <span>Получить консультацию</span>
-                  <span className="group-hover:animate-wiggle">💬</span>
-                </span>
-              </Link>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

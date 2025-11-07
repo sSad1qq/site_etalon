@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "0.0.0.0:3000:3000"  # Доступ извне: 0.0.0.0 означает все сетевые интерфейсы
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=${NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}
+      - NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=${NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID}
+      - LEADS_WEBHOOK_URL=${LEADS_WEBHOOK_URL:-}
+      - LEADS_WEBHOOK_TOKEN=${LEADS_WEBHOOK_TOKEN:-}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+

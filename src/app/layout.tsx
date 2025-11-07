@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./styles.css";
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://etalon-penza.ru'),
@@ -39,7 +40,7 @@ export default function RootLayout({
   const orgJson = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
-    "name": "Образовательный центр Эталон - Репетитор в Пензе",
+    "name": "Центр Эталон - Репетитор в Пензе",
     "alternateName": "Центр подготовки к ЕГЭ и ОГЭ в Пензе",
     "description": "Центр подготовки к ЕГЭ и ОГЭ в Пензе. Репетиторы по математике, информатике, русскому языку и другим предметам. Подготовка к экзаменам.",
     "url": "https://etalon-penza.ru",
@@ -79,6 +80,7 @@ export default function RootLayout({
         <script type="application/ld+json">{JSON.stringify(orgJson)}</script>
         <Header />
         <main className="pt-20">{children}</main>
+        <Footer />
       </body>
     </html>
   );

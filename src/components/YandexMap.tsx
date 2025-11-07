@@ -27,11 +27,11 @@ export default function YandexMap() {
         const placemark = new window.ymaps.Placemark(
           buildingCoords,
             {
-              balloonContentHeader: '<strong>Образовательный центр "Эталон"</strong>',
+              balloonContentHeader: '<strong>Центр "Эталон"</strong>',
               // TODO: Заменить на реальный номер телефона
               balloonContentBody: 'г. Пенза, ул. Московская, 12, 3 этаж<br><a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a>',
               balloonContentFooter: 'Пн-Сб: 15:00-21:00, Вс: 10:00-21:00',
-              hintContent: 'Образовательный центр "Эталон"'
+              hintContent: 'Центр "Эталон"'
             },
           {
             preset: 'islands#redEducationIcon',

@@ -21,7 +21,6 @@ export default function Header() {
     { name: 'О центре', href: '/about' },
     { name: 'Предметы', href: '/subjects' },
     { name: 'FAQ', href: '/faq' },
-    { name: 'Расположение', href: '/location' },
     { name: 'Контакты', href: '/contacts' }
   ]
 
@@ -38,26 +37,22 @@ export default function Header() {
           </Link>
 
           {/* Десктопное меню */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {navItems.slice(0,3).map((item) => (
+          <nav className="hidden md:flex items-center space-x-3">
+            {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-text hover:text-primary transition-colors duration-200"
+                className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300"
               >
                 {item.name}
               </Link>
             ))}
-
-            <div className="flex items-center space-x-3 ml-4">
-              <Link href="/contacts" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Контакты</Link>
-              <Link href="/location" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">Расположение</Link>
-              <Link href="/faq" className="px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300">FAQ</Link>
-            </div>
-
-            <div className="ml-4">
-              <Link href="/contacts" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-5 py-2 rounded-2xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-110 hover:shadow-xl transition-all duration-300 inline-block text-center font-semibold shadow-md">Записаться</Link>
-            </div>
+            <Link 
+              href="/contacts" 
+              className="px-5 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 hover:shadow-xl transition-all duration-300 font-semibold shadow-md"
+            >
+              Записаться
+            </Link>
           </nav>
 
           {/* Мобильное меню */}
@@ -82,18 +77,21 @@ export default function Header() {
         <div className={`md:hidden transition-all duration-300 overflow-hidden ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <nav className="flex flex-col space-y-4 py-4">
+          <nav className="flex flex-col space-y-3 py-4">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-text hover:text-primary transition-colors duration-200"
+                className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <Link href="/contacts" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-6 py-2 rounded-2xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-110 hover:shadow-xl transition-all duration-300 inline-block text-center font-semibold shadow-md">
+            <Link 
+              href="/contacts" 
+              className="px-5 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 hover:shadow-xl transition-all duration-300 font-semibold shadow-md text-center"
+            >
               Записаться
             </Link>
           </nav>
