@@ -28,8 +28,7 @@ export default function YandexMap() {
           buildingCoords,
             {
               balloonContentHeader: '<strong>Центр "Эталон"</strong>',
-              // TODO: Заменить на реальный номер телефона
-              balloonContentBody: 'г. Пенза, ул. Московская, 12, 3 этаж<br><a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a>',
+              balloonContentBody: 'г. Пенза, ул. Московская, 12, 3 этаж<br><a href="tel:+78412283131" style="color: #f59e0b; text-decoration: none; font-weight: bold;">+7 (8412) 28-31-31</a><br><a href="tel:+79379151411" style="color: #f59e0b; text-decoration: none; font-weight: bold;">+7 (937) 915 14-11</a>',
               balloonContentFooter: 'Пн-Сб: 15:00-21:00, Вс: 10:00-21:00',
               hintContent: 'Центр "Эталон"'
             },

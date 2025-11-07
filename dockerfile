@@ -1,48 +1,45 @@
-# Stage 1: Dependencies
-FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat
+# Этап сборки
+FROM node:20-alpine AS builder
+
 WORKDIR /app
 
-# Копируем package файлы
-COPY package.json package-lock.json* ./
+# Копируем файлы зависимостей
+COPY package.json package-lock.json ./
+
+# Устанавливаем зависимости
 RUN npm ci
 
-# Stage 2: Builder
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+# Копируем исходный код
 COPY . .
 
-# Отключаем telemetry
-ENV NEXT_TELEMETRY_DISABLED=1
-
-# Собираем приложение
+# Собираем Next.js приложение
 RUN npm run build
 
-# Stage 3: Runner
+# Этап запуска
 FROM node:20-alpine AS runner
+
 WORKDIR /app
 
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV production
 
-# Создаем пользователя без root прав
+# Создаем непривилегированного пользователя
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Копируем только необходимые файлы из builder
-COPY --from=builder /app/public ./public
+# Копируем собранное приложение из builder
+# В standalone режиме Next.js автоматически включает public в standalone/.next/standalone/public
+# Но нужно убедиться что public доступна в корне приложения
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-# Создаем директорию для данных
-RUN mkdir -p /app/data && chown nextjs:nodejs /app/data
+# Копируем public папку - она должна быть доступна в корне для Next.js Image компонента
+# В standalone режиме public должна быть в корне приложения (где находится server.js)
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 USER nextjs
 
 EXPOSE 3000
 
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
 
 CMD ["node", "server.js"]

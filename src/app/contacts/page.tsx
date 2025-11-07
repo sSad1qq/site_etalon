@@ -1,5 +1,6 @@
 import ContactForm from '@/components/ContactForm'
 import YandexMap from '@/components/YandexMap'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -39,24 +40,32 @@ export default function ContactsPage() {
             <div className="bg-white rounded-3xl shadow-2xl p-8 hover-lift glow-effect">
               <h2 className="text-2xl font-black text-gray-900 mb-6">Основные контакты</h2>
               <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center text-2xl">
+                <a 
+                  href="tel:+78412283131" 
+                  className="flex items-center space-x-4 group transition-all duration-300 hover:scale-105"
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
                     📞
                   </div>
                   <div>
-                    <div className="text-lg font-black text-gray-900">8 (8412) 28-31-31</div>
+                    <div className="text-lg font-black text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">8 (8412) 28-31-31</div>
                     <div className="text-sm text-gray-600">Основной номер</div>
                   </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center text-2xl">
+                </a>
+                <a 
+                  href="https://wa.me/79379151411" 
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center space-x-4 group transition-all duration-300 hover:scale-105"
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
                     📱
                   </div>
                   <div>
-                    <div className="text-lg font-black text-gray-900">8 (937) 915 14-11</div>
+                    <div className="text-lg font-black text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">8 (937) 915 14-11</div>
                     <div className="text-sm text-gray-600">WhatsApp/Telegram</div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -67,7 +76,14 @@ export default function ContactsPage() {
                 <h2 className="text-2xl font-black text-gray-900 mb-4">Наш адрес</h2>
                 <div className="flex items-start space-x-3">
                   <span className="text-yellow-500 text-xl">📍</span>
-                  <span className="text-lg font-black text-gray-900">г. Пенза, ул. Московская, 12, 3 этаж</span>
+                  <a 
+                    href="https://yandex.ru/maps/?pt=45.014130,53.186782&z=17&l=map"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-lg font-black text-gray-900 hover:text-yellow-600 transition-colors duration-300"
+                  >
+                    г. Пенза, ул. Московская, 12, 3 этаж
+                  </a>
                 </div>
               </div>
             </div>
@@ -92,9 +108,24 @@ export default function ContactsPage() {
               <h2 className="text-2xl font-black text-gray-900 mb-6">Мы в соцсетях</h2>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { name: 'VKontakte', icon: '📘', href: 'https://vk.com/repetitor_penza_etalon', color: 'from-blue-400 to-blue-500' },
-                  { name: 'Telegram', icon: '📱', href: 'https://t.me/centerEtalon', color: 'from-blue-500 to-blue-600' },
-                  { name: 'Yandex', icon: '�', href: 'https://yandex.ru/profile/154840463548', color: 'from-yellow-400 to-yellow-500' }
+                  { 
+                    name: 'VKontakte', 
+                    icon: '/vk.png',
+                    href: 'https://vk.com/repetitor_penza_etalon', 
+                    color: 'from-blue-400 to-blue-500' 
+                  },
+                  { 
+                    name: 'Telegram', 
+                    icon: '/telegram.png',
+                    href: 'https://t.me/centerEtalon', 
+                    color: 'from-blue-500 to-blue-600' 
+                  },
+                  { 
+                    name: 'Yandex', 
+                    icon: '/yandex.png',
+                    href: 'https://yandex.ru/profile/154840463548', 
+                    color: 'from-yellow-400 to-yellow-500' 
+                  }
                 ].map((social) => (
                   <a
                     key={social.name}
@@ -103,7 +134,16 @@ export default function ContactsPage() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <div className="text-2xl mb-2">{social.icon}</div>
+                    <div className="mb-2 flex items-center justify-center">
+                      <Image 
+                        src={social.icon} 
+                        alt={social.name} 
+                        width={32} 
+                        height={32} 
+                        className="w-8 h-8 mx-auto"
+                        style={{ filter: 'brightness(0) invert(1)' }}
+                      />
+                    </div>
                     <div className="text-sm font-bold">{social.name}</div>
                   </a>
                 ))}

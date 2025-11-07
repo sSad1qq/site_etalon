@@ -395,11 +395,6 @@ export default function VideoTestimonials() {
         {/* Блок ВКонтакте и Яндекс */}
         <div className="mt-28 text-center">
           <div className="bg-gradient-to-r from-blue-50 to-white rounded-[2rem] shadow-xl p-8 max-w-3xl mx-auto hover-lift">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-3xl">
-                📱
-              </div>
-            </div>
             <h3 className="text-2xl lg:text-3xl font-black text-gray-900 mb-4">
               Больше отзывов в нашей группе ВКонтакте и на Яндексе
             </h3>
@@ -413,9 +408,7 @@ export default function VideoTestimonials() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.45 14.63c-.21.45-.81.85-1.74.85-.88 0-1.75-.25-2.5-.88-.88-.74-1.66-1.81-2.42-2.81-.26-.35-.51-.68-.77-.95-.6.9-1.26 1.74-1.95 2.42-.88.86-1.81 1.29-2.65 1.22-.63-.05-1.12-.42-1.37-1.05-.42-1.05.07-2.46 1.39-3.98.42-.49.88-.95 1.35-1.35-.77-.39-1.46-.95-1.95-1.63-.42-.58-.63-1.22-.56-1.81.07-.53.35-.95.81-1.22.95-.56 2.39-.18 3.91 1.08.53.44 1.05.95 1.53 1.53.49-.58 1.01-1.08 1.53-1.53 1.53-1.26 2.96-1.64 3.91-1.08.46.28.74.7.81 1.22.07.6-.14 1.23-.56 1.81-.49.68-1.19 1.23-1.95 1.63.46.39.93.86 1.35 1.35 1.32 1.53 1.81 2.93 1.39 3.98z"/>
-                </svg>
+                <img src="/vk.png" alt="ВКонтакте" className="w-6 h-6 brightness-0 invert" />
                 <span>ВКонтакте</span>
               </a>
               <a
@@ -424,9 +417,7 @@ export default function VideoTestimonials() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-3 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
+                <img src="/yandex.png" alt="Яндекс" className="w-6 h-6 brightness-0 invert" />
                 <span>Яндекс</span>
               </a>
             </div>

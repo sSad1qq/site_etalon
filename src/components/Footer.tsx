@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Logo from './Logo'
 
 export default function Footer() {
@@ -14,9 +15,13 @@ export default function Footer() {
     { 
       name: 'VKontakte', 
       icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.45 14.63c-.21.45-.81.85-1.74.85-.88 0-1.75-.25-2.5-.88-.88-.74-1.66-1.81-2.42-2.81-.26-.35-.51-.68-.77-.95-.6.9-1.26 1.74-1.95 2.42-.88.86-1.81 1.29-2.65 1.22-.63-.05-1.12-.42-1.37-1.05-.42-1.05.07-2.46 1.39-3.98.42-.49.88-.95 1.35-1.35-.77-.39-1.46-.95-1.95-1.63-.42-.58-.63-1.22-.56-1.81.07-.53.35-.95.81-1.22.95-.56 2.39-.18 3.91 1.08.53.44 1.05.95 1.53 1.53.49-.58 1.01-1.08 1.53-1.53 1.53-1.26 2.96-1.64 3.91-1.08.46.28.74.7.81 1.22.07.6-.14 1.23-.56 1.81-.49.68-1.19 1.23-1.95 1.63.46.39.93.86 1.35 1.35 1.32 1.53 1.81 2.93 1.39 3.98z"/>
-        </svg>
+        <Image 
+          src="/vk.png" 
+          alt="VKontakte" 
+          width={20} 
+          height={20} 
+          className="w-5 h-5 brightness-0 invert"
+        />
       ), 
       href: 'https://vk.com/repetitor_penza_etalon', 
       color: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700' 
@@ -24,9 +29,13 @@ export default function Footer() {
     { 
       name: 'Telegram', 
       icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-        </svg>
+        <Image 
+          src="/telegram.png" 
+          alt="Telegram" 
+          width={20} 
+          height={20} 
+          className="w-5 h-5 brightness-0 invert"
+        />
       ), 
       href: 'https://t.me/centerEtalon', 
       color: 'from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600' 
@@ -34,10 +43,13 @@ export default function Footer() {
     { 
       name: 'Yandex', 
       icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12.5 0C5.596 0 0 5.596 0 12.5S5.596 25 12.5 25 25 19.404 25 12.5 19.404 0 12.5 0zm0 22.5c-5.523 0-10-4.477-10-10s4.477-10 10-10 10 4.477 10 10-4.477 10-10 10z"/>
-          <path d="M8.5 7.5h7v2h-5v3h5v2h-5v5h-2v-12z"/>
-        </svg>
+        <Image 
+          src="/yandex.png" 
+          alt="Yandex" 
+          width={20} 
+          height={20} 
+          className="w-5 h-5 brightness-0 invert"
+        />
       ), 
       href: 'https://yandex.ru/profile/154840463548', 
       color: 'from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600' 
