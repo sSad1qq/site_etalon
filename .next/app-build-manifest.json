@@ -11,15 +11,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/contacts/page": [
+    "/subjects/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/contacts/page.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/page.js"
+      "static/chunks/app/subjects/layout.js"
     ],
     "/subjects/page": [
       "static/chunks/webpack.js",
@@ -36,10 +31,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/faq/page.js"
     ],
-    "/subjects/layout": [
+    "/contacts/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/subjects/layout.js"
+      "static/chunks/app/contacts/page.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/about/page.js"
     ]
   }
 }

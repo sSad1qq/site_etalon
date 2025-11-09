@@ -260,10 +260,10 @@ export default function VideoTestimonials() {
                   <div
                     key={`mobile-${index}`}
                     data-card-index={index}
-                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm h-[calc(100vh-150px)] min-h-[600px] max-h-[800px] snap-center"
+                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
                     <div
-                      className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col h-full"
+                      className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col min-h-[400px]"
                       onClick={() => {
                         if (testimonial.vkVideo) {
                           openVideo(testimonial.vkVideo.oid, testimonial.vkVideo.id)
@@ -293,7 +293,7 @@ export default function VideoTestimonials() {
                       )}
 
                       {/* Контент секция */}
-                      <div className="flex-1 flex flex-col p-4 overflow-y-auto">
+                      <div className="flex flex-col p-4 flex-grow">
                         <div className="flex items-center space-x-3 mb-4">
                           <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-black text-lg flex-shrink-0">
                             {testimonial.avatar}
@@ -314,7 +314,7 @@ export default function VideoTestimonials() {
                           {testimonial.subject}
                         </div>
 
-                        <div className="flex-grow mb-3">
+                        <div className="mb-3 flex-grow">
                           <blockquote className="text-sm text-gray-700 leading-relaxed">
                             {(() => {
                               const isExpanded = expandedTestimonials.has(testimonial.id)
@@ -355,7 +355,7 @@ export default function VideoTestimonials() {
                           )}
                         </div>
 
-                        <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
+                        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                           <div className="flex text-yellow-500 text-base">{'★'.repeat(5)}</div>
                           <div className="text-xs text-gray-500 font-semibold">
                             {new Date().getFullYear()}

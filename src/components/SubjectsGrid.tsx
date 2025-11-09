@@ -303,9 +303,9 @@ export default function SubjectsGrid() {
                   <div
                     key={`mobile-${index}`}
                     data-card-index={index}
-                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm h-[calc(100vh-200px)] min-h-[600px] max-h-[800px] snap-center"
+                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
-                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col h-full">
+                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col">
                       {/* Картинка сверху */}
                       <div className="relative w-full h-48 flex-shrink-0 overflow-hidden">
                         <img
@@ -316,7 +316,7 @@ export default function SubjectsGrid() {
                       </div>
                       
                       {/* Информация снизу */}
-                      <div className="flex-1 flex flex-col p-4 overflow-y-auto">
+                      <div className="flex flex-col p-4">
                         <div className="text-center mb-3">
                           <div className={`w-14 h-14 bg-gradient-to-r ${subject.color} rounded-2xl flex items-center justify-center mx-auto mb-2 text-2xl shadow-md`}>
                             {subject.icon}
@@ -329,7 +329,7 @@ export default function SubjectsGrid() {
                           </p>
                         </div>
                         
-                        <p className="text-xs text-gray-700 leading-relaxed mb-4 flex-grow">
+                        <p className="text-xs text-gray-700 leading-relaxed mb-4">
                           {subject.fullDescription}
                         </p>
                         
