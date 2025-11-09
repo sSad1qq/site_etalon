@@ -66,25 +66,25 @@ export default function AdvantagesGrid() {
   ]
 
   return (
-    <section className="section-padding bg-gradient-to-b from-yellow-50 to-white relative overflow-hidden pt-24 md:pt-32 lg:pt-40">
+    <section className="section-padding bg-gradient-to-b from-yellow-50 to-white relative overflow-hidden pt-40">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 max-w-4xl mx-auto relative z-20">
-          <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up relative z-30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto relative z-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up relative z-30">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Наши преимущества
             </span>
           </h2>
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up relative z-30">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up relative z-30 px-4">
             Почему родители и ученики выбирают центр «Эталон»
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center items-stretch">
           {advantages.map((advantage, index) => (
             <div
               key={index}
-              className="card-lying rounded-3xl p-8 group animate-zoom-in w-full max-w-md hover-lift h-full"
+              className="card-lying rounded-3xl p-6 md:p-8 group animate-zoom-in w-full max-w-md hover-lift h-full"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex flex-col items-center text-center h-full">
@@ -92,11 +92,11 @@ export default function AdvantagesGrid() {
                   {advantage.icon}
                 </div>
                 
-                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-3">
                   {advantage.title}
                 </h3>
                 
-                <p className="text-gray-700 mb-4 leading-relaxed flex-grow">
+                <p className="text-sm md:text-base text-gray-700 mb-4 leading-relaxed flex-grow">
                   {advantage.description}
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function AdvantagesGrid() {
         </div>
 
         {/* Дополнительный блок с ключевыми цифрами */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="mt-12 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {[
             { number: "7", label: "лет на рынке", icon: "📅" },
             { number: "1000+", label: "довольных учеников", icon: "😊" },
@@ -114,14 +114,14 @@ export default function AdvantagesGrid() {
           ].map((stat, index) => (
             <div
               key={index}
-              className="card-lying rounded-3xl p-8 text-center animate-zoom-in hover-lift"
+              className="card-lying rounded-3xl p-6 md:p-8 text-center animate-zoom-in hover-lift"
               style={{ animationDelay: `${(advantages.length + index) * 0.1}s` }}
             >
-              <div className="text-5xl mb-4 animate-bounce-in">{stat.icon}</div>
-              <div className="text-4xl font-black text-yellow-600 mb-2">
+              <div className="text-4xl md:text-5xl mb-4 animate-bounce-in">{stat.icon}</div>
+              <div className="text-3xl md:text-4xl font-black text-yellow-600 mb-2">
                 {stat.number}
               </div>
-              <div className="text-gray-700 font-bold">{stat.label}</div>
+              <div className="text-sm md:text-base text-gray-700 font-bold leading-tight">{stat.label}</div>
             </div>
           ))}
         </div>

@@ -53,27 +53,27 @@ export default function StudentJourney() {
   return (
     <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden mt-16" aria-labelledby="journey-heading">
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 max-w-4xl mx-auto">
-          <h2 id="journey-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-3 animate-slide-in-up">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto">
+          <h2 id="journey-heading" className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 md:mb-4 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Путь ученика
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up px-4">
             Краткая и понятная дорожная карта: от заявки до итоговой сдачи. Прозрачно и без сюрпризов.
           </p>
         </div>
 
           <div className="relative">
           {/* Анимированная линия времени */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 transform -translate-y-1/2 rounded-full animate-pulse-glow"></div>
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 transform -translate-y-1/2 rounded-full animate-pulse-glow"></div>
           
-          <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center items-stretch" role="list">
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center items-stretch" role="list">
             {steps.map((step, index) => (
               <li key={step.number} className="relative w-full flex" role="listitem">
                 <article
-                  className="card-lying rounded-3xl p-6 w-full flex flex-col hover-lift glow-effect"
+                  className="card-lying rounded-3xl p-4 sm:p-6 w-full flex flex-col hover-lift glow-effect"
                   style={{ animationDelay: `${index * 0.12}s` }}
                   aria-labelledby={`step-title-${step.number}`}
                 >
@@ -91,7 +91,7 @@ export default function StudentJourney() {
                     {step.title}
                   </h3>
 
-                  <p className="text-sm text-gray-700 mb-3 flex-grow text-center">
+                  <p className="text-sm text-gray-700 mb-3 flex-grow text-center leading-relaxed">
                     {step.description}
                   </p>
                 </article>
@@ -101,20 +101,20 @@ export default function StudentJourney() {
         </div>
 
         {/* CTA с анимацией */}
-        <div className="text-center mt-16">
-          <div className="card-lying rounded-[2rem] p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+        <div className="text-center mt-12 md:mt-16">
+          <div className="card-lying rounded-[2rem] p-6 sm:p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 md:mb-4">
               Готовы начать свой путь к успеху?
             </h3>
-            <p className="text-base text-gray-700 mb-6">
+            <p className="text-sm sm:text-base text-gray-700 mb-4 md:mb-6">
               Первый шаг — бесплатное тестирование. Узнайте уровень и получите план подготовки.
             </p>
             <div className="flex justify-center">
               <a
                 href="/contacts"
-                className="btn-primary btn-magic text-lg px-12 py-4 inline-flex items-center justify-center"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-12 py-3 md:py-4 inline-flex items-center justify-center"
               >
-                <span className="flex items-center space-x-3">
+                <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>
                   <span>📝</span>
                 </span>

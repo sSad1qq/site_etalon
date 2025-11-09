@@ -62,59 +62,84 @@ export default function FAQPage() {
   ]
 
   return (
-  <div className="min-h-screen pt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16 max-w-4xl mx-auto">
-          <h1 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
-            <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              Часто задаваемые вопросы
-            </span>
-          </h1>
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up">
-            Ответы на самые популярные вопросы о нашем образовательном центре
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
+      <section className="pt-0 pb-20">
+        <div className="max-w-4xl mx-auto px-8 pt-0">
+          <div className="text-center mb-16">
+            <h1 className="text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
+              <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+                Часто задаваемые вопросы
+              </span>
+            </h1>
+            <p className="text-2xl text-gray-700 mx-auto leading-relaxed animate-slide-in-up max-w-3xl">
+              Ответы на самые популярные вопросы о нашем образовательном центре
+            </p>
+          </div>
 
-        <div className="space-y-6 max-w-4xl mx-auto center-content">
-          {faqItems.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-xl hover-lift glow-effect overflow-hidden animate-zoom-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <button
-                onClick={() => toggleItem(index)}
-                className="w-full p-8 text-left focus:outline-none focus:ring-4 focus:ring-yellow-300 transition-all duration-300"
+          <div className="space-y-4">
+            {faqItems.map((item, index) => (
+              <div
+                key={index}
+                className="card-lying rounded-3xl overflow-hidden animate-zoom-in hover-lift"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-black text-gray-900 pr-8">
-                    {item.question}
-                  </h3>
-                  <div className={`w-8 h-8 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold transition-transform duration-300 ${
-                    openItems.includes(index) ? 'rotate-45' : ''
-                  }`}>
-                    +
+                <button
+                  onClick={() => toggleItem(index)}
+                  className="w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300 hover:bg-yellow-50/50"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-xl font-bold text-gray-900 leading-tight flex-1">
+                      {item.question}
+                    </h3>
+                    <div className={`flex-shrink-0 w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-2xl transition-transform duration-300 ${
+                      openItems.includes(index) ? 'rotate-45' : ''
+                    }`}>
+                      +
+                    </div>
                   </div>
-                </div>
-              </button>
-              
-              <div className={`transition-all duration-500 overflow-hidden ${
-                openItems.includes(index) 
-                  ? 'max-h-96 opacity-100' 
-                  : 'max-h-0 opacity-0'
-              }`}>
-                <div className="px-8 pb-8">
-                  <div className="border-t border-yellow-200 pt-6">
-                    <p className="text-gray-700 leading-relaxed text-lg">
-                      {item.answer}
-                    </p>
+                </button>
+                
+                <div className={`transition-all duration-300 overflow-hidden ${
+                  openItems.includes(index) 
+                    ? 'max-h-[500px] opacity-100' 
+                    : 'max-h-0 opacity-0'
+                }`}>
+                  <div className="px-6 pb-6">
+                    <div className="border-t border-yellow-200 pt-4">
+                      <p className="text-base text-gray-700 leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* CTA блок */}
+          <div className="mt-16 text-center">
+            <div className="card-lying rounded-[2rem] p-8 max-w-3xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
+              <h3 className="text-3xl font-black text-gray-900 mb-4">
+                Не нашли ответ на свой вопрос?
+              </h3>
+              <p className="text-lg text-gray-700 mb-6">
+                Свяжитесь с нами, и мы с радостью ответим на все ваши вопросы
+              </p>
+              <div className="flex justify-center gap-4">
+                <a
+                  href="/contacts"
+                  className="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center"
+                >
+                  <span className="flex items-center space-x-2">
+                    <span>Связаться с нами</span>
+                    <span>📞</span>
+                  </span>
+                </a>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

@@ -47,16 +47,16 @@ export default function AboutPage() {
   ]
 
   return (
-  <div className="min-h-screen pt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
+      <div className="max-w-6xl mx-auto px-8 pt-8 pb-16">
         {/* Заголовок */}
         <div className="text-center mb-20 max-w-4xl mx-auto">
-          <h1 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
+          <h1 className="text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               О центре «Эталон»
             </span>
           </h1>
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
             Более 10 лет мы помогаем школьникам достигать высоких результатов на экзаменах
           </p>
         </div>
@@ -72,11 +72,11 @@ export default function AboutPage() {
               {achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className={`flex items-center ${
-                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                  className={`flex flex-col items-center lg:items-center ${
+                    index % 2 === 0 ? 'lg:flex-row lg:justify-start' : 'lg:flex-row-reverse lg:justify-end'
                   }`}
                 >
-                  <div className={`w-full lg:w-1/2 ${
+                  <div className={`w-full max-w-md mx-auto lg:max-w-none lg:w-1/2 lg:mx-0 ${
                     index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'
                   }`}>
                     <div className="card-lying rounded-3xl p-8 animate-zoom-in">
@@ -95,7 +95,7 @@ export default function AboutPage() {
                   {/* Точка на линии времени */}
                   <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-yellow-500 rounded-full"></div>
                   
-                  <div className="w-full lg:w-1/2"></div>
+                  <div className="hidden lg:block w-1/2"></div>
                 </div>
               ))}
             </div>
@@ -184,7 +184,7 @@ export default function AboutPage() {
         {/* CTA */}
         <div className="text-center">
           <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
-            <h2 className="text-3xl lg:text-4xl font-black text-gray-900 mb-6">
+            <h2 className="text-4xl font-black text-gray-900 mb-6">
               Присоединяйтесь к нашей команде!
             </h2>
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">

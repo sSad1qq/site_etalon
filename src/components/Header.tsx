@@ -33,7 +33,7 @@ export default function Header() {
           {/* Логотип */}
           <Link href="/" className="flex items-center">
             <Logo />
-            <span className="ml-2 text-xl font-bold">Эталон</span>
+            <span className="ml-2 text-lg sm:text-xl font-bold">Эталон</span>
           </Link>
 
           {/* Десктопное меню */}

@@ -47,23 +47,23 @@ export default function FormatsGrid() {
   return (
     <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 max-w-4xl mx-auto">
-          <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Форматы обучения
             </span>
           </h2>
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up px-4">
             Выберите удобный формат занятий или комбинируйте несколько вариантов
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center items-stretch">
           {formats.map((format, index) => (
             <div
               key={index}
-              className={`card-lying rounded-3xl p-8 group animate-zoom-in w-full max-w-md relative overflow-hidden ${
+              className={`card-lying rounded-3xl p-6 md:p-8 group animate-zoom-in w-full max-w-md relative overflow-hidden ${
                 format.popular ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -80,11 +80,11 @@ export default function FormatsGrid() {
                     {format.icon}
                   </div>
                   
-                  <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-3">
                     {format.title}
                   </h3>
                   
-                  <p className="text-gray-700 mb-4 leading-relaxed">
+                  <p className="text-sm md:text-base text-gray-700 mb-4 leading-relaxed">
                     {format.description}
                   </p>
                 </div>
@@ -93,7 +93,7 @@ export default function FormatsGrid() {
                   <ul className="space-y-3">
                     {format.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start space-x-2 text-sm">
-                        <span className="text-yellow-600 text-lg">✓</span>
+                        <span className="text-yellow-600 text-lg flex-shrink-0 mt-0.5">✓</span>
                         <span className="text-gray-800 font-medium">{feature}</span>
                       </li>
                     ))}
@@ -103,7 +103,7 @@ export default function FormatsGrid() {
                 <div className="text-center mt-auto">
                   <Link 
                     href="/contacts"
-                    className="btn-primary w-full inline-block text-center hover-glow"
+                    className="btn-primary w-full inline-block text-center hover-glow text-base px-6 py-3"
                   >
                     Записаться
                   </Link>

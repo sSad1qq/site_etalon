@@ -1,17 +1,11 @@
-import Link from 'next/link'
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Предметы подготовки к ЕГЭ и ОГЭ в Пензе',
-  description: 'Подготовка к ЕГЭ и ОГЭ в Пензе по всем предметам: математика, информатика, русский язык, физика, химия. Репетиторы в центре Эталон, мини-группы и индивидуальные занятия.',
-  keywords: ['предметы ЕГЭ Пенза', 'предметы ОГЭ Пенза', 'математика ЕГЭ Пенза', 'информатика ЕГЭ Пенза', 'подготовка к ЕГЭ математика Пенза', 'репетитор по математике Пенза', 'репетитор по информатике Пенза'],
-  openGraph: {
-    title: 'Предметы подготовки к ЕГЭ и ОГЭ в Пензе | Центр Эталон',
-    description: 'Подготовка к ЕГЭ и ОГЭ в Пензе по всем предметам: математика, информатика, русский язык, физика, химия.',
-  },
-}
+import Link from 'next/link'
+import { useState, useRef, useEffect } from 'react'
 
 export default function SubjectsPage() {
+  const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
   const subjects = [
     {
       name: "Математика",
@@ -22,10 +16,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-50",
       borderColor: "border-yellow-200",
       stats: "Средний балл: 87",
-      features: ["Алгебра", "Геометрия", "Тригонометрия", "Логарифмы", "Производные"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3000₽/месяц",
       backgroundImage: "/math.jpg"
     },
     {
@@ -37,10 +29,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-100",
       borderColor: "border-yellow-300",
       stats: "Средний балл: 89",
-      features: ["Грамматика", "Орфография", "Пунктуация", "Сочинение", "Изложение"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3000₽/месяц",
       backgroundImage: "/rus-lang.jpg"
     },
     {
@@ -52,10 +42,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-200",
       borderColor: "border-yellow-400",
       stats: "Средний балл: 85",
-      features: ["Механика", "Термодинамика", "Электричество", "Оптика", "Квантовая физика"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3500₽/месяц",
       backgroundImage: "/physic.jpg"
     },
     {
@@ -67,10 +55,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-300",
       borderColor: "border-yellow-500",
       stats: "Средний балл: 86",
-      features: ["Неорганическая химия", "Органическая химия", "Физическая химия", "Аналитическая химия", "Биохимия"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3500₽/месяц",
       backgroundImage: "/chemistry.jpg"
     },
     {
@@ -82,10 +68,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-400",
       borderColor: "border-yellow-600",
       stats: "Средний балл: 88",
-      features: ["Программирование", "Алгоритмы", "Структуры данных", "Базы данных", "Сети"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 4000₽/месяц",
       backgroundImage: "/informatic.jpg"
     },
     {
@@ -97,10 +81,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-500",
       borderColor: "border-yellow-700",
       stats: "Средний балл: 84",
-      features: ["Право", "Экономика", "Политология", "Социология", "Философия"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3000₽/месяц",
       backgroundImage: "/society.jpg"
     },
     {
@@ -112,10 +94,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-50",
       borderColor: "border-yellow-200",
       stats: "Средний балл: 83",
-      features: ["Российская история", "Всемирная история", "Историография", "Археология", "Культурология"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3000₽/месяц",
       backgroundImage: "/history.jpg"
     },
     {
@@ -127,10 +107,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-100",
       borderColor: "border-yellow-300",
       stats: "Средний балл: 82",
-      features: ["Анатомия", "Генетика", "Экология", "Эволюция", "Молекулярная биология"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3000₽/месяц",
       backgroundImage: "/biology.jpg"
     },
     {
@@ -142,10 +120,8 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-200",
       borderColor: "border-yellow-400",
       stats: "Средний балл: 86",
-      features: ["Анализ текста", "Сочинения", "Литературные жанры", "История литературы", "Критический анализ"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3000₽/месяц",
       backgroundImage: "/literature.jpg"
     },
     {
@@ -157,35 +133,178 @@ export default function SubjectsPage() {
       bgColor: "bg-yellow-100",
       borderColor: "border-yellow-300",
       stats: "Средний балл: 87",
-      features: ["Грамматика", "Лексика", "Разговорная практика", "Аудирование", "Письмо"],
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      price: "от 3000₽/месяц",
       backgroundImage: "/english.jpg"
     }
   ]
 
+  // Отслеживание скролла на мобильной версии
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const updateIndex = () => {
+      const containerRect = container.getBoundingClientRect()
+      const containerCenter = containerRect.left + containerRect.width / 2
+      
+      // Находим все карточки
+      const cards = container.querySelectorAll('[data-card-index]')
+      let closestIndex = 0
+      let closestDistance = Infinity
+      
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect()
+        const cardCenter = cardRect.left + cardRect.width / 2
+        const distance = Math.abs(cardCenter - containerCenter)
+        
+        if (distance < closestDistance) {
+          closestDistance = distance
+          closestIndex = parseInt(card.getAttribute('data-card-index') || '0')
+        }
+      })
+      
+      setMobileScrollIndex(closestIndex)
+    }
+
+    // Обработчик скролла с throttling
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          updateIndex()
+          rafId = null
+        })
+      }
+    }
+
+    // Обработчик изменения размера окна
+    const onResize = () => {
+      updateIndex()
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
+    // Используем scrollend если доступно, иначе fallback на scroll
+    if ('onscrollend' in container) {
+      container.addEventListener('scrollend', updateIndex, { passive: true })
+    }
+    window.addEventListener('resize', onResize)
+    
+    // Инициализация
+    updateIndex()
+    const timeoutId = setTimeout(updateIndex, 200)
+
+    return () => {
+      container.removeEventListener('scroll', onScroll)
+      if ('onscrollend' in container) {
+        container.removeEventListener('scrollend', updateIndex)
+      }
+      window.removeEventListener('resize', onResize)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      clearTimeout(timeoutId)
+    }
+  }, [subjects.length])
+
   return (
-  <div className="min-h-screen pt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
+      <div className="max-w-6xl mx-auto px-8 pt-8 pb-16">
         <div className="text-center mb-20 max-w-4xl mx-auto">
-          <h1 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
+          <h1 className="text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Предметы
             </span>
           </h1>
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
             Подготовка по всем основным предметам ЕГЭ и ОГЭ с опытными преподавателями
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        {/* Мобильная версия - горизонтальный скроллинг с видимым описанием */}
+        <div className="lg:hidden relative">
+          <div 
+            ref={scrollContainerRef}
+            className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory" 
+            style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
+          >
+            <div className="flex gap-4 pr-4" style={{ width: 'max-content' }}>
+              {subjects.map((subject, index) => (
+                <div
+                  key={index}
+                  data-card-index={index}
+                  className={`bg-white rounded-3xl border-2 ${subject.borderColor} shadow-xl relative overflow-hidden flex-shrink-0 animate-zoom-in snap-center`}
+                  style={{ 
+                    width: 'calc(100vw - 2rem)',
+                    maxWidth: '400px',
+                    animationDelay: `${index * 0.1}s` 
+                  }}
+                >
+                  {/* Фоновое изображение */}
+                  <div className="relative w-full aspect-[4/3]">
+                    <img
+                      src={subject.backgroundImage}
+                      alt={subject.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Контент карточки - всегда видимый на мобильных */}
+                  <div className="p-6 bg-white">
+                    <div className="text-center mb-4">
+                      <div className={`w-16 h-16 bg-gradient-to-r ${subject.color} rounded-3xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg`}>
+                        {subject.icon}
+                      </div>
+                      <h3 className="text-2xl font-black text-gray-900 mb-2">
+                        {subject.name}
+                      </h3>
+                      <p className="text-gray-600 font-medium text-sm mb-3">
+                        {subject.description}
+                      </p>
+                      <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                        {subject.fullDescription}
+                      </p>
+                    </div>
+                    
+                    <div className={`${subject.bgColor} rounded-3xl p-4 shadow-md`}>
+                      <div className="text-center">
+                        <div className="text-lg font-black text-yellow-800 mb-1">
+                          {subject.stats}
+                        </div>
+                        <div className="text-xs text-yellow-700 font-semibold">
+                          за последний год
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Индикаторы-точки внизу */}
+          <div className="flex justify-center gap-2 mt-4 px-4">
+            {subjects.map((_, index) => (
+              <div
+                key={`indicator-${index}`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === mobileScrollIndex 
+                    ? 'bg-yellow-500 w-6 scale-110' 
+                    : 'bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Десктопная версия - сетка с hover эффектом */}
+        <div className="hidden lg:grid grid-cols-3 gap-8 justify-items-center">
           {subjects.map((subject, index) => (
-                    <div
-                      key={index}
-                      className={`bg-white rounded-3xl group animate-zoom-in border-2 ${subject.borderColor} shadow-lg relative overflow-hidden min-h-96 hover-lift glow-effect`}
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
+            <div
+              key={index}
+              className={`bg-white rounded-3xl group animate-zoom-in border-2 ${subject.borderColor} shadow-lg relative overflow-hidden min-h-96 hover-lift glow-effect`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               {/* Фоновое изображение - затухает при hover */}
               <div 
                 className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-500 group-hover:opacity-0"
@@ -225,38 +344,15 @@ export default function SubjectsPage() {
                     </div>
                   </div>
                 </div>
-
-                <div className="space-y-1 mb-3">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-600 font-semibold">Стоимость:</span>
-                    <span className="text-gray-800 font-bold">{subject.price}</span>
-                  </div>
-                </div>
-
-                <div className="mb-3">
-                  <h4 className="text-xs font-bold text-gray-700 mb-2">Темы изучения:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {subject.features.map((feature, featureIndex) => (
-                      <span
-                        key={featureIndex}
-                        className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-medium"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
-
-              {/* Кнопка записи удалена с карточек предметов по требованию — общий CTA снизу оставлен */}
             </div>
           ))}
         </div>
 
         {/* CTA */}
         <div className="mt-20 text-center">
-                  <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
-            <h2 className="text-3xl lg:text-4xl font-black text-gray-900 mb-6">
+          <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
+            <h2 className="text-4xl font-black text-gray-900 mb-6">
               Готовы начать подготовку?
             </h2>
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">

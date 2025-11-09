@@ -119,12 +119,6 @@ export default function ContactsPage() {
                     icon: '/telegram.png',
                     href: 'https://t.me/centerEtalon', 
                     color: 'from-blue-500 to-blue-600' 
-                  },
-                  { 
-                    name: 'Yandex', 
-                    icon: '/yandex.png',
-                    href: 'https://yandex.ru/profile/154840463548', 
-                    color: 'from-yellow-400 to-yellow-500' 
                   }
                 ].map((social) => (
                   <a

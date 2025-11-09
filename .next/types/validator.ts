@@ -140,3 +140,12 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   // @ts-ignore
   type __Unused = __Check
 }
+
+// Validate ../../src/app/subjects/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/subjects">> = Specific
+  const handler = {} as typeof import("../../src/app/subjects/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}

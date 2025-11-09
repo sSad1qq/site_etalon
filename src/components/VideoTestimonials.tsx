@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import VKVideoPlayer from './VKVideoPlayer'
 
@@ -26,6 +26,8 @@ export default function VideoTestimonials() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right' | null>(null)
   const [expandedTestimonials, setExpandedTestimonials] = useState<Set<number>>(new Set())
+  const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
   
   const openVideo = (oid: string, id: string) => setActiveVideo({ oid, id })
   const closeVideo = () => setActiveVideo(null)
@@ -129,27 +131,95 @@ export default function VideoTestimonials() {
     return indices
   }
 
+  // Отслеживание скролла на мобильной версии
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const updateIndex = () => {
+      const containerRect = container.getBoundingClientRect()
+      const containerCenter = containerRect.left + containerRect.width / 2
+      
+      // Находим все карточки
+      const cards = container.querySelectorAll('[data-card-index]')
+      let closestIndex = 0
+      let closestDistance = Infinity
+      
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect()
+        const cardCenter = cardRect.left + cardRect.width / 2
+        const distance = Math.abs(cardCenter - containerCenter)
+        
+        if (distance < closestDistance) {
+          closestDistance = distance
+          closestIndex = parseInt(card.getAttribute('data-card-index') || '0')
+        }
+      })
+      
+      setMobileScrollIndex(closestIndex)
+    }
+
+    // Обработчик скролла с throttling
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          updateIndex()
+          rafId = null
+        })
+      }
+    }
+
+    // Обработчик изменения размера окна
+    const onResize = () => {
+      updateIndex()
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
+    // Используем scrollend если доступно, иначе fallback на scroll
+    if ('onscrollend' in container) {
+      container.addEventListener('scrollend', updateIndex, { passive: true })
+    }
+    window.addEventListener('resize', onResize)
+    
+    // Инициализация
+    updateIndex()
+    const timeoutId = setTimeout(updateIndex, 200)
+
+    return () => {
+      container.removeEventListener('scroll', onScroll)
+      if ('onscrollend' in container) {
+        container.removeEventListener('scrollend', updateIndex)
+      }
+      window.removeEventListener('resize', onResize)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      clearTimeout(timeoutId)
+    }
+  }, [testimonials.length])
+
   return (
     <section className="section-padding bg-gradient-to-b from-yellow-50 to-white relative overflow-hidden">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 max-w-4xl mx-auto">
-          <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Отзывы выпускников
             </span>
           </h2>
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-base sm:text-lg md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
             Читайте реальные отзывы наших учеников и их родителей
           </p>
         </div>
 
         {/* Карусель */}
         <div className="relative">
-          {/* Кнопка влево */}
+          {/* Кнопка влево - десктоп */}
           <button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 hover:shadow-yellow-200/50 group"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white rounded-full shadow-2xl items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 hover:shadow-yellow-200/50 group"
             aria-label="Предыдущий отзыв"
           >
             <svg 
@@ -162,10 +232,10 @@ export default function VideoTestimonials() {
             </svg>
           </button>
 
-          {/* Кнопка вправо */}
+          {/* Кнопка вправо - десктоп */}
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 hover:shadow-yellow-200/50 group"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white rounded-full shadow-2xl items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 hover:shadow-yellow-200/50 group"
             aria-label="Следующий отзыв"
           >
             <svg 
@@ -178,9 +248,144 @@ export default function VideoTestimonials() {
             </svg>
           </button>
 
-          {/* Контейнер с карточками - Cover Flow стиль */}
+          {/* Мобильная версия - горизонтальный скролл */}
+          <div className="md:hidden relative">
+            <div 
+              ref={scrollContainerRef}
+              className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              <div className="flex gap-4" style={{ width: 'max-content' }}>
+                {testimonials.map((testimonial, index) => (
+                  <div
+                    key={`mobile-${index}`}
+                    data-card-index={index}
+                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm h-[calc(100vh-150px)] min-h-[600px] max-h-[800px] snap-center"
+                  >
+                    <div
+                      className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col h-full"
+                      onClick={() => {
+                        if (testimonial.vkVideo) {
+                          openVideo(testimonial.vkVideo.oid, testimonial.vkVideo.id)
+                        }
+                      }}
+                      role={testimonial.vkVideo ? "button" : undefined}
+                    >
+                      {/* Видео-превью секция */}
+                      {testimonial.vkVideo && (
+                        <div className="relative aspect-video bg-gradient-to-br from-yellow-400 to-yellow-600 transition-all duration-500 rounded-t-3xl flex-shrink-0">
+                          <div className="absolute inset-0 bg-black bg-opacity-20 transition-all duration-300 rounded-t-3xl"></div>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center text-white">
+                              <div className="w-16 h-16 bg-white bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                                <span className="text-2xl">▶️</span>
+                              </div>
+                              <p className="text-base font-bold mb-1">Видео-отзыв</p>
+                              <p className="text-xs opacity-90">Нажмите для просмотра</p>
+                            </div>
+                          </div>
+                          {testimonial.scores && (
+                            <div className="absolute top-3 right-3 bg-yellow-500 text-black px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
+                              {testimonial.scores.split('•')[0].trim()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Контент секция */}
+                      <div className="flex-1 flex flex-col p-4 overflow-y-auto">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-black text-lg flex-shrink-0">
+                            {testimonial.avatar}
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-black text-gray-900">{testimonial.name}</h3>
+                            <p className="text-yellow-600 font-bold text-xs">{testimonial.role}</p>
+                          </div>
+                        </div>
+
+                        {testimonial.scores && !testimonial.vkVideo && (
+                          <div className="bg-yellow-50 rounded-xl p-2.5 mb-3">
+                            <p className="text-xs font-bold text-gray-900">{testimonial.scores}</p>
+                          </div>
+                        )}
+
+                        <div className="text-xs text-gray-600 font-semibold mb-3">
+                          {testimonial.subject}
+                        </div>
+
+                        <div className="flex-grow mb-3">
+                          <blockquote className="text-sm text-gray-700 leading-relaxed">
+                            {(() => {
+                              const isExpanded = expandedTestimonials.has(testimonial.id)
+                              const isLong = testimonial.quote.length > MAX_LENGTH
+                              
+                              if (!isLong || isExpanded) {
+                                return testimonial.quote
+                              }
+                              
+                              const truncated = testimonial.quote.substring(0, MAX_LENGTH)
+                              const lastSpace = truncated.lastIndexOf(' ')
+                              const cutPoint = lastSpace > 0 ? lastSpace : MAX_LENGTH
+                              
+                              return (
+                                <>
+                                  {testimonial.quote.substring(0, cutPoint)}
+                                  <span className="text-yellow-600">...</span>
+                                </>
+                              )
+                            })()}
+                          </blockquote>
+                          
+                          {testimonial.quote.length > MAX_LENGTH && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                toggleExpand(testimonial.id)
+                              }}
+                              className="mt-2 text-yellow-600 hover:text-yellow-700 font-bold text-xs flex items-center space-x-1 transition-colors"
+                            >
+                              <span>
+                                {expandedTestimonials.has(testimonial.id) ? 'Свернуть' : 'Развернуть'}
+                              </span>
+                              <span className={`transform transition-transform duration-300 ${expandedTestimonials.has(testimonial.id) ? 'rotate-180' : ''}`}>
+                                ▼
+                              </span>
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
+                          <div className="flex text-yellow-500 text-base">{'★'.repeat(5)}</div>
+                          <div className="text-xs text-gray-500 font-semibold">
+                            {new Date().getFullYear()}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Индикаторы-точки внизу */}
+            <div className="flex justify-center gap-2 mt-4 px-4">
+              {testimonials.map((_, index) => (
+                <div
+                  key={`indicator-${index}`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === mobileScrollIndex 
+                      ? 'bg-yellow-500 w-6 scale-110' 
+                      : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Десктопная версия - Cover Flow стиль */}
           <div 
-            className="flex items-center justify-center relative overflow-visible"
+            className="hidden md:flex items-center justify-center relative overflow-visible"
             style={{
               perspective: '1200px',
               perspectiveOrigin: 'center center',
@@ -370,6 +575,24 @@ export default function VideoTestimonials() {
               )
             })}
           </div>
+
+          {/* Индикаторы внизу - только для десктопа */}
+          <div className="hidden md:flex justify-center gap-2 mt-16 flex-wrap">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`
+                  w-3 h-3 rounded-full transition-all duration-300
+                  ${index === currentIndex 
+                    ? 'bg-yellow-500 w-8 scale-110' 
+                    : 'bg-gray-300 hover:bg-yellow-300 active:scale-90'
+                  }
+                `}
+                aria-label={`Перейти к отзыву ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Modal для видео */}
@@ -393,31 +616,31 @@ export default function VideoTestimonials() {
         )}
 
         {/* Блок ВКонтакте и Яндекс */}
-        <div className="mt-28 text-center">
-          <div className="bg-gradient-to-r from-blue-50 to-white rounded-[2rem] shadow-xl p-8 max-w-3xl mx-auto hover-lift">
-            <h3 className="text-2xl lg:text-3xl font-black text-gray-900 mb-4">
+        <div className="mt-16 md:mt-28 text-center px-4">
+          <div className="bg-gradient-to-r from-blue-50 to-white rounded-3xl md:rounded-[2rem] shadow-xl p-6 md:p-8 max-w-3xl mx-auto hover-lift">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 mb-3 md:mb-4">
               Больше отзывов в нашей группе ВКонтакте и на Яндексе
             </h3>
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 md:mb-6">
               Присоединяйтесь к нашему сообществу, читайте отзывы учеников и родителей, следите за новостями и акциями центра
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
               <a
                 href="https://vk.com/repetitor_penza_etalon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className="inline-flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 md:px-8 py-3 md:py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm md:text-base"
               >
-                <img src="/vk.png" alt="ВКонтакте" className="w-6 h-6 brightness-0 invert" />
+                <img src="/vk.png" alt="ВКонтакте" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
                 <span>ВКонтакте</span>
               </a>
               <a
                 href="https://yandex.ru/profile/154840463548"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className="inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold px-6 md:px-8 py-3 md:py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm md:text-base"
               >
-                <img src="/yandex.png" alt="Яндекс" className="w-6 h-6 brightness-0 invert" />
+                <img src="/yandex.png" alt="Яндекс" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
                 <span>Яндекс</span>
               </a>
             </div>
@@ -426,18 +649,18 @@ export default function VideoTestimonials() {
 
 
         {/* CTA с анимацией */}
-        <div className="text-center mt-20">
-          <div className="bg-gradient-to-r from-yellow-50 to-white rounded-[2rem] shadow-2xl p-12 max-w-5xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
-            <h3 className="text-3xl lg:text-4xl font-black text-gray-900 mb-6">
+        <div className="text-center mt-12 md:mt-20 px-4">
+          <div className="bg-gradient-to-r from-yellow-50 to-white rounded-3xl md:rounded-[2rem] shadow-2xl p-6 md:p-12 max-w-5xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 md:mb-6">
               Станьте следующим успешным выпускником!
             </h3>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 leading-relaxed">
               Присоединяйтесь к тысячам учеников, которые уже достигли своих целей с нами
             </p>
             <div className="flex justify-center">
               <Link
                 href="/contacts"
-                className="btn-primary btn-magic text-lg px-12 py-4 flex items-center justify-center space-x-3"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 md:px-12 py-3 md:py-4 flex items-center justify-center space-x-2 md:space-x-3"
               >
                 <span>Записаться</span>
                 <span className="group-hover:animate-wiggle">🎯</span>
