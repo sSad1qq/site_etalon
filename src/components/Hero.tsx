@@ -32,32 +32,32 @@ export default function Hero() {
               >
                 <span className="flex items-center space-x-2">
                   <span className="whitespace-nowrap">Записаться на тестирование</span>
-                  <span className="group-hover:animate-wiggle text-xl md:text-2xl">🚀</span>
+                  <span className="md:group-hover:animate-wiggle text-xl md:text-2xl">🚀</span>
                 </span>
               </Link>
               
               <Link 
                 href="/about" 
-                className="btn-secondary text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 group inline-flex items-center justify-center hover:text-gray-900 w-full sm:w-auto"
+                className="btn-secondary text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 group inline-flex items-center justify-center md:hover:text-gray-900 w-full sm:w-auto"
               >
                 <span className="flex items-center space-x-2">
                   <span>Узнать больше</span>
-                  <span className="group-hover:animate-wiggle text-xl md:text-2xl">📖</span>
+                  <span className="md:group-hover:animate-wiggle text-xl md:text-2xl">📖</span>
                 </span>
               </Link>
             </div>
             
             {/* Статистика */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-md mx-auto md:mx-0">
-              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift">
+              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift bg-white">
                 <div className="text-xl sm:text-2xl font-black text-yellow-600 mb-1">1000+</div>
                 <div className="text-xs sm:text-sm text-gray-600 leading-tight">Выпускников</div>
               </div>
-              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift">
+              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift bg-white">
                 <div className="text-xl sm:text-2xl font-black text-yellow-600 mb-1">7</div>
                 <div className="text-xs sm:text-sm text-gray-600 leading-tight">Лет на рынке</div>
               </div>
-              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift">
+              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift bg-white">
                 <div className="text-xl sm:text-2xl font-black text-yellow-600 mb-1">20+</div>
                 <div className="text-xs sm:text-sm text-gray-600 leading-tight">Балов за месяц</div>
               </div>

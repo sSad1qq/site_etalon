@@ -54,7 +54,7 @@ export default function StatsComparison() {
 
         <div className="max-w-4xl mx-auto mb-12 md:mb-20">
           <div className="animate-slide-in-left w-full">
-            <div className="card-lying rounded-[2rem] p-4 sm:p-6 md:p-8 relative overflow-hidden hover-lift">
+            <div className="card-lying rounded-[2rem] p-4 sm:p-6 md:p-8 relative overflow-hidden hover-lift bg-white">
               <div className="text-center mb-6 md:mb-8">
                 <h3 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
                   Сравнение результатов
@@ -64,7 +64,7 @@ export default function StatsComparison() {
               
               <div className="space-y-6 md:space-y-8">
                 {stats.map((stat, index) => (
-                  <div key={index} className="bg-gradient-to-r from-yellow-50 to-white rounded-3xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover-lift">
+                  <div key={index} className="bg-white rounded-3xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 hover-lift">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
                       <div className="flex items-center space-x-2 sm:space-x-3">
                         <div className="text-xl sm:text-2xl">{stat.icon}</div>

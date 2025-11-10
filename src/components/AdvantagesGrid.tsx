@@ -168,7 +168,7 @@ export default function AdvantagesGrid() {
                   data-card-index={index}
                   className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                 >
-                  <div className="card-lying rounded-3xl p-6 group w-full hover-lift flex flex-col h-[280px]">
+                  <div className="card-lying rounded-3xl p-6 group w-full md:hover-lift flex flex-col h-[280px]">
                     <div className="flex flex-col items-center text-center h-full">
                       <div className={`w-20 h-20 bg-gradient-to-r ${advantage.color} rounded-3xl flex items-center justify-center mb-5 text-4xl transition-all duration-300 flex-shrink-0`}>
                         {advantage.icon}
@@ -238,7 +238,7 @@ export default function AdvantagesGrid() {
           ].map((stat, index) => (
             <div
               key={index}
-              className="card-lying rounded-3xl p-4 md:p-8 text-center animate-zoom-in hover-lift"
+              className="card-lying rounded-3xl p-4 md:p-8 text-center animate-zoom-in hover-lift bg-white"
               style={{ animationDelay: `${(advantages.length + index) * 0.1}s` }}
             >
               <div className="text-3xl md:text-5xl mb-2 md:mb-4 animate-bounce-in">{stat.icon}</div>

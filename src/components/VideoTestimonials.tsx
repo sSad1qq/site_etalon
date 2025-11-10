@@ -343,7 +343,7 @@ export default function VideoTestimonials() {
                                 e.stopPropagation()
                                 toggleExpand(testimonial.id)
                               }}
-                              className="mt-2 text-yellow-600 hover:text-yellow-700 font-bold text-xs flex items-center space-x-1 transition-colors"
+                              className="mt-2 text-yellow-600 md:hover:text-yellow-700 font-bold text-xs flex items-center space-x-1 transition-colors"
                             >
                               <span>
                                 {expandedTestimonials.has(testimonial.id) ? 'Свернуть' : 'Развернуть'}
@@ -617,7 +617,7 @@ export default function VideoTestimonials() {
 
         {/* Блок ВКонтакте и Яндекс */}
         <div className="mt-16 md:mt-28 text-center px-4">
-          <div className="bg-gradient-to-r from-blue-50 to-white rounded-3xl md:rounded-[2rem] shadow-xl p-6 md:p-8 max-w-3xl mx-auto hover-lift">
+          <div className="bg-white rounded-3xl md:rounded-[2rem] shadow-xl p-6 md:p-8 max-w-3xl mx-auto hover-lift">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 mb-3 md:mb-4">
               Больше отзывов в нашей группе ВКонтакте и на Яндексе
             </h3>
@@ -650,7 +650,7 @@ export default function VideoTestimonials() {
 
         {/* CTA с анимацией */}
         <div className="text-center mt-12 md:mt-20 px-4">
-          <div className="bg-gradient-to-r from-yellow-50 to-white rounded-3xl md:rounded-[2rem] shadow-2xl p-6 md:p-12 max-w-5xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
+          <div className="bg-white rounded-3xl md:rounded-[2rem] shadow-2xl p-6 md:p-12 max-w-5xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 md:mb-6">
               Станьте следующим успешным выпускником!
             </h3>

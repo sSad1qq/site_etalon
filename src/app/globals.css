@@ -297,7 +297,7 @@ html {
 }
 
 .card-lying {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgb(255, 255, 255);
   backdrop-filter: blur(20px);
   border-radius: 2rem;
   box-shadow: 0 8px 32px rgba(34,24,12,0.08);
@@ -319,6 +319,68 @@ html {
 .hover-lift:hover {
   transform: translateY(-12px) scale(1.05);
   box-shadow: 0 32px 64px rgba(34,24,12,0.2);
+}
+
+/* Полностью отключаем любой feedback от плиток на мобильной версии */
+@media (max-width: 767px) {
+  /* Отключаем все состояния для карточек */
+  .card-lying,
+  .card-lying:hover,
+  .card-lying:active,
+  .card-lying:focus,
+  .card-lying:focus-visible,
+  .card-lying:focus-within {
+    transform: none !important;
+    box-shadow: 0 8px 32px rgba(34,24,12,0.08) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    background: rgb(255, 255, 255) !important;
+    outline: none !important;
+    transition: none !important;
+  }
+  
+  /* Отключаем все состояния для hover-lift */
+  .hover-lift,
+  .hover-lift:hover,
+  .hover-lift:active,
+  .hover-lift:focus,
+  .hover-lift:focus-visible,
+  .hover-lift:focus-within {
+    transform: none !important;
+    box-shadow: 0 8px 32px rgba(34,24,12,0.08) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    background: rgb(255, 255, 255) !important;
+    outline: none !important;
+    transition: none !important;
+  }
+  
+  /* Отключаем все состояния для glow-effect */
+  .glow-effect,
+  .glow-effect:hover,
+  .glow-effect:active,
+  .glow-effect:focus,
+  .glow-effect:focus-visible,
+  .glow-effect:focus-within {
+    transform: none !important;
+    box-shadow: 0 8px 32px rgba(251, 191, 36, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    background: rgb(255, 255, 255) !important;
+    outline: none !important;
+    transition: none !important;
+  }
+  
+  /* Отключаем active эффекты для кнопок */
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+  
+  /* Отключаем все transition для интерактивных элементов */
+  .card-lying *,
+  .hover-lift *,
+  .glow-effect * {
+    transition: none !important;
+  }
 }
 
 .hover-glow {

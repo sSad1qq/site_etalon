@@ -16,8 +16,8 @@ export default function SubjectsGrid() {
       description: "Алгебра, геометрия, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» работают сильные преподаватели по математике, которые умеют не просто «натаскать», а действительно научить. Подготовим к ОГЭ и ЕГЭ на высокий балл, поможем подтянуть школьную программу и развить уверенность в своих силах!",
       color: "from-yellow-400 to-yellow-500",
-      bgColor: "bg-yellow-50",
-      borderColor: "border-yellow-200",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 87",
       backgroundImage: "/math.jpg"
     },
@@ -27,8 +27,8 @@ export default function SubjectsGrid() {
       description: "Грамматика, сочинение, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» мы докажем, что русский язык — это не только правила и тесты, но и увлекательный путь к уверенной речи и высоким баллам. Наши преподаватели помогут подготовиться к ОГЭ и ЕГЭ, прокачать навыки написания сочинений и изложений!",
       color: "from-yellow-500 to-yellow-600",
-      bgColor: "bg-yellow-100",
-      borderColor: "border-yellow-300",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 89",
       backgroundImage: "/rus-lang.jpg"
     },
@@ -39,7 +39,7 @@ export default function SubjectsGrid() {
       fullDescription: "В центре «Эталон» мы готовим учеников к ОГЭ и ЕГЭ по информатике, разбираем школьную программу, учим логике, алгоритмам и мышлению, которое помогает не только на экзаменах, но и в жизни. Наши преподаватели объясняют доступно, поэтапно и с примерами!",
       color: "from-yellow-800 to-yellow-900",
       bgColor: "bg-yellow-400",
-      borderColor: "border-yellow-600",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 88",
       backgroundImage: "/informatic.jpg"
     },
@@ -49,8 +49,8 @@ export default function SubjectsGrid() {
       description: "Право, экономика, политология, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» вас ждут опытные преподаватели по обществознанию, которые помогут разобраться в сложных темах, уверенно подготовиться к ОГЭ и ЕГЭ и повысить оценки в школе. Мы делаем акцент на логику, понимание и реальные примеры!",
       color: "from-yellow-900 to-yellow-950",
-      bgColor: "bg-yellow-500",
-      borderColor: "border-yellow-700",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 84",
       backgroundImage: "/society.jpg"
     },
@@ -60,8 +60,8 @@ export default function SubjectsGrid() {
       description: "Механика, термодинамика, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» мы помогаем ученикам увидеть логику и красоту физики. Объясняем сложные законы простым языком, учим решать задачи пошагово и готовим к ОГЭ и ЕГЭ без стресса. С нами формулы начинают работать, а баллы — расти!",
       color: "from-yellow-600 to-yellow-700",
-      bgColor: "bg-yellow-200",
-      borderColor: "border-yellow-400",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 85",
       backgroundImage: "/physic.jpg"
     },
@@ -71,8 +71,8 @@ export default function SubjectsGrid() {
       description: "Органическая и неорганическая химия, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» мы помогаем ученикам понять химию, а не просто учить реакции наизусть. Наши преподаватели шаг за шагом объясняют сложные темы, учат решать задачи и грамотно оформлять ответы. С нами подготовка к экзаменам проходит результативно!",
       color: "from-yellow-700 to-yellow-800",
-      bgColor: "bg-yellow-300",
-      borderColor: "border-yellow-500",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 86",
       backgroundImage: "/chemistry.jpg"
     },
@@ -82,8 +82,8 @@ export default function SubjectsGrid() {
       description: "Российская и всемирная история, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» с вами будут работать опытные преподаватели по истории, которые не только подготовят к ОГЭ и ЕГЭ на высокий балл, но и помогут разобраться в школьной программе, полюбить предмет и уверенно чувствовать себя на уроках.",
       color: "from-yellow-400 to-yellow-600",
-      bgColor: "bg-yellow-50",
-      borderColor: "border-yellow-200",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 83",
       backgroundImage: "/history.jpg"
     },
@@ -93,8 +93,8 @@ export default function SubjectsGrid() {
       description: "Анатомия, генетика, экология, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "Биология — не просто термины, а наука о жизни, которую можно понять и полюбить! В центре «Эталон» мы превращаем подготовку к экзаменам в увлекательное путешествие по живому миру. Наши преподаватели научат решать задачи без зубрежки и паники!",
       color: "from-yellow-500 to-yellow-700",
-      bgColor: "bg-yellow-100",
-      borderColor: "border-yellow-300",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 82",
       backgroundImage: "/biology.jpg"
     },
@@ -104,8 +104,8 @@ export default function SubjectsGrid() {
       description: "Анализ произведений, сочинения, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» мы помогаем ученикам раскрыть глубину произведений, научиться анализировать текст и писать уверенные сочинения. Наши преподаватели подготовят к ОГЭ и ЕГЭ, улучшат успеваемость по школьной программе и разовьют любовь к литературе!",
       color: "from-yellow-600 to-yellow-800",
-      bgColor: "bg-yellow-200",
-      borderColor: "border-yellow-400",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 86",
       backgroundImage: "/literature.jpg"
     },
@@ -115,8 +115,8 @@ export default function SubjectsGrid() {
       description: "Грамматика, лексика, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "В центре «Эталон» мы помогаем ученикам не только подготовиться к ОГЭ и ЕГЭ, но и уверенно общаться на английском. Наши преподаватели развивают все навыки — от грамматики до разговорной практики, чтобы экзамены и реальная жизнь стали легко решаемыми!",
       color: "from-yellow-500 to-yellow-600",
-      bgColor: "bg-yellow-100",
-      borderColor: "border-yellow-300",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
       stats: "Средний балл: 87",
       backgroundImage: "/english.jpg"
     }
@@ -305,7 +305,7 @@ export default function SubjectsGrid() {
                     data-card-index={index}
                     className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
-                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col">
+                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col h-[580px]">
                       {/* Картинка сверху */}
                       <div className="relative w-full h-48 flex-shrink-0 overflow-hidden">
                         <img
@@ -316,7 +316,7 @@ export default function SubjectsGrid() {
                       </div>
                       
                       {/* Информация снизу */}
-                      <div className="flex flex-col p-4">
+                      <div className="flex flex-col p-4 flex-grow">
                         <div className="text-center mb-3">
                           <div className={`w-14 h-14 bg-gradient-to-r ${subject.color} rounded-2xl flex items-center justify-center mx-auto mb-2 text-2xl shadow-md`}>
                             {subject.icon}

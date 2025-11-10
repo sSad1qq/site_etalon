@@ -158,7 +158,7 @@ export default function StudentJourney() {
                     className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
                     <article
-                      className="card-lying rounded-3xl p-4 w-full flex flex-col items-center text-center hover-lift glow-effect h-[280px]"
+                      className="card-lying rounded-3xl p-4 w-full flex flex-col items-center text-center md:hover-lift glow-effect h-[280px]"
                       aria-labelledby={`step-title-${step.number}`}
                     >
                       <div className="flex flex-col items-center text-center mb-4 flex-shrink-0">
@@ -233,7 +233,7 @@ export default function StudentJourney() {
 
         {/* CTA с анимацией */}
         <div className="text-center mt-16">
-          <div className="card-lying rounded-[2rem] p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift">
+          <div className="card-lying rounded-[2rem] p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift bg-white">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Готовы начать свой путь к успеху?
             </h3>

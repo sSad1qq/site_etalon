@@ -1,18 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'О центре подготовки к ЕГЭ и ОГЭ в Пензе',
-  description: 'Центр подготовки к ЕГЭ и ОГЭ Эталон в Пензе. Опытные репетиторы, мини-группы 2-3 человека, индивидуальный подход. Подготовка к экзаменам по математике, информатике и другим предметам.',
-  keywords: ['центр подготовки Пенза', 'о центре Эталон Пенза', 'репетиторский центр Пенза', 'курсы ЕГЭ ОГЭ Пенза', 'подготовка к экзаменам Пенза'],
-  openGraph: {
-    title: 'О центре подготовки к ЕГЭ и ОГЭ в Пензе | Центр Эталон',
-    description: 'Центр подготовки к ЕГЭ и ОГЭ Эталон в Пензе. Опытные репетиторы, мини-группы, индивидуальный подход.',
-  },
-}
+import { useState, useRef, useEffect } from 'react'
 
 export default function AboutPage() {
+  const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
+  const [photoScrollIndex, setPhotoScrollIndex] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const photoScrollContainerRef = useRef<HTMLDivElement>(null)
   const achievements = [
     {
       year: "2014",
@@ -46,17 +42,143 @@ export default function AboutPage() {
     }
   ]
 
+  // Отслеживание скролла на мобильной версии
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const updateIndex = () => {
+      const containerRect = container.getBoundingClientRect()
+      const containerCenter = containerRect.left + containerRect.width / 2
+      
+      const cards = container.querySelectorAll('[data-card-index]')
+      let closestIndex = 0
+      let closestDistance = Infinity
+      
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect()
+        const cardCenter = cardRect.left + cardRect.width / 2
+        const distance = Math.abs(cardCenter - containerCenter)
+        
+        if (distance < closestDistance) {
+          closestDistance = distance
+          closestIndex = parseInt(card.getAttribute('data-card-index') || '0')
+        }
+      })
+      
+      setMobileScrollIndex(closestIndex)
+    }
+
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          updateIndex()
+          rafId = null
+        })
+      }
+    }
+
+    const onResize = () => {
+      updateIndex()
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
+    if ('onscrollend' in container) {
+      container.addEventListener('scrollend', updateIndex, { passive: true })
+    }
+    window.addEventListener('resize', onResize)
+    
+    updateIndex()
+    const timeoutId = setTimeout(updateIndex, 200)
+
+    return () => {
+      container.removeEventListener('scroll', onScroll)
+      if ('onscrollend' in container) {
+        container.removeEventListener('scrollend', updateIndex)
+      }
+      window.removeEventListener('resize', onResize)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      clearTimeout(timeoutId)
+    }
+  }, [achievements.length])
+
+  // Отслеживание скролла фотографий на мобильной версии
+  useEffect(() => {
+    const container = photoScrollContainerRef.current
+    if (!container) return
+
+    const updateIndex = () => {
+      const containerRect = container.getBoundingClientRect()
+      const containerCenter = containerRect.left + containerRect.width / 2
+      
+      const cards = container.querySelectorAll('[data-photo-index]')
+      let closestIndex = 0
+      let closestDistance = Infinity
+      
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect()
+        const cardCenter = cardRect.left + cardRect.width / 2
+        const distance = Math.abs(cardCenter - containerCenter)
+        
+        if (distance < closestDistance) {
+          closestDistance = distance
+          closestIndex = parseInt(card.getAttribute('data-photo-index') || '0')
+        }
+      })
+      
+      setPhotoScrollIndex(closestIndex)
+    }
+
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          updateIndex()
+          rafId = null
+        })
+      }
+    }
+
+    const onResize = () => {
+      updateIndex()
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
+    if ('onscrollend' in container) {
+      container.addEventListener('scrollend', updateIndex, { passive: true })
+    }
+    window.addEventListener('resize', onResize)
+    
+    updateIndex()
+    const timeoutId = setTimeout(updateIndex, 200)
+
+    return () => {
+      container.removeEventListener('scroll', onScroll)
+      if ('onscrollend' in container) {
+        container.removeEventListener('scrollend', updateIndex)
+      }
+      window.removeEventListener('resize', onResize)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      clearTimeout(timeoutId)
+    }
+  }, [])
+
   return (
   <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
       <div className="max-w-6xl mx-auto px-8 pt-8 pb-16">
         {/* Заголовок */}
-        <div className="text-center mb-20 max-w-4xl mx-auto">
-          <h1 className="text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
+        <div className="text-center mb-20 max-w-4xl mx-auto px-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up text-center">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               О центре «Эталон»
             </span>
           </h1>
-          <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up text-center">
             Более 10 лет мы помогаем школьникам достигать высоких результатов на экзаменах
           </p>
         </div>
@@ -64,9 +186,56 @@ export default function AboutPage() {
         {/* История центра */}
         <div className="mb-20">
           <h2 className="text-4xl font-black text-gray-900 mb-12 text-center">Наша история</h2>
-          <div className="relative">
+          
+          {/* Мобильная версия - горизонтальный скролл */}
+          <div className="lg:hidden relative">
+            <div 
+              ref={scrollContainerRef}
+              className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              <div className="flex gap-4" style={{ width: 'max-content' }}>
+                {achievements.map((achievement, index) => (
+                  <div
+                    key={`mobile-${index}`}
+                    data-card-index={index}
+                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
+                  >
+                    <div className="card-lying rounded-3xl p-8 animate-zoom-in bg-white h-[320px] flex flex-col">
+                      <div className="text-3xl font-black text-yellow-600 mb-4 flex-shrink-0">
+                        {achievement.year}
+                      </div>
+                      <h3 className="text-2xl font-black text-gray-900 mb-4 flex-shrink-0">
+                        {achievement.title}
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed flex-grow">
+                        {achievement.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Индикаторы-точки внизу */}
+            <div className="flex justify-center gap-2 mt-4 px-4">
+              {achievements.map((_, index) => (
+                <div
+                  key={`indicator-${index}`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === mobileScrollIndex 
+                      ? 'bg-yellow-500 w-6 scale-110' 
+                      : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Десктопная версия - временная линия */}
+          <div className="hidden lg:block relative">
             {/* Временная линия */}
-            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-full"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-full"></div>
             
             <div className="space-y-12">
               {achievements.map((achievement, index) => (
@@ -93,9 +262,9 @@ export default function AboutPage() {
                   </div>
                   
                   {/* Точка на линии времени */}
-                  <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-yellow-500 rounded-full"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-yellow-500 rounded-full"></div>
                   
-                  <div className="hidden lg:block w-1/2"></div>
+                  <div className="w-1/2"></div>
                 </div>
               ))}
             </div>
@@ -116,7 +285,62 @@ export default function AboutPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          {/* Мобильная версия - горизонтальный скролл */}
+          <div className="md:hidden relative">
+            <div 
+              ref={photoScrollContainerRef}
+              className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              <div className="flex gap-4" style={{ width: 'max-content' }}>
+                {[
+                  { src: "/dosug_1.jpeg", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
+                  { src: "/dosug_2.jpeg", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
+                  { src: "/dosug_3.jpeg", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
+                  { src: "/dosug_4.jpeg", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
+                  { src: "/dosug_5.jpeg", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
+                  { src: "/dosug_6.jpeg", alt: "Совместные достижения", caption: "Празднование успехов и достижений" }
+                ].map((photo, index) => (
+                  <div
+                    key={`mobile-${index}`}
+                    data-photo-index={index}
+                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
+                  >
+                    <div className="card-lying rounded-3xl p-4 group animate-zoom-in overflow-hidden bg-white h-[380px] flex flex-col">
+                      <div className="relative w-full h-64 mb-4 rounded-2xl overflow-hidden flex-shrink-0">
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="text-center text-gray-700 font-medium text-sm flex-grow flex items-center justify-center">
+                        {photo.caption}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Индикаторы-точки внизу */}
+            <div className="flex justify-center gap-2 mt-4 px-4">
+              {[...Array(6)].map((_, index) => (
+                <div
+                  key={`indicator-${index}`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === photoScrollIndex 
+                      ? 'bg-yellow-500 w-6 scale-110' 
+                      : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Десктопная версия - сетка */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {[
               { src: "/dosug_1.jpeg", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
               { src: "/dosug_2.jpeg", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
@@ -183,22 +407,24 @@ export default function AboutPage() {
 
         {/* CTA */}
         <div className="text-center">
-          <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
-            <h2 className="text-4xl font-black text-gray-900 mb-6">
+          <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in bg-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-6 text-center mx-auto">
               Присоединяйтесь к нашей команде!
             </h2>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-8 leading-relaxed text-center mx-auto">
               Станьте частью успешной истории и достигните своих целей вместе с нами
             </p>
-            <Link
-              href="/contacts"
-              className="btn-primary btn-magic text-lg px-12 py-4 group inline-block"
-            >
-              <span className="flex items-center space-x-3">
-                <span>Записаться</span>
-                <span className="group-hover:animate-wiggle">📝</span>
-              </span>
-            </Link>
+            <div className="flex justify-center">
+              <Link
+                href="/contacts"
+                className="btn-primary btn-magic text-lg px-12 py-4 group inline-block"
+              >
+                <span className="flex items-center space-x-3">
+                  <span>Записаться</span>
+                  <span className="group-hover:animate-wiggle">📝</span>
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

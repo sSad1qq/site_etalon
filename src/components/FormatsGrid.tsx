@@ -8,6 +8,20 @@ export default function FormatsGrid() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const formats = [
     {
+      icon: "👥",
+      title: "Мини-группы",
+      description: "Занятия в группах 2-3 человека по уровню знаний",
+      features: [
+        "Программа адаптирована под ОГЭ/ЕГЭ",
+        "Атмосфера поддержки",
+        "Доказанная эффективность",
+        "Доступная цена",
+        "Двухчасовые занятия"
+      ],
+      popular: true,
+      color: "from-yellow-400 to-yellow-500"
+    },
+    {
       icon: "👤",
       title: "Индивидуально",
       description: "Персональные занятия один на один с преподавателем",
@@ -32,20 +46,6 @@ export default function FormatsGrid() {
       ],
       popular: false,
       color: "from-yellow-600 to-yellow-700"
-    },
-    {
-      icon: "👥",
-      title: "Мини-группы",
-      description: "Занятия в группах 2-3 человека по уровню знаний",
-      features: [
-        "Программа адаптирована под ОГЭ/ЕГЭ",
-        "Атмосфера поддержки",
-        "Доказанная эффективность",
-        "Доступная цена",
-        "Двухчасовые занятия"
-      ],
-      popular: true,
-      color: "from-yellow-400 to-yellow-500"
     }
   ]
 
@@ -186,7 +186,7 @@ export default function FormatsGrid() {
                       <div className="text-center mt-auto">
                         <Link 
                           href="/contacts"
-                          className="btn-primary w-full inline-block text-center hover-glow text-sm px-4 py-2"
+                          className="btn-primary w-full inline-block text-center md:hover-glow text-sm px-4 py-2"
                         >
                           Записаться
                         </Link>

@@ -234,7 +234,7 @@ export default function ResultsBoard() {
           <div className="md:hidden relative">
             <div 
               ref={scrollContainerRef}
-              className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
+              className="overflow-x-auto -mx-4 px-4 py-4 snap-x snap-mandatory scrollbar-hide" 
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
