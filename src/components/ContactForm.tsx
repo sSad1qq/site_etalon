@@ -95,13 +95,13 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
   }
 
   return (
-    <div className="max-w-2xl mx-auto bg-white rounded-[2rem] shadow-lg p-8 hover:shadow-2xl transition-all duration-500">
-      <h2 className="text-2xl font-bold mb-6 text-center">Запишись на бесплатную консультацию</h2>
+    <div className="max-w-2xl mx-auto bg-white rounded-2xl sm:rounded-[2rem] shadow-lg p-5 sm:p-6 md:p-8 md:hover:shadow-2xl transition-all duration-500">
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Запишись на бесплатную консультацию</h2>
       
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
         {/* Имя */}
         <div>
-          <label className="block text-sm font-medium mb-2">Имя</label>
+          <label className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Имя</label>
           <input
             {...register('name', { 
               required: 'Пожалуйста, введите ваше имя',
@@ -114,23 +114,23 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
                 message: 'Имя может содержать только буквы, пробелы и дефисы'
               }
             })}
-            className={`w-full px-4 py-3 rounded-2xl border ${
+            className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border text-sm sm:text-base ${
               errors.name ? 'border-red-500' : 'border-gray-300'
             } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
             placeholder="Ваше имя"
             aria-label="Имя"
           />
           {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+            <p className="mt-1 text-xs sm:text-sm text-red-500">{errors.name.message}</p>
           )}
         </div>
 
         {/* Телефон */}
         <div>
-          <label className="block text-sm font-medium mb-2">Телефон</label>
+          <label className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Телефон</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-500 text-sm">+7</span>
+              <span className="text-gray-500 text-xs sm:text-sm">+7</span>
             </div>
             <input
               {...register('phone', {
@@ -152,7 +152,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
               })}
               value={phoneValue}
               onChange={handlePhoneChange}
-              className={`w-full pl-8 pr-4 py-3 rounded-2xl border ${
+              className={`w-full pl-8 pr-3 sm:pr-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border text-sm sm:text-base ${
                 errors.phone ? 'border-red-500' : 'border-gray-300'
               } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
               placeholder="9XX XXX XX XX"
@@ -163,7 +163,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
             Введите номер без +7, начиная с 9 (например: 912 345 67 89)
           </p>
           {errors.phone && (
-            <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>
+            <p className="mt-1 text-xs sm:text-sm text-red-500">{errors.phone.message}</p>
           )}
         </div>
 
@@ -171,8 +171,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full bg-yellow-500 text-white py-4 rounded-2xl font-medium relative overflow-hidden transition-all duration-300 ${
-            isSubmitting ? 'opacity-70' : 'hover:bg-yellow-600 hover:scale-105 hover:shadow-xl'
+          className={`w-full bg-yellow-500 text-white py-3 sm:py-4 rounded-xl sm:rounded-2xl font-medium text-sm sm:text-base relative overflow-hidden transition-all duration-300 ${
+            isSubmitting ? 'opacity-70' : 'md:hover:bg-yellow-600 md:hover:scale-105 md:hover:shadow-xl'
           }`}
         >
           {isSubmitting ? (
@@ -191,12 +191,12 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
 
       {/* Уведомление об успешной отправке */}
       {isSuccess && (
-        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-2xl shadow-lg animate-slide-up">
+        <div className="fixed bottom-4 right-4 left-4 sm:left-auto bg-green-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg animate-slide-up text-sm sm:text-base">
           Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.
         </div>
       )}
 
-      <p className="mt-4 text-gray-600 text-sm text-center">
+      <p className="mt-3 sm:mt-4 text-gray-600 text-xs sm:text-sm text-center">
         Нажимая на кнопку, вы даёте согласие на обработку персональных данных
       </p>
     </div>

@@ -7,8 +7,31 @@ import { useState, useRef, useEffect } from 'react'
 export default function AboutPage() {
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
   const [photoScrollIndex, setPhotoScrollIndex] = useState(0)
+  const [familyScrollIndex, setFamilyScrollIndex] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const photoScrollContainerRef = useRef<HTMLDivElement>(null)
+  const familyScrollContainerRef = useRef<HTMLDivElement>(null)
+  
+  const familyItems = [
+    {
+      icon: "🤝",
+      title: "Взаимоподдержка",
+      description: "Всегда готовы помочь и поддержать",
+      color: "from-yellow-400 to-yellow-500"
+    },
+    {
+      icon: "😊",
+      title: "Позитивная атмосфера",
+      description: "Учимся с удовольствием и радостью",
+      color: "from-yellow-500 to-yellow-600"
+    },
+    {
+      icon: "🎉",
+      title: "Совместные праздники",
+      description: "Отмечаем успехи и важные события",
+      color: "from-yellow-600 to-yellow-700"
+    }
+  ]
   const achievements = [
     {
       year: "2014",
@@ -168,24 +191,96 @@ export default function AboutPage() {
     }
   }, [])
 
+  // Отслеживание скролла карточек "семья" на мобильной версии
+  useEffect(() => {
+    const container = familyScrollContainerRef.current
+    if (!container) return
+
+    const updateIndex = () => {
+      const currentContainer = familyScrollContainerRef.current
+      if (!currentContainer) return
+      
+      const containerRect = currentContainer.getBoundingClientRect()
+      // Проверяем, что контейнер видим
+      if (containerRect.width === 0) return
+      
+      const containerCenter = containerRect.left + containerRect.width / 2
+      
+      const cards = currentContainer.querySelectorAll('[data-family-index]')
+      let closestIndex = 0
+      let closestDistance = Infinity
+      
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect()
+        const cardCenter = cardRect.left + cardRect.width / 2
+        const distance = Math.abs(cardCenter - containerCenter)
+        
+        if (distance < closestDistance) {
+          closestDistance = distance
+          closestIndex = parseInt(card.getAttribute('data-family-index') || '0')
+        }
+      })
+      
+      setFamilyScrollIndex(closestIndex)
+    }
+
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          updateIndex()
+          rafId = null
+        })
+      }
+    }
+
+    const onResize = () => {
+      updateIndex()
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
+    if ('onscrollend' in container) {
+      container.addEventListener('scrollend', updateIndex, { passive: true })
+    }
+    window.addEventListener('resize', onResize)
+    
+    // Инициализация с задержкой
+    updateIndex()
+    const timeoutId1 = setTimeout(updateIndex, 100)
+    const timeoutId2 = setTimeout(updateIndex, 300)
+
+    return () => {
+      container.removeEventListener('scroll', onScroll)
+      if ('onscrollend' in container) {
+        container.removeEventListener('scrollend', updateIndex)
+      }
+      window.removeEventListener('resize', onResize)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      clearTimeout(timeoutId1)
+      clearTimeout(timeoutId2)
+    }
+  }, [])
+
   return (
   <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
-      <div className="max-w-6xl mx-auto px-8 pt-8 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 pb-10 sm:pb-12 md:pb-16">
         {/* Заголовок */}
-        <div className="text-center mb-20 max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-6 animate-slide-in-up text-center">
+        <div className="text-center mb-10 sm:mb-14 md:mb-20 max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 animate-slide-in-up text-center">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               О центре «Эталон»
             </span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up text-center">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up text-center">
             Более 10 лет мы помогаем школьникам достигать высоких результатов на экзаменах
           </p>
         </div>
 
         {/* История центра */}
-        <div className="mb-20">
-          <h2 className="text-4xl font-black text-gray-900 mb-12 text-center">Наша история</h2>
+        <div className="mb-12 sm:mb-16 md:mb-20">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center">Наша история</h2>
           
           {/* Мобильная версия - горизонтальный скролл */}
           <div className="lg:hidden relative">
@@ -201,14 +296,14 @@ export default function AboutPage() {
                     data-card-index={index}
                     className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
-                    <div className="card-lying rounded-3xl p-8 animate-zoom-in bg-white h-[320px] flex flex-col">
-                      <div className="text-3xl font-black text-yellow-600 mb-4 flex-shrink-0">
+                    <div className="card-lying rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 animate-zoom-in bg-white h-[280px] sm:h-[300px] md:h-[320px] flex flex-col">
+                      <div className="text-2xl sm:text-3xl font-black text-yellow-600 mb-3 sm:mb-4 flex-shrink-0">
                         {achievement.year}
                       </div>
-                      <h3 className="text-2xl font-black text-gray-900 mb-4 flex-shrink-0">
+                      <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-3 sm:mb-4 flex-shrink-0">
                         {achievement.title}
                       </h3>
-                      <p className="text-gray-700 leading-relaxed flex-grow">
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed flex-grow">
                         {achievement.description}
                       </p>
                     </div>
@@ -272,16 +367,11 @@ export default function AboutPage() {
         </div>
 
         {/* Дружелюбная атмосфера */}
-        <div className="mb-20">
-          <h2 className="text-4xl font-black text-gray-900 mb-12 text-center">Дружелюбная атмосфера</h2>
-          <div className="text-center mb-12 max-w-4xl mx-auto">
-            <p className="text-xl text-gray-700 leading-relaxed mb-8">
-              В центре «Эталон» мы создали особую атмосферу, где преподаватели и ученики находятся на одной волне. 
-              Наша команда не просто учит — мы дружим, поддерживаем и вдохновляем каждого ученика на достижение целей.
-            </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Посмотрите, как мы проводим время вместе: совместные мероприятия, праздники, 
-              неформальные встречи и просто теплые моменты общения.
+        <div className="mb-12 sm:mb-16 md:mb-20">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center">Дружелюбная атмосфера</h2>
+          <div className="text-center mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
+              Мы не просто учим — мы дружим, поддерживаем и вдохновляем каждого ученика.
             </p>
           </div>
           
@@ -306,8 +396,8 @@ export default function AboutPage() {
                     data-photo-index={index}
                     className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
-                    <div className="card-lying rounded-3xl p-4 group animate-zoom-in overflow-hidden bg-white h-[380px] flex flex-col">
-                      <div className="relative w-full h-64 mb-4 rounded-2xl overflow-hidden flex-shrink-0">
+                    <div className="card-lying rounded-2xl sm:rounded-3xl p-3 sm:p-4 group animate-zoom-in overflow-hidden bg-white h-[340px] sm:h-[360px] md:h-[380px] flex flex-col">
+                      <div className="relative w-full h-52 sm:h-56 md:h-64 mb-3 sm:mb-4 rounded-xl sm:rounded-2xl overflow-hidden flex-shrink-0">
                         <Image
                           src={photo.src}
                           alt={photo.alt}
@@ -315,7 +405,7 @@ export default function AboutPage() {
                           className="object-cover"
                         />
                       </div>
-                      <p className="text-center text-gray-700 font-medium text-sm flex-grow flex items-center justify-center">
+                      <p className="text-center text-gray-700 font-medium text-xs sm:text-sm flex-grow flex items-center justify-center">
                         {photo.caption}
                       </p>
                     </div>
@@ -369,36 +459,68 @@ export default function AboutPage() {
             ))}
           </div>
           
-          <div className="mt-12 text-center">
-            <div className="card-lying rounded-3xl p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-black text-gray-900 mb-4">
-                Мы не просто учим — мы создаем семью
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Каждый ученик для нас — это не просто клиент, а часть большой дружной семьи. 
-                Мы помним дни рождения, поддерживаем в трудные моменты и радуемся каждому успеху.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl flex items-center justify-center mb-4 text-3xl">
-                    🤝
-                  </div>
-                  <h4 className="font-bold text-gray-900 mb-2">Взаимоподдержка</h4>
-                  <p className="text-sm text-gray-600">Всегда готовы помочь и поддержать</p>
+          <div className="mt-8 sm:mt-10 md:mt-12">
+            <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-3 sm:mb-4 text-center">
+              Мы не просто учим — мы создаем семью
+            </h3>
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 text-center">
+              Каждый ученик для нас — часть большой дружной семьи.
+            </p>
+            
+            {/* Мобильная версия - горизонтальный скролл */}
+            <div className="md:hidden relative">
+              <div 
+                ref={familyScrollContainerRef}
+                className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
+                <div className="flex gap-4" style={{ width: 'max-content' }}>
+                  {familyItems.map((item, index) => (
+                    <div
+                      key={`family-mobile-${index}`}
+                      data-family-index={index}
+                      className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
+                    >
+                      <div className="card-lying rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 animate-zoom-in bg-white h-[200px] sm:h-[210px] md:h-[220px] flex flex-col items-center justify-center text-center">
+                        <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r ${item.color} rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 text-2xl sm:text-3xl`}>
+                          {item.icon}
+                        </div>
+                        <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">{item.title}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-4 text-3xl">
-                    😊
-                  </div>
-                  <h4 className="font-bold text-gray-900 mb-2">Позитивная атмосфера</h4>
-                  <p className="text-sm text-gray-600">Учимся с удовольствием и радостью</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-600 to-yellow-700 rounded-2xl flex items-center justify-center mb-4 text-3xl">
-                    🎉
-                  </div>
-                  <h4 className="font-bold text-gray-900 mb-2">Совместные праздники</h4>
-                  <p className="text-sm text-gray-600">Отмечаем успехи и важные события</p>
+              </div>
+              
+              {/* Индикаторы-точки внизу */}
+              <div className="flex justify-center gap-2 mt-4 px-4">
+                {familyItems.map((_, index) => (
+                  <div
+                    key={`family-indicator-${index}`}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === familyScrollIndex 
+                        ? 'bg-yellow-500 w-6 scale-110' 
+                        : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Десктопная версия - сетка */}
+            <div className="hidden md:block">
+              <div className="card-lying rounded-3xl p-8 max-w-4xl mx-auto">
+                <div className="grid grid-cols-3 gap-6 text-center">
+                  {familyItems.map((item, index) => (
+                    <div key={`family-desktop-${index}`} className="flex flex-col items-center">
+                      <div className={`w-16 h-16 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center mb-4 text-3xl`}>
+                        {item.icon}
+                      </div>
+                      <h4 className="font-bold text-gray-900 mb-2">{item.title}</h4>
+                      <p className="text-sm text-gray-600">{item.description}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -407,21 +529,21 @@ export default function AboutPage() {
 
         {/* CTA */}
         <div className="text-center">
-          <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in bg-white">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-6 text-center mx-auto">
+          <div className="card-lying rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in bg-white">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 sm:mb-6 text-center mx-auto">
               Присоединяйтесь к нашей команде!
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-8 leading-relaxed text-center mx-auto">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed text-center mx-auto">
               Станьте частью успешной истории и достигните своих целей вместе с нами
             </p>
             <div className="flex justify-center">
               <Link
                 href="/contacts"
-                className="btn-primary btn-magic text-lg px-12 py-4 group inline-block"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-3 sm:py-4 group inline-block"
               >
-                <span className="flex items-center space-x-3">
+                <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>
-                  <span className="group-hover:animate-wiggle">📝</span>
+                  <span className="md:group-hover:animate-wiggle">📝</span>
                 </span>
               </Link>
             </div>

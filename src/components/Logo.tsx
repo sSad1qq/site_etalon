@@ -4,12 +4,13 @@ export default function Logo() {
   return (
     <div className="flex items-center">
       <Image
-        src="/logo.png"
+        src="/logo.png?v=2"
         alt="Логотип образовательного центра ЭТАЛОН"
-        width={150}
-        height={60}
-        className="h-12 w-auto"
+        width={200}
+        height={80}
+        className="h-16 w-auto"
         priority
+        unoptimized
       />
     </div>
   )

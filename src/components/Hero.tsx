@@ -47,20 +47,25 @@ export default function Hero() {
               </Link>
             </div>
             
-            {/* Статистика */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-md mx-auto md:mx-0">
-              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift bg-white">
-                <div className="text-xl sm:text-2xl font-black text-yellow-600 mb-1">1000+</div>
-                <div className="text-xs sm:text-sm text-gray-600 leading-tight">Выпускников</div>
-              </div>
-              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift bg-white">
-                <div className="text-xl sm:text-2xl font-black text-yellow-600 mb-1">7</div>
-                <div className="text-xs sm:text-sm text-gray-600 leading-tight">Лет на рынке</div>
-              </div>
-              <div className="text-center card-lying rounded-3xl p-3 sm:p-4 hover-lift bg-white">
-                <div className="text-xl sm:text-2xl font-black text-yellow-600 mb-1">20+</div>
-                <div className="text-xs sm:text-sm text-gray-600 leading-tight">Балов за месяц</div>
-              </div>
+            {/* Статистика - только мобильная версия */}
+            <div className="grid grid-cols-2 gap-3 max-w-md mx-auto md:hidden">
+              {[
+                { number: "7", label: "лет на рынке", icon: "📅" },
+                { number: "1000+", label: "довольных учеников", icon: "😊" },
+                { number: "25+", label: "опытных репетиторов", icon: "👨‍🏫" },
+                { number: "10", label: "предметов", icon: "📚" }
+              ].map((stat, index) => (
+                <div
+                  key={index}
+                  className="card-lying rounded-3xl p-3 text-center hover-lift bg-white"
+                >
+                  <div className="text-2xl mb-1">{stat.icon}</div>
+                  <div className="text-xl font-black text-yellow-600 mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs text-gray-700 font-bold leading-tight">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
           

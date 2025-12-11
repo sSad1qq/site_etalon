@@ -228,27 +228,6 @@ export default function AdvantagesGrid() {
           ))}
         </div>
 
-        {/* Дополнительный блок с ключевыми цифрами */}
-        <div className="mt-12 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {[
-            { number: "7", label: "лет на рынке", icon: "📅" },
-            { number: "1000+", label: "довольных учеников", icon: "😊" },
-            { number: "25+", label: "опытных репетиторов", icon: "👨‍🏫" },
-            { number: "10", label: "предметов", icon: "📚" }
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="card-lying rounded-3xl p-4 md:p-8 text-center animate-zoom-in hover-lift bg-white"
-              style={{ animationDelay: `${(advantages.length + index) * 0.1}s` }}
-            >
-              <div className="text-3xl md:text-5xl mb-2 md:mb-4 animate-bounce-in">{stat.icon}</div>
-              <div className="text-2xl md:text-4xl font-black text-yellow-600 mb-1 md:mb-2">
-                {stat.number}
-              </div>
-              <div className="text-xs md:text-base text-gray-700 font-bold leading-tight">{stat.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )

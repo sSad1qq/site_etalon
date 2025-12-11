@@ -232,20 +232,20 @@ export default function StudentJourney() {
         </div>
 
         {/* CTA с анимацией */}
-        <div className="text-center mt-16">
-          <div className="card-lying rounded-[2rem] p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift bg-white">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+        <div className="text-center mt-10 sm:mt-12 md:mt-16">
+          <div className="card-lying rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 md:p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift bg-white">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
               Готовы начать свой путь к успеху?
             </h3>
-            <p className="text-base text-gray-700 mb-6">
+            <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
               Первый шаг — бесплатное тестирование. Узнайте уровень и получите план подготовки.
             </p>
             <div className="flex justify-center">
               <a
                 href="/contacts"
-                className="btn-primary btn-magic text-lg px-12 py-4 inline-flex items-center justify-center"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-3 sm:py-4 inline-flex items-center justify-center"
               >
-                <span className="flex items-center space-x-3">
+                <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>
                   <span>📝</span>
                 </span>

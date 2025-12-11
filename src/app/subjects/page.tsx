@@ -209,14 +209,14 @@ export default function SubjectsPage() {
 
   return (
   <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
-      <div className="max-w-6xl mx-auto px-8 pt-8 pb-16">
-        <div className="text-center mb-20 max-w-4xl mx-auto">
-          <h1 className="text-6xl font-black text-gray-900 mb-6 animate-slide-in-up">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 pb-10 sm:pb-12 md:pb-16">
+        <div className="text-center mb-10 sm:mb-14 md:mb-20 max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Предметы
             </span>
           </h1>
-          <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
             Подготовка по всем основным предметам ЕГЭ и ОГЭ с опытными преподавателями
           </p>
         </div>
@@ -350,22 +350,22 @@ export default function SubjectsPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-20 text-center">
-          <div className="card-lying rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
-            <h2 className="text-4xl font-black text-gray-900 mb-6">
+        <div className="mt-12 sm:mt-16 md:mt-20 text-center">
+          <div className="card-lying rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6">
               Готовы начать подготовку?
             </h2>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed">
               Запишитесь на бесплатное тестирование и получите персональные рекомендации по выбору предметов
             </p>
             <div className="flex justify-center">
               <Link
                 href="/contacts"
-                className="btn-primary btn-magic text-lg px-12 py-4 group"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-3 sm:py-4 group"
               >
-                <span className="flex items-center space-x-3">
+                <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>
-                  <span className="group-hover:animate-wiggle">📊</span>
+                  <span className="md:group-hover:animate-wiggle">📊</span>
                 </span>
               </Link>
             </div>
