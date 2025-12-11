@@ -184,7 +184,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
               Отправка...
             </span>
           ) : (
-            'Записаться на консультацию'
+            'Отправить'
           )}
         </button>
       </form>
