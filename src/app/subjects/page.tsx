@@ -11,7 +11,7 @@ export default function SubjectsPage() {
       name: "Математика",
       icon: "📐",
       description: "Алгебра, геометрия, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» работают сильные преподаватели по математике, которые умеют не просто «натаскать», а действительно научить. Подготовим к ОГЭ и ЕГЭ на высокий балл, поможем подтянуть школьную программу и развить уверенность в своих силах!",
+      fullDescription: "Сильные преподаватели по математике, которые умеют не просто «натаскать», а действительно научить. Подготовим к ОГЭ и ЕГЭ на высокий балл, поможем подтянуть школьную программу и развить уверенность в своих силах!",
       color: "from-yellow-400 to-yellow-500",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -24,7 +24,7 @@ export default function SubjectsPage() {
       name: "Русский язык",
       icon: "📝",
       description: "Грамматика, сочинение, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» мы докажем, что русский язык — это не только правила и тесты, но и увлекательный путь к уверенной речи и высоким баллам. Наши преподаватели помогут подготовиться к ОГЭ и ЕГЭ, прокачать навыки написания сочинений и изложений!",
+      fullDescription: "Русский язык — это не только правила и тесты, но и увлекательный путь к уверенной речи и высоким баллам. Наши преподаватели помогут подготовиться к ОГЭ и ЕГЭ, прокачать навыки написания сочинений и изложений!",
       color: "from-yellow-500 to-yellow-600",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -37,7 +37,7 @@ export default function SubjectsPage() {
       name: "Физика",
       icon: "⚡",
       description: "Механика, термодинамика, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» мы помогаем ученикам увидеть логику и красоту физики. Объясняем сложные законы простым языком, учим решать задачи пошагово и готовим к ОГЭ и ЕГЭ без стресса. С нами формулы начинают работать, а баллы — расти!",
+      fullDescription: "Помогаем ученикам увидеть логику и красоту физики. Объясняем сложные законы простым языком, учим решать задачи пошагово и готовим к ОГЭ и ЕГЭ без стресса. С нами формулы начинают работать, а баллы — расти!",
       color: "from-yellow-600 to-yellow-700",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -50,7 +50,7 @@ export default function SubjectsPage() {
       name: "Химия",
       icon: "🧪",
       description: "Органическая и неорганическая химия, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» мы помогаем ученикам понять химию, а не просто учить реакции наизусть. Наши преподаватели шаг за шагом объясняют сложные темы, учат решать задачи и грамотно оформлять ответы. С нами подготовка к экзаменам проходит результативно!",
+      fullDescription: "Помогаем ученикам понять химию, а не просто учить реакции наизусть. Преподаватели шаг за шагом объясняют сложные темы, учат решать задачи и грамотно оформлять ответы. Подготовка к экзаменам проходит результативно!",
       color: "from-yellow-700 to-yellow-800",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -63,7 +63,7 @@ export default function SubjectsPage() {
       name: "Информатика",
       icon: "💻",
       description: "Программирование, алгоритмы, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» мы готовим учеников к ОГЭ и ЕГЭ по информатике, разбираем школьную программу, учим логике, алгоритмам и мышлению, которое помогает не только на экзаменах, но и в жизни. Наши преподаватели объясняют доступно, поэтапно и с примерами!",
+      fullDescription: "Готовим учеников к ОГЭ и ЕГЭ по информатике, разбираем школьную программу, учим логике, алгоритмам и мышлению, которое помогает не только на экзаменах, но и в жизни. Преподаватели объясняют доступно, поэтапно и с примерами!",
       color: "from-yellow-800 to-yellow-900",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -76,7 +76,7 @@ export default function SubjectsPage() {
       name: "Обществознание",
       icon: "🏛️",
       description: "Право, экономика, политология, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» вас ждут опытные преподаватели по обществознанию, которые помогут разобраться в сложных темах, уверенно подготовиться к ОГЭ и ЕГЭ и повысить оценки в школе. Мы делаем акцент на логику, понимание и реальные примеры!",
+      fullDescription: "Опытные преподаватели помогут разобраться в сложных темах, уверенно подготовиться к ОГЭ и ЕГЭ и повысить оценки в школе. Делаем акцент на логику, понимание и реальные примеры!",
       color: "from-yellow-900 to-yellow-950",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -89,7 +89,7 @@ export default function SubjectsPage() {
       name: "История",
       icon: "📜",
       description: "Российская и всемирная история, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» с вами будут работать опытные преподаватели по истории, которые не только подготовят к ОГЭ и ЕГЭ на высокий балл, но и помогут разобраться в школьной программе, полюбить предмет и уверенно чувствовать себя на уроках.",
+      fullDescription: "Опытные преподаватели по истории не только подготовят к ОГЭ и ЕГЭ на высокий балл, но и помогут разобраться в школьной программе, полюбить предмет и уверенно чувствовать себя на уроках.",
       color: "from-yellow-400 to-yellow-600",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -102,7 +102,7 @@ export default function SubjectsPage() {
       name: "Биология",
       icon: "🧬",
       description: "Анатомия, генетика, экология, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Биология — не просто термины, а наука о жизни, которую можно понять и полюбить! В центре «Эталон» мы превращаем подготовку к экзаменам в увлекательное путешествие по живому миру. Наши преподаватели научат решать задачи без зубрежки и паники!",
+      fullDescription: "Биология — не просто термины, а наука о жизни, которую можно понять и полюбить! Превращаем подготовку к экзаменам в увлекательное путешествие по живому миру. Преподаватели научат решать задачи без зубрёжки и паники!",
       color: "from-yellow-500 to-yellow-700",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -115,7 +115,7 @@ export default function SubjectsPage() {
       name: "Литература",
       icon: "📚",
       description: "Анализ произведений, сочинения, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» мы помогаем ученикам раскрыть глубину произведений, научиться анализировать текст и писать уверенные сочинения. Наши преподаватели подготовят к ОГЭ и ЕГЭ, улучшат успеваемость по школьной программе и разовьют любовь к литературе!",
+      fullDescription: "Помогаем ученикам раскрыть глубину произведений, научиться анализировать текст и писать уверенные сочинения. Преподаватели подготовят к ОГЭ и ЕГЭ, улучшат успеваемость по школьной программе и разовьют любовь к литературе!",
       color: "from-yellow-600 to-yellow-800",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -128,7 +128,7 @@ export default function SubjectsPage() {
       name: "Английский язык",
       icon: "🌍",
       description: "Грамматика, лексика, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "В центре «Эталон» мы помогаем ученикам не только подготовиться к ОГЭ и ЕГЭ, но и уверенно общаться на английском. Наши преподаватели развивают все навыки — от грамматики до разговорной практики, чтобы экзамены и реальная жизнь стали легко решаемыми!",
+      fullDescription: "Помогаем ученикам не только подготовиться к ОГЭ и ЕГЭ, но и уверенно общаться на английском. Преподаватели развивают все навыки — от грамматики до разговорной практики, чтобы экзамены и реальная жизнь стали легко решаемыми!",
       color: "from-yellow-500 to-yellow-600",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -233,15 +233,15 @@ export default function SubjectsPage() {
                 <div
                   key={index}
                   data-card-index={index}
-                  className={`bg-white rounded-3xl border-2 ${subject.borderColor} shadow-xl relative overflow-hidden flex-shrink-0 animate-zoom-in snap-center`}
+                  className={`bg-white rounded-3xl border-2 ${subject.borderColor} shadow-xl overflow-hidden flex-shrink-0 animate-zoom-in snap-center flex flex-col h-[520px]`}
                   style={{ 
                     width: 'calc(100vw - 2rem)',
                     maxWidth: '400px',
                     animationDelay: `${index * 0.1}s` 
                   }}
                 >
-                  {/* Фоновое изображение */}
-                  <div className="relative w-full aspect-[4/3]">
+                  {/* Фоновое изображение - фиксированная высота */}
+                  <div className="relative w-full h-40 flex-shrink-0 overflow-hidden">
                     <img
                       src={subject.backgroundImage}
                       alt={subject.name}
@@ -250,29 +250,45 @@ export default function SubjectsPage() {
                   </div>
                   
                   {/* Контент карточки - всегда видимый на мобильных */}
-                  <div className="p-6 bg-white">
-                    <div className="text-center mb-4">
-                      <div className={`w-16 h-16 bg-gradient-to-r ${subject.color} rounded-3xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg`}>
+                  <div className="p-4 bg-white flex flex-col flex-grow">
+                    {/* Иконка - фиксированная высота */}
+                    <div className="h-16 flex items-center justify-center flex-shrink-0">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-2xl flex items-center justify-center text-2xl shadow-md`}>
                         {subject.icon}
                       </div>
-                      <h3 className="text-2xl font-black text-gray-900 mb-2">
+                    </div>
+                    
+                    {/* Название - фиксированная высота */}
+                    <div className="h-8 flex items-center justify-center flex-shrink-0">
+                      <h3 className="text-lg font-black text-gray-900 text-center">
                         {subject.name}
                       </h3>
-                      <p className="text-gray-600 font-medium text-sm mb-3">
+                    </div>
+                    
+                    {/* Короткое описание - фиксированная высота */}
+                    <div className="h-12 flex items-center justify-center flex-shrink-0 px-2">
+                      <p className="text-sm text-gray-600 font-medium text-center line-clamp-2">
                         {subject.description}
                       </p>
-                      <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    </div>
+                    
+                    {/* Полное описание - фиксированная высота с ограничением строк */}
+                    <div className="h-24 flex-shrink-0 overflow-hidden my-2">
+                      <p className="text-xs text-gray-700 leading-relaxed line-clamp-5">
                         {subject.fullDescription}
                       </p>
                     </div>
                     
-                    <div className={`${subject.bgColor} rounded-3xl p-4 shadow-md`}>
-                      <div className="text-center">
-                        <div className="text-lg font-black text-yellow-800 mb-1">
-                          {subject.stats}
-                        </div>
-                        <div className="text-xs text-yellow-700 font-semibold">
-                          за последний год
+                    {/* Статистика - прижата к низу */}
+                    <div className="mt-auto flex-shrink-0">
+                      <div className={`${subject.bgColor} rounded-2xl p-3 shadow-md`}>
+                        <div className="text-center">
+                          <div className="text-base font-black text-yellow-800 mb-1">
+                            {subject.stats}
+                          </div>
+                          <div className="text-xs text-yellow-700 font-semibold">
+                            за последний год
+                          </div>
                         </div>
                       </div>
                     </div>
