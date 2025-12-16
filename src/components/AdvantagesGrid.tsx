@@ -7,11 +7,11 @@ export default function AdvantagesGrid() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const advantages = [
     {
-      icon: "🎓",
-      title: "Опытные репетиторы",
-      description: "Преподаватели с опытом подготовки к экзаменам",
-      color: "from-yellow-800 to-yellow-950",
-      stats: "Средний стаж 10+ лет"
+      icon: "👥",
+      title: "Мини-группы 2-3 чел",
+      description: "Максимум внимания от преподавателя каждому ученику",
+      color: "from-yellow-500 to-yellow-600",
+      stats: "До 6 человек"
     },
     {
       icon: "💻",
@@ -21,32 +21,25 @@ export default function AdvantagesGrid() {
       stats: "Очно и онлайн"
     },
     {
+      icon: "📊",
+      title: "Контроль прогресса",
+      description: "Тестирования и отчеты для родителей",
+      color: "from-yellow-500 to-yellow-700",
+      stats: "Еженедельные отчеты"
+    },
+    {
+      icon: "🎓",
+      title: "Опытные репетиторы",
+      description: "Преподаватели с опытом подготовки к экзаменам",
+      color: "from-yellow-800 to-yellow-950",
+      stats: "Средний стаж 10+ лет"
+    },
+    {
       icon: "🏆",
       title: "Высокие результаты",
-      description: "Наши ученики набирают на 17 баллов больше, чем другие",
+      description: "Наши ученики набирают на 18 баллов больше, чем другие",
       color: "from-yellow-600 to-yellow-800",
       stats: "1000+ выпускников"
-    },
-    {
-      icon: "👥",
-      title: "Мини-группы 2-3 чел",
-      description: "Максимум внимания от преподавателя каждому ученику",
-      color: "from-yellow-500 to-yellow-600",
-      stats: "До 6 человек"
-    },
-    {
-      icon: "🎯",
-      title: "Индивидуальный подход",
-      description: "Программа адаптируется под уровень и цели каждого ученика",
-      color: "from-yellow-400 to-yellow-500",
-      stats: "Персональный план"
-    },
-    {
-      icon: "📚",
-      title: "Авторские методики",
-      description: "Проверенные программы подготовки к ЕГЭ и ОГЭ",
-      color: "from-yellow-600 to-yellow-700",
-      stats: "7 лет разработки"
     },
     {
       icon: "⏰",
@@ -54,20 +47,6 @@ export default function AdvantagesGrid() {
       description: "Подберем удобное время для занятий",
       color: "from-yellow-700 to-yellow-800",
       stats: "7 дней в неделю"
-    },
-    {
-      icon: "💡",
-      title: "Современные материалы",
-      description: "Актуальные задания и тесты по формату экзаменов",
-      color: "from-yellow-400 to-yellow-600",
-      stats: "Обновляется ежегодно"
-    },
-    {
-      icon: "📊",
-      title: "Контроль прогресса",
-      description: "Тестирования и отчеты для родителей",
-      color: "from-yellow-500 to-yellow-700",
-      stats: "Еженедельные отчеты"
     }
   ]
 

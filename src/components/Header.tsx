@@ -26,14 +26,14 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' : 'bg-white/90 backdrop-blur-sm'
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' : 'bg-gradient-to-br from-yellow-50 via-white to-yellow-100'
     }`}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="flex items-center justify-between h-14 sm:h-20">
           {/* Логотип */}
           <Link href="/" className="flex items-center">
             <Logo />
-            <span className="ml-2 text-xl font-bold">Эталон</span>
+            <span className="ml-1 sm:ml-2 text-lg sm:text-xl font-bold">Эталон</span>
           </Link>
 
           {/* Десктопное меню */}

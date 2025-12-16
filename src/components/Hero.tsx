@@ -11,18 +11,21 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Левая колонка - Текст */}
           <div className="text-center md:text-left order-2 md:order-1">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 leading-tight">
-              Готовим к{' '}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-2 md:mb-3 leading-tight">
+              Рост на{' '}
               <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-                ЕГЭ и ОГЭ
+                18 баллов
               </span>
               <br />
-              без стресса
+              уже за первый месяц
             </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium mb-4 md:mb-6">
+              Подготовка к ЕГЭ и ОГЭ без стресса в Пензе
+            </p>
             
             <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
               Центр «Эталон» — эффективная подготовка к выпускным экзаменам 
-              в мини-группах и индивидуально. Более 1000 довольных учеников!
+              в мини-группах и индивидуально. 1289 довольных учеников!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mb-6 md:mb-8">
@@ -31,7 +34,7 @@ export default function Hero() {
                 className="btn-primary text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 group inline-flex items-center justify-center w-full sm:w-auto"
               >
                 <span className="flex items-center space-x-2">
-                  <span className="whitespace-nowrap">Записаться на тестирование</span>
+                  <span className="whitespace-nowrap">Бесплатная консультация</span>
                   <span className="md:group-hover:animate-wiggle text-xl md:text-2xl">🚀</span>
                 </span>
               </Link>
@@ -51,8 +54,8 @@ export default function Hero() {
             <div className="grid grid-cols-2 gap-3 max-w-md mx-auto md:hidden">
               {[
                 { number: "7", label: "лет на рынке", icon: "📅" },
-                { number: "1000+", label: "довольных учеников", icon: "😊" },
-                { number: "25+", label: "опытных репетиторов", icon: "👨‍🏫" },
+                { number: "1289", label: "довольных учеников", icon: "😊" },
+                { number: "27", label: "репетиторов", icon: "👨‍🏫" },
                 { number: "10", label: "предметов", icon: "📚" }
               ].map((stat, index) => (
                 <div

@@ -6,7 +6,8 @@ export default function StatsComparison() {
       averageValue: 62, 
       color: "from-yellow-400 to-yellow-500",
       icon: "📊",
-      description: "Наши выпускники показывают результаты на 23 балла выше среднего"
+      description: "Наши выпускники показывают результаты на 23 балла выше среднего",
+      isPoints: true
     },
     { 
       label: "Средний результат ОГЭ", 
@@ -41,22 +42,11 @@ export default function StatsComparison() {
       <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-yellow-300 rounded-full opacity-10 animate-float-slow"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up">
-            <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              Средние баллы — сравнение
-            </span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up px-4">
-            Наши результаты против общероссийских показателей — цифры не врут
-          </p>
-        </div>
-
         <div className="max-w-4xl mx-auto mb-12 md:mb-20">
           <div className="animate-slide-in-left w-full">
             <div className="card-lying rounded-[2rem] p-4 sm:p-6 md:p-8 relative overflow-hidden hover-lift bg-white">
               <div className="text-center mb-6 md:mb-8">
-                <h3 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
+                <h3 className="text-2xl sm:text-3xl font-black mb-2 bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
                   Сравнение результатов
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600">Наши показатели vs общероссийские</p>
@@ -73,14 +63,14 @@ export default function StatsComparison() {
                       <div className="flex items-center justify-end space-x-2 sm:space-x-3 w-full sm:w-auto">
                         <div className="text-center">
                           <div className="text-xl sm:text-2xl font-black text-yellow-600">
-                            {stat.isFivePointScale ? stat.ourValue.toFixed(1) : `${stat.ourValue}%`}
+                            {stat.isFivePointScale ? stat.ourValue.toFixed(1) : stat.isPoints ? stat.ourValue : `${stat.ourValue}%`}
                           </div>
                           <div className="text-xs text-gray-500">Наши</div>
                         </div>
                         <div className="text-gray-300 text-xl sm:text-2xl">|</div>
                         <div className="text-center">
                           <div className="text-lg sm:text-xl font-bold text-gray-600">
-                            {stat.isFivePointScale ? stat.averageValue.toFixed(1) : `${stat.averageValue}%`}
+                            {stat.isFivePointScale ? stat.averageValue.toFixed(1) : stat.isPoints ? stat.averageValue : `${stat.averageValue}%`}
                           </div>
                           <div className="text-xs text-gray-500">Среднее</div>
                         </div>
@@ -95,7 +85,9 @@ export default function StatsComparison() {
                           <span className="font-bold text-yellow-600">
                             {stat.isFivePointScale 
                               ? `+${(stat.ourValue - stat.averageValue).toFixed(1)}` 
-                              : `+${stat.ourValue - stat.averageValue}%`}
+                              : stat.isPoints 
+                                ? `+${stat.ourValue - stat.averageValue}` 
+                                : `+${stat.ourValue - stat.averageValue}%`}
                           </span>
                         </div>
                         <div className="relative">
@@ -110,7 +102,7 @@ export default function StatsComparison() {
                               }}
                             >
                               <span className="text-white text-xs font-bold">
-                                {stat.isFivePointScale ? stat.ourValue.toFixed(1) : `${stat.ourValue}%`}
+                                {stat.isFivePointScale ? stat.ourValue.toFixed(1) : stat.isPoints ? stat.ourValue : `${stat.ourValue}%`}
                               </span>
                             </div>
                           </div>
@@ -134,7 +126,7 @@ export default function StatsComparison() {
                               }}
                             >
                               <span className="text-white text-xs font-bold">
-                                {stat.isFivePointScale ? stat.averageValue.toFixed(1) : `${stat.averageValue}%`}
+                                {stat.isFivePointScale ? stat.averageValue.toFixed(1) : stat.isPoints ? stat.averageValue : `${stat.averageValue}%`}
                               </span>
                             </div>
                           </div>

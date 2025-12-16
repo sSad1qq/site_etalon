@@ -22,17 +22,6 @@ export default function SubjectsGrid() {
       backgroundImage: "/math.jpg"
     },
     {
-      name: "Русский язык",
-      icon: "📝",
-      description: "Грамматика, сочинение, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Русский язык — это не только правила и тесты, но и увлекательный путь к уверенной речи и высоким баллам. Наши преподаватели помогут подготовиться к ОГЭ и ЕГЭ, прокачать навыки написания сочинений и изложений!",
-      color: "from-yellow-500 to-yellow-600",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 89",
-      backgroundImage: "/rus-lang.jpg"
-    },
-    {
       name: "Информатика",
       icon: "⚡",
       description: "Программирование, алгоритмы, подготовка к ЕГЭ и ОГЭ",
@@ -44,15 +33,15 @@ export default function SubjectsGrid() {
       backgroundImage: "/informatic.jpg"
     },
     {
-      name: "Обществознание",
-      icon: "🏛️",
-      description: "Право, экономика, политология, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Опытные преподаватели помогут разобраться в сложных темах, уверенно подготовиться к ОГЭ и ЕГЭ и повысить оценки в школе. Делаем акцент на логику, понимание и реальные примеры!",
-      color: "from-yellow-900 to-yellow-950",
+      name: "Русский язык",
+      icon: "📝",
+      description: "Грамматика, сочинение, подготовка к ЕГЭ и ОГЭ",
+      fullDescription: "Русский язык — это не только правила и тесты, но и увлекательный путь к уверенной речи и высоким баллам. Наши преподаватели помогут подготовиться к ОГЭ и ЕГЭ, прокачать навыки написания сочинений и изложений!",
+      color: "from-yellow-500 to-yellow-600",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 84",
-      backgroundImage: "/society.jpg"
+      stats: "Средний балл: 89",
+      backgroundImage: "/rus-lang.jpg"
     },
     {
       name: "Физика",
@@ -64,6 +53,17 @@ export default function SubjectsGrid() {
       borderColor: "border-orange-200",
       stats: "Средний балл: 85",
       backgroundImage: "/physic.jpg"
+    },
+    {
+      name: "Обществознание",
+      icon: "🏛️",
+      description: "Право, экономика, политология, подготовка к ЕГЭ и ОГЭ",
+      fullDescription: "Опытные преподаватели помогут разобраться в сложных темах, уверенно подготовиться к ОГЭ и ЕГЭ и повысить оценки в школе. Делаем акцент на логику, понимание и реальные примеры!",
+      color: "from-yellow-900 to-yellow-950",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
+      stats: "Средний балл: 84",
+      backgroundImage: "/society.jpg"
     },
     {
       name: "Химия",

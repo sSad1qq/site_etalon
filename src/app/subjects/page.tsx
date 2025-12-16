@@ -21,6 +21,19 @@ export default function SubjectsPage() {
       backgroundImage: "/math.jpg"
     },
     {
+      name: "Информатика",
+      icon: "💻",
+      description: "Программирование, алгоритмы, подготовка к ЕГЭ и ОГЭ",
+      fullDescription: "Готовим учеников к ОГЭ и ЕГЭ по информатике, разбираем школьную программу, учим логике, алгоритмам и мышлению, которое помогает не только на экзаменах, но и в жизни. Преподаватели объясняют доступно, поэтапно и с примерами!",
+      color: "from-yellow-800 to-yellow-900",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
+      stats: "Средний балл: 88",
+      duration: "2 часа",
+      frequency: "1 раз в неделю",
+      backgroundImage: "/informatic.jpg"
+    },
+    {
       name: "Русский язык",
       icon: "📝",
       description: "Грамматика, сочинение, подготовка к ЕГЭ и ОГЭ",
@@ -47,32 +60,6 @@ export default function SubjectsPage() {
       backgroundImage: "/physic.jpg"
     },
     {
-      name: "Химия",
-      icon: "🧪",
-      description: "Органическая и неорганическая химия, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам понять химию, а не просто учить реакции наизусть. Преподаватели шаг за шагом объясняют сложные темы, учат решать задачи и грамотно оформлять ответы. Подготовка к экзаменам проходит результативно!",
-      color: "from-yellow-700 to-yellow-800",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 86",
-      duration: "2 часа",
-      frequency: "1 раз в неделю",
-      backgroundImage: "/chemistry.jpg"
-    },
-    {
-      name: "Информатика",
-      icon: "💻",
-      description: "Программирование, алгоритмы, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Готовим учеников к ОГЭ и ЕГЭ по информатике, разбираем школьную программу, учим логике, алгоритмам и мышлению, которое помогает не только на экзаменах, но и в жизни. Преподаватели объясняют доступно, поэтапно и с примерами!",
-      color: "from-yellow-800 to-yellow-900",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 88",
-      duration: "2 часа",
-      frequency: "1 раз в неделю",
-      backgroundImage: "/informatic.jpg"
-    },
-    {
       name: "Обществознание",
       icon: "🏛️",
       description: "Право, экономика, политология, подготовка к ЕГЭ и ОГЭ",
@@ -84,6 +71,19 @@ export default function SubjectsPage() {
       duration: "2 часа",
       frequency: "1 раз в неделю",
       backgroundImage: "/society.jpg"
+    },
+    {
+      name: "Химия",
+      icon: "🧪",
+      description: "Органическая и неорганическая химия, подготовка к ЕГЭ и ОГЭ",
+      fullDescription: "Помогаем ученикам понять химию, а не просто учить реакции наизусть. Преподаватели шаг за шагом объясняют сложные темы, учат решать задачи и грамотно оформлять ответы. Подготовка к экзаменам проходит результативно!",
+      color: "from-yellow-700 to-yellow-800",
+      bgColor: "bg-yellow-400",
+      borderColor: "border-orange-200",
+      stats: "Средний балл: 86",
+      duration: "2 часа",
+      frequency: "1 раз в неделю",
+      backgroundImage: "/chemistry.jpg"
     },
     {
       name: "История",
