@@ -175,14 +175,20 @@ p {
   transform: scale(1);
 }
 
+.btn-secondary:visited {
+  color: #d97706;
+}
+
 .btn-secondary:hover {
   background-color: #fff7ed;
+  color: #d97706;
   transform: translateY(-4px) scale(1.08);
   box-shadow: 0 16px 32px -10px rgba(245, 158, 11, 0.3);
   border-color: #fb923c;
 }
 
 .btn-secondary:active {
+  color: #d97706;
   transform: translateY(-2px) scale(1.04);
   transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -61,14 +61,14 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Меню"
           >
-            <div className={`w-6 h-px bg-text transition-all duration-300 ${
-              isMenuOpen ? 'transform rotate-45 translate-y-1.5' : ''
+            <div className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center ${
+              isMenuOpen ? 'rotate-45 translate-y-2' : ''
             }`} />
-            <div className={`w-6 h-px bg-text mt-1.5 transition-all duration-300 ${
+            <div className={`w-6 h-0.5 bg-gray-800 mt-1.5 transition-all duration-300 ${
               isMenuOpen ? 'opacity-0' : ''
             }`} />
-            <div className={`w-6 h-px bg-text mt-1.5 transition-all duration-300 ${
-              isMenuOpen ? 'transform -rotate-45 -translate-y-1.5' : ''
+            <div className={`w-6 h-0.5 bg-gray-800 mt-1.5 transition-all duration-300 origin-center ${
+              isMenuOpen ? '-rotate-45 -translate-y-2' : ''
             }`} />
           </button>
         </div>

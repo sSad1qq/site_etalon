@@ -135,7 +135,7 @@ export default function StudentJourney() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up">
-            Краткая и понятная дорожная карта: от заявки до итоговой сдачи. Прозрачно и без сюрпризов.
+            Продуманная система обучения, которая шаг за шагом ведёт к результату.
           </p>
         </div>
 

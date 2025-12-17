@@ -76,6 +76,17 @@ html {
   50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.6); }
 }
 
+@keyframes soft-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+  }
+  50% { 
+    transform: scale(1.03);
+    box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+  }
+}
+
 @keyframes wiggle {
   0%, 7% { transform: rotateZ(0); }
   15% { transform: rotateZ(-15deg); }
@@ -247,6 +258,15 @@ html {
   background: linear-gradient(135deg, #fbbf24, #fb923c);
 }
 
+/* Pulsating CTA button */
+.btn-pulse {
+  animation: soft-pulse 2.5s ease-in-out infinite;
+}
+
+.btn-pulse:hover {
+  animation: none;
+}
+
 .btn-primary:active {
   transform: translateY(-1px) scale(1.02);
 }
@@ -258,14 +278,19 @@ html {
   border-radius: 1.25rem;
 }
 
+.btn-secondary:visited {
+  color: var(--primary);
+}
+
 .btn-secondary:hover {
-  background: var(--primary);
-  color: white;
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--primary);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 16px 32px rgba(245, 158, 11, 0.2);
 }
 
 .btn-secondary:active {
+  color: var(--primary);
   transform: translateY(-1px) scale(1.02);
 }
 

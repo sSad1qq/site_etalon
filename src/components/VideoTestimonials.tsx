@@ -655,7 +655,7 @@ export default function VideoTestimonials() {
               Станьте следующим успешным выпускником!
             </h3>
             <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 leading-relaxed">
-              Присоединяйтесь к тысячам учеников, которые уже достигли своих целей с нами
+              Присоединяйтесь к ученикам, которые уже получают реальные результаты с нами
             </p>
             <div className="flex justify-center">
               <Link

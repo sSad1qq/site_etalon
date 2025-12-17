@@ -37,7 +37,7 @@ export default function AdvantagesGrid() {
     {
       icon: "🏆",
       title: "Высокие результаты",
-      description: "Наши ученики набирают на 18 баллов больше, чем другие",
+      description: "Наши ученики набирают на 23 балла больше, чем другие",
       color: "from-yellow-600 to-yellow-800",
       stats: "1000+ выпускников"
     },

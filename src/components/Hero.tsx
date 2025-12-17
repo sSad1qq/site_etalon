@@ -19,34 +19,23 @@ export default function Hero() {
               <br />
               уже за первый месяц
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium mb-4 md:mb-6">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium mb-6 md:mb-8">
               Подготовка к ЕГЭ и ОГЭ без стресса в Пензе
-            </p>
-            
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
-              Центр «Эталон» — эффективная подготовка к выпускным экзаменам 
-              в мини-группах и индивидуально. 1289 довольных учеников!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mb-6 md:mb-8">
               <Link 
                 href="/contacts" 
-                className="btn-primary text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 group inline-flex items-center justify-center w-full sm:w-auto"
+                className="btn-primary btn-pulse text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-4 md:py-5 inline-flex items-center justify-center w-full sm:w-auto font-semibold"
               >
-                <span className="flex items-center space-x-2">
-                  <span className="whitespace-nowrap">Бесплатная консультация</span>
-                  <span className="md:group-hover:animate-wiggle text-xl md:text-2xl">🚀</span>
-                </span>
+                <span className="whitespace-nowrap">Бесплатная консультация</span>
               </Link>
               
               <Link 
                 href="/about" 
-                className="btn-secondary text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 md:py-4 group inline-flex items-center justify-center md:hover:text-gray-900 w-full sm:w-auto"
+                className="btn-secondary text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-4 md:py-5 inline-flex items-center justify-center md:hover:text-gray-900 w-full sm:w-auto font-semibold"
               >
-                <span className="flex items-center space-x-2">
-                  <span>Узнать больше</span>
-                  <span className="md:group-hover:animate-wiggle text-xl md:text-2xl">📖</span>
-                </span>
+                <span className="whitespace-nowrap">Узнать больше</span>
               </Link>
             </div>
             
