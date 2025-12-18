@@ -72,10 +72,27 @@ export default function VideoTestimonials() {
     return indices
   }
 
-  // Отслеживание скролла на мобильной версии
+  // Создаём утроенный массив для бесконечного скролла
+  const infiniteClips = [...clips, ...clips, ...clips]
+
+  // Отслеживание скролла на мобильной версии с бесконечной прокруткой
   useEffect(() => {
     const container = scrollContainerRef.current
     if (!container) return
+
+    // Устанавливаем начальную позицию на средний набор
+    const setInitialPosition = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length > 0) {
+        const firstMiddleCard = cards[clips.length] as HTMLElement
+        if (firstMiddleCard) {
+          const containerWidth = container.offsetWidth
+          const cardWidth = firstMiddleCard.offsetWidth
+          const scrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+          container.scrollLeft = scrollPos
+        }
+      }
+    }
 
     const updateIndex = () => {
       const containerRect = container.getBoundingClientRect()
@@ -93,7 +110,36 @@ export default function VideoTestimonials() {
           closestIndex = parseInt(card.getAttribute('data-card-index') || '0')
         }
       })
-      setMobileScrollIndex(closestIndex)
+      // Нормализуем индекс для отображения в индикаторах
+      setMobileScrollIndex(closestIndex % clips.length)
+    }
+
+    // Логика бесконечного скролла
+    const handleInfiniteScroll = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length === 0) return
+
+      const firstMiddleCard = cards[clips.length] as HTMLElement
+      const lastMiddleCard = cards[clips.length * 2 - 1] as HTMLElement
+      
+      if (!firstMiddleCard || !lastMiddleCard) return
+
+      const containerWidth = container.offsetWidth
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      
+      // Если прокрутили слишком далеко вправо - прыгаем к началу среднего набора
+      if (scrollLeft + containerWidth >= scrollWidth - 50) {
+        const cardWidth = firstMiddleCard.offsetWidth
+        const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+      // Если прокрутили слишком далеко влево - прыгаем к концу среднего набора
+      else if (scrollLeft <= 50) {
+        const cardWidth = lastMiddleCard.offsetWidth
+        const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
     }
 
     let rafId: number | null = null
@@ -101,6 +147,7 @@ export default function VideoTestimonials() {
       if (rafId === null) {
         rafId = requestAnimationFrame(() => {
           updateIndex()
+          handleInfiniteScroll()
           rafId = null
         })
       }
@@ -111,8 +158,13 @@ export default function VideoTestimonials() {
       container.addEventListener('scrollend', updateIndex, { passive: true })
     }
     window.addEventListener('resize', updateIndex)
-    updateIndex()
-    const timeoutId = setTimeout(updateIndex, 200)
+    
+    // Инициализация
+    setInitialPosition()
+    const timeoutId = setTimeout(() => {
+      setInitialPosition()
+      updateIndex()
+    }, 100)
 
     return () => {
       container.removeEventListener('scroll', onScroll)
@@ -168,10 +220,10 @@ export default function VideoTestimonials() {
               className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
-              <div className="flex gap-4 justify-start" style={{ width: 'max-content', paddingLeft: 'calc(50vw - 110px)', paddingRight: 'calc(50vw - 110px)' }}>
-                {clips.map((clip, index) => (
+              <div className="flex gap-4 justify-start" style={{ width: 'max-content' }}>
+                {infiniteClips.map((clip, index) => (
                   <div
-                    key={clip.id}
+                    key={`clip-${index}`}
                     data-card-index={index}
                     onClick={() => openVideo(clip.oid, clip.videoId)}
                     className="flex-shrink-0 snap-center cursor-pointer group"

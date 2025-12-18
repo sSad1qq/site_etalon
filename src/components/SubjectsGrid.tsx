@@ -174,16 +174,32 @@ export default function SubjectsGrid() {
     return indices
   }
 
-  // Отслеживание скролла на мобильной версии
+  // Создаём утроенный массив для бесконечного скролла
+  const infiniteSubjects = [...subjects, ...subjects, ...subjects]
+
+  // Отслеживание скролла на мобильной версии с бесконечной прокруткой
   useEffect(() => {
     const container = scrollContainerRef.current
     if (!container) return
+
+    // Устанавливаем начальную позицию на средний набор
+    const setInitialPosition = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length > 0) {
+        const firstMiddleCard = cards[subjects.length] as HTMLElement
+        if (firstMiddleCard) {
+          const containerWidth = container.offsetWidth
+          const cardWidth = firstMiddleCard.offsetWidth
+          const scrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+          container.scrollLeft = scrollPos
+        }
+      }
+    }
 
     const updateIndex = () => {
       const containerRect = container.getBoundingClientRect()
       const containerCenter = containerRect.left + containerRect.width / 2
       
-      // Находим все карточки
       const cards = container.querySelectorAll('[data-card-index]')
       let closestIndex = 0
       let closestDistance = Infinity
@@ -199,35 +215,65 @@ export default function SubjectsGrid() {
         }
       })
       
-      setMobileScrollIndex(closestIndex)
+      // Нормализуем индекс для отображения в индикаторах
+      setMobileScrollIndex(closestIndex % subjects.length)
     }
 
-    // Обработчик скролла с throttling
+    // Логика бесконечного скролла
+    const handleInfiniteScroll = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length === 0) return
+
+      const firstMiddleCard = cards[subjects.length] as HTMLElement
+      const lastMiddleCard = cards[subjects.length * 2 - 1] as HTMLElement
+      
+      if (!firstMiddleCard || !lastMiddleCard) return
+
+      const containerWidth = container.offsetWidth
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      
+      // Если прокрутили слишком далеко вправо - прыгаем к началу среднего набора
+      if (scrollLeft + containerWidth >= scrollWidth - 50) {
+        const cardWidth = firstMiddleCard.offsetWidth
+        const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+      // Если прокрутили слишком далеко влево - прыгаем к концу среднего набора
+      else if (scrollLeft <= 50) {
+        const cardWidth = lastMiddleCard.offsetWidth
+        const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+    }
+
     let rafId: number | null = null
     const onScroll = () => {
       if (rafId === null) {
         rafId = requestAnimationFrame(() => {
           updateIndex()
+          handleInfiniteScroll()
           rafId = null
         })
       }
     }
 
-    // Обработчик изменения размера окна
     const onResize = () => {
       updateIndex()
     }
 
     container.addEventListener('scroll', onScroll, { passive: true })
-    // Используем scrollend если доступно, иначе fallback на scroll
     if ('onscrollend' in container) {
       container.addEventListener('scrollend', updateIndex, { passive: true })
     }
     window.addEventListener('resize', onResize)
     
     // Инициализация
-    updateIndex()
-    const timeoutId = setTimeout(updateIndex, 200)
+    setInitialPosition()
+    const timeoutId = setTimeout(() => {
+      setInitialPosition()
+      updateIndex()
+    }, 100)
 
     return () => {
       container.removeEventListener('scroll', onScroll)
@@ -299,7 +345,7 @@ export default function SubjectsGrid() {
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
-                {subjects.map((subject, index) => (
+                {infiniteSubjects.map((subject, index) => (
                   <div
                     key={`mobile-${index}`}
                     data-card-index={index}

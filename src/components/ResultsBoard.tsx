@@ -113,10 +113,27 @@ export default function ResultsBoard() {
     return indices
   }
 
-  // Отслеживание скролла на мобильной версии
+  // Создаём утроенный массив для бесконечного скролла
+  const infiniteResults = [...results, ...results, ...results]
+
+  // Отслеживание скролла на мобильной версии с бесконечной прокруткой
   useEffect(() => {
     const container = scrollContainerRef.current
     if (!container) return
+
+    // Устанавливаем начальную позицию на средний набор
+    const setInitialPosition = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length > 0) {
+        const firstMiddleCard = cards[results.length] as HTMLElement
+        if (firstMiddleCard) {
+          const containerWidth = container.offsetWidth
+          const cardWidth = firstMiddleCard.offsetWidth
+          const scrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+          container.scrollLeft = scrollPos
+        }
+      }
+    }
 
     const updateIndex = () => {
       const containerRect = container.getBoundingClientRect()
@@ -138,7 +155,36 @@ export default function ResultsBoard() {
         }
       })
       
-      setMobileScrollIndex(closestIndex)
+      // Нормализуем индекс для отображения в индикаторах
+      setMobileScrollIndex(closestIndex % results.length)
+    }
+
+    // Логика бесконечного скролла
+    const handleInfiniteScroll = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length === 0) return
+
+      const firstMiddleCard = cards[results.length] as HTMLElement
+      const lastMiddleCard = cards[results.length * 2 - 1] as HTMLElement
+      
+      if (!firstMiddleCard || !lastMiddleCard) return
+
+      const containerWidth = container.offsetWidth
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      
+      // Если прокрутили слишком далеко вправо - прыгаем к началу среднего набора
+      if (scrollLeft + containerWidth >= scrollWidth - 50) {
+        const cardWidth = firstMiddleCard.offsetWidth
+        const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+      // Если прокрутили слишком далеко влево - прыгаем к концу среднего набора
+      else if (scrollLeft <= 50) {
+        const cardWidth = lastMiddleCard.offsetWidth
+        const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
     }
 
     // Обработчик скролла с throttling
@@ -147,6 +193,7 @@ export default function ResultsBoard() {
       if (rafId === null) {
         rafId = requestAnimationFrame(() => {
           updateIndex()
+          handleInfiniteScroll()
           rafId = null
         })
       }
@@ -165,8 +212,11 @@ export default function ResultsBoard() {
     window.addEventListener('resize', onResize)
     
     // Инициализация
-    updateIndex()
-    const timeoutId = setTimeout(updateIndex, 200)
+    setInitialPosition()
+    const timeoutId = setTimeout(() => {
+      setInitialPosition()
+      updateIndex()
+    }, 100)
 
     return () => {
       container.removeEventListener('scroll', onScroll)
@@ -238,7 +288,7 @@ export default function ResultsBoard() {
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
-                {results.map((result, index) => (
+                {infiniteResults.map((result, index) => (
                   <div
                     key={`mobile-${index}`}
                     data-card-index={index}

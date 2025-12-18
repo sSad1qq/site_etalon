@@ -65,10 +65,26 @@ export default function AboutPage() {
     }
   ]
 
-  // Отслеживание скролла на мобильной версии
+  // Создаём утроенные массивы для бесконечного скролла
+  const infiniteAchievements = [...achievements, ...achievements, ...achievements]
+
+  // Отслеживание скролла на мобильной версии с бесконечной прокруткой
   useEffect(() => {
     const container = scrollContainerRef.current
     if (!container) return
+
+    const setInitialPosition = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length > 0) {
+        const firstMiddleCard = cards[achievements.length] as HTMLElement
+        if (firstMiddleCard) {
+          const containerWidth = container.offsetWidth
+          const cardWidth = firstMiddleCard.offsetWidth
+          const scrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+          container.scrollLeft = scrollPos
+        }
+      }
+    }
 
     const updateIndex = () => {
       const containerRect = container.getBoundingClientRect()
@@ -89,7 +105,32 @@ export default function AboutPage() {
         }
       })
       
-      setMobileScrollIndex(closestIndex)
+      setMobileScrollIndex(closestIndex % achievements.length)
+    }
+
+    const handleInfiniteScroll = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length === 0) return
+
+      const firstMiddleCard = cards[achievements.length] as HTMLElement
+      const lastMiddleCard = cards[achievements.length * 2 - 1] as HTMLElement
+      
+      if (!firstMiddleCard || !lastMiddleCard) return
+
+      const containerWidth = container.offsetWidth
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      
+      if (scrollLeft + containerWidth >= scrollWidth - 50) {
+        const cardWidth = firstMiddleCard.offsetWidth
+        const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+      else if (scrollLeft <= 50) {
+        const cardWidth = lastMiddleCard.offsetWidth
+        const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
     }
 
     let rafId: number | null = null
@@ -97,6 +138,7 @@ export default function AboutPage() {
       if (rafId === null) {
         rafId = requestAnimationFrame(() => {
           updateIndex()
+          handleInfiniteScroll()
           rafId = null
         })
       }
@@ -112,8 +154,11 @@ export default function AboutPage() {
     }
     window.addEventListener('resize', onResize)
     
-    updateIndex()
-    const timeoutId = setTimeout(updateIndex, 200)
+    setInitialPosition()
+    const timeoutId = setTimeout(() => {
+      setInitialPosition()
+      updateIndex()
+    }, 100)
 
     return () => {
       container.removeEventListener('scroll', onScroll)
@@ -128,10 +173,34 @@ export default function AboutPage() {
     }
   }, [achievements.length])
 
-  // Отслеживание скролла фотографий на мобильной версии
+  // Фотографии для бесконечного скролла
+  const photos = [
+    { src: "/dosug_1.jpeg", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
+    { src: "/dosug_2.jpeg", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
+    { src: "/dosug_3.jpeg", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
+    { src: "/dosug_4.jpeg", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
+    { src: "/dosug_5.jpeg", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
+    { src: "/dosug_6.jpeg", alt: "Совместные достижения", caption: "Празднование успехов и достижений" }
+  ]
+  const infinitePhotos = [...photos, ...photos, ...photos]
+
+  // Отслеживание скролла фотографий на мобильной версии с бесконечной прокруткой
   useEffect(() => {
     const container = photoScrollContainerRef.current
     if (!container) return
+
+    const setInitialPosition = () => {
+      const cards = container.querySelectorAll('[data-photo-index]')
+      if (cards.length > 0) {
+        const firstMiddleCard = cards[photos.length] as HTMLElement
+        if (firstMiddleCard) {
+          const containerWidth = container.offsetWidth
+          const cardWidth = firstMiddleCard.offsetWidth
+          const scrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+          container.scrollLeft = scrollPos
+        }
+      }
+    }
 
     const updateIndex = () => {
       const containerRect = container.getBoundingClientRect()
@@ -152,7 +221,32 @@ export default function AboutPage() {
         }
       })
       
-      setPhotoScrollIndex(closestIndex)
+      setPhotoScrollIndex(closestIndex % photos.length)
+    }
+
+    const handleInfiniteScroll = () => {
+      const cards = container.querySelectorAll('[data-photo-index]')
+      if (cards.length === 0) return
+
+      const firstMiddleCard = cards[photos.length] as HTMLElement
+      const lastMiddleCard = cards[photos.length * 2 - 1] as HTMLElement
+      
+      if (!firstMiddleCard || !lastMiddleCard) return
+
+      const containerWidth = container.offsetWidth
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      
+      if (scrollLeft + containerWidth >= scrollWidth - 50) {
+        const cardWidth = firstMiddleCard.offsetWidth
+        const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+      else if (scrollLeft <= 50) {
+        const cardWidth = lastMiddleCard.offsetWidth
+        const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
     }
 
     let rafId: number | null = null
@@ -160,6 +254,7 @@ export default function AboutPage() {
       if (rafId === null) {
         rafId = requestAnimationFrame(() => {
           updateIndex()
+          handleInfiniteScroll()
           rafId = null
         })
       }
@@ -175,8 +270,11 @@ export default function AboutPage() {
     }
     window.addEventListener('resize', onResize)
     
-    updateIndex()
-    const timeoutId = setTimeout(updateIndex, 200)
+    setInitialPosition()
+    const timeoutId = setTimeout(() => {
+      setInitialPosition()
+      updateIndex()
+    }, 100)
 
     return () => {
       container.removeEventListener('scroll', onScroll)
@@ -191,17 +289,32 @@ export default function AboutPage() {
     }
   }, [])
 
-  // Отслеживание скролла карточек "семья" на мобильной версии
+  // Утроенный массив для бесконечного скролла семейных карточек
+  const infiniteFamilyItems = [...familyItems, ...familyItems, ...familyItems]
+
+  // Отслеживание скролла карточек "семья" на мобильной версии с бесконечной прокруткой
   useEffect(() => {
     const container = familyScrollContainerRef.current
     if (!container) return
+
+    const setInitialPosition = () => {
+      const cards = container.querySelectorAll('[data-family-index]')
+      if (cards.length > 0) {
+        const firstMiddleCard = cards[familyItems.length] as HTMLElement
+        if (firstMiddleCard) {
+          const containerWidth = container.offsetWidth
+          const cardWidth = firstMiddleCard.offsetWidth
+          const scrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+          container.scrollLeft = scrollPos
+        }
+      }
+    }
 
     const updateIndex = () => {
       const currentContainer = familyScrollContainerRef.current
       if (!currentContainer) return
       
       const containerRect = currentContainer.getBoundingClientRect()
-      // Проверяем, что контейнер видим
       if (containerRect.width === 0) return
       
       const containerCenter = containerRect.left + containerRect.width / 2
@@ -221,7 +334,32 @@ export default function AboutPage() {
         }
       })
       
-      setFamilyScrollIndex(closestIndex)
+      setFamilyScrollIndex(closestIndex % familyItems.length)
+    }
+
+    const handleInfiniteScroll = () => {
+      const cards = container.querySelectorAll('[data-family-index]')
+      if (cards.length === 0) return
+
+      const firstMiddleCard = cards[familyItems.length] as HTMLElement
+      const lastMiddleCard = cards[familyItems.length * 2 - 1] as HTMLElement
+      
+      if (!firstMiddleCard || !lastMiddleCard) return
+
+      const containerWidth = container.offsetWidth
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      
+      if (scrollLeft + containerWidth >= scrollWidth - 50) {
+        const cardWidth = firstMiddleCard.offsetWidth
+        const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+      else if (scrollLeft <= 50) {
+        const cardWidth = lastMiddleCard.offsetWidth
+        const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
     }
 
     let rafId: number | null = null
@@ -229,6 +367,7 @@ export default function AboutPage() {
       if (rafId === null) {
         rafId = requestAnimationFrame(() => {
           updateIndex()
+          handleInfiniteScroll()
           rafId = null
         })
       }
@@ -244,9 +383,11 @@ export default function AboutPage() {
     }
     window.addEventListener('resize', onResize)
     
-    // Инициализация с задержкой
-    updateIndex()
-    const timeoutId1 = setTimeout(updateIndex, 100)
+    setInitialPosition()
+    const timeoutId1 = setTimeout(() => {
+      setInitialPosition()
+      updateIndex()
+    }, 100)
     const timeoutId2 = setTimeout(updateIndex, 300)
 
     return () => {
@@ -290,7 +431,7 @@ export default function AboutPage() {
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
-                {achievements.map((achievement, index) => (
+                {infiniteAchievements.map((achievement, index) => (
                   <div
                     key={`mobile-${index}`}
                     data-card-index={index}
@@ -383,14 +524,7 @@ export default function AboutPage() {
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
-                {[
-                  { src: "/dosug_1.jpeg", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
-                  { src: "/dosug_2.jpeg", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
-                  { src: "/dosug_3.jpeg", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
-                  { src: "/dosug_4.jpeg", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
-                  { src: "/dosug_5.jpeg", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
-                  { src: "/dosug_6.jpeg", alt: "Совместные достижения", caption: "Празднование успехов и достижений" }
-                ].map((photo, index) => (
+                {infinitePhotos.map((photo, index) => (
                   <div
                     key={`mobile-${index}`}
                     data-photo-index={index}
@@ -416,7 +550,7 @@ export default function AboutPage() {
             
             {/* Индикаторы-точки внизу */}
             <div className="flex justify-center gap-2 mt-4 px-4">
-              {[...Array(6)].map((_, index) => (
+              {photos.map((_, index) => (
                 <div
                   key={`indicator-${index}`}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
@@ -431,14 +565,7 @@ export default function AboutPage() {
 
           {/* Десктопная версия - сетка */}
           <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-            {[
-              { src: "/dosug_1.jpeg", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
-              { src: "/dosug_2.jpeg", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
-              { src: "/dosug_3.jpeg", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
-              { src: "/dosug_4.jpeg", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
-              { src: "/dosug_5.jpeg", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
-              { src: "/dosug_6.jpeg", alt: "Совместные достижения", caption: "Празднование успехов и достижений" }
-            ].map((photo, index) => (
+            {photos.map((photo, index) => (
               <div
                 key={index}
                 className="card-lying rounded-3xl p-4 group animate-zoom-in overflow-hidden"
@@ -475,7 +602,7 @@ export default function AboutPage() {
                 style={{ WebkitOverflowScrolling: 'touch' }}
               >
                 <div className="flex gap-4" style={{ width: 'max-content' }}>
-                  {familyItems.map((item, index) => (
+                  {infiniteFamilyItems.map((item, index) => (
                     <div
                       key={`family-mobile-${index}`}
                       data-family-index={index}

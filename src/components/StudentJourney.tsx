@@ -56,10 +56,27 @@ export default function StudentJourney() {
     }
   ]
 
-  // Отслеживание скролла на мобильной версии
+  // Создаём утроенный массив для бесконечного скролла
+  const infiniteSteps = [...steps, ...steps, ...steps]
+
+  // Отслеживание скролла на мобильной версии с бесконечной прокруткой
   useEffect(() => {
     const container = scrollContainerRef.current
     if (!container) return
+
+    // Устанавливаем начальную позицию на средний набор
+    const setInitialPosition = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length > 0) {
+        const firstMiddleCard = cards[steps.length] as HTMLElement
+        if (firstMiddleCard) {
+          const containerWidth = container.offsetWidth
+          const cardWidth = firstMiddleCard.offsetWidth
+          const scrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+          container.scrollLeft = scrollPos
+        }
+      }
+    }
 
     const updateIndex = () => {
       const containerRect = container.getBoundingClientRect()
@@ -81,7 +98,36 @@ export default function StudentJourney() {
         }
       })
       
-      setMobileScrollIndex(closestIndex)
+      // Нормализуем индекс для отображения в индикаторах
+      setMobileScrollIndex(closestIndex % steps.length)
+    }
+
+    // Логика бесконечного скролла
+    const handleInfiniteScroll = () => {
+      const cards = container.querySelectorAll('[data-card-index]')
+      if (cards.length === 0) return
+
+      const firstMiddleCard = cards[steps.length] as HTMLElement
+      const lastMiddleCard = cards[steps.length * 2 - 1] as HTMLElement
+      
+      if (!firstMiddleCard || !lastMiddleCard) return
+
+      const containerWidth = container.offsetWidth
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      
+      // Если прокрутили слишком далеко вправо - прыгаем к началу среднего набора
+      if (scrollLeft + containerWidth >= scrollWidth - 50) {
+        const cardWidth = firstMiddleCard.offsetWidth
+        const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
+      // Если прокрутили слишком далеко влево - прыгаем к концу среднего набора
+      else if (scrollLeft <= 50) {
+        const cardWidth = lastMiddleCard.offsetWidth
+        const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollLeft = newScrollPos
+      }
     }
 
     // Обработчик скролла с throttling
@@ -90,6 +136,7 @@ export default function StudentJourney() {
       if (rafId === null) {
         rafId = requestAnimationFrame(() => {
           updateIndex()
+          handleInfiniteScroll()
           rafId = null
         })
       }
@@ -108,8 +155,11 @@ export default function StudentJourney() {
     window.addEventListener('resize', onResize)
     
     // Инициализация
-    updateIndex()
-    const timeoutId = setTimeout(updateIndex, 200)
+    setInitialPosition()
+    const timeoutId = setTimeout(() => {
+      setInitialPosition()
+      updateIndex()
+    }, 100)
 
     return () => {
       container.removeEventListener('scroll', onScroll)
@@ -151,15 +201,15 @@ export default function StudentJourney() {
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
-                {steps.map((step, index) => (
+                {infiniteSteps.map((step, index) => (
                   <div
-                    key={step.number}
+                    key={`step-${index}`}
                     data-card-index={index}
                     className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
                     <article
                       className="card-lying rounded-3xl p-4 w-full flex flex-col items-center text-center md:hover-lift glow-effect h-[280px]"
-                      aria-labelledby={`step-title-${step.number}`}
+                      aria-labelledby={`step-title-mobile-${index}`}
                     >
                       <div className="flex flex-col items-center text-center mb-4 flex-shrink-0">
                         <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-3xl flex items-center justify-center mb-3 text-2xl shadow-lg transition-all duration-300`} aria-hidden>
@@ -171,7 +221,7 @@ export default function StudentJourney() {
                         </div>
                       </div>
 
-                      <h3 id={`step-title-${step.number}`} className="text-lg font-extrabold text-gray-900 mb-2 text-center flex-shrink-0">
+                      <h3 id={`step-title-mobile-${index}`} className="text-lg font-extrabold text-gray-900 mb-2 text-center flex-shrink-0">
                         {step.title}
                       </h3>
 
