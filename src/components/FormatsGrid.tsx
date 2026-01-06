@@ -9,14 +9,15 @@ export default function FormatsGrid() {
   const formats = [
     {
       icon: "👥",
-      title: "Мини-группы",
-      description: "Занятия в группах 2-3 человека по уровню знаний",
+      title: "Мини-группа",
+      description: "Занятия в группе из 2-4 человек, подобранных по уровню знаний.",
       features: [
-        "Программа адаптирована под ОГЭ/ЕГЭ",
-        "Атмосфера поддержки",
-        "Доказанная эффективность",
+        "Авторская программа подготовки к ОГЭ и ЕГЭ",
+        "Коллективная мотивация",
+        "Проверенная временем эффективность",
         "Доступная цена",
-        "Двухчасовые занятия"
+        "Двухчасовые занятия",
+        "Можно подключаться дистанционно"
       ],
       popular: true,
       color: "from-yellow-400 to-yellow-500"
@@ -29,25 +30,12 @@ export default function FormatsGrid() {
         "Гибкий график",
         "Свой темп и длительность",
         "Разбор школьной программы",
-        "Можно совмещать с мини-группой"
+        "Можно совмещать с мини-группой",
+        "Можно заниматься дистанционно"
       ],
       popular: false,
       color: "from-yellow-500 to-yellow-600"
-    },
-    {
-      icon: "💻",
-      title: "Онлайн",
-      description: "Дистанционные занятия через видеосвязь",
-      features: [
-        "Занятия из дома",
-        "Экономия времени",
-        "Интерактивная доска",
-        "Запись уроков"
-      ],
-      popular: false,
-      color: "from-yellow-600 to-yellow-700"
-    }
-  ]
+    }  ]
 
   // Создаём утроенный массив для бесконечного скролла
   const infiniteFormats = [...formats, ...formats, ...formats]
@@ -164,7 +152,7 @@ export default function FormatsGrid() {
   }, [formats.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto px-4">
@@ -190,10 +178,10 @@ export default function FormatsGrid() {
                 <div
                   key={index}
                   data-card-index={index}
-                  className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
+                  className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-md snap-center"
                 >
                   <div
-                    className={`card-lying rounded-3xl p-6 group w-full relative overflow-hidden h-[500px] ${
+                    className={`card-lying rounded-3xl p-6 group w-full relative overflow-hidden h-[520px] ${
                       format.popular ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''
                     }`}
                   >
@@ -221,8 +209,8 @@ export default function FormatsGrid() {
                       <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-2xl p-4 mb-4 flex-grow">
                         <ul className="space-y-2">
                           {format.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start space-x-2 text-xs">
-                              <span className="text-yellow-600 text-base flex-shrink-0 mt-0.5">✓</span>
+                            <li key={idx} className="flex items-center space-x-2 text-xs">
+                              <span className="text-yellow-600 text-base flex-shrink-0">✓</span>
                               <span className="text-gray-800 font-medium">{feature}</span>
                             </li>
                           ))}
@@ -260,7 +248,7 @@ export default function FormatsGrid() {
         </div>
 
         {/* Десктопная версия - сетка */}
-        <div className="hidden md:grid grid-cols-3 gap-8 justify-items-center items-stretch">
+        <div className="hidden md:grid grid-cols-2 gap-8 justify-items-center items-stretch max-w-4xl mx-auto">
           {formats.map((format, index) => (
             <div
               key={index}
@@ -293,8 +281,8 @@ export default function FormatsGrid() {
                 <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-2xl p-5 mb-6 flex-grow">
                   <ul className="space-y-3">
                     {format.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start space-x-2 text-sm">
-                        <span className="text-yellow-600 text-lg flex-shrink-0 mt-0.5">✓</span>
+                      <li key={idx} className="flex items-center space-x-2 text-sm">
+                        <span className="text-yellow-600 text-lg flex-shrink-0">✓</span>
                         <span className="text-gray-800 font-medium">{feature}</span>
                       </li>
                     ))}

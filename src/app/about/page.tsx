@@ -405,7 +405,7 @@ export default function AboutPage() {
   }, [])
 
   return (
-  <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
+  <div className="min-h-screen bg-gradient-to-b from-white via-amber-100 to-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 pb-10 sm:pb-12 md:pb-16">
         {/* Заголовок */}
         <div className="text-center mb-10 sm:mb-14 md:mb-20 max-w-4xl mx-auto">

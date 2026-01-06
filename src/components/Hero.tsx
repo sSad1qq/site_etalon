@@ -5,19 +5,19 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-amber-100 via-yellow-50 to-white">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10 py-8 md:py-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Левая колонка - Текст */}
           <div className="text-center md:text-left order-2 md:order-1">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-2 md:mb-3 leading-tight">
-              Рост на{' '}
+              Увеличим результат ребенка на{' '}
               <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
                 18 баллов
               </span>
               <br />
-              уже за первый месяц
+              за первый месяц
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium mb-6 md:mb-8">
               Подготовка к ЕГЭ и ОГЭ без стресса в Пензе
@@ -45,7 +45,7 @@ export default function Hero() {
                 { number: "7", label: "лет на рынке", icon: "📅" },
                 { number: "1289", label: "довольных учеников", icon: "😊" },
                 { number: "27", label: "репетиторов", icon: "👨‍🏫" },
-                { number: "10", label: "предметов", icon: "📚" }
+                { number: "5", label: "предметов", icon: "📚" }
               ].map((stat, index) => (
                 <div
                   key={index}

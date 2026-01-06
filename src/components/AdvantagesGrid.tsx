@@ -8,7 +8,7 @@ export default function AdvantagesGrid() {
   const advantages = [
     {
       icon: "👥",
-      title: "Мини-группы 2-3 чел",
+      title: "Мини-группы 2-4 человека",
       description: "Максимум внимания от преподавателя каждому ученику",
       color: "from-yellow-500 to-yellow-600",
       stats: "До 6 человек"
@@ -23,7 +23,7 @@ export default function AdvantagesGrid() {
     {
       icon: "📊",
       title: "Контроль прогресса",
-      description: "Тестирования и отчеты для родителей",
+      description: "Еженедельные отчеты об успеваемости ребенка",
       color: "from-yellow-500 to-yellow-700",
       stats: "Еженедельные отчеты"
     },
@@ -37,7 +37,7 @@ export default function AdvantagesGrid() {
     {
       icon: "🏆",
       title: "Высокие результаты",
-      description: "Наши ученики набирают на 23 балла больше, чем другие",
+      description: "Средний балл наших учеников на 18 выше, чем средний балл по стране",
       color: "from-yellow-600 to-yellow-800",
       stats: "1000+ выпускников"
     },
@@ -47,6 +47,13 @@ export default function AdvantagesGrid() {
       description: "Подберем удобное время для занятий",
       color: "from-yellow-700 to-yellow-800",
       stats: "7 дней в неделю"
+    },
+    {
+      icon: "⚙️",
+      title: "Технический центр",
+      description: "Специализируемся на подготовке к поступлению на технические направления",
+      color: "from-yellow-500 to-yellow-700",
+      stats: "Технические ВУЗы"
     }
   ]
 
@@ -165,7 +172,7 @@ export default function AdvantagesGrid() {
   }, [advantages.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-yellow-50 to-white relative overflow-hidden pt-40">
+    <section className="section-padding bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden pt-40">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto relative z-20 px-4">

@@ -71,71 +71,6 @@ export default function SubjectsPage() {
       duration: "2 часа",
       frequency: "1 раз в неделю",
       backgroundImage: "/society.jpg"
-    },
-    {
-      name: "Химия",
-      icon: "🧪",
-      description: "Органическая и неорганическая химия, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам понять химию, а не просто учить реакции наизусть. Преподаватели шаг за шагом объясняют сложные темы, учат решать задачи и грамотно оформлять ответы. Подготовка к экзаменам проходит результативно!",
-      color: "from-yellow-700 to-yellow-800",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 86",
-      duration: "2 часа",
-      frequency: "1 раз в неделю",
-      backgroundImage: "/chemistry.jpg"
-    },
-    {
-      name: "История",
-      icon: "📜",
-      description: "Российская и всемирная история, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Опытные преподаватели по истории не только подготовят к ОГЭ и ЕГЭ на высокий балл, но и помогут разобраться в школьной программе, полюбить предмет и уверенно чувствовать себя на уроках.",
-      color: "from-yellow-400 to-yellow-600",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 83",
-      duration: "2 часа",
-      frequency: "1 раз в неделю",
-      backgroundImage: "/history.jpg"
-    },
-    {
-      name: "Биология",
-      icon: "🧬",
-      description: "Анатомия, генетика, экология, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Биология — не просто термины, а наука о жизни, которую можно понять и полюбить! Превращаем подготовку к экзаменам в увлекательное путешествие по живому миру. Преподаватели научат решать задачи без зубрёжки и паники!",
-      color: "from-yellow-500 to-yellow-700",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 82",
-      duration: "2 часа",
-      frequency: "1 раз в неделю",
-      backgroundImage: "/biology.jpg"
-    },
-    {
-      name: "Литература",
-      icon: "📚",
-      description: "Анализ произведений, сочинения, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам раскрыть глубину произведений, научиться анализировать текст и писать уверенные сочинения. Преподаватели подготовят к ОГЭ и ЕГЭ, улучшат успеваемость по школьной программе и разовьют любовь к литературе!",
-      color: "from-yellow-600 to-yellow-800",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 86",
-      duration: "2 часа",
-      frequency: "1 раз в неделю",
-      backgroundImage: "/literature.jpg"
-    },
-    {
-      name: "Английский язык",
-      icon: "🌍",
-      description: "Грамматика, лексика, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам не только подготовиться к ОГЭ и ЕГЭ, но и уверенно общаться на английском. Преподаватели развивают все навыки — от грамматики до разговорной практики, чтобы экзамены и реальная жизнь стали легко решаемыми!",
-      color: "from-yellow-500 to-yellow-600",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 87",
-      duration: "2 часа",
-      frequency: "1 раз в неделю",
-      backgroundImage: "/english.jpg"
     }
   ]
 
@@ -248,7 +183,7 @@ export default function SubjectsPage() {
   }, [subjects.length])
 
   return (
-  <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
+  <div className="min-h-screen bg-gradient-to-b from-white via-amber-100 to-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 pb-10 sm:pb-12 md:pb-16">
         <div className="text-center mb-10 sm:mb-14 md:mb-20 max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 animate-slide-in-up">

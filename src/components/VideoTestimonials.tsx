@@ -25,15 +25,15 @@ export default function VideoTestimonials() {
   // 3. Добавьте объект: { id: N, oid: "-227920545", videoId: "456239017" }
   
   const clips: VKClip[] = [
-    { id: 1, oid: "-168285680", videoId: "456239158" },
-    { id: 2, oid: "-168285680", videoId: "456239164" },
-    { id: 3, oid: "-168285680", videoId: "456239167" },
-    { id: 4, oid: "-168285680", videoId: "456239169" },
+    { id: 1, oid: "-168285680", videoId: "456239191" },
+    { id: 2, oid: "-168285680", videoId: "456239185" },
+    { id: 3, oid: "-168285680", videoId: "456239182" },
+    { id: 4, oid: "-168285680", videoId: "456239180" },
     { id: 5, oid: "-168285680", videoId: "456239175" },
-    { id: 6, oid: "-168285680", videoId: "456239180" },
-    { id: 7, oid: "-168285680", videoId: "456239182" },
-    { id: 8, oid: "-168285680", videoId: "456239185" },
-    { id: 9, oid: "-168285680", videoId: "456239191" },
+    { id: 6, oid: "-168285680", videoId: "456239169" },
+    { id: 7, oid: "-168285680", videoId: "456239167" },
+    { id: 8, oid: "-168285680", videoId: "456239164" },
+    { id: 9, oid: "-168285680", videoId: "456239158" },
   ]
 
   const goToPrevious = () => {
@@ -178,7 +178,7 @@ export default function VideoTestimonials() {
   }, [clips.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-yellow-50 to-white relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto px-4">
@@ -457,7 +457,7 @@ export default function VideoTestimonials() {
               Станьте следующим успешным выпускником!
             </h3>
             <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 leading-relaxed">
-              Присоединяйтесь к ученикам, которые уже получают реальные результаты с нами
+              Не упустите возможность готовиться в команде лучших!
             </p>
             <div className="flex justify-center">
               <Link

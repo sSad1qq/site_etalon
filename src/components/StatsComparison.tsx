@@ -2,11 +2,11 @@ export default function StatsComparison() {
   const stats = [
     { 
       label: "Средний балл ЕГЭ", 
-      ourValue: 85, 
+      ourValue: 80, 
       averageValue: 62, 
       color: "from-yellow-400 to-yellow-500",
       icon: "📊",
-      description: "Наши выпускники показывают результаты на 23 балла выше среднего",
+      description: "Наши выпускники показывают результаты на 18 баллов выше среднего",
       isPoints: true
     },
     { 
@@ -15,7 +15,7 @@ export default function StatsComparison() {
       averageValue: 3.5, 
       color: "from-yellow-500 to-yellow-600",
       icon: "📈",
-      description: "Превышаем общероссийские показатели на 1.1 балла",
+      description: "Превышаем на 1.1 балл средние показатели по стране",
       isFivePointScale: true
     },
     { 
@@ -25,19 +25,11 @@ export default function StatsComparison() {
       color: "from-yellow-600 to-yellow-700",
       icon: "🎓",
       description: "95% наших выпускников поступают в выбранные вузы"
-    },
-    { 
-      label: "Удовлетворенность", 
-      ourValue: 98, 
-      averageValue: 72, 
-      color: "from-yellow-700 to-yellow-800",
-      icon: "😊",
-      description: "Почти все родители рекомендуют нас друзьям"
     }
   ]
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
       <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-yellow-200 rounded-full opacity-10 animate-float"></div>
       <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-yellow-300 rounded-full opacity-10 animate-float-slow"></div>
       
@@ -49,7 +41,7 @@ export default function StatsComparison() {
                 <h3 className="text-2xl sm:text-3xl font-black mb-2 bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
                   Сравнение результатов
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600">Наши показатели vs общероссийские</p>
+                <p className="text-sm sm:text-base text-gray-600">Наши показатели vs средние по стране</p>
               </div>
               
               <div className="space-y-6 md:space-y-8">
@@ -112,7 +104,7 @@ export default function StatsComparison() {
                       {/* Средние по стране */}
                       <div className="space-y-1">
                         <div className="flex justify-between text-sm text-gray-600">
-                          <span>Общероссийские показатели</span>
+                          <span>Средние по стране</span>
                         </div>
                         <div className="relative">
                           <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">

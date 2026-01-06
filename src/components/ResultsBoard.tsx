@@ -232,18 +232,15 @@ export default function ResultsBoard() {
   }, [results.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-yellow-50 to-white relative overflow-hidden">
+    <section className="py-6 md:py-16 lg:py-24 bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up">
+        <div className="text-center mb-4 md:mb-20 max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              Доска почета
+              Наши выпускники
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up px-4">
-            Наши выпускники показывают выдающиеся результаты и поступают в лучшие вузы страны
-          </p>
         </div>
 
         {/* Карусель */}
@@ -284,24 +281,24 @@ export default function ResultsBoard() {
           <div className="md:hidden relative">
             <div 
               ref={scrollContainerRef}
-              className="overflow-x-auto -mx-4 px-4 py-4 snap-x snap-mandatory scrollbar-hide" 
+              className="overflow-x-auto -mx-4 px-4 py-2 snap-x snap-mandatory scrollbar-hide" 
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
-              <div className="flex gap-4" style={{ width: 'max-content' }}>
+              <div className="flex gap-3" style={{ width: 'max-content' }}>
                 {infiniteResults.map((result, index) => (
                   <div
                     key={`mobile-${index}`}
                     data-card-index={index}
-                    className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
+                    className="flex-shrink-0 w-[70vw] max-w-[280px] snap-center"
                   >
-                    <div className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden bg-gradient-to-br from-yellow-50 via-white to-yellow-50 p-2 shadow-[0_30px_80px_-20px_rgba(245,158,11,0.5)] ring-4 ring-yellow-400 ring-opacity-60">
-                      <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white shadow-inner border-2 border-yellow-200">
+                    <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-50 via-white to-yellow-50 p-1.5 shadow-[0_20px_50px_-15px_rgba(245,158,11,0.4)] ring-2 ring-yellow-400 ring-opacity-60">
+                      <div className="relative w-full h-full rounded-xl overflow-hidden bg-white shadow-inner border border-yellow-200">
                         <Image
                           src={result.image}
                           alt={`Достижение ${index + 1}`}
                           fill
                           className="object-contain"
-                          style={{ padding: '1rem' }}
+                          style={{ padding: '0.5rem' }}
                           priority={index === 0}
                         />
                       </div>
@@ -312,13 +309,13 @@ export default function ResultsBoard() {
             </div>
             
             {/* Индикаторы-точки внизу */}
-            <div className="flex justify-center gap-2 mt-4 px-4">
+            <div className="flex justify-center gap-1.5 mt-2 px-4">
               {results.map((_, index) => (
                 <div
                   key={`indicator-${index}`}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                     index === mobileScrollIndex 
-                      ? 'bg-yellow-500 w-6 scale-110' 
+                      ? 'bg-yellow-500 w-4 scale-110' 
                       : 'bg-gray-300'
                   }`}
                 />

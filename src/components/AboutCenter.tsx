@@ -2,7 +2,7 @@
 
 export default function AboutCenter() {
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Заголовок и оффер */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">

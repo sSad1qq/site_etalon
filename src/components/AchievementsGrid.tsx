@@ -75,7 +75,7 @@ export default function AchievementsGrid() {
   ]
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20 max-w-4xl mx-auto">

@@ -19,18 +19,22 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 87",
-      backgroundImage: "/math.jpg"
+      backgroundImage: "/math.jpg",
+      imagePosition: "center 20%",
+      mobileImageHeight: "h-52"
     },
     {
       name: "Информатика",
-      icon: "⚡",
+      icon: "💻",
       description: "Программирование, алгоритмы, подготовка к ЕГЭ и ОГЭ",
       fullDescription: "Готовим учеников к ОГЭ и ЕГЭ по информатике, разбираем школьную программу, учим логике, алгоритмам и мышлению, которое помогает не только на экзаменах, но и в жизни. Преподаватели объясняют доступно, поэтапно и с примерами!",
       color: "from-yellow-800 to-yellow-900",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 88",
-      backgroundImage: "/informatic.jpg"
+      backgroundImage: "/informatic.jpg",
+      imagePosition: "center 30%",
+      mobileImageHeight: "h-52"
     },
     {
       name: "Русский язык",
@@ -41,7 +45,9 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 89",
-      backgroundImage: "/rus-lang.jpg"
+      backgroundImage: "/rus-lang.jpg",
+      imagePosition: "center 20%",
+      mobileImageHeight: "h-52"
     },
     {
       name: "Физика",
@@ -52,7 +58,9 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 85",
-      backgroundImage: "/physic.jpg"
+      backgroundImage: "/physic.jpg",
+      imagePosition: "center 25%",
+      mobileImageHeight: "h-52"
     },
     {
       name: "Обществознание",
@@ -63,62 +71,9 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 84",
-      backgroundImage: "/society.jpg"
-    },
-    {
-      name: "Химия",
-      icon: "🧪",
-      description: "Органическая и неорганическая химия, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам понять химию, а не просто учить реакции наизусть. Преподаватели шаг за шагом объясняют сложные темы, учат решать задачи и грамотно оформлять ответы. Подготовка к экзаменам проходит результативно!",
-      color: "from-yellow-700 to-yellow-800",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 86",
-      backgroundImage: "/chemistry.jpg"
-    },
-    {
-      name: "История",
-      icon: "📜",
-      description: "Российская и всемирная история, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Опытные преподаватели по истории не только подготовят к ОГЭ и ЕГЭ на высокий балл, но и помогут разобраться в школьной программе, полюбить предмет и уверенно чувствовать себя на уроках.",
-      color: "from-yellow-400 to-yellow-600",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 83",
-      backgroundImage: "/history.jpg"
-    },
-    {
-      name: "Биология",
-      icon: "🧬",
-      description: "Анатомия, генетика, экология, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Биология — не просто термины, а наука о жизни, которую можно понять и полюбить! Превращаем подготовку к экзаменам в увлекательное путешествие по живому миру. Преподаватели научат решать задачи без зубрёжки и паники!",
-      color: "from-yellow-500 to-yellow-700",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 82",
-      backgroundImage: "/biology.jpg"
-    },
-    {
-      name: "Литература",
-      icon: "📚",
-      description: "Анализ произведений, сочинения, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам раскрыть глубину произведений, научиться анализировать текст и писать уверенные сочинения. Преподаватели подготовят к ОГЭ и ЕГЭ, улучшат успеваемость по школьной программе и разовьют любовь к литературе!",
-      color: "from-yellow-600 to-yellow-800",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 86",
-      backgroundImage: "/literature.jpg"
-    },
-    {
-      name: "Английский язык",
-      icon: "🌍",
-      description: "Грамматика, лексика, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам не только подготовиться к ОГЭ и ЕГЭ, но и уверенно общаться на английском. Преподаватели развивают все навыки — от грамматики до разговорной практики, чтобы экзамены и реальная жизнь стали легко решаемыми!",
-      color: "from-yellow-500 to-yellow-600",
-      bgColor: "bg-yellow-400",
-      borderColor: "border-orange-200",
-      stats: "Средний балл: 87",
-      backgroundImage: "/english.jpg"
+      backgroundImage: "/society.jpg",
+      imagePosition: "center 25%",
+      mobileImageHeight: "h-52"
     }
   ]
 
@@ -289,7 +244,7 @@ export default function SubjectsGrid() {
   }, [subjects.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto px-4">
@@ -299,7 +254,7 @@ export default function SubjectsGrid() {
             </span>
           </h2>
           <p className="text-base sm:text-lg md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
-            Подготовка по всем основным предметам ЕГЭ и ОГЭ с опытными преподавателями
+            Подготовка к основным предметам для поступления на технические направления
           </p>
         </div>
 
@@ -351,13 +306,14 @@ export default function SubjectsGrid() {
                     data-card-index={index}
                     className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
-                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col h-[520px]">
+                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col h-[580px]">
                       {/* Картинка сверху - фиксированная высота */}
-                      <div className="relative w-full h-40 flex-shrink-0 overflow-hidden">
+                      <div className={`relative w-full ${subject.mobileImageHeight || 'h-40'} flex-shrink-0 overflow-hidden`}>
                         <img
                           src={subject.backgroundImage}
                           alt={subject.name}
                           className="w-full h-full object-cover"
+                          style={{ objectPosition: subject.imagePosition }}
                         />
                       </div>
                       
@@ -515,12 +471,13 @@ export default function SubjectsGrid() {
                       <img
                         src={subject.backgroundImage}
                         alt={subject.name}
-                        className="block object-contain rounded-[2rem]"
+                        className="block object-cover rounded-[2rem]"
                         style={{
                           maxWidth: isCenter ? '500px' : '300px',
-                          width: 'auto',
-                          height: 'auto',
-                          display: 'block'
+                          width: isCenter ? '500px' : '300px',
+                          height: isCenter ? '400px' : '240px',
+                          display: 'block',
+                          objectPosition: subject.imagePosition
                         }}
                         onLoad={(e) => {
                           // Убеждаемся, что контейнер соответствует размеру изображения

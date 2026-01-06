@@ -23,8 +23,8 @@ export default function Home() {
   return (
     <div className="min-h-screen hero-gradient">
       <Hero />
-      <AdvantagesGrid />
       <ResultsBoard />
+      <AdvantagesGrid />
       <StudentJourney />
       <StatsComparison />
       <SubjectsGrid />

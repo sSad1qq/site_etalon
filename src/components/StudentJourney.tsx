@@ -16,40 +16,40 @@ export default function StudentJourney() {
     },
     {
       number: 2,
-      title: "Тестирование",
-      description: "Проходите бесплатное тестирование для определения уровня",
+      title: "Диагностика",
+      description: "Проходите бесплатную диагностику для определения входного уровня знаний",
       icon: "📊",
       details: "15-20 минут, результаты сразу",
       color: "from-yellow-500 to-yellow-600"
     },
     {
       number: 3,
-      title: "Подбор группы",
-      description: "Подбираем подходящую группу по уровню и расписанию",
+      title: "Подбор формата обучения",
+      description: "Подбираем подходящий Вам формат и расписание занятий",
       icon: "👥",
       details: "Мини-группы до 6 человек",
       color: "from-yellow-600 to-yellow-700"
     },
     {
       number: 4,
-      title: "Обучение",
-      description: "Регулярные занятия с опытными преподавателями",
+      title: "Начало обучения",
+      description: "Начинаем регулярные занятия с опытным педагогом",
       icon: "📚",
       details: "1 раз в неделю, 2 часа",
       color: "from-yellow-700 to-yellow-800"
     },
     {
       number: 5,
-      title: "Обратная связь",
-      description: "Постоянный контроль прогресса и корректировка программы",
+      title: "Открытость обучения",
+      description: "Еженедельная обратная связь о прогрессе ученика от педагога",
       icon: "📈",
       details: "Еженедельные отчеты родителям",
       color: "from-yellow-800 to-yellow-900"
     },
     {
       number: 6,
-      title: "Итоговые тесты",
-      description: "Пробные ЕГЭ/ОГЭ и финальная подготовка",
+      title: "Промежуточная диагностика",
+      description: "Проводим регулярные пробные тестирования в формате ЕГЭ/ОГЭ и корректируем программу обучения",
       icon: "🎯",
       details: "Полная имитация экзамена",
       color: "from-yellow-900 to-yellow-950"
@@ -175,7 +175,7 @@ export default function StudentJourney() {
   }, [steps.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-yellow-50 relative overflow-hidden mt-16" aria-labelledby="journey-heading">
+    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden mt-16" aria-labelledby="journey-heading">
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto px-4">
@@ -285,10 +285,10 @@ export default function StudentJourney() {
         <div className="text-center mt-10 sm:mt-12 md:mt-16">
           <div className="card-lying rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 md:p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift bg-white">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Готовы начать свой путь к успеху?
+              Сделайте первый шаг уже сейчас!
             </h3>
             <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-              Первый шаг — бесплатное тестирование. Узнайте уровень и получите план подготовки.
+              Проведём для вас бесплатную диагностику знаний и профориентационное тестирование. По итогам вы получите подробные отчёты, которые помогут осознанно выбрать подходящую специальность.
             </p>
             <div className="flex justify-center">
               <a

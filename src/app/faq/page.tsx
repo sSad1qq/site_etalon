@@ -62,7 +62,7 @@ export default function FAQPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-white via-amber-100 to-white">
       <section className="pt-0 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 pt-0">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
