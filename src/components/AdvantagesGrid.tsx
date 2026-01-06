@@ -191,7 +191,11 @@ export default function AdvantagesGrid() {
           <div 
             ref={scrollContainerRef}
             className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-x',
+              overscrollBehaviorX: 'contain'
+            }}
           >
             <div className="flex gap-4" style={{ width: 'max-content' }}>
               {infiniteAdvantages.map((advantage, index) => (

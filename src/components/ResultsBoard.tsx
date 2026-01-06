@@ -282,7 +282,11 @@ export default function ResultsBoard() {
             <div 
               ref={scrollContainerRef}
               className="overflow-x-auto -mx-4 px-4 py-2 snap-x snap-mandatory scrollbar-hide" 
-              style={{ WebkitOverflowScrolling: 'touch' }}
+              style={{ 
+                WebkitOverflowScrolling: 'touch',
+                touchAction: 'pan-x',
+                overscrollBehaviorX: 'contain'
+              }}
             >
               <div className="flex gap-3" style={{ width: 'max-content' }}>
                 {infiniteResults.map((result, index) => (

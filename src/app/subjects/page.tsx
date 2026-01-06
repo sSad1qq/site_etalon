@@ -201,7 +201,12 @@ export default function SubjectsPage() {
           <div 
             ref={scrollContainerRef}
             className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory" 
-            style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
+            style={{ 
+              scrollBehavior: 'smooth', 
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-x',
+              overscrollBehaviorX: 'contain'
+            }}
           >
             <div className="flex gap-4 pr-4" style={{ width: 'max-content' }}>
               {infiniteSubjects.map((subject, index) => (

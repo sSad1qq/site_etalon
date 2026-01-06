@@ -428,7 +428,11 @@ export default function AboutPage() {
             <div 
               ref={scrollContainerRef}
               className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
-              style={{ WebkitOverflowScrolling: 'touch' }}
+              style={{ 
+                WebkitOverflowScrolling: 'touch',
+                touchAction: 'pan-x',
+                overscrollBehaviorX: 'contain'
+              }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
                 {infiniteAchievements.map((achievement, index) => (
@@ -521,7 +525,11 @@ export default function AboutPage() {
             <div 
               ref={photoScrollContainerRef}
               className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
-              style={{ WebkitOverflowScrolling: 'touch' }}
+              style={{ 
+                WebkitOverflowScrolling: 'touch',
+                touchAction: 'pan-x',
+                overscrollBehaviorX: 'contain'
+              }}
             >
               <div className="flex gap-4" style={{ width: 'max-content' }}>
                 {infinitePhotos.map((photo, index) => (
@@ -599,7 +607,11 @@ export default function AboutPage() {
               <div 
                 ref={familyScrollContainerRef}
                 className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
-                style={{ WebkitOverflowScrolling: 'touch' }}
+                style={{ 
+                  WebkitOverflowScrolling: 'touch',
+                  touchAction: 'pan-x',
+                  overscrollBehaviorX: 'contain'
+                }}
               >
                 <div className="flex gap-4" style={{ width: 'max-content' }}>
                   {infiniteFamilyItems.map((item, index) => (
