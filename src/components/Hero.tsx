@@ -31,12 +31,24 @@ export default function Hero() {
                 <span className="whitespace-nowrap">Бесплатная консультация</span>
               </Link>
               
-              <Link 
-                href="/about" 
+              <a
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const aboutSection = document.getElementById('about')
+                  if (aboutSection) {
+                    const headerHeight = 80 // Примерная высота хедера
+                    const targetPosition = aboutSection.offsetTop - headerHeight
+                    window.scrollTo({
+                      top: targetPosition,
+                      behavior: 'smooth'
+                    })
+                  }
+                }}
                 className="btn-secondary text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-4 md:py-5 inline-flex items-center justify-center md:hover:text-gray-900 w-full sm:w-auto font-semibold"
               >
                 <span className="whitespace-nowrap">Узнать больше</span>
-              </Link>
+              </a>
             </div>
             
             {/* Статистика - только мобильная версия */}

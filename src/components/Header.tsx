@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import Logo from './Logo'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +21,49 @@ export default function Header() {
 
   const navItems = [
     { name: 'Главная', href: '/' },
-    { name: 'О центре', href: '/about' },
-    { name: 'Предметы', href: '/subjects' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Контакты', href: '/contacts' }
   ]
+
+  const handleSubjectsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    if (pathname === '/') {
+      // Если мы на главной странице, скроллим к разделу
+      const subjectsSection = document.getElementById('subjects')
+      if (subjectsSection) {
+        const headerHeight = 80 // Примерная высота хедера
+        const targetPosition = subjectsSection.offsetTop - headerHeight
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      // Если мы на другой странице, переходим на главную и скроллим
+      router.push('/#subjects')
+    }
+    setIsMenuOpen(false)
+  }
+
+  const handleAboutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    if (pathname === '/') {
+      // Если мы на главной странице, скроллим к разделу
+      const aboutSection = document.getElementById('about')
+      if (aboutSection) {
+        const headerHeight = 80 // Примерная высота хедера
+        const targetPosition = aboutSection.offsetTop - headerHeight
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      // Если мы на другой странице, переходим на главную и скроллим
+      router.push('/#about')
+    }
+    setIsMenuOpen(false)
+  }
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -47,6 +88,20 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            <a
+              href="#about"
+              onClick={handleAboutClick}
+              className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300"
+            >
+              О центре
+            </a>
+            <a
+              href="#subjects"
+              onClick={handleSubjectsClick}
+              className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300"
+            >
+              Предметы
+            </a>
             <Link 
               href="/contacts" 
               className="px-5 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 hover:shadow-xl transition-all duration-300 font-semibold shadow-md"
@@ -88,6 +143,20 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            <a
+              href="#about"
+              onClick={handleAboutClick}
+              className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300"
+            >
+              О центре
+            </a>
+            <a
+              href="#subjects"
+              onClick={handleSubjectsClick}
+              className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:shadow-lg hover:scale-105 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300"
+            >
+              Предметы
+            </a>
             <Link 
               href="/contacts" 
               className="px-5 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 hover:shadow-xl transition-all duration-300 font-semibold shadow-md text-center"

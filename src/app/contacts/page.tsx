@@ -1,6 +1,5 @@
 import ContactForm from '@/components/ContactForm'
 import YandexMap from '@/components/YandexMap'
-import Image from 'next/image'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -103,46 +102,6 @@ export default function ContactsPage() {
               </div>
             </div>
 
-            {/* Социальные сети */}
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-5 sm:p-6 md:p-8 hover-lift glow-effect">
-              <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-4 sm:mb-6">Мы в соцсетях</h2>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                {[
-                  { 
-                    name: 'VKontakte', 
-                    icon: '/vk.png',
-                    href: 'https://vk.com/repetitor_penza_etalon', 
-                    color: 'from-blue-400 to-blue-500' 
-                  },
-                  { 
-                    name: 'Telegram', 
-                    icon: '/telegram.png',
-                    href: 'https://t.me/centerEtalon', 
-                    color: 'from-blue-500 to-blue-600' 
-                  }
-                ].map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className={`bg-gradient-to-r ${social.color} text-white rounded-xl p-3 sm:p-4 text-center md:hover:scale-105 transition-all duration-300 transform md:hover:animate-wiggle`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <div className="mb-1.5 sm:mb-2 flex items-center justify-center">
-                      <Image 
-                        src={social.icon} 
-                        alt={social.name} 
-                        width={32} 
-                        height={32} 
-                        className="w-6 h-6 sm:w-8 sm:h-8 mx-auto"
-                        style={{ filter: 'brightness(0) invert(1)' }}
-                      />
-                    </div>
-                    <div className="text-xs sm:text-sm font-bold">{social.name}</div>
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>

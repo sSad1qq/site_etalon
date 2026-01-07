@@ -1,11 +1,19 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
 
 export default function AdvantagesGrid() {
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const advantages = [
+    {
+      icon: "⚙️",
+      title: "Технический центр",
+      description: "Специализируемся на подготовке к поступлению на технические направления",
+      color: "from-yellow-500 to-yellow-700",
+      stats: "Технические ВУЗы"
+    },
     {
       icon: "👥",
       title: "Мини-группы 2-4 человека",
@@ -47,13 +55,6 @@ export default function AdvantagesGrid() {
       description: "Подберем удобное время для занятий",
       color: "from-yellow-700 to-yellow-800",
       stats: "7 дней в неделю"
-    },
-    {
-      icon: "⚙️",
-      title: "Технический центр",
-      description: "Специализируемся на подготовке к поступлению на технические направления",
-      color: "from-yellow-500 to-yellow-700",
-      stats: "Технические ВУЗы"
     }
   ]
 
@@ -193,7 +194,7 @@ export default function AdvantagesGrid() {
             className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
             style={{ 
               WebkitOverflowScrolling: 'touch',
-              touchAction: 'pan-x',
+              touchAction: 'pan-x pan-y',
               overscrollBehaviorX: 'contain'
             }}
           >
@@ -262,6 +263,28 @@ export default function AdvantagesGrid() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Кнопка "Подробнее о центре" */}
+        <div className="text-center mt-8 md:mt-12">
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault()
+              const aboutSection = document.getElementById('about')
+              if (aboutSection) {
+                const headerHeight = 80 // Примерная высота хедера
+                const targetPosition = aboutSection.offsetTop - headerHeight
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: 'smooth'
+                })
+              }
+            }}
+            className="btn-primary btn-pulse text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-12 py-3 md:py-4 inline-flex items-center justify-center font-semibold"
+          >
+            <span className="whitespace-nowrap">Подробнее о центре</span>
+          </a>
         </div>
 
       </div>

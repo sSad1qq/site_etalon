@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 
-export default function AboutPage() {
+export default function AboutSection() {
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
   const [photoScrollIndex, setPhotoScrollIndex] = useState(0)
   const [familyScrollIndex, setFamilyScrollIndex] = useState(0)
@@ -405,8 +405,8 @@ export default function AboutPage() {
   }, [])
 
   return (
-  <div className="min-h-screen bg-gradient-to-b from-white via-amber-100 to-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 pb-10 sm:pb-12 md:pb-16">
+    <div id="about" className="bg-gradient-to-b from-white via-amber-100 to-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-10 sm:pt-12 md:pt-16 pb-10 sm:pb-12 md:pb-16">
         {/* Заголовок */}
         <div className="text-center mb-10 sm:mb-14 md:mb-20 max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 animate-slide-in-up text-center">
@@ -481,7 +481,7 @@ export default function AboutPage() {
               {achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col items-center lg:items-center ${
+                  className={`flex flex-col items-center lg:items-center relative ${
                     index % 2 === 0 ? 'lg:flex-row lg:justify-start' : 'lg:flex-row-reverse lg:justify-end'
                   }`}
                 >
@@ -502,7 +502,7 @@ export default function AboutPage() {
                   </div>
                   
                   {/* Точка на линии времени */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-yellow-500 rounded-full"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-yellow-500 rounded-full z-10"></div>
                   
                   <div className="w-1/2"></div>
                 </div>
@@ -692,3 +692,4 @@ export default function AboutPage() {
     </div>
   )
 }
+

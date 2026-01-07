@@ -9,7 +9,7 @@ export default function StudentJourney() {
     {
       number: 1,
       title: "Заявка",
-      description: "Оставляете заявку на сайте или звоните нам",
+      description: "Оставляете заявку на сайте или по телефону",
       icon: "📝",
       details: "Быстрая регистрация за 2 минуты",
       color: "from-yellow-400 to-yellow-500"
@@ -185,7 +185,7 @@ export default function StudentJourney() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up">
-            Продуманная система обучения, которая шаг за шагом ведёт к результату.
+            Как построено обучение в центре "Эталон"
           </p>
         </div>
 
@@ -200,7 +200,7 @@ export default function StudentJourney() {
               className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
               style={{ 
                 WebkitOverflowScrolling: 'touch',
-                touchAction: 'pan-x',
+                touchAction: 'pan-x pan-y',
                 overscrollBehaviorX: 'contain'
               }}
             >

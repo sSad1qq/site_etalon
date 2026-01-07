@@ -14,7 +14,7 @@ export default function SubjectsGrid() {
       name: "Математика",
       icon: "📐",
       description: "Алгебра, геометрия, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Сильные преподаватели по математике, которые умеют не просто «натаскать», а действительно научить. Подготовим к ОГЭ и ЕГЭ на высокий балл, поможем подтянуть школьную программу и развить уверенность в своих силах!",
+      fullDescription: "Опытные преподаватели по математике помогают детям полюбить предмет и сформировать устойчивую математическую культуру. Мы готовим к ЕГЭ и ОГЭ по математике на высокие баллы, помогаем подтянуть школьную программу, устранить пробелы в знаниях и развить уверенность в своих силах и результатах.",
       color: "from-yellow-400 to-yellow-500",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -27,7 +27,7 @@ export default function SubjectsGrid() {
       name: "Информатика",
       icon: "💻",
       description: "Программирование, алгоритмы, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Готовим учеников к ОГЭ и ЕГЭ по информатике, разбираем школьную программу, учим логике, алгоритмам и мышлению, которое помогает не только на экзаменах, но и в жизни. Преподаватели объясняют доступно, поэтапно и с примерами!",
+      fullDescription: "Помогаем детям с нуля освоить язык программирования Python, затем последовательно объясняем алгоритмы, логику и основы кодирования информации. Такой подход позволяет глубоко понять информатику и успешно подготовиться к ОГЭ и ЕГЭ на высокие баллы.",
       color: "from-yellow-800 to-yellow-900",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -40,7 +40,7 @@ export default function SubjectsGrid() {
       name: "Русский язык",
       icon: "📝",
       description: "Грамматика, сочинение, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Русский язык — это не только правила и тесты, но и увлекательный путь к уверенной речи и высоким баллам. Наши преподаватели помогут подготовиться к ОГЭ и ЕГЭ, прокачать навыки написания сочинений и изложений!",
+      fullDescription: "Русский язык — это не только правила и тесты, а путь к грамотной и уверенной речи. Мы помогаем освоить школьную программу, а также подготовиться к ОГЭ и ЕГЭ по русскому языку на высокие баллы. Наши преподаватели объясняют материал понятно и системно.",
       color: "from-yellow-500 to-yellow-600",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -53,7 +53,7 @@ export default function SubjectsGrid() {
       name: "Физика",
       icon: "⚡",
       description: "Механика, термодинамика, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Помогаем ученикам увидеть логику и красоту физики. Объясняем сложные законы простым языком, учим решать задачи пошагово и готовим к ОГЭ и ЕГЭ без стресса. С нами формулы начинают работать, а баллы — расти!",
+      fullDescription: "Помогаем ученикам понять логику и законы физики, объясняем сложные темы простым языком и учим решать задачи пошагово. Готовим к ОГЭ и ЕГЭ по физике без стресса и на высокие баллы.",
       color: "from-yellow-600 to-yellow-700",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -66,7 +66,7 @@ export default function SubjectsGrid() {
       name: "Обществознание",
       icon: "🏛️",
       description: "Право, экономика, политология, подготовка к ЕГЭ и ОГЭ",
-      fullDescription: "Опытные преподаватели помогут разобраться в сложных темах, уверенно подготовиться к ОГЭ и ЕГЭ и повысить оценки в школе. Делаем акцент на логику, понимание и реальные примеры!",
+      fullDescription: "Научим понимать законы, изучим основы экономики и правовые нормы. Ребенок сможет формулировать мысли для второй части экзамена. Приведем к высокому баллу без лишнего стресса.",
       color: "from-yellow-900 to-yellow-950",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
@@ -244,7 +244,7 @@ export default function SubjectsGrid() {
   }, [subjects.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
+    <section id="subjects" className="pt-4 md:pt-6 lg:pt-8 pb-12 md:pb-16 lg:pb-24 bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto px-4">
@@ -299,7 +299,7 @@ export default function SubjectsGrid() {
               className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
               style={{ 
                 WebkitOverflowScrolling: 'touch',
-                touchAction: 'pan-x',
+                touchAction: 'pan-x pan-y',
                 overscrollBehaviorX: 'contain'
               }}
             >
@@ -310,7 +310,7 @@ export default function SubjectsGrid() {
                     data-card-index={index}
                     className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center"
                   >
-                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col h-[580px]">
+                    <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col h-[620px]">
                       {/* Картинка сверху - фиксированная высота */}
                       <div className={`relative w-full ${subject.mobileImageHeight || 'h-40'} flex-shrink-0 overflow-hidden`}>
                         <img
@@ -344,9 +344,9 @@ export default function SubjectsGrid() {
                           </p>
                         </div>
                         
-                        {/* Полное описание - фиксированная высота с ограничением строк */}
-                        <div className="h-24 flex-shrink-0 overflow-hidden my-2">
-                          <p className="text-xs text-gray-700 leading-relaxed line-clamp-5">
+                        {/* Полное описание - без ограничения строк */}
+                        <div className="flex-grow overflow-y-auto my-2 min-h-[80px]">
+                          <p className="text-xs text-gray-700 leading-relaxed text-center">
                             {subject.fullDescription}
                           </p>
                         </div>

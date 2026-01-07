@@ -284,7 +284,7 @@ export default function ResultsBoard() {
               className="overflow-x-auto -mx-4 px-4 py-2 snap-x snap-mandatory scrollbar-hide" 
               style={{ 
                 WebkitOverflowScrolling: 'touch',
-                touchAction: 'pan-x',
+                touchAction: 'pan-x pan-y',
                 overscrollBehaviorX: 'contain'
               }}
             >

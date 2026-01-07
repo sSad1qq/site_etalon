@@ -220,7 +220,7 @@ export default function VideoTestimonials() {
               className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
               style={{ 
                 WebkitOverflowScrolling: 'touch',
-                touchAction: 'pan-x',
+                touchAction: 'pan-x pan-y',
                 overscrollBehaviorX: 'contain'
               }}
             >

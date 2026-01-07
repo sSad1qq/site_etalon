@@ -3,6 +3,7 @@ import "./globals.css";
 import "./styles.css";
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ScrollToAnchor from '@/components/ScrollToAnchor'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://etalon-penza.ru'),
@@ -78,6 +79,7 @@ export default function RootLayout({
       <body className="antialiased">
         {/* JSON-LD Organization */}
         <script type="application/ld+json">{JSON.stringify(orgJson)}</script>
+        <ScrollToAnchor />
         <Header />
         <main className="pt-20">{children}</main>
         <Footer />

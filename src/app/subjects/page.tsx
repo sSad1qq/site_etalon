@@ -204,7 +204,7 @@ export default function SubjectsPage() {
             style={{ 
               scrollBehavior: 'smooth', 
               WebkitOverflowScrolling: 'touch',
-              touchAction: 'pan-x',
+              touchAction: 'pan-x pan-y',
               overscrollBehaviorX: 'contain'
             }}
           >

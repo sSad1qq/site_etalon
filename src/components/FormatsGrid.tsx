@@ -161,9 +161,6 @@ export default function FormatsGrid() {
               Форматы обучения
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
-            Выберите удобный формат занятий или комбинируйте несколько вариантов
-          </p>
         </div>
 
         {/* Мобильная версия - горизонтальный скролл */}
@@ -173,7 +170,7 @@ export default function FormatsGrid() {
             className="overflow-x-auto overflow-y-hidden -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide" 
             style={{ 
               WebkitOverflowScrolling: 'touch',
-              touchAction: 'pan-x',
+              touchAction: 'pan-x pan-y',
               overscrollBehaviorX: 'contain'
             }}
           >

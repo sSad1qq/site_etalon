@@ -6,6 +6,7 @@ import VideoTestimonials from '@/components/VideoTestimonials'
 import StatsComparison from '@/components/StatsComparison'
 import AdvantagesGrid from '@/components/AdvantagesGrid'
 import FormatsGrid from '@/components/FormatsGrid'
+import AboutSection from '@/components/AboutSection'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function Home() {
       <SubjectsGrid />
       <FormatsGrid />
       <VideoTestimonials />
+      <AboutSection />
     </div>
   )
 }

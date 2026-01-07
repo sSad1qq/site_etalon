@@ -1,11 +1,52 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter, usePathname } from 'next/navigation'
 
 export default function Footer() {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const handleSubjectsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    if (pathname === '/') {
+      // Если мы на главной странице, скроллим к разделу
+      const subjectsSection = document.getElementById('subjects')
+      if (subjectsSection) {
+        const headerHeight = 80 // Примерная высота хедера
+        const targetPosition = subjectsSection.offsetTop - headerHeight
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      // Если мы на другой странице, переходим на главную и скроллим
+      router.push('/#subjects')
+    }
+  }
+
+  const handleAboutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    if (pathname === '/') {
+      // Если мы на главной странице, скроллим к разделу
+      const aboutSection = document.getElementById('about')
+      if (aboutSection) {
+        const headerHeight = 80 // Примерная высота хедера
+        const targetPosition = aboutSection.offsetTop - headerHeight
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      // Если мы на другой странице, переходим на главную и скроллим
+      router.push('/#about')
+    }
+  }
   const navItems = [
     { name: 'Главная', href: '/' },
-    { name: 'О центре', href: '/about' },
-    { name: 'Предметы', href: '/subjects' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Контакты', href: '/contacts' }
   ]
@@ -95,6 +136,20 @@ export default function Footer() {
                   {item.name}
                 </Link>
               ))}
+              <a
+                href="#about"
+                onClick={handleAboutClick}
+                className="text-gray-600 md:hover:text-yellow-600 transition-colors duration-200 text-xs sm:text-sm font-medium"
+              >
+                О центре
+              </a>
+              <a
+                href="#subjects"
+                onClick={handleSubjectsClick}
+                className="text-gray-600 md:hover:text-yellow-600 transition-colors duration-200 text-xs sm:text-sm font-medium"
+              >
+                Предметы
+              </a>
             </nav>
           </div>
 
@@ -172,6 +227,37 @@ export default function Footer() {
               <div><span className="font-semibold">ИНН:</span> 580203100855</div>
               <div><span className="font-semibold">ОГРНИП:</span> 325580000044230</div>
               <div className="text-xs text-gray-600 mt-1.5 sm:mt-2">Банковские реквизиты и договор предоставляются по запросу.</div>
+            </div>
+          </div>
+
+          {/* Юридические документы */}
+          <div className="mb-4 sm:mb-6">
+            <h4 className="text-xs sm:text-sm font-bold text-gray-900 mb-2 sm:mb-3">Документы</h4>
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 sm:gap-y-2 text-xs sm:text-sm">
+              <Link 
+                href="/privacy-policy" 
+                className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+              >
+                Положение об обработке персональных данных
+              </Link>
+              <Link 
+                href="/terms" 
+                className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+              >
+                Пользовательское соглашение
+              </Link>
+              <Link 
+                href="/metrics-consent" 
+                className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+              >
+                Согласие на обработку данных метрическими программами
+              </Link>
+              <Link 
+                href="/personal-data-consent" 
+                className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+              >
+                Согласие на обработку персональных данных
+              </Link>
             </div>
           </div>
 
