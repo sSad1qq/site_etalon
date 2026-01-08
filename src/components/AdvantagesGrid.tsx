@@ -265,28 +265,6 @@ export default function AdvantagesGrid() {
           ))}
         </div>
 
-        {/* Кнопка "Подробнее о центре" */}
-        <div className="text-center mt-8 md:mt-12">
-          <a
-            href="#about"
-            onClick={(e) => {
-              e.preventDefault()
-              const aboutSection = document.getElementById('about')
-              if (aboutSection) {
-                const headerHeight = 80 // Примерная высота хедера
-                const targetPosition = aboutSection.offsetTop - headerHeight
-                window.scrollTo({
-                  top: targetPosition,
-                  behavior: 'smooth'
-                })
-              }
-            }}
-            className="btn-primary btn-pulse text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-12 py-3 md:py-4 inline-flex items-center justify-center font-semibold"
-          >
-            <span className="whitespace-nowrap">Подробнее о центре</span>
-          </a>
-        </div>
-
       </div>
     </section>
   )

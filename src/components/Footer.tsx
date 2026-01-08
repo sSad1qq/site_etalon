@@ -46,9 +46,11 @@ export default function Footer() {
     }
   }
   const navItems = [
-    { name: 'Главная', href: '/' },
-    { name: 'FAQ', href: '/faq' },
-    { name: 'Контакты', href: '/contacts' }
+    { name: 'Главная', href: '/', type: 'link' },
+    { name: 'Предметы', href: '#subjects', type: 'anchor', onClick: handleSubjectsClick },
+    { name: 'О центре', href: '#about', type: 'anchor', onClick: handleAboutClick },
+    { name: 'FAQ', href: '/faq', type: 'link' },
+    { name: 'Контакты', href: '/contacts', type: 'link' }
   ]
 
   const socialLinks = [
@@ -127,29 +129,29 @@ export default function Footer() {
           <div>
             <h3 className="text-base sm:text-lg font-black text-gray-900 mb-3 sm:mb-4">Навигация</h3>
             <nav className="flex flex-col space-y-1.5 sm:space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-gray-600 md:hover:text-yellow-600 transition-colors duration-200 text-xs sm:text-sm font-medium"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <a
-                href="#about"
-                onClick={handleAboutClick}
-                className="text-gray-600 md:hover:text-yellow-600 transition-colors duration-200 text-xs sm:text-sm font-medium"
-              >
-                О центре
-              </a>
-              <a
-                href="#subjects"
-                onClick={handleSubjectsClick}
-                className="text-gray-600 md:hover:text-yellow-600 transition-colors duration-200 text-xs sm:text-sm font-medium"
-              >
-                Предметы
-              </a>
+              {navItems.map((item) => {
+                if (item.type === 'anchor') {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={item.onClick}
+                      className="text-gray-600 md:hover:text-yellow-600 transition-colors duration-200 text-xs sm:text-sm font-medium"
+                    >
+                      {item.name}
+                    </a>
+                  )
+                }
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-gray-600 md:hover:text-yellow-600 transition-colors duration-200 text-xs sm:text-sm font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                )
+              })}
             </nav>
           </div>
 

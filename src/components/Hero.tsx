@@ -47,7 +47,7 @@ export default function Hero() {
                 }}
                 className="btn-secondary text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-4 md:py-5 inline-flex items-center justify-center md:hover:text-gray-900 w-full sm:w-auto font-semibold"
               >
-                <span className="whitespace-nowrap">Узнать больше</span>
+                <span className="whitespace-nowrap">Подробнее о центре</span>
               </a>
             </div>
             

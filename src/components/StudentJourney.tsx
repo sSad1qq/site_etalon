@@ -175,7 +175,7 @@ export default function StudentJourney() {
   }, [steps.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden mt-16" aria-labelledby="journey-heading">
+    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden mt-0" aria-labelledby="journey-heading">
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto px-4">

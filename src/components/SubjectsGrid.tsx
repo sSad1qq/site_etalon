@@ -18,7 +18,7 @@ export default function SubjectsGrid() {
       color: "from-yellow-400 to-yellow-500",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 87",
+      stats: "Средний балл: 82",
       backgroundImage: "/math.jpg",
       imagePosition: "center 20%",
       mobileImageHeight: "h-52"
@@ -31,7 +31,7 @@ export default function SubjectsGrid() {
       color: "from-yellow-800 to-yellow-900",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 88",
+      stats: "Средний балл: 85",
       backgroundImage: "/informatic.jpg",
       imagePosition: "center 30%",
       mobileImageHeight: "h-52"
@@ -44,7 +44,7 @@ export default function SubjectsGrid() {
       color: "from-yellow-500 to-yellow-600",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 89",
+      stats: "Средний балл: 84",
       backgroundImage: "/rus-lang.jpg",
       imagePosition: "center 20%",
       mobileImageHeight: "h-52"
@@ -57,7 +57,7 @@ export default function SubjectsGrid() {
       color: "from-yellow-600 to-yellow-700",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 85",
+      stats: "Средний балл: 80",
       backgroundImage: "/physic.jpg",
       imagePosition: "center 25%",
       mobileImageHeight: "h-52"
@@ -70,7 +70,7 @@ export default function SubjectsGrid() {
       color: "from-yellow-900 to-yellow-950",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 84",
+      stats: "Средний балл: 82",
       backgroundImage: "/society.jpg",
       imagePosition: "center 25%",
       mobileImageHeight: "h-52"

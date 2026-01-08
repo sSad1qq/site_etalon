@@ -15,7 +15,7 @@ export default function SubjectsPage() {
       color: "from-yellow-400 to-yellow-500",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 87",
+      stats: "Средний балл: 82",
       duration: "2 часа",
       frequency: "1 раз в неделю",
       backgroundImage: "/math.jpg"
@@ -28,7 +28,7 @@ export default function SubjectsPage() {
       color: "from-yellow-800 to-yellow-900",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 88",
+      stats: "Средний балл: 85",
       duration: "2 часа",
       frequency: "1 раз в неделю",
       backgroundImage: "/informatic.jpg"
@@ -41,7 +41,7 @@ export default function SubjectsPage() {
       color: "from-yellow-500 to-yellow-600",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 89",
+      stats: "Средний балл: 84",
       duration: "2 часа",
       frequency: "1 раз в неделю",
       backgroundImage: "/rus-lang.jpg"
@@ -54,7 +54,7 @@ export default function SubjectsPage() {
       color: "from-yellow-600 to-yellow-700",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 85",
+      stats: "Средний балл: 80",
       duration: "2 часа",
       frequency: "1 раз в неделю",
       backgroundImage: "/physic.jpg"
@@ -67,7 +67,7 @@ export default function SubjectsPage() {
       color: "from-yellow-900 to-yellow-950",
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
-      stats: "Средний балл: 84",
+      stats: "Средний балл: 82",
       duration: "2 часа",
       frequency: "1 раз в неделю",
       backgroundImage: "/society.jpg"

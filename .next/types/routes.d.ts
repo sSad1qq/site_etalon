@@ -4,7 +4,7 @@
 type AppRoutes = "/" | "/about" | "/contacts" | "/faq" | "/metrics-consent" | "/personal-data-consent" | "/privacy-policy" | "/subjects" | "/terms"
 type AppRouteHandlerRoutes = "/api/lead" | "/api/leads/export" | "/api/telegram"
 type PageRoutes = never
-type LayoutRoutes = "/" | "/about" | "/faq" | "/subjects"
+type LayoutRoutes = "/" | "/about" | "/faq"
 type RedirectRoutes = "/home"
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes | AppRouteHandlerRoutes
@@ -33,7 +33,6 @@ interface LayoutSlotMap {
   "/": never
   "/about": never
   "/faq": never
-  "/subjects": never
 }
 
 

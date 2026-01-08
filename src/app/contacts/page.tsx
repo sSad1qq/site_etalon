@@ -17,24 +17,24 @@ export default function ContactsPage() {
   <div className="min-h-screen pt-4 sm:pt-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
         <div className="text-center mb-6 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 animate-slide-in-up">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Контакты
             </span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
             Свяжитесь с нами любым удобным способом. Мы всегда готовы ответить на ваши вопросы!
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
           {/* Форма обратной связи */}
-          <div className="animate-slide-in-left">
+          <div>
             <ContactForm />
           </div>
 
           {/* Контактная информация */}
-          <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-slide-in-right">
+          <div className="space-y-4 sm:space-y-6 md:space-y-8">
             {/* Основные контакты */}
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-5 sm:p-6 md:p-8 hover-lift glow-effect">
               <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-4 sm:mb-6">Основные контакты</h2>
