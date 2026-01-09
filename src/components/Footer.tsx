@@ -236,30 +236,38 @@ export default function Footer() {
           <div className="mb-4 sm:mb-6">
             <h4 className="text-xs sm:text-sm font-bold text-gray-900 mb-2 sm:mb-3">Документы</h4>
             <div className="flex flex-wrap gap-x-4 gap-y-1.5 sm:gap-y-2 text-xs sm:text-sm">
-              <Link 
-                href="/privacy-policy" 
+              <a 
+                href="/polozhenie-ob-obrabotke-personalnyh-dannyh.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
               >
                 Положение об обработке персональных данных
-              </Link>
-              <Link 
-                href="/terms" 
+              </a>
+              <a 
+                href="/polzovatelskoe-soglashenie.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
               >
                 Пользовательское соглашение
-              </Link>
-              <Link 
-                href="/metrics-consent" 
+              </a>
+              <a 
+                href="/soglasie-na-obrabotku-metrikami.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
               >
                 Согласие на обработку данных метрическими программами
-              </Link>
-              <Link 
-                href="/personal-data-consent" 
+              </a>
+              <a 
+                href="/soglasie-na-obrabotku-personalnyh-dannyh.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 hover:text-yellow-600 transition-colors duration-200"
               >
                 Согласие на обработку персональных данных
-              </Link>
+              </a>
             </div>
           </div>
 
