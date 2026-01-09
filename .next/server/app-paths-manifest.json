@@ -1,4 +1,5 @@
 {
-  "/page": "app/page.js",
-  "/contacts/page": "app/contacts/page.js"
+  "/personal-data-consent/page": "app/personal-data-consent/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js",
+  "/page": "app/page.js"
 }

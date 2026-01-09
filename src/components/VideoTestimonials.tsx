@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
 
 interface VKClip {
   id: number
@@ -450,27 +449,6 @@ export default function VideoTestimonials() {
                 <img src="/yandex.png" alt="Яндекс" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
                 <span>Отзывы на Яндексе</span>
               </a>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-12 md:mt-16 px-4">
-          <div className="bg-white rounded-3xl md:rounded-[2rem] shadow-2xl p-6 md:p-12 max-w-5xl mx-auto relative overflow-hidden hover-lift">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 md:mb-6">
-              Станьте следующим успешным выпускником!
-            </h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 leading-relaxed">
-              Не упустите возможность готовиться в команде лучших!
-            </p>
-            <div className="flex justify-center">
-              <Link
-                href="/contacts"
-                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 md:px-12 py-3 md:py-4 flex items-center justify-center space-x-2 md:space-x-3"
-              >
-                <span>Записаться</span>
-                <span>🎯</span>
-              </Link>
             </div>
           </div>
         </div>

@@ -219,10 +219,10 @@ export default function AboutSection() {
         <div className="text-center">
           <div className="card-lying rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in bg-white">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 sm:mb-6 text-center mx-auto">
-              Присоединяйтесь к нашей команде!
+              Станьте следующим успешным выпускником!
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed text-center mx-auto">
-              Станьте частью успешной истории и достигните своих целей вместе с нами
+              Не упустите возможность готовиться в команде лучших!
             </p>
             <div className="flex justify-center">
               <Link
@@ -231,7 +231,7 @@ export default function AboutSection() {
               >
                 <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>
-                  <span className="md:group-hover:animate-wiggle">📝</span>
+                  <span className="md:group-hover:animate-wiggle">🎯</span>
                 </span>
               </Link>
             </div>
