@@ -165,6 +165,7 @@ export default function Header() {
             <Link 
               href="/contacts" 
               className="px-5 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-xl hover:from-yellow-500 hover:to-yellow-600 hover:scale-105 hover:shadow-xl transition-all duration-300 font-semibold shadow-md text-center"
+              onClick={() => setIsMenuOpen(false)}
             >
               Записаться
             </Link>
