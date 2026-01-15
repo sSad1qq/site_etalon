@@ -95,8 +95,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
   }
 
   return (
-    <div className="max-w-2xl mx-auto bg-white rounded-2xl sm:rounded-[2rem] shadow-lg p-5 sm:p-6 md:p-8 md:hover:shadow-2xl transition-all duration-500">
-      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Запишись на бесплатную консультацию</h2>
+    <div className="max-w-2xl mx-auto bg-white rounded-2xl sm:rounded-2xl shadow-lg p-5 sm:p-6 md:p-5 md:hover:shadow-2xl transition-all duration-500">
+      <h2 className="text-xl sm:text-2xl md:text-lg lg:text-xl font-bold mb-4 sm:mb-6 md:mb-4 text-center">Запишись на бесплатную консультацию</h2>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
         {/* Имя */}

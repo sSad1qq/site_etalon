@@ -175,17 +175,17 @@ export default function StudentJourney() {
   }, [steps.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden mt-0" aria-labelledby="journey-heading">
+    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden mt-0 lg:pt-6" aria-labelledby="journey-heading">
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto px-4">
-          <h2 id="journey-heading" className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 md:mb-4 animate-slide-in-up">
+        <div className="text-center mb-8 md:mb-6 max-w-4xl mx-auto px-4">
+          <h2 id="journey-heading" className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-3 md:mb-3 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Путь ученика
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up">
-            Как построено обучение в центре "Эталон"
+          <p className="text-base sm:text-lg md:text-base lg:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-in-up">
+            Как построено обучение в центре &laquo;Эталон&raquo;
           </p>
         </div>
 
@@ -254,29 +254,29 @@ export default function StudentJourney() {
           </div>
 
           {/* Десктопная версия - сетка */}
-          <ol className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center items-stretch" role="list">
+          <ol className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-3 justify-items-center items-stretch" role="list">
             {steps.map((step, index) => (
               <li key={step.number} className="relative w-full flex" role="listitem">
                 <article
-                  className="card-lying rounded-3xl p-4 sm:p-6 w-full flex flex-col hover-lift glow-effect"
+                  className="card-lying rounded-xl p-3 w-full flex flex-col hover-lift glow-effect"
                   style={{ animationDelay: `${index * 0.12}s` }}
                   aria-labelledby={`step-title-${step.number}`}
                 >
-                  <div className="flex flex-col items-center text-center mb-4">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-3xl flex items-center justify-center mb-3 text-2xl shadow-lg group-hover:animate-wiggle transition-all duration-300`} aria-hidden>
+                  <div className="flex flex-col items-center text-center mb-3">
+                    <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-2 text-xl shadow-lg group-hover:animate-wiggle transition-all duration-300`} aria-hidden>
                       <span aria-hidden>{step.icon}</span>
                     </div>
-                    <div className="w-10 h-10 bg-yellow-500 text-white rounded-full flex items-center justify-center text-sm font-extrabold shadow-md">
+                    <div className="w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xs font-extrabold shadow-md">
                       <span className="sr-only">Шаг</span>
                       {step.number}
                     </div>
                   </div>
 
-                  <h3 id={`step-title-${step.number}`} className="text-lg font-extrabold text-gray-900 mb-2 text-center">
+                  <h3 id={`step-title-${step.number}`} className="text-sm font-extrabold text-gray-900 mb-1 text-center">
                     {step.title}
                   </h3>
 
-                  <p className="text-sm text-gray-700 mb-3 flex-grow text-center leading-relaxed">
+                  <p className="text-xs text-gray-700 mb-2 flex-grow text-center leading-relaxed">
                     {step.description}
                   </p>
                 </article>
@@ -286,18 +286,18 @@ export default function StudentJourney() {
         </div>
 
         {/* CTA с анимацией */}
-        <div className="text-center mt-10 sm:mt-12 md:mt-16">
-          <div className="card-lying rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 md:p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift bg-white">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+        <div className="text-center mt-10 sm:mt-12 md:mt-8">
+          <div className="card-lying rounded-2xl sm:rounded-2xl p-5 sm:p-6 md:p-5 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in hover-lift bg-white">
+            <h3 className="text-xl sm:text-2xl md:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-3">
               Сделайте первый шаг уже сейчас!
             </h3>
-            <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
+            <p className="text-sm sm:text-base md:text-sm text-gray-700 mb-4 sm:mb-6 md:mb-4">
               Проведём для вас бесплатную диагностику знаний и профориентационное тестирование. По итогам вы получите подробные отчёты, которые помогут осознанно выбрать подходящую специальность.
             </p>
             <div className="flex justify-center">
               <a
                 href="/contacts"
-                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-3 sm:py-4 inline-flex items-center justify-center"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-sm lg:text-base px-8 sm:px-10 md:px-8 py-3 sm:py-4 md:py-3 inline-flex items-center justify-center"
               >
                 <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>

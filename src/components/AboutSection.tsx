@@ -126,16 +126,16 @@ export default function AboutSection() {
 
   return (
     <div id="about" className="bg-gradient-to-b from-white via-amber-100 to-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-10 sm:pt-12 md:pt-16 pb-10 sm:pb-12 md:pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-10 sm:pt-12 lg:pt-6 pb-10 sm:pb-12 lg:pb-6">
         {/* Дружелюбная атмосфера */}
-        <div className="mb-12 sm:mb-16 md:mb-20">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center animate-slide-in-up">
+        <div className="mb-12 sm:mb-16 md:mb-10">
+          <h1 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-8 sm:mb-10 md:mb-6 text-center animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Дружелюбная атмосфера
             </span>
           </h1>
-          <div className="text-center mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto">
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
+          <div className="text-center mb-8 sm:mb-10 md:mb-6 max-w-4xl mx-auto">
+            <p className="text-base sm:text-lg md:text-base lg:text-lg text-gray-700 leading-relaxed">
               Мы не просто учим — мы дружим, поддерживаем и вдохновляем каждого ученика.
             </p>
           </div>
@@ -192,14 +192,14 @@ export default function AboutSection() {
           </div>
 
           {/* Десктопная версия - сетка */}
-          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
             {photos.map((photo, index) => (
               <div
                 key={index}
-                className="card-lying rounded-3xl p-4 group animate-zoom-in overflow-hidden"
+                className="card-lying rounded-2xl p-3 group animate-zoom-in overflow-hidden"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative w-full h-64 mb-4 rounded-2xl overflow-hidden">
+                <div className="relative w-full h-48 mb-3 rounded-xl overflow-hidden">
                   <Image
                     src={photo.src}
                     alt={photo.alt}
@@ -217,17 +217,17 @@ export default function AboutSection() {
 
         {/* CTA */}
         <div className="text-center">
-          <div className="card-lying rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in bg-white">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 sm:mb-6 text-center mx-auto">
+          <div className="card-lying rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in bg-white">
+            <h2 className="text-xl sm:text-2xl md:text-xl lg:text-2xl font-black text-gray-900 mb-4 sm:mb-6 md:mb-4 text-center mx-auto">
               Станьте следующим успешным выпускником!
             </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed text-center mx-auto">
+            <p className="text-sm sm:text-base md:text-base lg:text-lg text-gray-700 mb-6 sm:mb-8 md:mb-4 leading-relaxed text-center mx-auto">
               Не упустите возможность готовиться в команде лучших!
             </p>
             <div className="flex justify-center">
               <Link
                 href="/contacts"
-                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-3 sm:py-4 group inline-block"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-sm lg:text-base px-8 sm:px-10 md:px-8 py-3 sm:py-4 md:py-3 group inline-block"
               >
                 <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>

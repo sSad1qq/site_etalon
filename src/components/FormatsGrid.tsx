@@ -152,11 +152,11 @@ export default function FormatsGrid() {
   }, [formats.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
+    <section className="section-padding lg:py-6 bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up">
+        <div className="text-center mb-12 md:mb-8 max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 md:mb-4 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Форматы обучения
             </span>
@@ -249,41 +249,41 @@ export default function FormatsGrid() {
         </div>
 
         {/* Десктопная версия - сетка */}
-        <div className="hidden md:grid grid-cols-2 gap-8 justify-items-center items-stretch max-w-4xl mx-auto">
+        <div className="hidden md:grid grid-cols-2 gap-4 justify-items-center items-stretch max-w-3xl mx-auto">
           {formats.map((format, index) => (
             <div
               key={index}
-              className={`card-lying rounded-3xl p-8 group animate-zoom-in w-full max-w-md relative overflow-hidden ${
-                format.popular ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''
+              className={`card-lying rounded-2xl p-5 group animate-zoom-in w-full max-w-sm relative overflow-hidden ${
+                format.popular ? 'ring-2 ring-yellow-400 ring-opacity-50' : ''
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {format.popular && (
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-6 py-2 rounded-bl-3xl rounded-tr-3xl font-bold text-sm">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-4 py-1 rounded-bl-2xl rounded-tr-2xl font-bold text-xs">
                   🌟 Эффективно
                 </div>
               )}
               
               <div className="flex flex-col h-full">
-                <div className="text-center mb-6">
-                  <div className={`w-20 h-20 bg-gradient-to-r ${format.color} rounded-3xl flex items-center justify-center mx-auto mb-5 text-4xl group-hover:animate-wiggle transition-all duration-300`}>
+                <div className="text-center mb-4">
+                  <div className={`w-14 h-14 bg-gradient-to-r ${format.color} rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl group-hover:animate-wiggle transition-all duration-300`}>
                     {format.icon}
                   </div>
                   
-                  <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  <h3 className="text-lg font-black text-gray-900 mb-2">
                     {format.title}
                   </h3>
                   
-                  <p className="text-base text-gray-700 mb-4 leading-relaxed">
+                  <p className="text-sm text-gray-700 mb-3 leading-relaxed">
                     {format.description}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-2xl p-5 mb-6 flex-grow">
-                  <ul className="space-y-3">
+                <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-3 mb-4 flex-grow">
+                  <ul className="space-y-2">
                     {format.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center space-x-2 text-sm">
-                        <span className="text-yellow-600 text-lg flex-shrink-0">✓</span>
+                      <li key={idx} className="flex items-center space-x-2 text-xs">
+                        <span className="text-yellow-600 text-sm flex-shrink-0">✓</span>
                         <span className="text-gray-800 font-medium">{feature}</span>
                       </li>
                     ))}
@@ -293,7 +293,7 @@ export default function FormatsGrid() {
                 <div className="text-center mt-auto">
                   <Link 
                     href="/contacts"
-                    className="btn-primary w-full inline-block text-center hover-glow text-base px-6 py-3"
+                    className="btn-primary w-full inline-block text-center hover-glow text-sm px-4 py-2"
                   >
                     Записаться
                   </Link>

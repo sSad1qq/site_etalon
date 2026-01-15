@@ -244,16 +244,16 @@ export default function SubjectsGrid() {
   }, [subjects.length])
 
   return (
-    <section id="subjects" className="pt-4 md:pt-6 lg:pt-8 pb-12 md:pb-16 lg:pb-24 bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
+    <section id="subjects" className="pt-4 md:pt-4 lg:pt-6 pb-12 md:pb-8 lg:pb-6 bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up">
+        <div className="text-center mb-12 md:mb-8 max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 md:mb-4 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Предметы
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-base sm:text-lg md:text-base lg:text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
             Подготовка к основным предметам для поступления на технические направления
           </p>
         </div>
@@ -392,8 +392,8 @@ export default function SubjectsGrid() {
             style={{
               perspective: '1200px',
               perspectiveOrigin: 'center center',
-              minHeight: '600px',
-              padding: '0 200px'
+              minHeight: '420px',
+              padding: '0 150px'
             }}
           >
             {getVisibleIndices().map(({ index, position }) => {
@@ -411,25 +411,25 @@ export default function SubjectsGrid() {
                     zIndex: 10,
                     opacity: 1,
                     width: 'auto',
-                    maxWidth: '500px'
+                    maxWidth: '380px'
                   }
                 } else if (isLeft) {
                   // Левая карточка - повернута влево, меньше, дальше
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(50deg) translateX(-280px) translateZ(-250px) scale(0.6)',
+                    transform: 'translate(-50%, -50%) rotateY(50deg) translateX(-220px) translateZ(-200px) scale(0.6)',
                     zIndex: 1,
                     opacity: 0.5,
                     width: 'auto',
-                    maxWidth: '300px'
+                    maxWidth: '240px'
                   }
                 } else if (isRight) {
                   // Правая карточка - повернута вправо, меньше, дальше
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(-50deg) translateX(280px) translateZ(-250px) scale(0.6)',
+                    transform: 'translate(-50%, -50%) rotateY(-50deg) translateX(220px) translateZ(-200px) scale(0.6)',
                     zIndex: 1,
                     opacity: 0.5,
                     width: 'auto',
-                    maxWidth: '300px'
+                    maxWidth: '240px'
                   }
                 }
                 return {}
@@ -457,9 +457,9 @@ export default function SubjectsGrid() {
                   }}
                 >
                   <div
-                    className={`bg-white rounded-[2rem] group border-2 ${subject.borderColor} shadow-lg relative overflow-hidden glow-effect inline-block`}
+                    className={`bg-white rounded-2xl group border-2 ${subject.borderColor} shadow-lg relative overflow-hidden glow-effect inline-block`}
                     style={{
-                      maxWidth: isCenter ? '500px' : '300px',
+                      maxWidth: isCenter ? '380px' : '240px',
                       width: 'fit-content',
                       transformStyle: 'flat'
                     }}
@@ -475,11 +475,11 @@ export default function SubjectsGrid() {
                       <img
                         src={subject.backgroundImage}
                         alt={subject.name}
-                        className="block object-cover rounded-[2rem]"
+                        className="block object-cover rounded-2xl"
                         style={{
-                          maxWidth: isCenter ? '500px' : '300px',
-                          width: isCenter ? '500px' : '300px',
-                          height: isCenter ? '400px' : '240px',
+                          maxWidth: isCenter ? '380px' : '240px',
+                          width: isCenter ? '380px' : '240px',
+                          height: isCenter ? '300px' : '180px',
                           display: 'block',
                           objectPosition: subject.imagePosition
                         }}
@@ -501,7 +501,7 @@ export default function SubjectsGrid() {
                     
                     {/* Белый фон - появляется при hover */}
                     <div 
-                      className="absolute top-0 left-0 right-0 bottom-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" 
+                      className="absolute top-0 left-0 right-0 bottom-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" 
                       style={{ 
                         zIndex: 5
                       }}
@@ -509,7 +509,7 @@ export default function SubjectsGrid() {
                     
                     {/* Контент - появляется при hover */}
                     <div 
-                      className="absolute top-0 left-0 right-0 bottom-0 z-20 flex flex-col justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 rounded-[2rem] overflow-y-auto"
+                      className="absolute top-0 left-0 right-0 bottom-0 z-20 flex flex-col justify-center p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 rounded-2xl overflow-y-auto"
                       style={{
                         isolation: 'isolate',
                         WebkitFontSmoothing: 'antialiased',
@@ -530,28 +530,28 @@ export default function SubjectsGrid() {
                         textRendering: 'geometricPrecision',
                         imageRendering: 'crisp-edges'
                       }}>
-                        <div className={`w-16 h-16 bg-gradient-to-r ${subject.color} rounded-3xl flex items-center justify-center mx-auto mb-3 text-3xl group-hover:animate-wiggle shadow-lg`}>
+                        <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center mx-auto mb-2 text-2xl group-hover:animate-wiggle shadow-lg`}>
                           {subject.icon}
                         </div>
-                        <h3 className="text-xl font-black text-gray-900 mb-2" style={{ 
+                        <h3 className="text-base font-black text-gray-900 mb-1" style={{ 
                           WebkitFontSmoothing: 'antialiased',
                           MozOsxFontSmoothing: 'grayscale',
                           textRendering: 'geometricPrecision',
                           transform: 'none',
                           imageRendering: 'crisp-edges',
-                          fontSize: '1.25rem',
-                          lineHeight: '1.5'
+                          fontSize: '1rem',
+                          lineHeight: '1.4'
                         }}>
                           {subject.name}
                         </h3>
-                        <p className="text-gray-600 font-medium text-sm mb-3" style={{ 
+                        <p className="text-gray-600 font-medium text-xs mb-2" style={{ 
                           WebkitFontSmoothing: 'antialiased',
                           MozOsxFontSmoothing: 'grayscale',
                           textRendering: 'geometricPrecision',
                           transform: 'none',
                           imageRendering: 'crisp-edges',
-                          fontSize: '0.875rem',
-                          lineHeight: '1.5'
+                          fontSize: '0.75rem',
+                          lineHeight: '1.4'
                         }}>
                           {subject.description}
                         </p>
@@ -562,16 +562,16 @@ export default function SubjectsGrid() {
                           fontWeight: 500,
                           transform: 'none',
                           imageRendering: 'crisp-edges',
-                          fontSize: '0.75rem',
-                          lineHeight: '1.6'
+                          fontSize: '0.65rem',
+                          lineHeight: '1.5'
                         }}>
                           {subject.fullDescription}
                         </p>
                       </div>
                     
-                      <div className={`${subject.bgColor} rounded-3xl p-3 mb-3 shadow-md mt-3`}>
+                      <div className={`${subject.bgColor} rounded-xl p-2 mb-2 shadow-md mt-2`}>
                         <div className="text-center">
-                          <div className="text-lg font-black text-yellow-800 mb-1">
+                          <div className="text-sm font-black text-yellow-800 mb-0.5">
                             {subject.stats}
                           </div>
                           <div className="text-xs text-yellow-700 font-semibold">
@@ -584,12 +584,12 @@ export default function SubjectsGrid() {
                   
                   {/* Индикатор центральной карточки */}
                   {isCenter && (
-                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                      <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm font-bold text-yellow-600">
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-bold text-yellow-600">
                         {index + 1} / {subjects.length}
                       </span>
-                      <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
                     </div>
                   )}
                 </div>
@@ -598,7 +598,7 @@ export default function SubjectsGrid() {
           </div>
 
           {/* Индикаторы внизу - только для десктопа */}
-          <div className="hidden md:flex justify-center gap-2 mt-16 flex-wrap px-4">
+          <div className="hidden md:flex justify-center gap-2 mt-10 flex-wrap px-4">
             {subjects.map((_, index) => (
               <button
                 key={index}

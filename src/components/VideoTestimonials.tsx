@@ -177,11 +177,11 @@ export default function VideoTestimonials() {
   }, [clips.length])
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
+    <section className="section-padding lg:py-6 bg-gradient-to-b from-white via-amber-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-gray-900 mb-4 md:mb-6 animate-slide-in-up">
+        <div className="text-center mb-12 md:mb-8 max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 md:mb-4 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Видео-отзывы
             </span>
@@ -278,8 +278,8 @@ export default function VideoTestimonials() {
             style={{
               perspective: '1200px',
               perspectiveOrigin: 'center center',
-              minHeight: '600px',
-              padding: '0 200px'
+              minHeight: '420px',
+              padding: '0 150px'
             }}
           >
             {getVisibleIndices().map(({ index, position }) => {
@@ -297,13 +297,13 @@ export default function VideoTestimonials() {
                   }
                 } else if (isLeft) {
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(45deg) translateX(-260px) translateZ(-250px) scale(0.7)',
+                    transform: 'translate(-50%, -50%) rotateY(45deg) translateX(-200px) translateZ(-200px) scale(0.7)',
                     zIndex: 1,
                     opacity: 0.6,
                   }
                 } else if (isRight) {
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(-45deg) translateX(260px) translateZ(-250px) scale(0.7)',
+                    transform: 'translate(-50%, -50%) rotateY(-45deg) translateX(200px) translateZ(-200px) scale(0.7)',
                     zIndex: 1,
                     opacity: 0.6,
                   }
@@ -313,22 +313,22 @@ export default function VideoTestimonials() {
               
               return (
                 <div
-                  key={`${index}-${currentIndex}-${position}`}
-                  onClick={() => isCenter ? openVideo(clip.oid, clip.videoId) : goToSlide(index)}
-                  className={`absolute transition-all ease-in-out cursor-pointer ${!isCenter ? 'hover:opacity-80' : ''}`}
-                  style={{
-                    ...getCoverFlowStyle(),
-                    transformStyle: 'preserve-3d',
-                    backfaceVisibility: 'hidden',
-                    transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    left: '50%',
-                    top: '50%',
-                    transformOrigin: 'center center'
-                  }}
-                >
+                    key={`${index}-${currentIndex}-${position}`}
+                    onClick={() => isCenter ? openVideo(clip.oid, clip.videoId) : goToSlide(index)}
+                    className={`absolute transition-all ease-in-out cursor-pointer ${!isCenter ? 'hover:opacity-80' : ''}`}
+                    style={{
+                      ...getCoverFlowStyle(),
+                      transformStyle: 'preserve-3d',
+                      backfaceVisibility: 'hidden',
+                      transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      left: '50%',
+                      top: '50%',
+                      transformOrigin: 'center center'
+                    }}
+                  >
                   <div 
-                    className="relative rounded-3xl overflow-hidden bg-black shadow-2xl group"
-                    style={{ width: isCenter ? '280px' : '220px', height: isCenter ? '500px' : '390px' }}
+                    className="relative rounded-2xl overflow-hidden bg-black shadow-2xl group"
+                    style={{ width: isCenter ? '210px' : '170px', height: isCenter ? '380px' : '300px' }}
                   >
                     {/* VK Video превью */}
                     <iframe
@@ -342,9 +342,9 @@ export default function VideoTestimonials() {
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                       <div 
                         className="bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110"
-                        style={{ width: isCenter ? '80px' : '64px', height: isCenter ? '80px' : '64px' }}
+                        style={{ width: isCenter ? '60px' : '48px', height: isCenter ? '60px' : '48px' }}
                       >
-                        <svg className={`${isCenter ? 'w-9 h-9' : 'w-7 h-7'} text-gray-900 ml-1`} fill="currentColor" viewBox="0 0 24 24">
+                        <svg className={`${isCenter ? 'w-7 h-7' : 'w-5 h-5'} text-gray-900 ml-1`} fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>
                       </div>
@@ -352,12 +352,12 @@ export default function VideoTestimonials() {
                   </div>
                   
                   {isCenter && (
-                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                      <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm font-bold text-yellow-600">
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-bold text-yellow-600">
                         {index + 1} / {clips.length}
                       </span>
-                      <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
                     </div>
                   )}
                 </div>
@@ -366,7 +366,7 @@ export default function VideoTestimonials() {
           </div>
 
           {/* Индикаторы внизу - десктоп */}
-          <div className="hidden md:flex justify-center gap-2 mt-12 flex-wrap">
+          <div className="hidden md:flex justify-center gap-2 mt-10 flex-wrap">
             {clips.map((_, index) => (
               <button
                 key={index}
@@ -422,12 +422,12 @@ export default function VideoTestimonials() {
         )}
 
         {/* Блок ВКонтакте и Яндекс */}
-        <div className="mt-12 md:mt-20 text-center px-4">
-          <div className="bg-white rounded-3xl md:rounded-[2rem] shadow-xl p-6 md:p-8 max-w-3xl mx-auto hover-lift">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 mb-3 md:mb-4">
+        <div className="mt-12 md:mt-10 text-center px-4">
+          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-5 max-w-3xl mx-auto hover-lift">
+            <h3 className="text-xl sm:text-2xl md:text-xl lg:text-2xl font-black text-gray-900 mb-3 md:mb-3">
               Больше отзывов в нашей группе ВКонтакте
             </h3>
-            <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 md:mb-6">
+            <p className="text-sm sm:text-base md:text-sm text-gray-700 mb-4 md:mb-4">
               Смотрите все видео-отзывы в разделе клипов нашей группы
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">

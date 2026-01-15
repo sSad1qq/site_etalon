@@ -232,11 +232,11 @@ export default function ResultsBoard() {
   }, [results.length])
 
   return (
-    <section className="py-6 md:py-16 lg:py-24 bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
+    <section className="py-6 md:py-6 lg:py-6 bg-gradient-to-b from-white via-yellow-100 to-white relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="text-center mb-4 md:mb-20 max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 animate-slide-in-up">
+        <div className="text-center mb-4 md:mb-4 max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-black text-gray-900 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Наши выпускники
             </span>
@@ -333,8 +333,8 @@ export default function ResultsBoard() {
             style={{
               perspective: '1200px',
               perspectiveOrigin: 'center center',
-              height: '800px',
-              padding: '0 200px'
+              height: '380px',
+              padding: '0 120px'
             }}
           >
             {getVisibleIndices().map(({ index, position }) => {
@@ -350,26 +350,26 @@ export default function ResultsBoard() {
                     transform: 'translate(-50%, -50%) rotateY(0deg) translateZ(0px) scale(1)',
                     zIndex: 10,
                     opacity: 1,
-                    width: '500px',
-                    height: '650px'
+                    width: '260px',
+                    height: '340px'
                   }
                 } else if (isLeft) {
                   // Левое изображение - повернуто влево, меньше, дальше
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(50deg) translateX(-280px) translateZ(-250px) scale(0.6)',
+                    transform: 'translate(-50%, -50%) rotateY(50deg) translateX(-180px) translateZ(-180px) scale(0.6)',
                     zIndex: 1,
                     opacity: 0.5,
-                    width: '300px',
-                    height: '450px'
+                    width: '180px',
+                    height: '260px'
                   }
                 } else if (isRight) {
                   // Правое изображение - повернуто вправо, меньше, дальше
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(-50deg) translateX(280px) translateZ(-250px) scale(0.6)',
+                    transform: 'translate(-50%, -50%) rotateY(-50deg) translateX(180px) translateZ(-180px) scale(0.6)',
                     zIndex: 1,
                     opacity: 0.5,
-                    width: '300px',
-                    height: '450px'
+                    width: '180px',
+                    height: '260px'
                   }
                 }
                 return {}
@@ -435,12 +435,12 @@ export default function ResultsBoard() {
                   
                   {/* Индикатор центрального изображения */}
                   {isCenter && (
-                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                      <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm font-bold text-yellow-600">
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-bold text-yellow-600">
                         {index + 1} / {results.length}
                       </span>
-                      <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
                     </div>
                   )}
                 </div>
@@ -449,7 +449,7 @@ export default function ResultsBoard() {
           </div>
 
           {/* Индикаторы внизу - только для десктопа */}
-          <div className="hidden md:flex justify-center gap-2 mt-16 flex-wrap px-4">
+          <div className="hidden md:flex justify-center gap-2 mt-6 flex-wrap px-4">
             {results.map((_, index) => (
               <button
                 key={index}

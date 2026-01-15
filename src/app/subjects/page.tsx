@@ -184,14 +184,14 @@ export default function SubjectsPage() {
 
   return (
   <div className="min-h-screen bg-gradient-to-b from-white via-amber-100 to-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 pb-10 sm:pb-12 md:pb-16">
-        <div className="text-center mb-10 sm:mb-14 md:mb-20 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 animate-slide-in-up">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-6 pb-10 sm:pb-12 md:pb-8">
+        <div className="text-center mb-10 sm:mb-14 md:mb-8 max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 sm:mb-6 md:mb-4 animate-slide-in-up">
             <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
               Предметы
             </span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
+          <p className="text-base sm:text-lg md:text-base lg:text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed animate-slide-in-up">
             Подготовка по всем основным предметам ЕГЭ и ОГЭ с опытными преподавателями
           </p>
         </div>
@@ -294,11 +294,11 @@ export default function SubjectsPage() {
         </div>
 
         {/* Десктопная версия - сетка с hover эффектом */}
-        <div className="hidden lg:grid grid-cols-3 gap-8 justify-items-center">
+        <div className="hidden lg:grid grid-cols-3 gap-4 justify-items-center">
           {subjects.map((subject, index) => (
             <div
               key={index}
-              className={`bg-white rounded-3xl group animate-zoom-in border-2 ${subject.borderColor} shadow-lg relative overflow-hidden min-h-96 hover-lift glow-effect`}
+              className={`bg-white rounded-2xl group animate-zoom-in border-2 ${subject.borderColor} shadow-lg relative overflow-hidden min-h-72 hover-lift glow-effect`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Фоновое изображение - затухает при hover */}
@@ -314,25 +314,25 @@ export default function SubjectsPage() {
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-5"></div>
               
               {/* Контент - появляется при hover */}
-              <div className="relative z-10 h-full flex flex-col justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+              <div className="relative z-10 h-full flex flex-col justify-center p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                 <div className="text-center">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${subject.color} rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl`}>
+                  <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center mx-auto mb-2 text-2xl`}>
                     {subject.icon}
                   </div>
-                  <h3 className="text-xl font-black text-gray-900 mb-2">
+                  <h3 className="text-base font-black text-gray-900 mb-1">
                     {subject.name}
                   </h3>
-                  <p className="text-gray-600 font-medium text-sm mb-3">
+                  <p className="text-gray-600 font-medium text-xs mb-2">
                     {subject.description}
                   </p>
-                  <p className="text-gray-700 text-xs leading-relaxed mb-3">
+                  <p className="text-gray-700 text-xs leading-relaxed mb-2">
                     {subject.fullDescription}
                   </p>
                 </div>
               
-                <div className={`${subject.bgColor} rounded-2xl p-3 mb-3`}>
+                <div className={`${subject.bgColor} rounded-xl p-2 mb-2`}>
                   <div className="text-center">
-                    <div className="text-lg font-black text-yellow-800 mb-1">
+                    <div className="text-sm font-black text-yellow-800 mb-0.5">
                       {subject.stats}
                     </div>
                     <div className="text-xs text-yellow-700 font-semibold">
@@ -346,18 +346,18 @@ export default function SubjectsPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 sm:mt-16 md:mt-20 text-center">
-          <div className="card-lying rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6">
+        <div className="mt-12 sm:mt-16 md:mt-8 text-center">
+          <div className="card-lying rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-8 max-w-4xl mx-auto relative overflow-hidden animate-zoom-in">
+            <h2 className="text-2xl sm:text-3xl md:text-xl lg:text-2xl font-black text-gray-900 mb-4 sm:mb-6 md:mb-4">
               Готовы начать подготовку?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-base lg:text-lg text-gray-700 mb-6 sm:mb-8 md:mb-4 leading-relaxed">
               Запишитесь на бесплатное тестирование и получите персональные рекомендации по выбору предметов
             </p>
             <div className="flex justify-center">
               <Link
                 href="/contacts"
-                className="btn-primary btn-magic text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-3 sm:py-4 group"
+                className="btn-primary btn-magic text-sm sm:text-base md:text-sm lg:text-base px-8 sm:px-10 md:px-8 py-3 sm:py-4 md:py-3 group"
               >
                 <span className="flex items-center space-x-2 sm:space-x-3">
                   <span>Записаться</span>
