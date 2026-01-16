@@ -328,8 +328,7 @@ html {
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(34,24,12,0.18);
+  /* hover эффекты отключены */
 }
 
 .card-lying {
@@ -342,10 +341,7 @@ html {
 }
 
 .card-lying:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 24px 48px rgba(34,24,12,0.15);
-  border-color: rgba(251, 191, 36, 0.3);
-  background: rgba(255, 255, 255, 1);
+  /* hover эффекты отключены */
 }
 
 .hover-lift {
@@ -353,8 +349,7 @@ html {
 }
 
 .hover-lift:hover {
-  transform: translateY(-12px) scale(1.05);
-  box-shadow: 0 32px 64px rgba(34,24,12,0.2);
+  /* hover эффекты отключены */
 }
 
 /* Полностью отключаем любой feedback от плиток на мобильной версии */
@@ -448,7 +443,7 @@ html {
 }
 
 .glow-effect:hover {
-  box-shadow: 0 16px 48px rgba(251, 191, 36, 0.3);
+  /* hover эффекты отключены */
 }
 
 /* Contact form styles */

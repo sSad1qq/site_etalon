@@ -190,9 +190,6 @@ export default function StudentJourney() {
         </div>
 
           <div className="relative">
-          {/* Анимированная линия времени - только для десктопа */}
-          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 transform -translate-y-1/2 rounded-full animate-pulse-glow"></div>
-          
           {/* Мобильная версия - горизонтальный скролл */}
           <div className="md:hidden relative">
             <div 
@@ -254,35 +251,72 @@ export default function StudentJourney() {
           </div>
 
           {/* Десктопная версия - сетка */}
-          <ol className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-3 justify-items-center items-stretch" role="list">
-            {steps.map((step, index) => (
-              <li key={step.number} className="relative w-full flex" role="listitem">
-                <article
-                  className="card-lying rounded-xl p-3 w-full flex flex-col hover-lift glow-effect"
-                  style={{ animationDelay: `${index * 0.12}s` }}
-                  aria-labelledby={`step-title-${step.number}`}
-                >
-                  <div className="flex flex-col items-center text-center mb-3">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-2 text-xl shadow-lg group-hover:animate-wiggle transition-all duration-300`} aria-hidden>
-                      <span aria-hidden>{step.icon}</span>
+          <div className="hidden md:block relative">
+            {/* Верхний ряд - шаги 1-3 */}
+            <ol className="grid grid-cols-2 lg:grid-cols-3 gap-3 justify-items-center items-stretch" role="list">
+              {steps.slice(0, 3).map((step, index) => (
+                <li key={step.number} className="relative w-full flex" role="listitem">
+                  <article
+                    className="card-lying rounded-xl p-3 w-full flex flex-col hover-lift glow-effect"
+                    style={{ animationDelay: `${index * 0.12}s` }}
+                    aria-labelledby={`step-title-${step.number}`}
+                  >
+                    <div className="flex flex-col items-center text-center mb-3">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-2 text-xl shadow-lg group-hover:animate-wiggle transition-all duration-300`} aria-hidden>
+                        <span aria-hidden>{step.icon}</span>
+                      </div>
+                      <div className="w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xs font-extrabold shadow-md">
+                        <span className="sr-only">Шаг</span>
+                        {step.number}
+                      </div>
                     </div>
-                    <div className="w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xs font-extrabold shadow-md">
-                      <span className="sr-only">Шаг</span>
-                      {step.number}
+
+                    <h3 id={`step-title-${step.number}`} className="text-sm font-extrabold text-gray-900 mb-1 text-center">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-xs text-gray-700 mb-2 flex-grow text-center leading-relaxed">
+                      {step.description}
+                    </p>
+                  </article>
+                </li>
+              ))}
+            </ol>
+
+            {/* Анимированная линия времени - разделитель между рядами */}
+            <div className="my-4 h-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-full animate-pulse-glow"></div>
+
+            {/* Нижний ряд - шаги 4-6 */}
+            <ol className="grid grid-cols-2 lg:grid-cols-3 gap-3 justify-items-center items-stretch" role="list" start={4}>
+              {steps.slice(3, 6).map((step, index) => (
+                <li key={step.number} className="relative w-full flex" role="listitem">
+                  <article
+                    className="card-lying rounded-xl p-3 w-full flex flex-col hover-lift glow-effect"
+                    style={{ animationDelay: `${(index + 3) * 0.12}s` }}
+                    aria-labelledby={`step-title-${step.number}`}
+                  >
+                    <div className="flex flex-col items-center text-center mb-3">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-2 text-xl shadow-lg group-hover:animate-wiggle transition-all duration-300`} aria-hidden>
+                        <span aria-hidden>{step.icon}</span>
+                      </div>
+                      <div className="w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xs font-extrabold shadow-md">
+                        <span className="sr-only">Шаг</span>
+                        {step.number}
+                      </div>
                     </div>
-                  </div>
 
-                  <h3 id={`step-title-${step.number}`} className="text-sm font-extrabold text-gray-900 mb-1 text-center">
-                    {step.title}
-                  </h3>
+                    <h3 id={`step-title-${step.number}`} className="text-sm font-extrabold text-gray-900 mb-1 text-center">
+                      {step.title}
+                    </h3>
 
-                  <p className="text-xs text-gray-700 mb-2 flex-grow text-center leading-relaxed">
-                    {step.description}
-                  </p>
-                </article>
-              </li>
-            ))}
-          </ol>
+                    <p className="text-xs text-gray-700 mb-2 flex-grow text-center leading-relaxed">
+                      {step.description}
+                    </p>
+                  </article>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
 
         {/* CTA с анимацией */}

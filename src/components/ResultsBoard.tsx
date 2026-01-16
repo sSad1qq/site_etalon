@@ -384,7 +384,6 @@ export default function ResultsBoard() {
                   className={`
                     absolute transition-all ease-in-out
                     ${isCenter ? 'cursor-default' : 'cursor-pointer'}
-                    ${isCenter ? 'hover:scale-105' : 'hover:opacity-80'}
                   `}
                   style={{
                     ...coverFlowStyle,
@@ -405,7 +404,6 @@ export default function ResultsBoard() {
                         : 'bg-gradient-to-br from-gray-50 via-white to-gray-50 p-1.5 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] ring-2 ring-gray-300 ring-opacity-50'
                       }
                       transition-all
-                      ${isCenter ? 'hover:ring-yellow-500 hover:ring-opacity-80' : 'hover:ring-yellow-300 hover:ring-opacity-70'}
                     `}
                     style={{
                       transformStyle: 'preserve-3d'

@@ -218,9 +218,7 @@ p {
 }
 
 .card:hover {
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
-  transform: translateY(-1rem) scale(1.02);
-  border-color: rgba(251, 191, 36, 0.3);
+  /* hover эффекты отключены */
 }
 
 /* Utility Classes */
@@ -320,8 +318,7 @@ p {
 }
 
 .floating-card:hover {
-  transform: translateY(-12px) scale(1.08) rotate(2deg);
-  box-shadow: 0 35px 70px -12px rgba(251, 191, 36, 0.35);
+  /* hover эффекты отключены */
 }
 
 .card-lying {
@@ -334,10 +331,7 @@ p {
 }
 
 .card-lying:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 24px 48px rgba(34,24,12,0.15);
-  border-color: rgba(251, 191, 36, 0.3);
-  background: rgba(255, 255, 255, 1);
+  /* hover эффекты отключены */
 }
 
 .feature-icon {
@@ -345,7 +339,7 @@ p {
 }
 
 .card-lying:hover .feature-icon {
-  transform: scale(1.2) rotate(5deg);
+  /* hover эффекты отключены */
 }
 
 .feature-title {

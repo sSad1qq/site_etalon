@@ -315,7 +315,7 @@ export default function VideoTestimonials() {
                 <div
                     key={`${index}-${currentIndex}-${position}`}
                     onClick={() => isCenter ? openVideo(clip.oid, clip.videoId) : goToSlide(index)}
-                    className={`absolute transition-all ease-in-out cursor-pointer ${!isCenter ? 'hover:opacity-80' : ''}`}
+                    className="absolute transition-all ease-in-out cursor-pointer"
                     style={{
                       ...getCoverFlowStyle(),
                       transformStyle: 'preserve-3d',

@@ -204,7 +204,7 @@ export default function AboutSection() {
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover transition-transform duration-500"
                   />
                 </div>
                 <p className="text-center text-gray-700 font-medium text-sm">
