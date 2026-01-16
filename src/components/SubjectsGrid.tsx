@@ -297,62 +297,125 @@ export default function SubjectsGrid() {
           </div>
         </div>
 
-        {/* Десктопная версия - сетка карточек */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {subjects.map((subject, index) => (
-            <div
-              key={`desktop-${index}`}
-              className="group relative bg-white rounded-2xl border-2 border-yellow-200 shadow-lg overflow-hidden transition-all duration-300 h-[320px] cursor-pointer hover:shadow-xl hover:border-yellow-400"
-            >
-              {/* Картинка - по умолчанию видна */}
-              <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
-                <img
-                  src={subject.backgroundImage}
-                  alt={subject.name}
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: subject.imagePosition }}
-                />
-                {/* Название на картинке */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                  <h3 className="text-xl font-black text-white text-center drop-shadow-lg">
+        {/* Десктопная версия - сетка карточек: 3 сверху, 2 снизу по центру */}
+        <div className="hidden md:flex flex-col gap-6">
+          {/* Верхний ряд - 3 блока */}
+          <div className="flex justify-center gap-6">
+            {subjects.slice(0, 3).map((subject, index) => (
+              <div
+                key={`desktop-top-${index}`}
+                className="group relative bg-white rounded-2xl border-2 border-yellow-200 shadow-lg overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-xl hover:border-yellow-400"
+                style={{ width: '330px', height: '330px' }}
+              >
+                {/* Картинка - по умолчанию видна */}
+                <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
+                  <img
+                    src={subject.backgroundImage}
+                    alt={subject.name}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: subject.imagePosition }}
+                  />
+                  {/* Название на картинке */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <h3 className="text-xl font-black text-white text-center drop-shadow-lg">
+                      {subject.name}
+                    </h3>
+                  </div>
+                </div>
+                
+                {/* Информация - появляется при наведении */}
+                <div className="absolute inset-0 flex flex-col p-4 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-white">
+                  {/* Иконка */}
+                  <div className="flex items-center justify-center mb-2">
+                    <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center text-2xl shadow-md`}>
+                      {subject.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Название */}
+                  <h3 className="text-lg font-black text-gray-900 mb-2">
                     {subject.name}
                   </h3>
-                </div>
-              </div>
-              
-              {/* Информация - появляется при наведении */}
-              <div className="absolute inset-0 flex flex-col p-3 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-white">
-                {/* Иконка */}
-                <div className="flex items-center justify-center mb-2">
-                  <div className={`w-10 h-10 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center text-xl shadow-md`}>
-                    {subject.icon}
-                  </div>
-                </div>
-                
-                {/* Название */}
-                <h3 className="text-base font-black text-gray-900 mb-1">
-                  {subject.name}
-                </h3>
-                
-                {/* Описание */}
-                <p className="text-[11px] text-gray-600 leading-snug flex-grow mb-2">
-                  {subject.fullDescription}
-                </p>
-                
-                {/* Средний балл внизу */}
-                <div className={`${subject.bgColor} rounded-lg p-2 shadow-md`}>
-                  <div className="text-center">
-                    <div className="text-sm font-black text-yellow-800">
-                      {subject.stats}
-                    </div>
-                    <div className="text-[10px] text-yellow-700 font-semibold">
-                      за последний год
+                  
+                  {/* Описание */}
+                  <p className="text-xs text-gray-600 leading-snug flex-grow mb-2">
+                    {subject.fullDescription}
+                  </p>
+                  
+                  {/* Средний балл внизу */}
+                  <div className={`${subject.bgColor} rounded-lg p-2 shadow-md`}>
+                    <div className="text-center">
+                      <div className="text-sm font-black text-yellow-800">
+                        {subject.stats}
+                      </div>
+                      <div className="text-[10px] text-yellow-700 font-semibold">
+                        за последний год
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          {/* Нижний ряд - 2 блока по центру */}
+          <div className="flex justify-center gap-6">
+            {subjects.slice(3, 5).map((subject, index) => (
+              <div
+                key={`desktop-bottom-${index}`}
+                className="group relative bg-white rounded-2xl border-2 border-yellow-200 shadow-lg overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-xl hover:border-yellow-400"
+                style={{ width: '330px', height: '330px' }}
+              >
+                {/* Картинка - по умолчанию видна */}
+                <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
+                  <img
+                    src={subject.backgroundImage}
+                    alt={subject.name}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: subject.imagePosition }}
+                  />
+                  {/* Название на картинке */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <h3 className="text-xl font-black text-white text-center drop-shadow-lg">
+                      {subject.name}
+                    </h3>
+                  </div>
+                </div>
+                
+                {/* Информация - появляется при наведении */}
+                <div className="absolute inset-0 flex flex-col p-4 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-white">
+                  {/* Иконка */}
+                  <div className="flex items-center justify-center mb-2">
+                    <div className={`w-12 h-12 bg-gradient-to-r ${subject.color} rounded-xl flex items-center justify-center text-2xl shadow-md`}>
+                      {subject.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Название */}
+                  <h3 className="text-lg font-black text-gray-900 mb-2">
+                    {subject.name}
+                  </h3>
+                  
+                  {/* Описание */}
+                  <p className="text-xs text-gray-600 leading-snug flex-grow mb-2">
+                    {subject.fullDescription}
+                  </p>
+                  
+                  {/* Средний балл внизу */}
+                  <div className={`${subject.bgColor} rounded-lg p-2 shadow-md`}>
+                    <div className="text-center">
+                      <div className="text-sm font-black text-yellow-800">
+                        {subject.stats}
+                      </div>
+                      <div className="text-[10px] text-yellow-700 font-semibold">
+                        за последний год
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

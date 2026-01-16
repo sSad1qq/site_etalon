@@ -351,15 +351,6 @@ export default function VideoTestimonials() {
                     </div>
                   </div>
                   
-                  {isCenter && (
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                      <span className="text-xs font-bold text-yellow-600">
-                        {index + 1} / {clips.length}
-                      </span>
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                    </div>
-                  )}
                 </div>
               )
             })}
@@ -371,9 +362,9 @@ export default function VideoTestimonials() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? 'bg-yellow-500 w-8 scale-110' 
+                    ? 'bg-yellow-500 w-6 scale-110' 
                     : 'bg-gray-300 hover:bg-yellow-300 active:scale-90'
                 }`}
                 aria-label={`Перейти к клипу ${index + 1}`}

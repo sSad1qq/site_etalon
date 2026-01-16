@@ -313,13 +313,13 @@ export default function ResultsBoard() {
             </div>
             
             {/* Индикаторы-точки внизу */}
-            <div className="flex justify-center gap-1.5 mt-2 px-4">
+            <div className="flex justify-center gap-2 mt-2 px-4">
               {results.map((_, index) => (
                 <div
                   key={`indicator-${index}`}
-                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === mobileScrollIndex 
-                      ? 'bg-yellow-500 w-4 scale-110' 
+                      ? 'bg-yellow-500 w-6 scale-110' 
                       : 'bg-gray-300'
                   }`}
                 />
@@ -431,23 +431,13 @@ export default function ResultsBoard() {
                     </div>
                   </div>
                   
-                  {/* Индикатор центрального изображения */}
-                  {isCenter && (
-                    <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-md">
-                      <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse"></div>
-                      <span className="text-[10px] font-bold text-yellow-600">
-                        {index + 1} / {results.length}
-                      </span>
-                      <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse"></div>
-                    </div>
-                  )}
                 </div>
               )
             })}
           </div>
 
           {/* Индикаторы внизу - только для десктопа */}
-          <div className="hidden md:flex justify-center gap-1.5 mt-10 flex-wrap px-4">
+          <div className="hidden md:flex justify-center gap-2 mt-10 flex-wrap px-4">
             {results.map((_, index) => (
               <button
                 key={index}
@@ -455,7 +445,7 @@ export default function ResultsBoard() {
                 className={`
                   w-2 h-2 rounded-full transition-all duration-300
                   ${index === currentIndex 
-                    ? 'bg-yellow-500 w-5 scale-110' 
+                    ? 'bg-yellow-500 w-6 scale-110' 
                     : 'bg-gray-300 hover:bg-yellow-300 active:scale-90'
                   }
                 `}
