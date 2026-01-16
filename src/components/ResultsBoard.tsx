@@ -333,8 +333,8 @@ export default function ResultsBoard() {
             style={{
               perspective: '1200px',
               perspectiveOrigin: 'center center',
-              height: '380px',
-              padding: '0 120px'
+              height: '540px',
+              padding: '0 160px'
             }}
           >
             {getVisibleIndices().map(({ index, position }) => {
@@ -350,26 +350,26 @@ export default function ResultsBoard() {
                     transform: 'translate(-50%, -50%) rotateY(0deg) translateZ(0px) scale(1)',
                     zIndex: 10,
                     opacity: 1,
-                    width: '260px',
-                    height: '340px'
+                    width: '380px',
+                    height: '500px'
                   }
                 } else if (isLeft) {
                   // Левое изображение - повернуто влево, меньше, дальше
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(50deg) translateX(-180px) translateZ(-180px) scale(0.6)',
+                    transform: 'translate(-50%, -50%) rotateY(50deg) translateX(-260px) translateZ(-220px) scale(0.6)',
                     zIndex: 1,
                     opacity: 0.5,
-                    width: '180px',
-                    height: '260px'
+                    width: '280px',
+                    height: '380px'
                   }
                 } else if (isRight) {
                   // Правое изображение - повернуто вправо, меньше, дальше
                   return {
-                    transform: 'translate(-50%, -50%) rotateY(-50deg) translateX(180px) translateZ(-180px) scale(0.6)',
+                    transform: 'translate(-50%, -50%) rotateY(-50deg) translateX(260px) translateZ(-220px) scale(0.6)',
                     zIndex: 1,
                     opacity: 0.5,
-                    width: '180px',
-                    height: '260px'
+                    width: '280px',
+                    height: '380px'
                   }
                 }
                 return {}
@@ -433,12 +433,12 @@ export default function ResultsBoard() {
                   
                   {/* Индикатор центрального изображения */}
                   {isCenter && (
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                      <span className="text-xs font-bold text-yellow-600">
+                    <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-md">
+                      <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <span className="text-[10px] font-bold text-yellow-600">
                         {index + 1} / {results.length}
                       </span>
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse"></div>
                     </div>
                   )}
                 </div>
@@ -447,15 +447,15 @@ export default function ResultsBoard() {
           </div>
 
           {/* Индикаторы внизу - только для десктопа */}
-          <div className="hidden md:flex justify-center gap-2 mt-6 flex-wrap px-4">
+          <div className="hidden md:flex justify-center gap-1.5 mt-10 flex-wrap px-4">
             {results.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`
-                  w-3 h-3 rounded-full transition-all duration-300
+                  w-2 h-2 rounded-full transition-all duration-300
                   ${index === currentIndex 
-                    ? 'bg-yellow-500 w-8 scale-110' 
+                    ? 'bg-yellow-500 w-5 scale-110' 
                     : 'bg-gray-300 hover:bg-yellow-300 active:scale-90'
                   }
                 `}
