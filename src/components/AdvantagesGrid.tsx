@@ -48,13 +48,6 @@ export default function AdvantagesGrid() {
       description: "Средний балл наших учеников на 18 выше, чем средний балл по стране",
       color: "from-yellow-600 to-yellow-800",
       stats: "1000+ выпускников"
-    },
-    {
-      icon: "⏰",
-      title: "Гибкое расписание",
-      description: "Подберем удобное время для занятий",
-      color: "from-yellow-700 to-yellow-800",
-      stats: "7 дней в неделю"
     }
   ]
 
