@@ -16,6 +16,7 @@ type ContactFormProps = {
 const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLInputElement>) => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>()
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isError, setIsError] = useState(false)
   const [phoneValue, setPhoneValue] = useState('')
 
   // Функция для форматирования номера телефона
@@ -90,7 +91,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       if (onSuccess) setTimeout(() => onSuccess(), 800)
     } catch {
       // Ошибка при отправке формы (логирование отключено для production)
-      alert('Ошибка отправки. Попробуйте позже.')
+      setIsError(true)
+      setTimeout(() => setIsError(false), 4000)
     }
   }
 
@@ -193,6 +195,13 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       {isSuccess && (
         <div className="fixed bottom-4 right-4 left-4 sm:left-auto bg-green-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg animate-slide-up text-sm sm:text-base">
           Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.
+        </div>
+      )}
+
+      {/* Уведомление об ошибке */}
+      {isError && (
+        <div className="fixed bottom-4 right-4 left-4 sm:left-auto bg-red-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg animate-slide-up text-sm sm:text-base">
+          Ошибка отправки. Попробуйте позже.
         </div>
       )}
 

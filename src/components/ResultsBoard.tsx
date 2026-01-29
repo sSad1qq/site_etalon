@@ -6,6 +6,7 @@ import Image from 'next/image'
 export default function ResultsBoard() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [direction, setDirection] = useState<'left' | 'right' | null>(null)
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)

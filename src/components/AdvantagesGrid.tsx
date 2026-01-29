@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
 
 export default function AdvantagesGrid() {
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
