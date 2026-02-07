@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 
 export default function SubjectsPage() {
@@ -18,7 +19,7 @@ export default function SubjectsPage() {
       stats: "Средний балл: 82",
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      backgroundImage: "/math.jpg"
+      backgroundImage: "/math.webp"
     },
     {
       name: "Информатика",
@@ -31,7 +32,7 @@ export default function SubjectsPage() {
       stats: "Средний балл: 85",
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      backgroundImage: "/informatic.jpg"
+      backgroundImage: "/informatic.webp"
     },
     {
       name: "Русский язык",
@@ -44,7 +45,7 @@ export default function SubjectsPage() {
       stats: "Средний балл: 84",
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      backgroundImage: "/rus-lang.jpg"
+      backgroundImage: "/rus-lang.webp"
     },
     {
       name: "Физика",
@@ -57,7 +58,7 @@ export default function SubjectsPage() {
       stats: "Средний балл: 80",
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      backgroundImage: "/physic.jpg"
+      backgroundImage: "/physic.webp"
     },
     {
       name: "Обществознание",
@@ -70,7 +71,7 @@ export default function SubjectsPage() {
       stats: "Средний балл: 82",
       duration: "2 часа",
       frequency: "1 раз в неделю",
-      backgroundImage: "/society.jpg"
+      backgroundImage: "/society.webp"
     }
   ]
 
@@ -222,10 +223,13 @@ export default function SubjectsPage() {
                 >
                   {/* Фоновое изображение - фиксированная высота */}
                   <div className="relative w-full h-40 flex-shrink-0 overflow-hidden">
-                    <img
+                    <Image
                       src={subject.backgroundImage}
                       alt={subject.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      loading="lazy"
                     />
                   </div>
                   

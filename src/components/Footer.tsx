@@ -58,7 +58,7 @@ export default function Footer() {
       name: 'VKontakte', 
       icon: (
         <Image 
-          src="/vk.png" 
+          src="/vk.webp" 
           alt="VKontakte" 
           width={20} 
           height={20} 
@@ -72,7 +72,7 @@ export default function Footer() {
       name: 'Telegram', 
       icon: (
         <Image 
-          src="/telegram.png" 
+          src="/telegram.webp" 
           alt="Telegram" 
           width={20} 
           height={20} 
@@ -86,7 +86,7 @@ export default function Footer() {
       name: 'Yandex', 
       icon: (
         <Image 
-          src="/yandex.png" 
+          src="/yandex.webp" 
           alt="Yandex" 
           width={20} 
           height={20} 

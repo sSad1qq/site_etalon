@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function SubjectsGrid() {
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
@@ -16,7 +17,7 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 82",
-      backgroundImage: "/math.jpg",
+      backgroundImage: "/math.webp",
       imagePosition: "center 20%",
       mobileImageHeight: "h-52"
     },
@@ -29,7 +30,7 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 85",
-      backgroundImage: "/informatic.jpg",
+      backgroundImage: "/informatic.webp",
       imagePosition: "center 30%",
       mobileImageHeight: "h-52"
     },
@@ -42,7 +43,7 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 84",
-      backgroundImage: "/rus-lang.jpg",
+      backgroundImage: "/rus-lang.webp",
       imagePosition: "center 20%",
       mobileImageHeight: "h-52"
     },
@@ -55,7 +56,7 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 80",
-      backgroundImage: "/physic.jpg",
+      backgroundImage: "/physic.webp",
       imagePosition: "center 25%",
       mobileImageHeight: "h-52"
     },
@@ -68,7 +69,7 @@ export default function SubjectsGrid() {
       bgColor: "bg-yellow-400",
       borderColor: "border-orange-200",
       stats: "Средний балл: 82",
-      backgroundImage: "/society.jpg",
+      backgroundImage: "/society.webp",
       imagePosition: "center 25%",
       mobileImageHeight: "h-52"
     }
@@ -224,11 +225,14 @@ export default function SubjectsGrid() {
                   <div className="bg-white rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden flex flex-col h-[620px]">
                     {/* Картинка сверху - фиксированная высота */}
                     <div className={`relative w-full ${subject.mobileImageHeight || 'h-40'} flex-shrink-0 overflow-hidden`}>
-                      <img
+                      <Image
                         src={subject.backgroundImage}
                         alt={subject.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                         style={{ objectPosition: subject.imagePosition }}
+                        sizes="(max-width: 768px) 100vw, 330px"
+                        loading="lazy"
                       />
                     </div>
                     
@@ -301,7 +305,7 @@ export default function SubjectsGrid() {
         <div className="hidden md:flex flex-col gap-6">
           {/* Верхний ряд - 3 блока */}
           <div className="flex justify-center gap-6">
-            {subjects.slice(0, 3).map((subject, index) => (
+              {subjects.slice(0, 3).map((subject, index) => (
               <div
                 key={`desktop-top-${index}`}
                 className="group relative bg-white rounded-2xl border-2 border-yellow-200 shadow-lg overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-xl hover:border-yellow-400"
@@ -309,11 +313,14 @@ export default function SubjectsGrid() {
               >
                 {/* Картинка - по умолчанию видна */}
                 <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
-                  <img
+                  <Image
                     src={subject.backgroundImage}
                     alt={subject.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                     style={{ objectPosition: subject.imagePosition }}
+                    sizes="330px"
+                    loading="lazy"
                   />
                   {/* Название на картинке */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
@@ -360,7 +367,7 @@ export default function SubjectsGrid() {
           
           {/* Нижний ряд - 2 блока по центру */}
           <div className="flex justify-center gap-6">
-            {subjects.slice(3, 5).map((subject, index) => (
+              {subjects.slice(3, 5).map((subject, index) => (
               <div
                 key={`desktop-bottom-${index}`}
                 className="group relative bg-white rounded-2xl border-2 border-yellow-200 shadow-lg overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-xl hover:border-yellow-400"
@@ -368,11 +375,14 @@ export default function SubjectsGrid() {
               >
                 {/* Картинка - по умолчанию видна */}
                 <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
-                  <img
+                  <Image
                     src={subject.backgroundImage}
                     alt={subject.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                     style={{ objectPosition: subject.imagePosition }}
+                    sizes="330px"
+                    loading="lazy"
                   />
                   {/* Название на картинке */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">

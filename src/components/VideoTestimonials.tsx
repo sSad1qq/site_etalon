@@ -1,11 +1,46 @@
 "use client"
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
 interface VKClip {
   id: number
   oid: string
   videoId: string
+}
+
+// Lightweight placeholder that loads iframe only on click
+function VideoThumbnail({ 
+  clip, 
+  width, 
+  height, 
+  isCenter = false,
+  onPlay 
+}: { 
+  clip: VKClip
+  width: string
+  height: string
+  isCenter?: boolean
+  onPlay: (oid: string, id: string) => void
+}) {
+  return (
+    <div 
+      className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-xl cursor-pointer group"
+      style={{ width, height }}
+      onClick={() => onPlay(clip.oid, clip.videoId)}
+    >
+      {/* Gradient background instead of iframe */}
+      <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/30 via-gray-900 to-gray-800 flex items-center justify-center">
+        <div className="text-center">
+          <div className={`${isCenter ? 'w-16 h-16' : 'w-12 h-12'} bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110 mx-auto`}>
+            <svg className={`${isCenter ? 'w-7 h-7' : 'w-5 h-5'} text-gray-900 ml-1`} fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <p className="text-white/60 text-xs mt-2 font-medium">Нажмите для просмотра</p>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function VideoTestimonials() {
@@ -35,30 +70,30 @@ export default function VideoTestimonials() {
     { id: 9, oid: "-168285680", videoId: "456239158" },
   ]
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? clips.length - 1 : prevIndex - 1
     )
     setTimeout(() => setIsTransitioning(false), 800)
-  }
+  }, [isTransitioning, clips.length])
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setCurrentIndex((prevIndex) => 
       prevIndex === clips.length - 1 ? 0 : prevIndex + 1
     )
     setTimeout(() => setIsTransitioning(false), 800)
-  }
+  }, [isTransitioning, clips.length])
 
-  const goToSlide = (index: number) => {
+  const goToSlide = useCallback((index: number) => {
     if (isTransitioning || index === currentIndex) return
     setIsTransitioning(true)
     setCurrentIndex(index)
     setTimeout(() => setIsTransitioning(false), 800)
-  }
+  }, [isTransitioning, currentIndex])
 
   const getVisibleIndices = () => {
     const indices = []
@@ -79,7 +114,6 @@ export default function VideoTestimonials() {
     const container = scrollContainerRef.current
     if (!container) return
 
-    // Устанавливаем начальную позицию на средний набор
     const setInitialPosition = () => {
       const cards = container.querySelectorAll('[data-card-index]')
       if (cards.length > 0) {
@@ -109,11 +143,9 @@ export default function VideoTestimonials() {
           closestIndex = parseInt(card.getAttribute('data-card-index') || '0')
         }
       })
-      // Нормализуем индекс для отображения в индикаторах
       setMobileScrollIndex(closestIndex % clips.length)
     }
 
-    // Логика бесконечного скролла
     const handleInfiniteScroll = () => {
       const cards = container.querySelectorAll('[data-card-index]')
       if (cards.length === 0) return
@@ -127,13 +159,11 @@ export default function VideoTestimonials() {
       const scrollLeft = container.scrollLeft
       const scrollWidth = container.scrollWidth
       
-      // Если прокрутили слишком далеко вправо - прыгаем к началу среднего набора
       if (scrollLeft + containerWidth >= scrollWidth - 50) {
         const cardWidth = firstMiddleCard.offsetWidth
         const newScrollPos = firstMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
         container.scrollLeft = newScrollPos
       }
-      // Если прокрутили слишком далеко влево - прыгаем к концу среднего набора
       else if (scrollLeft <= 50) {
         const cardWidth = lastMiddleCard.offsetWidth
         const newScrollPos = lastMiddleCard.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
@@ -158,7 +188,6 @@ export default function VideoTestimonials() {
     }
     window.addEventListener('resize', updateIndex)
     
-    // Инициализация
     setInitialPosition()
     const timeoutId = setTimeout(() => {
       setInitialPosition()
@@ -212,7 +241,7 @@ export default function VideoTestimonials() {
             </svg>
           </button>
 
-          {/* Мобильная версия - горизонтальный скролл */}
+          {/* Мобильная версия - горизонтальный скролл с лёгкими заглушками */}
           <div className="md:hidden relative">
             <div 
               ref={scrollContainerRef}
@@ -228,30 +257,14 @@ export default function VideoTestimonials() {
                   <div
                     key={`clip-${index}`}
                     data-card-index={index}
-                    onClick={() => openVideo(clip.oid, clip.videoId)}
-                    className="flex-shrink-0 snap-center cursor-pointer group"
+                    className="flex-shrink-0 snap-center"
                   >
-                    <div 
-                      className="relative rounded-3xl overflow-hidden bg-black shadow-xl transition-all duration-300 active:scale-95"
-                      style={{ width: '220px', height: '390px' }}
-                    >
-                      {/* VK Video превью */}
-                      <iframe
-                        src={`https://vk.com/video_ext.php?oid=${clip.oid}&id=${clip.videoId}&hd=2`}
-                        className="absolute inset-0 w-full h-full pointer-events-none"
-                        allow="encrypted-media; fullscreen; picture-in-picture;"
-                        frameBorder="0"
-                        title="VK Video Preview"
-                      />
-                      {/* Оверлей с кнопкой play */}
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                        <div className="w-16 h-16 bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110">
-                          <svg className="w-7 h-7 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
+                    <VideoThumbnail
+                      clip={clip}
+                      width="220px"
+                      height="390px"
+                      onPlay={openVideo}
+                    />
                   </div>
                 ))}
               </div>
@@ -272,7 +285,7 @@ export default function VideoTestimonials() {
             </div>
           </div>
 
-          {/* Десктопная версия - Cover Flow стиль */}
+          {/* Десктопная версия - Cover Flow стиль с лёгкими заглушками */}
           <div 
             className="hidden md:flex items-center justify-center relative overflow-visible"
             style={{
@@ -326,31 +339,13 @@ export default function VideoTestimonials() {
                       transformOrigin: 'center center'
                     }}
                   >
-                  <div 
-                    className="relative rounded-2xl overflow-hidden bg-black shadow-2xl group"
-                    style={{ width: isCenter ? '210px' : '170px', height: isCenter ? '380px' : '300px' }}
-                  >
-                    {/* VK Video превью */}
-                    <iframe
-                      src={`https://vk.com/video_ext.php?oid=${clip.oid}&id=${clip.videoId}&hd=2`}
-                      className="absolute inset-0 w-full h-full pointer-events-none"
-                      allow="encrypted-media; fullscreen; picture-in-picture;"
-                      frameBorder="0"
-                      title="VK Video Preview"
-                    />
-                    {/* Оверлей с кнопкой play */}
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                      <div 
-                        className="bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110"
-                        style={{ width: isCenter ? '60px' : '48px', height: isCenter ? '60px' : '48px' }}
-                      >
-                        <svg className={`${isCenter ? 'w-7 h-7' : 'w-5 h-5'} text-gray-900 ml-1`} fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  
+                  <VideoThumbnail
+                    clip={clip}
+                    width={isCenter ? '210px' : '170px'}
+                    height={isCenter ? '380px' : '300px'}
+                    isCenter={isCenter}
+                    onPlay={isCenter ? openVideo : () => goToSlide(index)}
+                  />
                 </div>
               )
             })}
@@ -373,13 +368,12 @@ export default function VideoTestimonials() {
           </div>
         </div>
 
-        {/* Modal для видео */}
+        {/* Modal для видео - iframe загружается ТОЛЬКО здесь, по клику */}
         {activeVideo && (
           <div 
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4" 
             onClick={closeVideo}
           >
-            {/* Кнопка закрытия в углу экрана */}
             <button 
               onClick={closeVideo}
               className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors group"
@@ -389,7 +383,6 @@ export default function VideoTestimonials() {
               </svg>
             </button>
             
-            {/* Контейнер видео */}
             <div 
               className="relative w-full max-w-sm sm:max-w-md mx-auto" 
               onClick={(e) => e.stopPropagation()}
@@ -428,7 +421,7 @@ export default function VideoTestimonials() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 md:px-8 py-3 md:py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm md:text-base"
               >
-                <img src="/vk.png" alt="ВКонтакте" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
+                <img src="/vk.webp" alt="ВКонтакте" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
                 <span>Смотреть все клипы</span>
               </a>
               <a
@@ -437,7 +430,7 @@ export default function VideoTestimonials() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold px-6 md:px-8 py-3 md:py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm md:text-base"
               >
-                <img src="/yandex.png" alt="Яндекс" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
+                <img src="/yandex.webp" alt="Яндекс" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
                 <span>Отзывы на Яндексе</span>
               </a>
             </div>

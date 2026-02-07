@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -22,7 +20,7 @@ html, body {
 }
 
 body {
-  font-family: 'Outfit', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-family: var(--font-inter), 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   background: var(--background);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -333,7 +331,6 @@ html {
 
 .card-lying {
   background: rgb(255, 255, 255);
-  backdrop-filter: blur(20px);
   border-radius: 2rem;
   box-shadow: 0 8px 32px rgba(34,24,12,0.08);
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -496,4 +493,23 @@ html {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Section padding */
+.section-padding {
+  padding: 3rem 0;
+}
+
+/* Hero gradient */
+.hero-gradient {
+  background: linear-gradient(135deg, #fefce8 0%, #ffffff 25%, #f8fafc 50%, #ffffff 75%, #fefce8 100%);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

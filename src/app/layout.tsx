@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
+import { Inter } from 'next/font/google';
 import "./globals.css";
-import "./styles.css";
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ScrollToAnchor from '@/components/ScrollToAnchor'
+
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://etalon-penza.ru'),
@@ -75,8 +82,8 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="ru" suppressHydrationWarning>
-      <body className="antialiased">
+    <html lang="ru" suppressHydrationWarning className={inter.variable}>
+      <body className={`${inter.className} antialiased`}>
         {/* JSON-LD Organization */}
         <script type="application/ld+json">{JSON.stringify(orgJson)}</script>
         <ScrollToAnchor />

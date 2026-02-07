@@ -134,12 +134,13 @@ export default function Hero() {
               style={{ height: '94%' }}
             >
               <Image
-                src="/hero-sova-blur.png"
+                src="/hero-sova-blur.webp"
                 alt="Сова - символ мудрости и знаний"
                 width={452}
                 height={543}
                 className="w-full h-auto"
                 style={{ transform: 'rotate(-2.76deg)' }}
+                sizes="(max-width: 1024px) 0px, 35vw"
                 priority
               />
             </div>
@@ -148,96 +149,94 @@ export default function Hero() {
       </div>
 
       {/* ===== MOBILE / TABLET HERO ===== */}
-      <div className="lg:hidden min-h-screen md:min-h-0 md:py-16 flex items-center justify-center bg-gradient-to-b from-amber-100 via-yellow-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10 py-8 md:py-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left column - Text */}
-            <div className="text-center md:text-left order-2 md:order-1 md:-mt-24 md:-ml-8">
-              <h1 className="text-3xl sm:text-4xl md:text-4xl font-black text-gray-900 mb-2 md:mb-3 leading-tight">
-                Увеличим результат ребенка на{' '}
-                <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-                  18 баллов
-                </span>
-                <br />
-                за первый месяц
-              </h1>
-              <p className="text-lg sm:text-xl md:text-lg text-gray-600 font-medium mb-6 md:mb-6">
-                Подготовка к ЕГЭ и ОГЭ без стресса в Пензе
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mb-6 md:mb-6">
-                <Link
-                  href="/contacts"
-                  className="btn-primary btn-pulse text-lg sm:text-xl md:text-base px-6 sm:px-8 md:px-8 py-4 md:py-3 inline-flex items-center justify-center w-full sm:w-auto font-semibold"
-                >
-                  <span className="whitespace-nowrap">
-                    Бесплатная консультация
-                  </span>
-                </Link>
-
-                <a
-                  href="#about"
-                  onClick={handleAboutClick}
-                  className="btn-secondary text-lg sm:text-xl md:text-base px-6 sm:px-8 md:px-8 py-4 md:py-3 inline-flex items-center justify-center md:hover:text-gray-900 w-full sm:w-auto font-semibold"
-                >
-                  <span className="whitespace-nowrap">
-                    Подробнее о центре
-                  </span>
-                </a>
-              </div>
-
-              {/* Mobile stats */}
-              <div className="grid grid-cols-2 gap-3 max-w-md mx-auto md:hidden">
-                {[
-                  { number: '7', label: 'лет на рынке', icon: '📅' },
-                  {
-                    number: '1289',
-                    label: 'довольных учеников',
-                    icon: '😊',
-                  },
-                  { number: '27', label: 'репетиторов', icon: '👨‍🏫' },
-                  { number: '5', label: 'предметов', icon: '📚' },
-                ].map((stat, index) => (
-                  <div
-                    key={index}
-                    className="card-lying rounded-3xl p-3 text-center hover-lift bg-white"
-                  >
-                    <div className="text-2xl mb-1">{stat.icon}</div>
-                    <div className="text-xl font-black text-yellow-600 mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="text-xs text-gray-700 font-bold leading-tight">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right column - Owl */}
-            <div className="flex justify-center order-1 md:order-2 -mt-8 md:-mt-8 md:ml-8">
-              <div className="relative w-full max-w-[450px] sm:max-w-[500px] md:max-w-[380px]">
-                {/* Glow effect */}
-                <div className="absolute -inset-8 md:-inset-12 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full blur-3xl opacity-20 -z-10"></div>
-                <div className="relative w-full h-[280px] md:h-auto rounded-3xl overflow-hidden">
-                  <Image
-                    src="/sova.png"
-                    alt="Сова - символ мудрости и знаний"
-                    width={1024}
-                    height={1536}
-                    className="w-full h-full object-cover object-top md:object-cover"
-                    priority
-                  />
-                </div>
-              </div>
+      <div
+        className="lg:hidden"
+        style={{
+          background:
+            'linear-gradient(180deg, #FFE4AD 0%, #FFF0CE 40%, #FFF5D2 65%, #FFF4D2 80%, #FFFFFF 100%)',
+        }}
+      >
+        <div className="px-4 sm:px-6 md:px-8 pt-4 pb-8">
+          {/* Photo in golden frame */}
+          <div
+            className="mx-auto rounded-[20px] p-[4px] sm:p-[5px]"
+            style={{
+              background:
+                'linear-gradient(135deg, #E8B84D 0%, #D4A03C 50%, #E8B84D 100%)',
+              maxWidth: '500px',
+            }}
+          >
+            <div className="relative w-full overflow-hidden rounded-[16px]">
+              <Image
+                src="/XXXL.png"
+                alt="Ученики центра Эталон за занятиями"
+                width={640}
+                height={534}
+                className="w-full h-auto object-cover"
+                priority
+              />
             </div>
           </div>
-        </div>
 
-        {/* Background decorations */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-200 rounded-full opacity-10"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-yellow-300 rounded-full opacity-10"></div>
+          {/* Text content */}
+          <div className="text-center mt-6 sm:mt-8">
+            <h1 className="text-[28px] sm:text-4xl md:text-4xl font-black text-gray-900 mb-2 leading-tight">
+              Увеличим результат
+              <br />
+              ребенка на{' '}
+              <span className="text-[#f59e0b]">18 баллов</span>
+              <br />
+              за первый месяц
+            </h1>
+            <p className="text-base sm:text-lg text-gray-500 font-medium mt-2 mb-6">
+              Подготовка к ЕГЭ и ОГЭ без стресса в Пензе
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col gap-3 max-w-md mx-auto">
+            <Link
+              href="/contacts"
+              className="btn-primary text-lg px-6 py-4 inline-flex items-center justify-center w-full font-bold rounded-[20px]"
+            >
+              Бесплатная консультация
+            </Link>
+
+            <a
+              href="#about"
+              onClick={handleAboutClick}
+              className="btn-secondary text-lg px-6 py-4 inline-flex items-center justify-center w-full font-bold rounded-[20px]"
+            >
+              Подробнее о центре
+            </a>
+          </div>
+
+          {/* Mobile stats */}
+          <div className="grid grid-cols-2 gap-3 max-w-md mx-auto mt-6 md:hidden">
+            {[
+              { number: '7', label: 'лет на рынке', icon: '📅' },
+              {
+                number: '1289',
+                label: 'довольных учеников',
+                icon: '😊',
+              },
+              { number: '27', label: 'репетиторов', icon: '👨‍🏫' },
+              { number: '5', label: 'предметов', icon: '📚' },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="card-lying rounded-3xl p-3 text-center hover-lift bg-white"
+              >
+                <div className="text-2xl mb-1">{stat.icon}</div>
+                <div className="text-xl font-black text-yellow-600 mb-1">
+                  {stat.number}
+                </div>
+                <div className="text-xs text-gray-700 font-bold leading-tight">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

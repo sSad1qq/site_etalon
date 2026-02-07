@@ -10,12 +10,12 @@ export default function AboutSection() {
 
   // Фотографии для бесконечного скролла
   const photos = [
-    { src: "/dosug_1.jpeg", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
-    { src: "/dosug_2.jpeg", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
-    { src: "/dosug_3.jpeg", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
-    { src: "/dosug_4.jpeg", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
-    { src: "/dosug_5.jpeg", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
-    { src: "/dosug_6.jpeg", alt: "Совместные достижения", caption: "Празднование успехов и достижений" }
+    { src: "/dosug_1.webp", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
+    { src: "/dosug_2.webp", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
+    { src: "/dosug_3.webp", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
+    { src: "/dosug_4.webp", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
+    { src: "/dosug_5.webp", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
+    { src: "/dosug_6.webp", alt: "Совместные достижения", caption: "Празднование успехов и достижений" }
   ]
   const infinitePhotos = [...photos, ...photos, ...photos]
 
@@ -165,6 +165,8 @@ export default function AboutSection() {
                           alt={photo.alt}
                           fill
                           className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          loading="lazy"
                         />
                       </div>
                       <p className="text-center text-gray-700 font-medium text-xs sm:text-sm flex-grow flex items-center justify-center">
@@ -205,6 +207,8 @@ export default function AboutSection() {
                     alt={photo.alt}
                     fill
                     className="object-cover transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <p className="text-center text-gray-700 font-medium text-sm">

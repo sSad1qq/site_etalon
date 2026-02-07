@@ -13,52 +13,52 @@ export default function ResultsBoard() {
 
   const results = [
     {
-      image: "/pochet_1.jpg"
+      image: "/pochet_1.webp"
     },
     {
-      image: "/pochet_2.jpg"
+      image: "/pochet_2.webp"
     },
     {
-      image: "/pochet_3.jpg"
+      image: "/pochet_3.webp"
     },
     {
-      image: "/pochet_4.jpg"
+      image: "/pochet_4.webp"
     },
     {
-      image: "/pochet_5.jpg"
+      image: "/pochet_5.webp"
     },
     {
-      image: "/pochet_6.jpg"
+      image: "/pochet_6.webp"
     },
     {
-      image: "/pochet_7.jpg"
+      image: "/pochet_7.webp"
     },
     {
-      image: "/pochet_8.jpg"
+      image: "/pochet_8.webp"
     },
     {
-      image: "/pochet_9.jpg"
+      image: "/pochet_9.webp"
     },
     {
-      image: "/pochet_10.jpg"
+      image: "/pochet_10.webp"
     },
     {
-      image: "/pochet_11.jpg"
+      image: "/pochet_11.webp"
     },
     {
-      image: "/pochet_12.jpg"
+      image: "/pochet_12.webp"
     },
     {
-      image: "/pochet_13.jpg"
+      image: "/pochet_13.webp"
     },
     {
-      image: "/pochet_14.jpg"
+      image: "/pochet_14.webp"
     },
     {
-      image: "/pochet_15.jpg"
+      image: "/pochet_15.webp"
     },
     {
-      image: "/pochet_16.jpg"
+      image: "/pochet_16.webp"
     }
   ]
 
@@ -304,7 +304,8 @@ export default function ResultsBoard() {
                           fill
                           className="object-contain"
                           style={{ padding: '0.5rem' }}
-                          priority={index === 0}
+                          sizes="(max-width: 768px) 70vw, 380px"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -427,7 +428,8 @@ export default function ResultsBoard() {
                           padding: isCenter ? '1rem' : '0.75rem',
                           transform: 'translateZ(0)'
                         }}
-                        priority={isCenter}
+                        sizes="380px"
+                        loading="lazy"
                       />
                     </div>
                   </div>
