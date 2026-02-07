@@ -470,6 +470,24 @@ html {
   color: var(--text);
 }
 
+/* Hero desktop button overrides */
+.hero-btn-primary,
+.hero-btn-secondary {
+  /* Reset global btn styles */
+  box-shadow: none;
+  animation: none;
+}
+
+.hero-btn-primary:hover {
+  background: radial-gradient(161.24% 266.36% at 55.03% 50.91%, #1e6b1f 0%, #FFCC92 100%) !important;
+}
+
+.hero-btn-secondary:hover {
+  background: rgba(191, 175, 167, 0.45) !important;
+  border-color: #6A340A !important;
+  color: #6A340A !important;
+}
+
 /* Hide scrollbar for horizontal scrolling */
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
