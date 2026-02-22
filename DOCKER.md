@@ -16,8 +16,8 @@
 Создайте файл `.env` в корне проекта (или используйте существующий `.env.local`):
 
 ```env
-NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=your_bot_token_here
-NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
 LEADS_WEBHOOK_URL=
 LEADS_WEBHOOK_TOKEN=
 ```
@@ -134,8 +134,8 @@ docker build -t site-etalon .
 ```bash
 docker run -d \
   -p 0.0.0.0:3000:3000 \
-  -e NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=your_token \
-  -e NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=your_chat_id \
+  -e TELEGRAM_BOT_TOKEN=your_token \
+  -e TELEGRAM_ADMIN_CHAT_ID=your_chat_id \
   -v $(pwd)/data:/app/data \
   --name site-etalon \
   --restart unless-stopped \

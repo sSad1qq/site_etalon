@@ -19,10 +19,29 @@ const nextConfig: NextConfig = {
     keepAlive: true,
   },
   async headers() {
+    const cspDirectives = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api-maps.yandex.ru https://yastatic.net",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https://*.maps.yandex.net https://api-maps.yandex.ru https://yastatic.net",
+      "font-src 'self'",
+      "connect-src 'self' https://api-maps.yandex.ru https://*.maps.yandex.net https://yastatic.net",
+      "frame-src https://vk.com",
+      "media-src 'self'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'none'",
+    ]
+
     return [
       {
         source: '/(.*)',
         headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: cspDirectives.join('; '),
+          },
           {
             key: 'X-Frame-Options',
             value: 'DENY',

@@ -1,7 +1,26 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs/promises'
+import crypto from 'crypto'
+import { createRateLimiter, getClientIp } from '@/lib/rate-limit'
+import { logger } from '@/lib/logger'
 
 const DATA_FILE = `${process.cwd()}/data/leads.json`
+const EXPORT_SECRET = process.env.EXPORT_SECRET ?? ''
+
+const limiter = createRateLimiter({ windowMs: 60_000, maxRequests: 10 })
+
+function authorize(req: NextRequest): boolean {
+  if (!EXPORT_SECRET) return false
+
+  const header = req.headers.get('authorization') ?? ''
+  const token = header.startsWith('Bearer ') ? header.slice(7) : ''
+  if (!token) return false
+
+  return crypto.timingSafeEqual(
+    Buffer.from(token, 'utf8'),
+    Buffer.from(EXPORT_SECRET, 'utf8'),
+  )
+}
 
 function toCsv(rows: unknown[]) {
   if (!rows || rows.length === 0) return ''
@@ -26,7 +45,22 @@ function toCsv(rows: unknown[]) {
   return [header, ...lines].join('\n')
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const ip = getClientIp(req)
+  if (limiter.isLimited(ip)) {
+    return NextResponse.json(
+      { ok: false, error: 'Too many requests' },
+      { status: 429 },
+    )
+  }
+
+  if (!authorize(req)) {
+    return NextResponse.json(
+      { ok: false, error: 'Unauthorized' },
+      { status: 401 },
+    )
+  }
+
   try {
     const raw = await fs.readFile(DATA_FILE, 'utf8').catch(() => '[]')
     const rows = JSON.parse(raw)
@@ -38,7 +72,10 @@ export async function GET() {
 
     return new NextResponse(csv, { status: 200, headers })
   } catch (err) {
-    // Export leads error (логирование отключено для production)
-    return NextResponse.json({ ok: false, error: String(err) }, { status: 500 })
+    logger.error('Leads export failed', {
+      error: err instanceof Error ? err.message : String(err),
+      stack: err instanceof Error ? err.stack : undefined,
+    })
+    return NextResponse.json({ ok: false, error: 'Internal server error' }, { status: 500 })
   }
 }

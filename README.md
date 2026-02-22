@@ -36,8 +36,8 @@ npm install
 
 ```env
 # Telegram Bot Configuration (обязательно для работы формы)
-NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=your_bot_token_here
-NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
 
 # Optional: External webhook для лидов
 LEADS_WEBHOOK_URL=https://your-webhook-url.com

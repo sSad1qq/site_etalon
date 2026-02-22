@@ -55,21 +55,22 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: data.name,
-          phone: cleanPhone, // Отправляем очищенный номер
-          adminChatId: process.env.NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID,
-          botToken: process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN,
+          phone: cleanPhone,
         })
       })
 
       if (!telegramRes.ok) {
-        // Telegram error - логирование отключено для production
+        const body = await telegramRes.json().catch(() => ({}))
+        console.error('[ContactForm] Telegram send failed', {
+          status: telegramRes.status,
+          body,
+        })
         throw new Error('Ошибка отправки в Telegram')
       }
 
       // Также сохраняем в локальную базу данных (опционально)
-      const endpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? '/api/lead'
       try {
-        await fetch(endpoint, {
+        await fetch('/api/lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -77,9 +78,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
             phone: cleanPhone // Отправляем очищенный номер и в БД
           })
         })
-      } catch {
-        // Ошибка сохранения в БД (логирование отключено для production)
-        // Не блокируем успешную отправку в Telegram
+      } catch (err) {
+        console.error('[ContactForm] Lead save failed', err)
       }
 
       setIsSuccess(true)
@@ -89,8 +89,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       setTimeout(() => setIsSuccess(false), 3000)
       // уведомляем внешний компонент (например, модал) через callback
       if (onSuccess) setTimeout(() => onSuccess(), 800)
-    } catch {
-      // Ошибка при отправке формы (логирование отключено для production)
+    } catch (err) {
+      console.error('[ContactForm] Submit error', err)
       setIsError(true)
       setTimeout(() => setIsError(false), 4000)
     }

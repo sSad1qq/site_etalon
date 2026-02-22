@@ -105,8 +105,8 @@ docker push myusername/site-etalon:latest
 ```bash
 docker run -d \
   -p 3000:3000 \
-  -e NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=your_token \
-  -e NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=your_chat_id \
+  -e TELEGRAM_BOT_TOKEN=your_token \
+  -e TELEGRAM_ADMIN_CHAT_ID=your_chat_id \
   --name site-etalon \
   YOUR_USERNAME/site-etalon:latest
 ```
@@ -125,8 +125,8 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=${NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}
-      - NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=${NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_ADMIN_CHAT_ID=${TELEGRAM_ADMIN_CHAT_ID}
     restart: unless-stopped
 ```
 

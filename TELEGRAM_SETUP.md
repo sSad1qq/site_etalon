@@ -44,8 +44,8 @@
 
 ```env
 # Telegram Bot Configuration
-NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=your_bot_token_here
-NEXT_PUBLIC_TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
 ```
 
 ## Шаг 4: Проверка работы
