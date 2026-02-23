@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 var _path = /*#__PURE__*/ _interop_require_wildcard(require("path"));
 function _getRequireWildcardCache(nodeInterop) {
@@ -80,7 +89,7 @@ function minDistance(a, b) {
     }
     return previousRow[previousRow.length - 1];
 }
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Prevent common typos in Next.js data fetching functions.',

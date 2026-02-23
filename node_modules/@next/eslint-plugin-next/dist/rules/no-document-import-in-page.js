@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 var _path = /*#__PURE__*/ _interop_require_wildcard(require("path"));
 function _getRequireWildcardCache(nodeInterop) {
@@ -43,7 +52,7 @@ function _interop_require_wildcard(obj, nodeInterop) {
     return newObj;
 }
 var url = 'https://nextjs.org/docs/messages/no-document-import-in-page';
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Prevent importing `next/document` outside of `pages/_document.js`.',

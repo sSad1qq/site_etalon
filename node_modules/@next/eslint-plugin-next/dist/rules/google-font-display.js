@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 var _nodeattributes = /*#__PURE__*/ _interop_require_default(require("../utils/node-attributes"));
 function _interop_require_default(obj) {
@@ -7,7 +16,7 @@ function _interop_require_default(obj) {
     };
 }
 var url = 'https://nextjs.org/docs/messages/google-font-display';
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Enforce font-display behavior with Google Fonts.',

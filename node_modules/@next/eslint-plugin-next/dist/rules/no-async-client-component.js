@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 var url = 'https://nextjs.org/docs/messages/no-async-client-component';
 var description = 'Prevent Client Components from being async functions.';
@@ -6,7 +15,7 @@ var message = "".concat(description, " See: ").concat(url);
 function isCapitalized(str) {
     return /[A-Z]/.test(str === null || str === void 0 ? void 0 : str[0]);
 }
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: description,

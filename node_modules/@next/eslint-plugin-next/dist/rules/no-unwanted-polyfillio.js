@@ -1,4 +1,16 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, //------------------------------------------------------------------------------
+// Rule Definition
+//------------------------------------------------------------------------------
+"default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 // Keep in sync with next.js polyfills file : https://github.com/vercel/next.js/blob/master/packages/next-polyfill-nomodule/src/index.js
 var NEXT_POLYFILLED_FEATURES = [
@@ -68,7 +80,7 @@ var NEXT_POLYFILLED_FEATURES = [
     'es7'
 ];
 var url = 'https://nextjs.org/docs/messages/no-unwanted-polyfillio';
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Prevent duplicate polyfills from Polyfill.io.',

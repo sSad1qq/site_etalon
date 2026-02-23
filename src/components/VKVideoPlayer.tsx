@@ -1,13 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
+
+const emptySubscribe = () => () => {}
 
 export default function VKVideoPlayer({ oid, id, autoplay = false }: { oid: string; id: string; autoplay?: boolean }) {
-  const [mounted, setMounted] = useState(false)
-  
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false)
   
   const videoUrl = `https://vk.com/video_ext.php?oid=${oid}&id=${id}&hd=2${autoplay ? '&autoplay=1' : ''}`
   

@@ -1,8 +1,22 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _definerule = require("../utils/define-rule");
-var path = require("path");
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
 var url = 'https://nextjs.org/docs/messages/no-head-element';
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Prevent usage of `<head>` element.',
@@ -18,7 +32,7 @@ module.exports = (0, _definerule.defineRule)({
             JSXOpeningElement: function JSXOpeningElement(node) {
                 var paths = context.filename;
                 var isInAppDir = function() {
-                    return paths.includes("app".concat(path.sep)) || paths.includes("app".concat(path.posix.sep));
+                    return paths.includes("app".concat(_path.default.sep)) || paths.includes("app".concat(_path.default.posix.sep));
                 };
                 // Only lint the <head> element in pages directory
                 if (node.name.name !== 'head' || isInAppDir()) {

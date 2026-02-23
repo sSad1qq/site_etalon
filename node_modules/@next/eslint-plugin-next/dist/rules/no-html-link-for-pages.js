@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 var _path = /*#__PURE__*/ _interop_require_wildcard(require("path"));
 var _fs = /*#__PURE__*/ _interop_require_wildcard(require("fs"));
@@ -125,7 +134,7 @@ var memoize = function(fn) {
 var cachedGetUrlFromPagesDirectories = memoize(_url.getUrlFromPagesDirectories);
 var cachedGetUrlFromAppDirectory = memoize(_url.getUrlFromAppDirectory);
 var url = 'https://nextjs.org/docs/messages/no-html-link-for-pages';
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Prevent usage of `<a>` elements to navigate to internal Next.js pages.',

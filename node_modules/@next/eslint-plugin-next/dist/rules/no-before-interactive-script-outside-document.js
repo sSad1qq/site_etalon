@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 var _path = /*#__PURE__*/ _interop_require_wildcard(require("path"));
 function _getRequireWildcardCache(nodeInterop) {
@@ -46,7 +55,7 @@ var url = 'https://nextjs.org/docs/messages/no-before-interactive-script-outside
 var convertToCorrectSeparator = function(str) {
     return str.replace(/[\\/]/g, _path.sep);
 };
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: "Prevent usage of `next/script`'s `beforeInteractive` strategy outside of `pages/_document.js`.",

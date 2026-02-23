@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
 var _definerule = require("../utils/define-rule");
 var _nodeattributes = /*#__PURE__*/ _interop_require_default(require("../utils/node-attributes"));
 var _path = require("path");
@@ -11,7 +20,7 @@ var url = 'https://nextjs.org/docs/messages/no-page-custom-font';
 function isIdentifierMatch(id1, id2) {
     return id1 === null && id2 === null || id1 && id2 && id1.name === id2.name;
 }
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Prevent page-only custom fonts.',

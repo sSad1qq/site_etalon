@@ -1,8 +1,22 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _definerule = require("../utils/define-rule");
-var path = require("path");
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
 var url = 'https://nextjs.org/docs/messages/no-img-element';
-module.exports = (0, _definerule.defineRule)({
+var _default = (0, _definerule.defineRule)({
     meta: {
         docs: {
             description: 'Prevent usage of `<img>` element due to slower LCP and higher bandwidth.',
@@ -15,7 +29,7 @@ module.exports = (0, _definerule.defineRule)({
     },
     create: function create(context) {
         // Get relative path of the file
-        var relativePath = context.filename.replace(path.sep, '/').replace(context.cwd, '').replace(/^\//, '');
+        var relativePath = context.filename.replace(_path.default.sep, '/').replace(context.cwd, '').replace(/^\//, '');
         var isAppDir = /^(src\/)?app\//.test(relativePath);
         return {
             JSXOpeningElement: function JSXOpeningElement(node) {
