@@ -49,8 +49,8 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       // Очищаем номер телефона от форматирования для отправки
       const cleanPhone = data.phone.replace(/\D/g, '')
       
-      // Отправляем в Telegram
-      const telegramRes = await fetch('/api/telegram', {
+      // Отправляем в VK
+      const vkRes = await fetch('/api/vk', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -59,13 +59,13 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
         })
       })
 
-      if (!telegramRes.ok) {
-        const body = await telegramRes.json().catch(() => ({}))
-        console.error('[ContactForm] Telegram send failed', {
-          status: telegramRes.status,
+      if (!vkRes.ok) {
+        const body = await vkRes.json().catch(() => ({}))
+        console.error('[ContactForm] VK send failed', {
+          status: vkRes.status,
           body,
         })
-        throw new Error('Ошибка отправки в Telegram')
+        throw new Error('Ошибка отправки в VK')
       }
 
       // Также сохраняем в локальную базу данных (опционально)
