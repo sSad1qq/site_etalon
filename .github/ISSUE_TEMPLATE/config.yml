@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Сообщить об уязвимости
+    url: https://github.com/sSad1qq/site_etalon/security/policy
+    about: Не публикуйте сведения об уязвимости в открытом issue.

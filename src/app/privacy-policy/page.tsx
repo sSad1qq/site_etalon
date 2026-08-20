@@ -42,20 +42,13 @@ export default function PrivacyPolicyPage() {
         
         {/* PDF просмотрщик на весь экран */}
         <div className="flex-1 w-full">
-          <object
-            data="/polozhenie-ob-obrabotke-personalnyh-dannyh.pdf"
-            type="application/pdf"
+          <iframe
+            src="/polozhenie-ob-obrabotke-personalnyh-dannyh.pdf"
+            title="Положение об обработке персональных данных"
             className="w-full h-full"
-          >
-            <embed
-              src="/polozhenie-ob-obrabotke-personalnyh-dannyh.pdf"
-              type="application/pdf"
-              className="w-full h-full"
-            />
-          </object>
+          />
         </div>
       </div>
     </div>
   )
 }
-

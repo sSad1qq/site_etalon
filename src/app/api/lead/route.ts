@@ -1,12 +1,11 @@
 import { NextResponse } from 'next/server'
 import fs from 'fs/promises'
+import { randomUUID } from 'node:crypto'
 import { createRateLimiter, getClientIp } from '@/lib/rate-limit'
 import { validateWebhookUrl } from '@/lib/validate-url'
 import { verifyCsrf } from '@/lib/csrf'
 import { logger } from '@/lib/logger'
-
-const DATA_DIR = `${process.cwd()}/data`
-const DATA_FILE = `${DATA_DIR}/leads.json`
+import { LEADS_DATA_DIR, LEADS_DATA_FILE } from '@/lib/lead-storage-path'
 
 const MAX_LEADS = 50_000
 const MAX_NAME_LENGTH = 100
@@ -16,11 +15,50 @@ const NAME_RE = /^[а-яёА-ЯЁa-zA-Z\s-]{2,}$/
 const PHONE_RE = /^[489]\d{9}$/
 
 const limiter = createRateLimiter({ windowMs: 60_000, maxRequests: 5 })
+let storageQueue: Promise<void> = Promise.resolve()
 
 // ── Валидация тела запроса ─────────────────────────────────────────
 interface LeadBody {
   name: string
   phone: string
+}
+
+interface LeadEntry extends LeadBody {
+  receivedAt: string
+}
+
+async function saveLead(entry: LeadEntry): Promise<boolean> {
+  const operation = storageQueue.then(async () => {
+    await fs.mkdir(LEADS_DATA_DIR, { recursive: true, mode: 0o700 })
+    await fs.chmod(LEADS_DATA_DIR, 0o700)
+
+    const raw = await fs.readFile(LEADS_DATA_FILE, 'utf-8').catch(() => '[]')
+    const parsed: unknown = JSON.parse(raw)
+    if (!Array.isArray(parsed)) {
+      throw new Error('Lead storage must contain a JSON array')
+    }
+
+    if (parsed.length >= MAX_LEADS) return false
+
+    parsed.push(entry)
+    const tempFile = `${LEADS_DATA_FILE}.${process.pid}.${randomUUID()}.tmp`
+
+    try {
+      await fs.writeFile(tempFile, JSON.stringify(parsed, null, 2), {
+        encoding: 'utf-8',
+        mode: 0o600,
+      })
+      await fs.rename(tempFile, LEADS_DATA_FILE)
+      await fs.chmod(LEADS_DATA_FILE, 0o600)
+    } finally {
+      await fs.rm(tempFile, { force: true })
+    }
+
+    return true
+  })
+
+  storageQueue = operation.then(() => undefined, () => undefined)
+  return operation
 }
 
 function validateBody(raw: unknown): { data?: LeadBody; error?: string } {
@@ -68,25 +106,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error }, { status: 400 })
     }
 
-    await fs.mkdir(DATA_DIR, { recursive: true })
-    const raw = await fs.readFile(DATA_FILE, 'utf-8').catch(() => '[]')
-    const leads: unknown[] = JSON.parse(raw)
-
-    if (leads.length >= MAX_LEADS) {
-      return NextResponse.json(
-        { ok: false, error: 'Storage limit reached' },
-        { status: 507 },
-      )
-    }
-
     const entry = {
       name: data.name,
       phone: data.phone,
       receivedAt: new Date().toISOString(),
     }
 
-    leads.push(entry)
-    await fs.writeFile(DATA_FILE, JSON.stringify(leads, null, 2), 'utf-8')
+    if (!await saveLead(entry)) {
+      return NextResponse.json(
+        { ok: false, error: 'Storage limit reached' },
+        { status: 507 },
+      )
+    }
 
     try {
       const webhook = process.env.LEADS_WEBHOOK_URL
@@ -106,10 +137,7 @@ export async function POST(req: Request) {
             signal: AbortSignal.timeout(10_000),
           })
           if (!resp.ok) {
-            logger.error('Webhook forward failed', {
-              status: resp.status,
-              url: webhook,
-            })
+            logger.error('Webhook forward failed', { status: resp.status })
           }
         }
       }
@@ -121,7 +149,12 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true })
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : String(err)
-    return NextResponse.json({ ok: false, error: message }, { status: 500 })
+    logger.error('Lead storage failed', {
+      error: err instanceof Error ? err.message : String(err),
+    })
+    return NextResponse.json(
+      { ok: false, error: 'Internal server error' },
+      { status: 500 },
+    )
   }
 }

@@ -1,20 +1,27 @@
-version: '3.8'
-
 services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
+      args:
+        NEXT_PUBLIC_YANDEX_MAPS_API_KEY: ${NEXT_PUBLIC_YANDEX_MAPS_API_KEY:-}
     ports:
-      - "0.0.0.0:3000:3000"  # Доступ извне: 0.0.0.0 означает все сетевые интерфейсы
+      - "${HOST_BIND_ADDRESS:-127.0.0.1}:${HOST_PORT:-3000}:3000"
     environment:
-      - NODE_ENV=production
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-      - TELEGRAM_ADMIN_CHAT_ID=${TELEGRAM_ADMIN_CHAT_ID}
-      - LEADS_WEBHOOK_URL=${LEADS_WEBHOOK_URL:-}
-      - LEADS_WEBHOOK_TOKEN=${LEADS_WEBHOOK_TOKEN:-}
+      NODE_ENV: production
+      VK_BOT_TOKEN: ${VK_BOT_TOKEN:?VK_BOT_TOKEN is required}
+      VK_ADMIN_USER_ID: ${VK_ADMIN_USER_ID:?VK_ADMIN_USER_ID is required}
+      EXPORT_SECRET: ${EXPORT_SECRET:-}
+      LEADS_WEBHOOK_URL: ${LEADS_WEBHOOK_URL:-}
+      LEADS_WEBHOOK_TOKEN: ${LEADS_WEBHOOK_TOKEN:-}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_ADMIN_CHAT_ID: ${TELEGRAM_ADMIN_CHAT_ID:-}
     volumes:
-      - ./data:/app/data
+      - etalon-data:/app/data
+    init: true
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
@@ -23,3 +30,5 @@ services:
       retries: 3
       start_period: 40s
 
+volumes:
+  etalon-data:

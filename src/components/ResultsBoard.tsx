@@ -6,8 +6,6 @@ import Image from 'next/image'
 export default function ResultsBoard() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [direction, setDirection] = useState<'left' | 'right' | null>(null)
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
@@ -65,37 +63,31 @@ export default function ResultsBoard() {
   const goToPrevious = () => {
     if (isTransitioning) return
     setIsTransitioning(true)
-    setDirection('left')
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? results.length - 1 : prevIndex - 1
     )
     setTimeout(() => {
       setIsTransitioning(false)
-      setDirection(null)
     }, 800)
   }
 
   const goToNext = () => {
     if (isTransitioning) return
     setIsTransitioning(true)
-    setDirection('right')
     setCurrentIndex((prevIndex) => 
       prevIndex === results.length - 1 ? 0 : prevIndex + 1
     )
     setTimeout(() => {
       setIsTransitioning(false)
-      setDirection(null)
     }, 800)
   }
 
   const goToSlide = (index: number) => {
     if (isTransitioning || index === currentIndex) return
     setIsTransitioning(true)
-    setDirection(index > currentIndex ? 'right' : 'left')
     setCurrentIndex(index)
     setTimeout(() => {
       setIsTransitioning(false)
-      setDirection(null)
     }, 800)
   }
 

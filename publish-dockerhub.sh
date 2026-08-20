@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Скрипт для публикации образа на Docker Hub
 # Использование: ./publish-dockerhub.sh [username] [tag]
 
-set -e
+set -euo pipefail
 
 # Цвета для вывода
 GREEN='\033[0;32m'
@@ -28,6 +28,16 @@ if [ -z "$DOCKER_USERNAME" ]; then
     exit 1
 fi
 
+if [[ ! "$DOCKER_USERNAME" =~ ^[a-z0-9][a-z0-9_-]*$ ]]; then
+    echo -e "${RED}Ошибка: Некорректное имя пользователя Docker Hub${NC}"
+    exit 1
+fi
+
+if [[ ! "$TAG" =~ ^[A-Za-z0-9_][A-Za-z0-9_.-]*$ ]]; then
+    echo -e "${RED}Ошибка: Некорректный Docker tag${NC}"
+    exit 1
+fi
+
 FULL_IMAGE_NAME="${DOCKER_USERNAME}/${IMAGE_NAME}:${TAG}"
 
 echo -e "${YELLOW}🐳 Публикация образа на Docker Hub${NC}"
@@ -38,23 +48,14 @@ echo "Тег: ${TAG}"
 echo "Полное имя: ${FULL_IMAGE_NAME}"
 echo ""
 
-# Проверяем, авторизован ли пользователь
-if ! docker info | grep -q "Username"; then
-    echo -e "${YELLOW}⚠️  Вы не авторизованы в Docker Hub${NC}"
-    echo "Выполните: docker login"
-    read -p "Хотите войти сейчас? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        docker login
-    else
-        echo -e "${RED}Отменено${NC}"
-        exit 1
-    fi
+if ! docker info >/dev/null 2>&1; then
+    echo -e "${RED}Ошибка: Docker daemon недоступен${NC}"
+    exit 1
 fi
 
 # Собираем образ
 echo -e "${GREEN}📦 Сборка образа...${NC}"
-docker build -t "${FULL_IMAGE_NAME}" -f dockerfile .
+docker build --pull -t "${FULL_IMAGE_NAME}" -f dockerfile .
 
 # Также создаем тег latest, если указан другой тег
 if [ "$TAG" != "latest" ]; then
@@ -80,4 +81,3 @@ echo ""
 echo "Запуск образа:"
 echo "  docker run -d -p 3000:3000 ${FULL_IMAGE_NAME}"
 echo ""
-

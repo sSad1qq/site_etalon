@@ -1,5 +1,0 @@
-{
-  "/api/vk/route": "app/api/vk/route.js",
-  "/api/lead/route": "app/api/lead/route.js",
-  "/contacts/page": "app/contacts/page.js"
-}

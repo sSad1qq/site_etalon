@@ -42,20 +42,13 @@ export default function PersonalDataConsentPage() {
         
         {/* PDF просмотрщик на весь экран */}
         <div className="flex-1 w-full">
-          <object
-            data="/soglasie-na-obrabotku-personalnyh-dannyh.pdf"
-            type="application/pdf"
+          <iframe
+            src="/soglasie-na-obrabotku-personalnyh-dannyh.pdf"
+            title="Согласие на обработку персональных данных"
             className="w-full h-full"
-          >
-            <embed
-              src="/soglasie-na-obrabotku-personalnyh-dannyh.pdf"
-              type="application/pdf"
-              className="w-full h-full"
-            />
-          </object>
+          />
         </div>
       </div>
     </div>
   )
 }
-

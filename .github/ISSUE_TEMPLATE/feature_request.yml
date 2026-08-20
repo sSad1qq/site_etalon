@@ -1,0 +1,29 @@
+name: Предложить улучшение
+description: Предложите новую возможность или улучшение проекта
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Какую проблему решает предложение?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Предлагаемое решение
+      description: Опишите ожидаемое поведение без привязки к секретам или персональным данным.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативы
+      description: Какие другие варианты вы рассматривали?
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Проверка
+      options:
+        - label: Я проверил(а), что похожего issue ещё нет.
+          required: true

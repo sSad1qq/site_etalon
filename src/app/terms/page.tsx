@@ -42,20 +42,13 @@ export default function TermsPage() {
         
         {/* PDF просмотрщик на весь экран */}
         <div className="flex-1 w-full">
-          <object
-            data="/polzovatelskoe-soglashenie.pdf"
-            type="application/pdf"
+          <iframe
+            src="/polzovatelskoe-soglashenie.pdf"
+            title="Пользовательское соглашение"
             className="w-full h-full"
-          >
-            <embed
-              src="/polzovatelskoe-soglashenie.pdf"
-              type="application/pdf"
-              className="w-full h-full"
-            />
-          </object>
+          />
         </div>
       </div>
     </div>
   )
 }
-

@@ -42,20 +42,13 @@ export default function MetricsConsentPage() {
         
         {/* PDF просмотрщик на весь экран */}
         <div className="flex-1 w-full">
-          <object
-            data="/soglasie-na-obrabotku-metrikami.pdf"
-            type="application/pdf"
+          <iframe
+            src="/soglasie-na-obrabotku-metrikami.pdf"
+            title="Согласие на обработку данных метрическими программами"
             className="w-full h-full"
-          >
-            <embed
-              src="/soglasie-na-obrabotku-metrikami.pdf"
-              type="application/pdf"
-              className="w-full h-full"
-            />
-          </object>
+          />
         </div>
       </div>
     </div>
   )
 }
-

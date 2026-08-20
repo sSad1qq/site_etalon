@@ -1,5 +1,6 @@
 "use client"
 
+import Link from 'next/link'
 import React, { useState, forwardRef } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -12,12 +13,32 @@ type ContactFormProps = {
   onSuccess?: () => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLInputElement>) => {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>()
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset, setValue } = useForm<FormData>()
   const [isSuccess, setIsSuccess] = useState(false)
   const [isError, setIsError] = useState(false)
   const [phoneValue, setPhoneValue] = useState('')
+
+  const nameField = register('name', {
+    required: 'Пожалуйста, введите ваше имя',
+    minLength: {
+      value: 2,
+      message: 'Имя должно содержать минимум 2 символа',
+    },
+    pattern: {
+      value: /^[а-яёА-ЯЁa-zA-Z\s-]+$/,
+      message: 'Имя может содержать только буквы, пробелы и дефисы',
+    },
+  })
+
+  const setNameInputRef = (element: HTMLInputElement | null) => {
+    nameField.ref(element)
+    if (typeof ref === 'function') {
+      ref(element)
+    } else if (ref) {
+      ref.current = element
+    }
+  }
 
   // Функция для форматирования номера телефона
   const formatPhoneInput = (value: string) => {
@@ -42,6 +63,7 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneInput(e.target.value)
     setPhoneValue(formatted)
+    setValue('phone', formatted, { shouldDirty: true })
   }
 
   const onSubmit = async (data: FormData) => {
@@ -103,33 +125,27 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
         {/* Имя */}
         <div>
-          <label className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Имя</label>
+          <label htmlFor="contact-name" className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Имя</label>
           <input
-            {...register('name', { 
-              required: 'Пожалуйста, введите ваше имя',
-              minLength: {
-                value: 2,
-                message: 'Имя должно содержать минимум 2 символа'
-              },
-              pattern: {
-                value: /^[а-яёА-ЯЁa-zA-Z\s-]+$/,
-                message: 'Имя может содержать только буквы, пробелы и дефисы'
-              }
-            })}
+            {...nameField}
+            ref={setNameInputRef}
+            id="contact-name"
+            autoComplete="name"
+            aria-invalid={errors.name ? 'true' : 'false'}
+            aria-describedby={errors.name ? 'contact-name-error' : undefined}
             className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border text-sm sm:text-base ${
               errors.name ? 'border-red-500' : 'border-gray-300'
             } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
             placeholder="Ваше имя"
-            aria-label="Имя"
           />
           {errors.name && (
-            <p className="mt-1 text-xs sm:text-sm text-red-500">{errors.name.message}</p>
+            <p id="contact-name-error" role="alert" className="mt-1 text-xs sm:text-sm text-red-500">{errors.name.message}</p>
           )}
         </div>
 
         {/* Телефон */}
         <div>
-          <label className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Телефон</label>
+          <label htmlFor="contact-phone" className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">Телефон</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <span className="text-gray-500 text-xs sm:text-sm">+7</span>
@@ -152,8 +168,13 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
                   }
                 }
               })}
+              id="contact-phone"
               value={phoneValue}
               onChange={handlePhoneChange}
+              autoComplete="tel"
+              inputMode="tel"
+              aria-invalid={errors.phone ? 'true' : 'false'}
+              aria-describedby={errors.phone ? 'contact-phone-hint contact-phone-error' : 'contact-phone-hint'}
               className={`w-full pl-8 pr-3 sm:pr-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border text-sm sm:text-base ${
                 errors.phone ? 'border-red-500' : 'border-gray-300'
               } focus:outline-none focus:border-yellow-500 focus:shadow-lg transition-all duration-300`}
@@ -161,11 +182,11 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
               maxLength={15}
             />
           </div>
-          <p className="mt-1 text-xs text-gray-600">
+          <p id="contact-phone-hint" className="mt-1 text-xs text-gray-600">
             Введите номер без +7, начиная с 9 (например: 912 345 67 89)
           </p>
           {errors.phone && (
-            <p className="mt-1 text-xs sm:text-sm text-red-500">{errors.phone.message}</p>
+            <p id="contact-phone-error" role="alert" className="mt-1 text-xs sm:text-sm text-red-500">{errors.phone.message}</p>
           )}
         </div>
 
@@ -193,20 +214,23 @@ const ContactFormInner = ({ onSuccess }: ContactFormProps, ref: React.Ref<HTMLIn
 
       {/* Уведомление об успешной отправке */}
       {isSuccess && (
-        <div className="fixed bottom-4 right-4 left-4 sm:left-auto bg-green-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg animate-slide-up text-sm sm:text-base">
+        <div role="status" aria-live="polite" className="fixed bottom-4 right-4 left-4 sm:left-auto bg-green-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg animate-slide-up text-sm sm:text-base">
           Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.
         </div>
       )}
 
       {/* Уведомление об ошибке */}
       {isError && (
-        <div className="fixed bottom-4 right-4 left-4 sm:left-auto bg-red-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg animate-slide-up text-sm sm:text-base">
+        <div role="alert" className="fixed bottom-4 right-4 left-4 sm:left-auto bg-red-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg animate-slide-up text-sm sm:text-base">
           Ошибка отправки. Попробуйте позже.
         </div>
       )}
 
       <p className="mt-3 sm:mt-4 text-gray-600 text-xs sm:text-sm text-center">
-        Нажимая на кнопку, вы даёте согласие на обработку персональных данных
+        Нажимая на кнопку, вы даёте{' '}
+        <Link href="/personal-data-consent" className="underline underline-offset-2 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500">
+          согласие на обработку персональных данных
+        </Link>
       </p>
     </div>
   )
