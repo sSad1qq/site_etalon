@@ -1,0 +1,44 @@
+name: Сообщить об ошибке
+description: Сообщите о воспроизводимой проблеме в проекте
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за сообщение. Не добавляйте сюда токены, заявки или другие персональные данные. Для уязвимостей используйте SECURITY.md.
+  - type: textarea
+    id: description
+    attributes:
+      label: Описание
+      description: Что произошло и какого поведения вы ожидали?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги воспроизведения
+      placeholder: |
+        1. Открыть ...
+        2. Нажать ...
+        3. Увидеть ...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Окружение
+      description: ОС, браузер и версия Node.js, если это относится к проблеме.
+  - type: textarea
+    id: additional
+    attributes:
+      label: Дополнительный контекст
+      description: Безопасные логи или скриншоты без персональных данных и секретов.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Проверка
+      options:
+        - label: Я проверил(а), что похожего issue ещё нет.
+          required: true
+        - label: Сообщение не содержит секретов и персональных данных.
+          required: true

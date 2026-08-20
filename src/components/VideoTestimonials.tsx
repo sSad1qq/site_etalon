@@ -1,5 +1,6 @@
 "use client"
 
+import Image from 'next/image'
 import { useState, useRef, useEffect, useCallback } from 'react'
 
 interface VKClip {
@@ -23,23 +24,25 @@ function VideoThumbnail({
   onPlay: (oid: string, id: string) => void
 }) {
   return (
-    <div 
-      className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-xl cursor-pointer group"
+    <button
+      type="button"
+      aria-label={`Воспроизвести видео-отзыв ${clip.id}`}
+      className="relative block rounded-3xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-xl cursor-pointer group focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-yellow-400 focus-visible:ring-offset-4"
       style={{ width, height }}
       onClick={() => onPlay(clip.oid, clip.videoId)}
     >
       {/* Gradient background instead of iframe */}
-      <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/30 via-gray-900 to-gray-800 flex items-center justify-center">
-        <div className="text-center">
-          <div className={`${isCenter ? 'w-16 h-16' : 'w-12 h-12'} bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110 mx-auto`}>
-            <svg className={`${isCenter ? 'w-7 h-7' : 'w-5 h-5'} text-gray-900 ml-1`} fill="currentColor" viewBox="0 0 24 24">
+      <span className="absolute inset-0 bg-gradient-to-br from-yellow-900/30 via-gray-900 to-gray-800 flex items-center justify-center">
+        <span className="text-center">
+          <span className={`${isCenter ? 'w-16 h-16' : 'w-12 h-12'} bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110 mx-auto`}>
+            <svg aria-hidden="true" className={`${isCenter ? 'w-7 h-7' : 'w-5 h-5'} text-gray-900 ml-1`} fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z"/>
             </svg>
-          </div>
-          <p className="text-white/60 text-xs mt-2 font-medium">Нажмите для просмотра</p>
-        </div>
-      </div>
-    </div>
+          </span>
+          <span className="block text-white/60 text-xs mt-2 font-medium">Нажмите для просмотра</span>
+        </span>
+      </span>
+    </button>
   )
 }
 
@@ -49,9 +52,36 @@ export default function VideoTestimonials() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [mobileScrollIndex, setMobileScrollIndex] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  
-  const openVideo = (oid: string, id: string) => setActiveVideo({ oid, id })
-  const closeVideo = () => setActiveVideo(null)
+  const modalCloseButtonRef = useRef<HTMLButtonElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
+
+  const openVideo = useCallback((oid: string, id: string) => {
+    previousFocusRef.current = document.activeElement as HTMLElement | null
+    setActiveVideo({ oid, id })
+  }, [])
+
+  const closeVideo = useCallback(() => {
+    setActiveVideo(null)
+    requestAnimationFrame(() => previousFocusRef.current?.focus())
+  }, [])
+
+  useEffect(() => {
+    if (!activeVideo) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    modalCloseButtonRef.current?.focus()
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeVideo()
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [activeVideo, closeVideo])
 
   // ИНСТРУКЦИЯ: Как добавить ВК-клип
   // 1. Скопируйте ссылку на клип, например: https://vk.com/clip-227920545_456239017
@@ -327,8 +357,7 @@ export default function VideoTestimonials() {
               return (
                 <div
                     key={`${index}-${currentIndex}-${position}`}
-                    onClick={() => isCenter ? openVideo(clip.oid, clip.videoId) : goToSlide(index)}
-                    className="absolute transition-all ease-in-out cursor-pointer"
+                    className="absolute transition-all ease-in-out"
                     style={{
                       ...getCoverFlowStyle(),
                       transformStyle: 'preserve-3d',
@@ -355,15 +384,18 @@ export default function VideoTestimonials() {
           <div className="hidden md:flex justify-center gap-2 mt-10 flex-wrap">
             {clips.map((_, index) => (
               <button
+                type="button"
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-yellow-500 w-6 scale-110' 
-                    : 'bg-gray-300 hover:bg-yellow-300 active:scale-90'
-                }`}
+                className="w-11 h-11 inline-flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500"
                 aria-label={`Перейти к клипу ${index + 1}`}
-              />
+              >
+                <span className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-yellow-500 w-6 scale-110'
+                    : 'bg-gray-300 w-2'
+                }`} />
+              </button>
             ))}
           </div>
         </div>
@@ -371,14 +403,20 @@ export default function VideoTestimonials() {
         {/* Modal для видео - iframe загружается ТОЛЬКО здесь, по клику */}
         {activeVideo && (
           <div 
+            role="dialog"
+            aria-modal="true"
+            aria-label="Видео-отзыв"
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4" 
             onClick={closeVideo}
           >
-            <button 
+            <button
+              ref={modalCloseButtonRef}
+              type="button"
+              aria-label="Закрыть видео"
               onClick={closeVideo}
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors group"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg aria-hidden="true" className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -421,7 +459,7 @@ export default function VideoTestimonials() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 md:px-8 py-3 md:py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm md:text-base"
               >
-                <img src="/vk.webp" alt="ВКонтакте" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
+                <Image src="/vk.webp" alt="" width={24} height={24} className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
                 <span>Смотреть все клипы</span>
               </a>
               <a
@@ -430,7 +468,7 @@ export default function VideoTestimonials() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold px-6 md:px-8 py-3 md:py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm md:text-base"
               >
-                <img src="/yandex.webp" alt="Яндекс" className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
+                <Image src="/yandex.webp" alt="" width={24} height={24} className="w-5 h-5 md:w-6 md:h-6 brightness-0 invert" />
                 <span>Отзывы на Яндексе</span>
               </a>
             </div>

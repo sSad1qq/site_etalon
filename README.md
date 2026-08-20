@@ -1,157 +1,107 @@
-# Сайт образовательного центра "Эталон"
+# Сайт образовательного центра «Эталон»
 
-Современный, быстрый и SEO-оптимизированный сайт для образовательного центра подготовки к ЕГЭ и ОГЭ.
+[![CI](https://github.com/sSad1qq/site_etalon/actions/workflows/ci.yml/badge.svg)](https://github.com/sSad1qq/site_etalon/actions/workflows/ci.yml)
 
-## 🚀 Технологии
+Открытый исходный код сайта образовательного центра «Эталон» в Пензе. Проект помогает знакомиться с программами подготовки к ЕГЭ и ОГЭ и отправлять заявку на консультацию.
 
-- **Next.js 15** - React фреймворк для production
-- **TypeScript** - типизация и безопасность кода
-- **Tailwind CSS** - современные стили и адаптивный дизайн
-- **React Hook Form** - управление формами
-- **Telegram Bot API** - автоматическая отправка заявок
-- **Яндекс.Карты** - интерактивная карта расположения
+Рабочий сайт: [etalon-penza.ru](https://etalon-penza.ru)
 
-## 📋 Возможности
+## Возможности
 
-- ✅ Адаптивный дизайн (mobile-first)
-- ✅ SEO-оптимизация (meta-теги, Open Graph, sitemap, robots.txt)
-- ✅ Форма обратной связи с валидацией
-- ✅ Интеграция с Telegram для получения заявок
-- ✅ Сохранение заявок в JSON и возможность экспорта в CSV
-- ✅ Интерактивная карта Яндекс с меткой офиса
-- ✅ Кастомные анимации и эффекты
-- ✅ Страницы: Главная, О центре, Предметы, FAQ, Контакты, Расположение
+- адаптивные страницы центра, предметов, FAQ и контактов;
+- SEO-метаданные, sitemap, robots.txt и JSON-LD;
+- форма заявки с серверной валидацией, CSRF-проверкой и ограничением частоты запросов;
+- уведомления о заявках через VK Bot API;
+- локальное хранение заявок и защищённый экспорт в CSV;
+- опциональная отправка заявок во внешний webhook;
+- Docker-сборка для самостоятельного развёртывания.
 
-## 📦 Установка
+## Технологии
 
-### 1. Установите зависимости
+- Next.js 16 и React 19;
+- TypeScript;
+- Tailwind CSS;
+- React Hook Form.
 
-```bash
-npm install
-```
+## Быстрый старт
 
-### 2. Настройте переменные окружения
-
-Создайте файл `.env.local` в корне проекта:
-
-```env
-# Telegram Bot Configuration (обязательно для работы формы)
-TELEGRAM_BOT_TOKEN=your_bot_token_here
-TELEGRAM_ADMIN_CHAT_ID=your_admin_chat_id_here
-
-# Optional: External webhook для лидов
-LEADS_WEBHOOK_URL=https://your-webhook-url.com
-LEADS_WEBHOOK_TOKEN=your_optional_secret_token
-```
-
-**Важно:** Инструкция по созданию Telegram бота находится в файле `TELEGRAM_SETUP.md`
-
-### 3. Обновите контактные данные
-
-Найдите и замените placeholder'ы на реальные данные:
-
-- **Телефоны**: `src/app/location/page.tsx` и `src/components/YandexMap.tsx`
-- **Email**: `src/app/location/page.tsx`
-- Ищите комментарий `TODO: Заменить на реальный номер телефона`
-
-### 4. Запустите dev-сервер
+Понадобятся Node.js 20.9 или новее и npm.
 
 ```bash
+git clone https://github.com/sSad1qq/site_etalon.git
+cd site_etalon
+npm ci
+cp .env_example .env.local
 npm run dev
 ```
 
-Откройте [http://localhost:3000](http://localhost:3000) в браузере.
+После запуска сайт будет доступен по адресу [http://localhost:3000](http://localhost:3000).
 
-## 🏗️ Сборка для production
+## Настройка окружения
 
-```bash
-npm run build
-npm run start
-```
-
-## 📁 Структура проекта
-
-```
-site_etalon/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── page.tsx            # Главная страница
-│   │   ├── about/              # Страница "О центре"
-│   │   ├── contacts/           # Контакты
-│   │   ├── faq/                # FAQ
-│   │   ├── location/           # Расположение с картой
-│   │   ├── subjects/           # Предметы
-│   │   └── api/                # API routes
-│   │       ├── lead/           # Сохранение заявок
-│   │       ├── leads/export/   # Экспорт заявок в CSV
-│   │       └── telegram/       # Отправка в Telegram
-│   ├── components/             # React компоненты
-│   └── styles/                 # Стили и темы
-├── public/                     # Статические файлы
-├── data/                       # База данных заявок (JSON)
-└── TELEGRAM_SETUP.md           # Инструкция по настройке Telegram
-
-```
-
-## 📧 Работа с заявками
-
-### Локальное хранение
-
-Все заявки сохраняются в `data/leads.json`. Этот файл НЕ коммитится в git (см. `.gitignore`).
-
-### Экспорт заявок
-
-Скачать все заявки в CSV: `http://your-domain.com/api/leads/export`
-
-### Telegram уведомления
-
-При правильной настройке бота (см. `TELEGRAM_SETUP.md`), каждая заявка автоматически отправляется в Telegram.
-
-### Webhook интеграция
-
-Опционально можно настроить webhook для отправки заявок в CRM или Google Sheets:
+Форма сайта отправляет уведомления через VK. Заполните в `.env.local`:
 
 ```env
-LEADS_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
-LEADS_WEBHOOK_TOKEN=your_secret_token
+VK_BOT_TOKEN=
+VK_ADMIN_USER_ID=
+EXPORT_SECRET=
+
+# Необязательно
+LEADS_WEBHOOK_URL=
+LEADS_WEBHOOK_TOKEN=
+ALLOWED_ORIGINS=
+NEXT_PUBLIC_YANDEX_MAPS_API_KEY=
+
+# Необязательный отдельный Telegram API route
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_ADMIN_CHAT_ID=
 ```
 
-## 🌐 Деплой
+`NEXT_PUBLIC_YANDEX_MAPS_API_KEY` необязателен: без него на странице контактов отображается ссылка на адрес вместо интерактивной карты. Значение встраивается во время сборки, поэтому после его изменения нужно пересобрать приложение или Docker-образ. Подробная инструкция по VK находится в [VK_SETUP.md](VK_SETUP.md). В проекте также сохранён отдельный Telegram API route; его настройка описана в [TELEGRAM_SETUP.md](TELEGRAM_SETUP.md), но текущая форма сайта вызывает VK route.
 
-### Vercel (рекомендуется)
+Никогда не коммитьте `.env`, `.env.local`, токены, выгрузки заявок или другие персональные данные.
 
-1. Создайте аккаунт на [Vercel](https://vercel.com)
-2. Подключите GitHub репозиторий
-3. Добавьте переменные окружения в настройках проекта
-4. Деплой произойдет автоматически
+## Проверка изменений
 
-### Другие хостинги
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
 
-Проект совместим с любым хостингом, поддерживающим Next.js:
+Эти же проверки запускаются в GitHub Actions для push в `main` и pull request.
 
-- Netlify
-- AWS Amplify
-- Google Cloud Run
-- Docker
+## Структура
 
-## ✅ Чек-лист перед запуском
+```text
+src/app/          страницы и API routes Next.js
+src/components/   React-компоненты
+src/lib/          CSRF, rate limiting, логирование и проверка webhook URL
+src/styles/       общая тема
+public/           статические изображения и документы
+scripts/          вспомогательные локальные скрипты
+data/             runtime-хранилище заявок, не входит в Git
+```
 
-- [ ] Настроен Telegram бот
-- [ ] Заменены тестовые телефоны на реальные
-- [ ] Проверена форма обратной связи
-- [ ] Добавлены переменные окружения на хостинге
-- [ ] Проверена карта Яндекс
-- [ ] Production build успешно собирается
-- [ ] Проверены все ссылки на сайте
+Правила для coding agents находятся в [AGENTS.md](AGENTS.md).
 
-## 📞 Поддержка
+## Данные и безопасность
 
-При возникновении вопросов или проблем:
+Локальные заявки создаются в `data/leads.json`. Каталог `data/` исключён из Git, потому что содержит персональные данные. Экспорт CSV требует `Authorization: Bearer <EXPORT_SECRET>`.
 
-1. Проверьте `TELEGRAM_SETUP.md` для настройки бота
-2. Проверьте консоль браузера на ошибки
-3. Убедитесь, что все переменные окружения настроены
+Команда `npm start` сохраняет данные в корневой `data/`, а Docker использует `/app/data` с подключённым volume. Для другого окружения путь можно переопределить абсолютной серверной переменной `LEADS_DATA_DIR`.
 
-## 📄 Лицензия
+Файловое хранилище рассчитано на один постоянно работающий сервер или Docker-контейнер. Для serverless-платформ и нескольких экземпляров приложения нужен внешний database/storage adapter.
 
-Проект разработан для образовательного центра "Эталон".
+Webhook принимает только HTTPS URL и отклоняет локальные, приватные и metadata-адреса.
+
+О найденных уязвимостях сообщайте по инструкции в [SECURITY.md](SECURITY.md), а не через публичный issue.
+
+## Участие в разработке
+
+Предложения и исправления приветствуются. Перед первым pull request прочитайте [CONTRIBUTING.md](CONTRIBUTING.md) и [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Направление развития проекта описано в [ROADMAP.md](ROADMAP.md).
+
+## Лицензия
+
+Исходный код распространяется по лицензии [MIT](LICENSE). Перед повторным использованием фотографий, логотипа и других брендовых материалов убедитесь, что у вас есть необходимые права.

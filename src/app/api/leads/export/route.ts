@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs/promises'
-import crypto from 'crypto'
 import { createRateLimiter, getClientIp } from '@/lib/rate-limit'
 import { logger } from '@/lib/logger'
+import { secureCompare } from '@/lib/secure-compare'
+import { toCsv } from '@/lib/csv'
+import { LEADS_DATA_FILE } from '@/lib/lead-storage-path'
 
-const DATA_FILE = `${process.cwd()}/data/leads.json`
 const EXPORT_SECRET = process.env.EXPORT_SECRET ?? ''
 
 const limiter = createRateLimiter({ windowMs: 60_000, maxRequests: 10 })
@@ -16,33 +17,7 @@ function authorize(req: NextRequest): boolean {
   const token = header.startsWith('Bearer ') ? header.slice(7) : ''
   if (!token) return false
 
-  return crypto.timingSafeEqual(
-    Buffer.from(token, 'utf8'),
-    Buffer.from(EXPORT_SECRET, 'utf8'),
-  )
-}
-
-function toCsv(rows: unknown[]) {
-  if (!rows || rows.length === 0) return ''
-  const keys = Array.from(rows.reduce((s: Set<string>, r: unknown) => {
-    const obj = (r as Record<string, unknown>) || {}
-    Object.keys(obj).forEach(k => s.add(k))
-    return s
-  }, new Set<string>()))
-
-  const header = keys.join(',')
-  const lines = rows.map((r: unknown) => {
-    const obj = (r as Record<string, unknown>) || {}
-    return keys.map(k => {
-      const raw = obj[k]
-      const val = raw === undefined || raw === null ? '' : String(raw)
-      const escaped = val.replace(/"/g, '""')
-      if (/[",\n]/.test(escaped)) return `"${escaped}"`
-      return escaped
-    }).join(',')
-  })
-
-  return [header, ...lines].join('\n')
+  return secureCompare(token, EXPORT_SECRET)
 }
 
 export async function GET(req: NextRequest) {
@@ -62,13 +37,18 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const raw = await fs.readFile(DATA_FILE, 'utf8').catch(() => '[]')
-    const rows = JSON.parse(raw)
+    const raw = await fs.readFile(LEADS_DATA_FILE, 'utf8').catch(() => '[]')
+    const parsed: unknown = JSON.parse(raw)
+    if (!Array.isArray(parsed)) {
+      throw new Error('Lead storage must contain a JSON array')
+    }
+    const rows = parsed
     const csv = toCsv(rows)
 
     const headers = new Headers()
     headers.set('Content-Type', 'text/csv; charset=utf-8')
     headers.set('Content-Disposition', `attachment; filename="leads-${new Date().toISOString().slice(0,10)}.csv"`)
+    headers.set('Cache-Control', 'private, no-store, max-age=0')
 
     return new NextResponse(csv, { status: 200, headers })
   } catch (err) {

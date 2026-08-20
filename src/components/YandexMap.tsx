@@ -2,9 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+const YANDEX_MAPS_API_KEY = process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY
+const YANDEX_MAPS_URL = 'https://yandex.ru/maps/?pt=45.014130,53.186782&z=17&l=map'
+
 export default function YandexMap() {
   const mapRef = useRef<HTMLDivElement>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(Boolean(YANDEX_MAPS_API_KEY))
+  const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
     let map: YMapsMap | null = null
@@ -41,28 +45,52 @@ export default function YandexMap() {
         map.geoObjects.add(placemark)
         setIsLoading(false)
       } catch {
-        // Ошибка инициализации карты (логирование отключено для production)
         setIsLoading(false)
+        setHasError(true)
       }
     }
 
     // Загружаем Яндекс.Карты API
     if (typeof window !== 'undefined') {
+      if (!YANDEX_MAPS_API_KEY) {
+        return
+      }
+
       // Проверяем, загружен ли уже скрипт
       const existingScript = document.querySelector('script[src*="api-maps.yandex.ru"]')
       
       if (!window.ymaps && !existingScript) {
         const script = document.createElement('script')
-        script.src = 'https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU'
+        script.src = `https://api-maps.yandex.ru/2.1/?apikey=${encodeURIComponent(YANDEX_MAPS_API_KEY)}&lang=ru_RU`
         script.async = true
         script.onload = () => {
           if (window.ymaps) {
-          window.ymaps.ready(initMap)
+            window.ymaps.ready(initMap)
+          } else {
+            setIsLoading(false)
+            setHasError(true)
           }
+        }
+        script.onerror = () => {
+          setIsLoading(false)
+          setHasError(true)
         }
         document.head.appendChild(script)
       } else if (window.ymaps) {
         window.ymaps.ready(initMap)
+      } else if (existingScript) {
+        existingScript.addEventListener('load', () => {
+          if (window.ymaps) {
+            window.ymaps.ready(initMap)
+          } else {
+            setIsLoading(false)
+            setHasError(true)
+          }
+        }, { once: true })
+        existingScript.addEventListener('error', () => {
+          setIsLoading(false)
+          setHasError(true)
+        }, { once: true })
       }
     }
 
@@ -82,6 +110,22 @@ export default function YandexMap() {
               <span className="text-3xl">🗺️</span>
             </div>
             <p className="text-lg font-bold">Загрузка карты...</p>
+          </div>
+        </div>
+      )}
+      {(!YANDEX_MAPS_API_KEY || hasError) && (
+        <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center p-6 z-10">
+          <div className="text-center text-white">
+            <div className="text-4xl mb-3" aria-hidden="true">🗺️</div>
+            <p className="text-lg font-bold mb-4">Карта временно недоступна</p>
+            <a
+              href={YANDEX_MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-11 items-center rounded-xl bg-white px-5 py-3 font-bold text-yellow-700 transition-colors hover:bg-yellow-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-yellow-600"
+            >
+              Открыть адрес в Яндекс Картах
+            </a>
           </div>
         </div>
       )}
@@ -135,4 +179,3 @@ declare global {
     ymaps?: YMapsAPI
   }
 }
-

@@ -1,51 +1,46 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependencies
+/node_modules/
+/.pnp/
+.pnp.*
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
+# Next.js and production output
 /.next/
 /out/
+/build/
 
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env
-.env.local
-
-# vercel
-.vercel
-
-# typescript
+# Tests and tooling
+/coverage/
+/.turbo/
+.eslintcache
 *.tsbuildinfo
 next-env.d.ts
 
-# data - исключаем leads.json чтобы не коммитить персональные данные
-/data/leads.json
+# Local environment files and secrets
+.env*
+!.env_example
+*.pem
 
-# IDE
-.vscode/
-.idea/
+# Runtime data: заявки содержат персональные данные
+/data/
+
+# Hosting
+/.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors and local assistant worktrees
+/.vscode/
+/.idea/
+/.claude/worktrees/
 *.swp
 *.swo
 *~
 
-# OS
-Thumbs.db
+# Operating systems
 .DS_Store
-
+Thumbs.db

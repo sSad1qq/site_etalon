@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createRateLimiter, getClientIp } from '@/lib/rate-limit'
 import { verifyCsrf } from '@/lib/csrf'
 import { logger } from '@/lib/logger'
+import { formatMoscowDateTime, formatRussianPhone } from '@/lib/contact-format'
 
 const VK_BOT_TOKEN = process.env.VK_BOT_TOKEN
 const VK_ADMIN_USER_ID = process.env.VK_ADMIN_USER_ID
@@ -20,15 +21,6 @@ const PHONE_RE = /^[+]?[\d\s()-]{7,20}$/
 
 function sanitize(s: string): string {
   return s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F\u200B-\u200F\u2028-\u202F\uFEFF]/g, '')
-}
-
-function formatPhone(phone: string): string {
-  const clean = phone.replace(/\D/g, '')
-  const normalized = clean.startsWith('8') ? '7' + clean.slice(1) : clean
-  if (normalized.length === 10) {
-    return `+7 (${normalized.slice(0, 3)}) ${normalized.slice(3, 6)}-${normalized.slice(6, 8)}-${normalized.slice(8)}`
-  }
-  return `+7 ${normalized}`
 }
 
 export async function POST(request: NextRequest) {
@@ -84,12 +76,12 @@ export async function POST(request: NextRequest) {
       '🎓 Новая заявка с сайта Эталон',
       '',
       `👤 Имя: ${sanitize(name)}`,
-      `📞 Телефон: ${sanitize(formatPhone(phone))}`,
+      `📞 Телефон: ${sanitize(formatRussianPhone(phone))}`,
       ...(email   ? [`📧 Email: ${sanitize(email)}`]   : []),
       ...(subject ? [`📚 Предмет: ${sanitize(subject)}`] : []),
       ...(message ? [`💬 Сообщение: ${sanitize(message)}`] : []),
       '',
-      `⏰ Время: ${new Date().toLocaleString('ru-RU')}`,
+      `⏰ Время: ${formatMoscowDateTime()}`,
       '🌐 Источник: etalon-penza.ru',
     ]
     const vkMessage = lines.join('\n')
@@ -103,8 +95,13 @@ export async function POST(request: NextRequest) {
     })
 
     const vkResponse = await fetch(
-      `https://api.vk.com/method/messages.send?${params.toString()}`,
-      { method: 'POST' },
+      'https://api.vk.com/method/messages.send',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+        signal: AbortSignal.timeout(10_000),
+      },
     )
 
     const vkData = await vkResponse.json()
@@ -133,7 +130,7 @@ export async function POST(request: NextRequest) {
       }
 
       return NextResponse.json(
-        { error: 'Ошибка отправки в VK', details: msg || 'Неизвестная ошибка' },
+        { error: 'Ошибка отправки в VK' },
         { status: 500 },
       )
     }

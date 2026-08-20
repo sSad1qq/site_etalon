@@ -11,13 +11,24 @@
  */
 
 function normalizeHost(raw: string): string {
-  return raw.replace(/:\d+$/, '').toLowerCase()
+  return raw.trim().toLowerCase()
 }
 
-function originMatchesHost(origin: string, host: string): boolean {
+function normalizeOrigin(raw: string): string | null {
   try {
-    const originHost = new URL(origin).hostname.toLowerCase()
-    return originHost === normalizeHost(host)
+    const url = new URL(raw)
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return null
+    return url.origin.toLowerCase()
+  } catch {
+    return null
+  }
+}
+
+function originMatchesHost(raw: string, host: string): boolean {
+  try {
+    const url = new URL(raw)
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return false
+    return url.host.toLowerCase() === normalizeHost(host)
   } catch {
     return false
   }
@@ -43,14 +54,15 @@ export function verifyCsrf(req: Request): CsrfResult {
 
   const extraOrigins = (process.env.ALLOWED_ORIGINS ?? '')
     .split(',')
-    .map(s => s.trim().toLowerCase())
-    .filter(Boolean)
+    .map(normalizeOrigin)
+    .filter((origin): origin is string => origin !== null)
 
   const origin = req.headers.get('origin')
 
   if (origin) {
     if (originMatchesHost(origin, host)) return { ok: true }
-    if (extraOrigins.some(o => originMatchesHost(o, host) || origin.toLowerCase() === o)) {
+    const normalizedOrigin = normalizeOrigin(origin)
+    if (normalizedOrigin && extraOrigins.includes(normalizedOrigin)) {
       return { ok: true }
     }
     return { ok: false, reason: 'Origin mismatch' }
@@ -60,9 +72,8 @@ export function verifyCsrf(req: Request): CsrfResult {
 
   if (referer) {
     if (originMatchesHost(referer, host)) return { ok: true }
-    if (extraOrigins.some(o => {
-      try { return new URL(referer).hostname.toLowerCase() === new URL(o).hostname.toLowerCase() } catch { return false }
-    })) {
+    const normalizedReferer = normalizeOrigin(referer)
+    if (normalizedReferer && extraOrigins.includes(normalizedReferer)) {
       return { ok: true }
     }
     return { ok: false, reason: 'Referer mismatch' }

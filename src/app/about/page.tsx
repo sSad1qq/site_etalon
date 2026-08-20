@@ -4,20 +4,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 
+const PHOTOS = [
+  { src: "/dosug_1.webp", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
+  { src: "/dosug_2.webp", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
+  { src: "/dosug_3.webp", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
+  { src: "/dosug_4.webp", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
+  { src: "/dosug_5.webp", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
+  { src: "/dosug_6.webp", alt: "Совместные достижения", caption: "Празднование успехов и достижений" },
+]
+
 export default function AboutPage() {
   const [photoScrollIndex, setPhotoScrollIndex] = useState(0)
   const photoScrollContainerRef = useRef<HTMLDivElement>(null)
 
-  // Фотографии для бесконечного скролла
-  const photos = [
-    { src: "/dosug_1.webp", alt: "Команда центра на мероприятии", caption: "Совместные праздники и мероприятия" },
-    { src: "/dosug_2.webp", alt: "Преподаватели с учениками", caption: "Неформальное общение с учениками" },
-    { src: "/dosug_3.webp", alt: "Командная работа", caption: "Работа в команде и взаимоподдержка" },
-    { src: "/dosug_4.webp", alt: "Творческие моменты", caption: "Творческие проекты и инициативы" },
-    { src: "/dosug_5.webp", alt: "Дружеское общение", caption: "Дружеское общение вне занятий" },
-    { src: "/dosug_6.webp", alt: "Совместные достижения", caption: "Празднование успехов и достижений" }
-  ]
-  const infinitePhotos = [...photos, ...photos, ...photos]
+  const infinitePhotos = [...PHOTOS, ...PHOTOS, ...PHOTOS]
 
   // Отслеживание скролла фотографий на мобильной версии с бесконечной прокруткой
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function AboutPage() {
     const setInitialPosition = () => {
       const cards = container.querySelectorAll('[data-photo-index]')
       if (cards.length > 0) {
-        const firstMiddleCard = cards[photos.length] as HTMLElement
+        const firstMiddleCard = cards[PHOTOS.length] as HTMLElement
         if (firstMiddleCard) {
           const containerWidth = container.offsetWidth
           const cardWidth = firstMiddleCard.offsetWidth
@@ -56,15 +56,15 @@ export default function AboutPage() {
         }
       })
       
-      setPhotoScrollIndex(closestIndex % photos.length)
+      setPhotoScrollIndex(closestIndex % PHOTOS.length)
     }
 
     const handleInfiniteScroll = () => {
       const cards = container.querySelectorAll('[data-photo-index]')
       if (cards.length === 0) return
 
-      const firstMiddleCard = cards[photos.length] as HTMLElement
-      const lastMiddleCard = cards[photos.length * 2 - 1] as HTMLElement
+      const firstMiddleCard = cards[PHOTOS.length] as HTMLElement
+      const lastMiddleCard = cards[PHOTOS.length * 2 - 1] as HTMLElement
       
       if (!firstMiddleCard || !lastMiddleCard) return
 
@@ -178,7 +178,7 @@ export default function AboutPage() {
             
             {/* Индикаторы-точки внизу */}
             <div className="flex justify-center gap-2 mt-4 px-4">
-              {photos.map((_, index) => (
+              {PHOTOS.map((_, index) => (
                 <div
                   key={`indicator-${index}`}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
@@ -193,7 +193,7 @@ export default function AboutPage() {
 
           {/* Десктопная версия - сетка */}
           <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
-            {photos.map((photo, index) => (
+            {PHOTOS.map((photo, index) => (
               <div
                 key={index}
                 className="card-lying rounded-2xl p-3 group animate-zoom-in overflow-hidden"

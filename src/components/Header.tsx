@@ -114,9 +114,12 @@ export default function Header() {
 
           {/* Мобильное меню */}
           <button
-            className="md:hidden p-2"
+            type="button"
+            className="md:hidden min-w-11 min-h-11 p-2 inline-flex flex-col items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 rounded-lg"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Меню"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <div className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center ${
               isMenuOpen ? 'rotate-45 translate-y-2' : ''
@@ -134,7 +137,7 @@ export default function Header() {
         <div className={`md:hidden transition-all duration-300 overflow-hidden ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <nav className="flex flex-col space-y-3 py-4">
+          <nav id="mobile-navigation" aria-label="Мобильная навигация" className="flex flex-col space-y-3 py-4">
             {navItems.map((item) => {
               if (item.type === 'anchor') {
                 return (

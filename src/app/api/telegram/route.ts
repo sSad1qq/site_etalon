@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createRateLimiter, getClientIp } from '@/lib/rate-limit'
 import { verifyCsrf } from '@/lib/csrf'
 import { logger } from '@/lib/logger'
+import { formatMoscowDateTime, formatRussianPhone } from '@/lib/contact-format'
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
 const TELEGRAM_ADMIN_CHAT_ID = process.env.TELEGRAM_ADMIN_CHAT_ID
@@ -85,19 +86,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Форматируем телефон для отображения
-    const formatPhone = (phone: string) => {
-      // Убираем все нецифровые символы
-      const cleanPhone = phone.replace(/\D/g, '')
-      // Если номер начинается с 8, заменяем на 7
-      const formattedPhone = cleanPhone.startsWith('8') ? '7' + cleanPhone.slice(1) : cleanPhone
-      // Форматируем для отображения
-      if (formattedPhone.length === 10) {
-        return `+7 (${formattedPhone.slice(0, 3)}) ${formattedPhone.slice(3, 6)}-${formattedPhone.slice(6, 8)}-${formattedPhone.slice(8)}`
-      }
-      return `+7 ${formattedPhone}`
-    }
-
     const sanitize = (s: string) =>
       s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F\u200B-\u200F\u2028-\u202F\uFEFF]/g, '')
     const esc = (s: string) =>
@@ -107,12 +95,12 @@ export async function POST(request: NextRequest) {
 🎓 *Новая заявка с сайта Эталон*
 
 👤 *Имя:* ${esc(name)}
-📞 *Телефон:* ${esc(formatPhone(phone))}
+📞 *Телефон:* ${esc(formatRussianPhone(phone))}
 ${email ? `📧 *Email:* ${esc(email)}` : ''}
 ${subject ? `📚 *Предмет:* ${esc(subject)}` : ''}
 ${message ? `💬 *Сообщение:* ${esc(message)}` : ''}
 
-⏰ *Время:* ${esc(new Date().toLocaleString('ru-RU'))}
+⏰ *Время:* ${esc(formatMoscowDateTime())}
 🌐 *Источник:* etalon\\-penza\\.ru
     `.trim()
 
@@ -130,6 +118,7 @@ ${message ? `💬 *Сообщение:* ${esc(message)}` : ''}
           parse_mode: 'MarkdownV2',
           disable_web_page_preview: true,
         }),
+        signal: AbortSignal.timeout(10_000),
       }
     )
 
@@ -158,10 +147,7 @@ ${message ? `💬 *Сообщение:* ${esc(message)}` : ''}
       }
       
       return NextResponse.json(
-        { 
-          error: 'Ошибка отправки в Telegram', 
-          details: telegramData.description || 'Неизвестная ошибка'
-        },
+        { error: 'Ошибка отправки в Telegram' },
         { status: 500 }
       )
     }

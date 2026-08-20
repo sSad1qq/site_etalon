@@ -24,15 +24,23 @@ function isBlockedIPv4(ip: string): boolean {
   if (a === 172 && b >= 16 && b <= 31) return true   // 172.16.0.0/12
   if (a === 192 && b === 168) return true            // 192.168.0.0/16
   if (a === 100 && b >= 64 && b <= 127) return true  // 100.64.0.0/10  (CGNAT / cloud VPC)
+  if (a === 192 && b === 0) return true                // 192.0.0.0/24  (IETF protocol assignments)
+  if (a === 198 && (b === 18 || b === 19)) return true // 198.18.0.0/15 (benchmarking)
+  if (a >= 224) return true                             // multicast, reserved, broadcast
 
   return false
 }
 
 function isBlockedIPv6(ip: string): boolean {
   const normalized = ip.toLowerCase()
+  if (normalized === '::') return true
   if (normalized === '::1') return true
+  if (normalized.startsWith('::ffff:')) {
+    return isBlockedIPv4(normalized.slice('::ffff:'.length))
+  }
   if (normalized.startsWith('fe80:')) return true     // link-local
   if (normalized.startsWith('fc') || normalized.startsWith('fd')) return true // ULA
+  if (normalized.startsWith('ff')) return true         // multicast
   return false
 }
 
@@ -55,8 +63,12 @@ export async function validateWebhookUrl(
     return { valid: false, reason: 'Malformed URL' }
   }
 
-  if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+  if (parsed.protocol !== 'https:') {
     return { valid: false, reason: `Disallowed protocol: ${parsed.protocol}` }
+  }
+
+  if (parsed.username || parsed.password) {
+    return { valid: false, reason: 'Credentials in URL are not allowed' }
   }
 
   const hostname = parsed.hostname

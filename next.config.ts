@@ -1,11 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  output: 'standalone', // Для Docker deployment
-  /* config options here */
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
-  },
+  output: 'standalone',
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
@@ -15,9 +11,6 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
-  httpAgentOptions: {
-    keepAlive: true,
-  },
   async headers() {
     const cspDirectives = [
       "default-src 'self'",
@@ -26,7 +19,7 @@ const nextConfig: NextConfig = {
       "img-src 'self' data: blob: https://*.maps.yandex.net https://api-maps.yandex.ru https://yastatic.net",
       "font-src 'self'",
       "connect-src 'self' https://api-maps.yandex.ru https://*.maps.yandex.net https://yastatic.net",
-      "frame-src https://vk.com",
+      "frame-src 'self' https://vk.com",
       "media-src 'self'",
       "object-src 'none'",
       "base-uri 'self'",
@@ -52,7 +45,15 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'off',
           },
         ],
       },
@@ -61,7 +62,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate',
+            value: 'private, no-store, max-age=0',
           },
         ],
       },
@@ -70,16 +71,28 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
         ],
       },
       {
-        source: '/_next/static/:path*',
+        source: '/:document*.pdf',
         headers: [
           {
+            key: 'Content-Security-Policy',
+            value: "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'none'",
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Content-Disposition',
+            value: 'inline',
+          },
+          {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
         ],
       },

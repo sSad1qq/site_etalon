@@ -1,15 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Скрипт для быстрого запуска сайта с Ngrok туннелем
 # Использование: ./start-ngrok.sh
+
+set -euo pipefail
 
 echo "🚀 Запуск сайта с Ngrok туннелем..."
 echo ""
 
 # Проверяем, запущен ли Docker контейнер
-if ! docker-compose ps | grep -q "Up"; then
+if ! docker compose ps --status running --services | grep -qx "web"; then
     echo "📦 Запускаем Docker контейнер..."
-    docker-compose up -d --build
+    docker compose up -d --build
     echo "⏳ Ждем запуска контейнера..."
     sleep 5
 else
@@ -37,4 +39,3 @@ echo ""
 
 # Запускаем ngrok
 ngrok http 3000
-

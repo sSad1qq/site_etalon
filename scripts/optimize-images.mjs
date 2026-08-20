@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Image optimization script using sharp (already installed via Next.js)
+ * Image optimization script using sharp
  * Resizes and converts images to WebP for dramatic size reduction
  */
 
@@ -22,12 +22,6 @@ const optimizations = [
   {
     input: 'hero-sova-blur.png',
     output: 'hero-sova-blur.webp',
-    width: 600,
-    quality: 85,
-  },
-  {
-    input: 'sova.png',
-    output: 'sova.webp',
     width: 600,
     quality: 85,
   },
@@ -65,6 +59,7 @@ const optimizations = [
 
 let totalOriginal = 0;
 let totalOptimized = 0;
+let failures = 0;
 
 for (const opt of optimizations) {
   const inputPath = path.join(PUBLIC_DIR, opt.input);
@@ -89,6 +84,7 @@ for (const opt of optimizations) {
       `✓ ${opt.input} (${(inputSize / 1024).toFixed(0)}KB) -> ${opt.output} (${(outputSize / 1024).toFixed(0)}KB) [-${reduction}%]`
     );
   } catch (err) {
+    failures += 1;
     console.error(`✗ ${opt.input}: ${err.message}`);
   }
 }
@@ -97,3 +93,7 @@ console.log('\n--- Summary ---');
 console.log(`Original total: ${(totalOriginal / 1024 / 1024).toFixed(1)} MB`);
 console.log(`Optimized total: ${(totalOptimized / 1024 / 1024).toFixed(1)} MB`);
 console.log(`Reduction: ${((1 - totalOptimized / totalOriginal) * 100).toFixed(1)}%`);
+
+if (failures > 0) {
+  process.exitCode = 1;
+}
